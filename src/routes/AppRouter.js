@@ -8,7 +8,7 @@ import Navigation from "./Navigation";
 const AppRouter = ({ isLoggedIn, userObject }) => {
   return (
     <Router>
-      {isLoggedIn && <Navigation />}
+      {<Navigation />}
       <Routes>
         {isLoggedIn ? (
           <>
@@ -23,6 +23,8 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
             <Route path={`${process.env.PUBLIC_URL}/`} element={<HomePage />} />
             <Route
               path={`${process.env.PUBLIC_URL}/signIn`}
+              replace
+              to={`${process.env.PUBLIC_URL}/`}
               element={<SignInPage />}
             />
           </>
