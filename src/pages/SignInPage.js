@@ -1,13 +1,27 @@
-import { onUserEmailOrPasswordChange } from "functions/SignInFunction";
+import {
+  onUserEmailAndPasswordSubmit,
+  onUserEmailOrPasswordChange,
+} from "functions/SignInFunction";
 import { useState } from "react";
 
 const SignInPage = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [isNewUser, setIsNewUser] = useState(true);
 
   return (
     <div>
-      <form>
+      <form
+        onSubmit={(e) =>
+          onUserEmailAndPasswordSubmit(
+            e,
+            userEmail,
+            userPassword,
+            isNewUser,
+            setIsNewUser
+          )
+        }
+      >
         <input
           name="userEmail"
           type="email"
@@ -24,6 +38,7 @@ const SignInPage = () => {
           value={userPassword}
           onChange={(e) => onUserEmailOrPasswordChange(e, setUserPassword)}
         />
+        <input type="submit" value={isNewUser ? "Sign In" : "Log In"} />
       </form>
     </div>
   );
