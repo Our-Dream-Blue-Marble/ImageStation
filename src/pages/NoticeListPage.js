@@ -46,19 +46,6 @@ const NoticeListPage = () => {
       </footer>
     </Layout>
   );
-  //   <>
-  //     <div>
-  //       {notice.map((value) => (
-  //         <div key={value.id}>
-  //           <h1>{value.title}</h1>
-  //         </div>
-  //       ))}
-  //     </div>
-  //     <div>
-  //       <button>next Page</button>
-  //     </div>
-  //   </>
-  // );
 };
 
 const Layout = styled.div`
