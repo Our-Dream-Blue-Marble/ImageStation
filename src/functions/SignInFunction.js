@@ -15,6 +15,15 @@ export const onUserEmailOrPasswordChange = (event, setValue) => {
   }
 };
 
+export const checkHandongEmail = (userEmail) => {
+  const data = `${userEmail}`.split("@");
+  if (data[1] === "handong.ac.kr" || data[1] === "handong.edu") {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export const onUserEmailAndPasswordSubmit = async (
   event,
   userEmail,
@@ -25,7 +34,7 @@ export const onUserEmailAndPasswordSubmit = async (
   event.preventDefault();
   try {
     let data;
-    if (isNewUser) {
+    if (checkHandongEmail(userEmail) && isNewUser) {
       data = await createUserWithEmailAndPassword(
         authService,
         userEmail,
