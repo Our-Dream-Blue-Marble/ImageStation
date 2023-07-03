@@ -1,40 +1,28 @@
 import React from "react";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import SignInPage from "pages/SignInPage";
-import NoticeListPage from "pages/NoticListPage";
+import NoticListPage from "pages/NoticListPage";
 import Navigation from "./Navigation";
 
-const AppRouter = ({ isLoggedIn, userObj }) => {
+const AppRouter = ({ isLoggedIn, userObject }) => {
   return (
     <Router>
-      {isLoggedIn && <Navigation />}
+      {<Navigation />}
       <Routes>
         {isLoggedIn ? (
           <>
+            <Route path={`${process.env.PUBLIC_URL}/`} element={<HomePage />} />
             <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/`}
-              element={<HomePage />}
-            />
-            <Route
-              exact
               path={`${process.env.PUBLIC_URL}/notice`}
-              replace
-              to={`${process.env.PUBLIC_URL}/`}
-              element={<NoticeListPage />}
+              element={<NoticListPage />}
             />
           </>
         ) : (
           <>
+            <Route path={`${process.env.PUBLIC_URL}/`} element={<HomePage />} />
             <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/`}
-              element={<HomePage />}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/signIn`}
+              path={`${process.env.PUBLIC_URL}/signin`}
               replace
               to={`${process.env.PUBLIC_URL}/`}
               element={<SignInPage />}
