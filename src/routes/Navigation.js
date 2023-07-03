@@ -12,7 +12,7 @@ const Navigation = () => {
           <Link to={`${process.env.PUBLIC_URL}/notice`}>NoticeList</Link>
         </li>
         <li>
-          <Link to={`${process.env.PUBLIC_URL}/signIn`}>SignIn</Link>
+          <Link to={`${process.env.PUBLIC_URL}/signin`}>SignIn</Link>
         </li>
       </ul>
     </nav>

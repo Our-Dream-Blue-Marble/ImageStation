@@ -22,7 +22,7 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
           <>
             <Route path={`${process.env.PUBLIC_URL}/`} element={<HomePage />} />
             <Route
-              path={`${process.env.PUBLIC_URL}/signIn`}
+              path={`${process.env.PUBLIC_URL}/signin`}
               replace
               to={`${process.env.PUBLIC_URL}/`}
               element={<SignInPage />}
