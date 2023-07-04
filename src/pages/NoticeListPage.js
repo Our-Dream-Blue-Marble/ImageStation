@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
-import fbase, { dbService } from "fbase";
+import { dbService } from "fbase";
 import NoticePagination from "../widgets/NoticePagination";
 import styled from "styled-components";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import NoticeViewPage from "./NoticeViewPage";
 
 const NoticeListPage = () => {
   const [notice, setNotice] = useState([]);
   const [page, setPage] = useState(1);
-  const [notices, setNotices] = useState(5);
-  const offset = (page - 1) * notices;
+  const limit = 2;
+  const offset = (page - 1) * limit;
 
   useEffect(() => {
     dbService
       .collection("notices")
-      .orderBy("num", "desc")
+      .orderBy("id", "desc")
       .onSnapshot((snapshot) => {
         const noticeArray = snapshot.docs.map((doc) => ({
           id: doc.id,
+          title: doc.title,
           ...doc.data(),
         }));
         setNotice(noticeArray);
@@ -28,24 +30,22 @@ const NoticeListPage = () => {
       <header>
         <h1>[Notice List]</h1>
       </header>
-
       <main>
-        {notice.slice(offset, offset + notices).map((value) => (
+        {notice.slice(offset, offset + limit).map((value) => (
           <div key={value.id}>
-            <h1>
-              No. {value.num} :
-              <Link to={`${process.env.PUBLIC_URL}/notice/${value.num}`}>
+            <h4>
+              No. {value.id} :
+              <Link to={`${process.env.PUBLIC_URL}/notice/${value.id}`}>
                 {value.title}
               </Link>
-            </h1>
+            </h4>
           </div>
         ))}
       </main>
-
       <footer>
         <NoticePagination
           total={notice.length}
-          notices={notices}
+          notices={limit}
           page={page}
           setPage={setPage}
         />

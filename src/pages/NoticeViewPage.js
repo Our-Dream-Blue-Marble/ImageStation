@@ -1,18 +1,31 @@
 import { dbService } from "fbase";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const NoticeViewPage = (data) => {
+const NoticeViewPage = () => {
   const { id } = useParams();
-  const noticeDetail = dbService.collection("notices").doc();
+  const [detail, setDetail] = useState([]);
   const getNotice = async () => {
-    const detail = await noticeDetail.get();
-    console.log(detail);
+    const notice = dbService.collection("notices").doc(id);
+    const doc = await notice.get();
+    if (doc.exists) {
+      const noticeArray = doc.data();
+      setDetail(noticeArray);
+    } else {
+      setDetail([]);
+    }
   };
   useEffect(() => {
     getNotice();
   }, []);
-  return <>111</>;
+  return (
+    <div>
+      no: {detail.id} <br />
+      title: {detail.title}
+      <br />
+      body: {detail.body}
+    </div>
+  );
 };
 
 export default NoticeViewPage;
