@@ -3,11 +3,12 @@ import { dbService } from "fbase";
 import NoticePagination from "../widgets/NoticePagination";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import NoticeViewPage from "./NoticeViewPage";
 
 const NoticeListPage = () => {
   const [notice, setNotice] = useState([]);
   const [page, setPage] = useState(1);
-  const limit = 5;
+  const limit = 2;
   const offset = (page - 1) * limit;
 
   useEffect(() => {
@@ -32,12 +33,12 @@ const NoticeListPage = () => {
       <main>
         {notice.slice(offset, offset + limit).map((value) => (
           <div key={value.id}>
-            <h1>
+            <h4>
               No. {value.id} :
               <Link to={`${process.env.PUBLIC_URL}/notice/${value.id}`}>
                 {value.title}
               </Link>
-            </h1>
+            </h4>
           </div>
         ))}
       </main>
