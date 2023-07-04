@@ -1,13 +1,15 @@
-import { dbService } from "fbase";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { getNotice } from "functions/NoticeFunction";
 
-const NoticeViewPage = () => {
+const NoticeViewPage = ({}) => {
+  const location = useLocation();
+  const noticeData = location.state;
   const [detail, setDetail] = useState([]);
-  const { id } = useParams();
+
   useEffect(() => {
-    getNotice(id, setDetail);
+    console.log(noticeData);
+    getNotice(noticeData, setDetail);
   }, []);
   return (
     <div>
