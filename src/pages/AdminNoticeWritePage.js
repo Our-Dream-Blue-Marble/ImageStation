@@ -12,7 +12,7 @@ const AdminNoticeWritePage = () => {
     }
     event.preventDefault();
 
-    await dbService.collection("notice").add({
+    await dbService.collection("notices").add({
       title: postTitle,
       body: postBody,
       data: Date.now(),
@@ -40,10 +40,6 @@ const AdminNoticeWritePage = () => {
           placeholder="제목을 입력하세요"
           maxLength={120}
         />
-        <input type="submit" />
-      </form>
-      <br />
-      <form onSubmit={onSubmit}>
         <input
           body={postBody}
           onChange={onChange}
@@ -51,7 +47,7 @@ const AdminNoticeWritePage = () => {
           placeholder="게시글을 입력하세요"
           maxLength={2500}
         />
-        <input type="submit" body="&rarr;" />
+        <input type="submit" />
       </form>
     </div>
   );
