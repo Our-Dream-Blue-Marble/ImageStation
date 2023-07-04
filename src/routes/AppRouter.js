@@ -4,6 +4,11 @@ import HomePage from "pages/HomePage";
 import SignInPage from "pages/SignInPage";
 import NoticListPage from "pages/NoticListPage";
 import Navigation from "./Navigation";
+import {
+  HomeRouteName,
+  NotiveListRouteName,
+  SignInRouteName,
+} from "./RouteName";
 
 const AppRouter = ({ isLoggedIn, userObject }) => {
   return (
@@ -12,21 +17,13 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
       <Routes>
         {isLoggedIn ? (
           <>
-            <Route path={`${process.env.PUBLIC_URL}/`} element={<HomePage />} />
-            <Route
-              path={`${process.env.PUBLIC_URL}/notice`}
-              element={<NoticListPage />}
-            />
+            <Route path={HomeRouteName} element={<HomePage />} />
+            <Route path={NotiveListRouteName} element={<NoticListPage />} />
           </>
         ) : (
           <>
-            <Route path={`${process.env.PUBLIC_URL}/`} element={<HomePage />} />
-            <Route
-              path={`${process.env.PUBLIC_URL}/signin`}
-              replace
-              to={`${process.env.PUBLIC_URL}/`}
-              element={<SignInPage />}
-            />
+            <Route path={HomeRouteName} element={<HomePage />} />
+            <Route path={SignInRouteName} element={<SignInPage />} />
           </>
         )}
       </Routes>
