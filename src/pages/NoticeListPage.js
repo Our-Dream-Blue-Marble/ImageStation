@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { dbService } from "fbase";
 import NoticePagination from "../widgets/NoticePagination";
 import styled from "styled-components";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { onWriteNoticeClick } from "functions/NoticeFunction";
+import { Link, useNavigate } from "react-router-dom";
 import { NoticeWriteRouteName } from "routes/RouteName";
 
 const NoticeListPage = () => {
@@ -41,7 +40,9 @@ const NoticeListPage = () => {
           <div key={value.id}>
             <h4>
               No. {value.id} :
-              <Link to={`${process.env.PUBLIC_URL}/notice/${value.id}`}>
+              <Link
+                to={`${process.env.PUBLIC_URL}/notice/${value.id}`}
+                state={value}>
                 {value.title}
               </Link>
             </h4>
