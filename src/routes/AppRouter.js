@@ -1,30 +1,25 @@
 import React from "react";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import SignInPage from "pages/SignInPage";
 import NoticeListPage from "pages/NoticeListPage";
 import Navigation from "./Navigation";
 import NoticeViewPage from "pages/NoticeViewPage";
+import {
+  HomeRouteName,
+  NotiveListRouteName,
+  SignInRouteName,
+} from "./RouteName";
 
-const AppRouter = ({ isLoggedIn, userObj }) => {
+const AppRouter = ({ isLoggedIn, userObject }) => {
   return (
     <Router>
-      {isLoggedIn && <Navigation />}
+      {<Navigation />}
       <Routes>
         {isLoggedIn ? (
           <>
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/`}
-              element={<HomePage />}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/notice`}
-              replace
-              to={`${process.env.PUBLIC_URL}/`}
-              element={<NoticeListPage />}
-            />
+            <Route path={HomeRouteName} element={<HomePage />} />
+            <Route path={NotiveListRouteName} element={<NoticeListPage />} />
             <Route
               exact
               path={`${process.env.PUBLIC_URL}/notice/:num`}
@@ -35,18 +30,8 @@ const AppRouter = ({ isLoggedIn, userObj }) => {
           </>
         ) : (
           <>
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/`}
-              element={<HomePage />}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/signIn`}
-              replace
-              to={`${process.env.PUBLIC_URL}/`}
-              element={<SignInPage />}
-            />
+            <Route path={HomeRouteName} element={<HomePage />} />
+            <Route path={SignInRouteName} element={<SignInPage />} />
           </>
         )}
       </Routes>
