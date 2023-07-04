@@ -1,4 +1,3 @@
-import React from "react";
 import { authService } from "fbase";
 import { deleteUser } from "@firebase/auth";
 
