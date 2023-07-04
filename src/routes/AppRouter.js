@@ -2,8 +2,9 @@ import React from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import SignInPage from "pages/SignInPage";
-import NoticeListPage from "pages/NoticListPage";
+import NoticeListPage from "pages/NoticeListPage";
 import Navigation from "./Navigation";
+import NoticeViewPage from "pages/NoticeViewPage";
 
 const AppRouter = ({ isLoggedIn, userObj }) => {
   return (
@@ -23,6 +24,13 @@ const AppRouter = ({ isLoggedIn, userObj }) => {
               replace
               to={`${process.env.PUBLIC_URL}/`}
               element={<NoticeListPage />}
+            />
+            <Route
+              exact
+              path={`${process.env.PUBLIC_URL}/notice/:num`}
+              replace
+              to={`${process.env.PUBLIC_URL}/`}
+              element={<NoticeViewPage />}
             />
           </>
         ) : (
