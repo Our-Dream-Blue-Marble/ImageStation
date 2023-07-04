@@ -7,7 +7,8 @@ import Navigation from "./Navigation";
 import NoticeViewPage from "pages/NoticeViewPage";
 import {
   HomeRouteName,
-  NotiveListRouteName,
+  NoticeViewRouteName,
+  NoticeListRouteName,
   SignInRouteName,
 } from "./RouteName";
 
@@ -19,14 +20,8 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
         {isLoggedIn ? (
           <>
             <Route path={HomeRouteName} element={<HomePage />} />
-            <Route path={NotiveListRouteName} element={<NoticeListPage />} />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/notice/:num`}
-              replace
-              to={`${process.env.PUBLIC_URL}/`}
-              element={<NoticeViewPage />}
-            />
+            <Route path={NoticeListRouteName} element={<NoticeListPage />} />
+            <Route path={NoticeViewRouteName} element={<NoticeViewPage />} />
           </>
         ) : (
           <>
