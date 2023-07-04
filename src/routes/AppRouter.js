@@ -1,11 +1,5 @@
 import React, { useRef } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Link,
-  useNavigate,
-} from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import SignInPage from "pages/SignInPage";
 import NoticeListPage from "pages/NoticeListPage";
@@ -20,6 +14,10 @@ import {
 import AdminNoticePage from "pages/AdminNoticePage";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 
+import LogInPage from "pages/LogInPage";
+import LoggedOut from "functions/LogoutFunction";
+
+
 const AppRouter = ({ isLoggedIn, userObject }) => {
   const homePagePosition = useRef(null);
   const noticeListPagePosition = useRef(null);
@@ -29,7 +27,7 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
     <>
       <header>
         {isLoggedIn ? (
-          <button onClick={() => navigate(SignInRouteName)}>로그아웃</button>
+          <button onClick={() => LoggedOut()}>로그아웃</button>
         ) : (
           <button onClick={() => navigate(SignInRouteName)}>
             회원가입 / 로그인
