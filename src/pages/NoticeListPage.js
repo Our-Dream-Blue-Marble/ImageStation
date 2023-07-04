@@ -13,10 +13,11 @@ const NoticeListPage = () => {
   useEffect(() => {
     dbService
       .collection("notices")
-      .orderBy("num", "desc")
+      .orderBy("id", "desc")
       .onSnapshot((snapshot) => {
         const noticeArray = snapshot.docs.map((doc) => ({
           id: doc.id,
+          title: doc.title,
           ...doc.data(),
         }));
         setNotice(noticeArray);
@@ -32,8 +33,8 @@ const NoticeListPage = () => {
         {notice.slice(offset, offset + limit).map((value) => (
           <div key={value.id}>
             <h1>
-              No. {value.num} :
-              <Link to={`${process.env.PUBLIC_URL}/notice/${value.num}`}>
+              No. {value.id} :
+              <Link to={`${process.env.PUBLIC_URL}/notice/${value.id}`}>
                 {value.title}
               </Link>
             </h1>
