@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { dbService } from "fbase";
 import NoticePagination from "../widgets/NoticePagination";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import NoticeViewPage from "./NoticeViewPage";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { onWriteNoticeClick } from "functions/NoticeFunction";
+import { NoticeWriteRouteName } from "routes/RouteName";
 
 const NoticeListPage = () => {
+  const [admin, isAdmin] = useState(true);
+  const navigate = useNavigate();
   const [notice, setNotice] = useState([]);
   const [page, setPage] = useState(1);
   const limit = 2;
@@ -30,6 +33,9 @@ const NoticeListPage = () => {
       <header>
         <h1>[Notice List]</h1>
       </header>
+      {admin ? (
+        <button onClick={() => navigate(NoticeWriteRouteName)}>작성하기</button>
+      ) : null}
       <main>
         {notice.slice(offset, offset + limit).map((value) => (
           <div key={value.id}>
