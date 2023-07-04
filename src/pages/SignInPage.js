@@ -3,8 +3,11 @@ import {
   onUserEmailOrPasswordChange,
 } from "functions/SignInFunction";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { HomeRouteName } from "routes/RouteName";
 
 const SignInPage = () => {
+  const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [isNewUser, setIsNewUser] = useState(true);
@@ -12,15 +15,19 @@ const SignInPage = () => {
   return (
     <div>
       <form
-        onSubmit={(e) =>
+        onSubmit={async (e) => {
           onUserEmailAndPasswordSubmit(
             e,
             userEmail,
             userPassword,
             isNewUser,
             setIsNewUser
-          )
-        }
+          ).then((result) => {
+            if (result) {
+              navigate(HomeRouteName);
+            }
+          });
+        }}
       >
         <input
           name="userEmail"

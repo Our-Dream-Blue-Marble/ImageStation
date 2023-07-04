@@ -40,18 +40,19 @@ export const onUserEmailAndPasswordSubmit = async (
         userEmail,
         userPassword
       );
+      return true;
     } else {
       data = await signInWithEmailAndPassword(
         authService,
         userEmail,
         userPassword
       );
+      return true;
     }
-    console.log(data);
   } catch (e) {
-    console.log(e);
     if (`${e.message}`.includes("email-already-in-use")) {
       setIsNewUser(false);
     }
   }
+  return false;
 };
