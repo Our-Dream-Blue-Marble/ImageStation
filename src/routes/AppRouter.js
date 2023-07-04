@@ -15,7 +15,10 @@ import {
   NoticeViewRouteName,
   NoticeListRouteName,
   SignInRouteName,
+  NoticeWriteRouteName,
 } from "./RouteName";
+import AdminNoticePage from "pages/AdminNoticePage";
+import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 
 const AppRouter = ({ isLoggedIn, userObject }) => {
   const homePagePosition = useRef(null);
@@ -43,8 +46,7 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition"
-                  >
+                    className="noticeListPagePosition">
                     <NoticeListPage />
                   </div>
                 </div>
@@ -52,6 +54,10 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
             />
             <Route path={NoticeListRouteName} element={<NoticeListPage />} />
             <Route path={NoticeViewRouteName} element={<NoticeViewPage />} />
+            <Route
+              path={NoticeWriteRouteName}
+              element={<AdminNoticeWritePage />}
+            />
           </>
         ) : (
           <>
@@ -62,8 +68,7 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition"
-                  >
+                    className="noticeListPagePosition">
                     <NoticeListPage />
                   </div>
                 </div>
