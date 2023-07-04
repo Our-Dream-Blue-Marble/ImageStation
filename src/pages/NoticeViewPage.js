@@ -2,7 +2,7 @@ import { dbService } from "fbase";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const NoticeViewPage = (data) => {
+const NoticeViewPage = ({ data }) => {
   const { id } = useParams();
   const noticeDetail = dbService.collection("notices").doc();
   const getNotice = async () => {
@@ -12,7 +12,12 @@ const NoticeViewPage = (data) => {
   useEffect(() => {
     getNotice();
   }, []);
-  return <>111</>;
+  return (
+    <>
+      hi
+      <div>hi</div>
+    </>
+  );
 };
 
 export default NoticeViewPage;

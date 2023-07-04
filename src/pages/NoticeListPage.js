@@ -3,6 +3,8 @@ import fbase, { dbService } from "fbase";
 import NoticePagination from "../widgets/NoticePagination";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import NoticeViewPage from "./NoticeViewPage";
+import { showNoticeList } from "functions/NoticeListFunction";
 
 const NoticeListPage = () => {
   const [notice, setNotice] = useState([]);
@@ -28,20 +30,7 @@ const NoticeListPage = () => {
       <header>
         <h1>[Notice List]</h1>
       </header>
-
-      <main>
-        {notice.slice(offset, offset + notices).map((value) => (
-          <div key={value.id}>
-            <h1>
-              No. {value.num} :
-              <Link to={`${process.env.PUBLIC_URL}/notice/${value.num}`}>
-                {value.title}
-              </Link>
-            </h1>
-          </div>
-        ))}
-      </main>
-
+      <main>{showNoticeList({ notice, offset, notices })}</main>
       <footer>
         <NoticePagination
           total={notice.length}
