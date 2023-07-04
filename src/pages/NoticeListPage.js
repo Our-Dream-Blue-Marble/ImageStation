@@ -24,7 +24,7 @@ const NoticeListPage = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout style={{ height: "100vh" }}>
       <header>
         <h1>[Notice List]</h1>
       </header>

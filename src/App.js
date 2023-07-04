@@ -1,6 +1,7 @@
 import { authService } from "fbase";
 import React, { useEffect, useState } from "react";
 import AppRouter from "routes/AppRouter";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +20,7 @@ function App() {
     });
   }, []);
   return (
-    <>
+    <BrowserRouter>
       {isLoading ? (
         "Looading..."
       ) : (
@@ -27,7 +28,7 @@ function App() {
           <AppRouter isLoggedIn={isLoggedIn} userObj={userObject} />
         </div>
       )}
-    </>
+    </BrowserRouter>
   );
 }
 
