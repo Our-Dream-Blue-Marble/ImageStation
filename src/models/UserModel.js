@@ -9,14 +9,14 @@ class UserModel {
     signInDate,
     logInDate
   ) {
-    this.uid = uid ?? this.uid;
-    this.email = email ?? this.email;
-    this.name = name ?? this.name;
-    this.phoneNumber = phoneNumber ?? this.phoneNumber;
-    this.role = role ?? this.role;
-    this.isReceiveMail = isReceiveMail ?? this.isReceiveMail;
-    this.signInDate = signInDate ?? this.signInDate;
-    this.logInDate = logInDate ?? this.logInDate;
+    this.uid = uid;
+    this.email = email;
+    this.name = name;
+    this.phoneNumber = phoneNumber;
+    this.role = role;
+    this.isReceiveMail = isReceiveMail;
+    this.signInDate = signInDate;
+    this.logInDate = logInDate;
   }
   toData() {
     return {
