@@ -26,6 +26,7 @@ export const createNewNoticeDocument = async (
 };
 
 export const readNoticeDocument = async (id) => {
+  let noticeModel;
   await dbService
     .collection("notices")
     .doc(id)
@@ -33,16 +34,16 @@ export const readNoticeDocument = async (id) => {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        const noticeModel = doc.data();
-        return noticeModel;
-      } else {
-        return NoticeModel();
+        noticeModel = doc.data().id;
+        console.log("doc data: ", doc.data());
       }
     })
     .catch((e) => {
       console.log(e);
     });
-  return false;
+
+  console.log("noticeModel:", noticeModel);
+  return noticeModel;
 };
 
 export const updateNoticeDocument = async (

@@ -1,24 +1,31 @@
 import { useEffect, useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import { getNotice } from "functions/NoticeFunction";
 import { NoticeListRouteName } from "routes/RouteName";
+import { readNoticeDocument } from "repositories/NoticeRepository";
 
 const NoticeViewPage = ({}) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const noticeData = location.state;
+
+  const [readNoticeDetail, setReadNoticeDetail] = useState([]);
   const [detail, setDetail] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    console.log(noticeData);
-    getNotice(noticeData, setDetail);
+    setReadNoticeDetail(readNoticeDocument(id));
+    console.log("read: ", readNoticeDetail);
   }, []);
   return (
     <div>
-      no: {detail.id} <br />
-      title: {detail.title}
+      no: {readNoticeDetail.id} <br />
+      title: {readNoticeDetail.title}
       <br />
-      body: {detail.body}
+      body: {readNoticeDetail.body}
       <br />
       <button onClick={() => navigate(NoticeListRouteName)}>
         리스트로 돌아가기
