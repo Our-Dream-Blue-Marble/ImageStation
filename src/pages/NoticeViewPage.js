@@ -1,23 +1,44 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import {
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import { getNotice } from "functions/NoticeFunction";
+import { NoticeListRouteName } from "routes/RouteName";
+import { readNoticeDocument } from "repositories/NoticeRepository";
 
 const NoticeViewPage = ({}) => {
-  const location = useLocation();
-  const noticeData = location.state;
-  const [detail, setDetail] = useState([]);
+  const navigate = useNavigate();
+
+  const [noticeViewObj, setNoticeViewObj] = useState(null);
+  const { id } = useParams();
 
   useEffect(() => {
-    console.log(noticeData);
-    getNotice(noticeData, setDetail);
+    if (noticeViewObj === null && id !== null) {
+      readNoticeDocument(id).then((result) => {
+        setNoticeViewObj(result);
+      });
+    }
   }, []);
   return (
-    <div>
-      no: {detail.id} <br />
-      title: {detail.title}
-      <br />
-      body: {detail.body}
-    </div>
+    <>
+      {noticeViewObj === null ? (
+        <>Loading...</>
+      ) : (
+        <div>
+          no: {noticeViewObj.id} <br />
+          title: {noticeViewObj.title}
+          <br />
+          body: {noticeViewObj.body}
+          <br />
+          <button onClick={() => navigate(NoticeListRouteName)}>
+            리스트로 돌아가기
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import { dbService } from "fbase";
 import NoticePagination from "../widgets/NoticePagination";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import { NoticeWriteRouteName } from "routes/RouteName";
+import { HomeRouteName, NoticeWriteRouteName } from "routes/RouteName";
 import { getNotice, getNoticeInDb } from "functions/NoticeFunction";
 
 const NoticeListPage = () => {
@@ -37,7 +37,8 @@ const NoticeListPage = () => {
             navigate(NoticeWriteRouteName, {
               noticeListLength: notice,
             })
-          }>
+          }
+        >
           작성하기
         </button>
       ) : null}
@@ -48,7 +49,8 @@ const NoticeListPage = () => {
               No. {value.id} :
               <Link
                 to={`${process.env.PUBLIC_URL}/notice/${value.id}`}
-                state={value}>
+                state={value}
+              >
                 {value.title}
               </Link>
             </h4>
@@ -63,6 +65,8 @@ const NoticeListPage = () => {
           setPage={setPage}
         />
       </footer>
+      <br />
+      <button onClick={() => navigate(HomeRouteName)}>홈으로 돌아가기</button>
     </Layout>
   );
 };
