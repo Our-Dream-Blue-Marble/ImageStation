@@ -8,13 +8,14 @@ export const createNewNoticeDocument = async (
   body,
   writer,
   date,
+  dateupdated,
   view
 ) => {
   await dbService
     .collection("notices")
     .doc(id)
     .withConverter(NoticeModelConverter)
-    .set(new NoticeModel(id, title, body, writer, date, view))
+    .set(new NoticeModel(id, title, body, writer, date, dateupdated, view))
     .then(() => {
       return true;
     })
@@ -50,12 +51,13 @@ export const updateNoticeDocument = async (
   body,
   writer,
   date,
+  dateupdated,
   view
 ) => {
   const noticeDocumentRef = await dbService.collection("notices").doc(id);
   await noticeDocumentRef
     .withConverter(NoticeModelConverter)
-    .update(new NoticeModel(id, title, body, writer, date, view))
+    .update(new NoticeModel(id, title, body, writer, date, dateupdated, view))
     .then(() => {
       return true;
     })

@@ -1,10 +1,11 @@
 class NoticeModel {
-  constructor(id, title, body, writer, date, view) {
+  constructor(id, title, body, writer, date, dateupdated, view) {
     this.id = id;
     this.title = title;
     this.body = body;
     this.writer = writer;
     this.date = date;
+    this.dateupdated = dateupdated;
     this.view = view;
   }
   toData() {
@@ -14,6 +15,7 @@ class NoticeModel {
       body: this.body,
       writer: this.writer,
       date: this.date,
+      dateupdated: this.dateupdated,
       view: this.view,
     };
   }
@@ -27,6 +29,7 @@ export const NoticeModelConverter = {
       body: data.body,
       writer: data.writer,
       date: data.date,
+      dateupdated: data.dateupdated,
       view: data.view,
     };
   },
