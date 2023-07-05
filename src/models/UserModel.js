@@ -1,4 +1,4 @@
-export const UserModel = (data) => {
+const UserModel = (data) => {
   return {
     email: data.email,
     name: data.name,
@@ -9,3 +9,5 @@ export const UserModel = (data) => {
     logInDate: data.logInDate,
   };
 };
+
+export default UserModel;
