@@ -12,8 +12,7 @@ import {
   NoticeWriteRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
-import LoggedOut from "functions/LogoutFunction";
-import DeleteAccount from "functions/DeleteAccount";
+import { deleteAccount, logOut } from "functions/UserFunction";
 
 const AppRouter = ({ isLoggedIn, userObject }) => {
   const homePagePosition = useRef(null);
@@ -25,9 +24,9 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
       <header>
         {isLoggedIn ? (
           <div>
-            <button onClick={() => LoggedOut()}>로그아웃</button>
+            <button onClick={() => logOut()}>로그아웃</button>
             <>
-              <button onClick={() => DeleteAccount()}>회원탈퇴</button>
+              <button onClick={() => deleteAccount()}>회원탈퇴</button>
             </>
           </div>
         ) : (
