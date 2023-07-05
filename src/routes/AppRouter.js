@@ -10,9 +10,11 @@ import {
   NoticeListRouteName,
   SignInRouteName,
   NoticeWriteRouteName,
+  UpdatePasswordPageRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
-import { deleteAccount, logOut } from "functions/UserFunction";
+import { deleteAccount, logOut, updatePassword } from "functions/UserFunction";
+import UpdatePasswordPage from "pages/UpdatePasswordPage";
 
 const AppRouter = ({ isLoggedIn, userObject }) => {
   const homePagePosition = useRef(null);
@@ -27,12 +29,18 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
             <button onClick={() => logOut()}>로그아웃</button>
             <>
               <button onClick={() => deleteAccount()}>회원탈퇴</button>
+              <button onClick={() => updatePassword()}>비밀번호 변경</button>
             </>
           </div>
         ) : (
-          <button onClick={() => navigate(SignInRouteName)}>
-            회원가입 / 로그인
-          </button>
+          <div>
+            <button onClick={() => navigate(SignInRouteName)}>
+              회원가입 / 로그인
+            </button>
+            <button onClick={() => navigate(UpdatePasswordPageRouteName)}>
+              비밀번호 찾기
+            </button>
+          </div>
         )}
       </header>
       <Routes>
@@ -83,6 +91,10 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
               element={<SignInPage />}
             />
             <Route path={NoticeViewRouteName} element={<NoticeViewPage />} />
+            <Route
+              path={UpdatePasswordPageRouteName}
+              element={<UpdatePasswordPage />}
+            />
           </>
         )}
       </Routes>

@@ -96,7 +96,7 @@ export const deleteAccount = async () => {
 
 export const updatePassword = async () => {
   const user = authService.currentUser;
-  await sendPasswordResetEmail(authService, user, user.email)
+  await sendPasswordResetEmail(authService, user.email)
     .then(() => {
       window.alert("해당 이메일로 메세지가 전송되었습니다.");
     })
