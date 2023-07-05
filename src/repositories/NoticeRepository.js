@@ -1,4 +1,4 @@
-import NoticeModel, { NoticeModelCoveter } from "models/NoticeModel";
+import NoticeModel, { NoticeModelConverter } from "models/NoticeModel";
 
 const { dbService } = require("fbase");
 
@@ -13,7 +13,7 @@ export const createNewNoticeDocument = async (
   await dbService
     .collection("notices")
     .doc(id)
-    .withConverter(NoticeModelCoveter)
+    .withConverter(NoticeModelConverter)
     .set(new NoticeModel(id, title, body, writer, date, view))
     .then(() => {
       return true;
@@ -28,7 +28,7 @@ export const readNoticeDocument = async (id) => {
   await dbService
     .collection("notices")
     .doc(id)
-    .withConverter(NoticeModelCoveter)
+    .withConverter(NoticeModelConverter)
     .get()
     .then((doc) => {
       if (doc.exists) {
@@ -54,7 +54,7 @@ export const updateNoticeDocument = async (
 ) => {
   const noticeDocumentRef = await dbService.collection("notices").doc(id);
   await noticeDocumentRef
-    .withConverter(NoticeModelConveter)
+    .withConverter(NoticeModelConverter)
     .update(new NoticeModel(id, title, body, writer, date, view))
     .then(() => {
       return true;

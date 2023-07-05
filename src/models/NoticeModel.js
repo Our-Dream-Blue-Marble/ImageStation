@@ -19,7 +19,7 @@ class NoticeModel {
   }
 }
 
-export const NoticeModelCoveter = {
+export const NoticeModelConverter = {
   toFirestore: function (data) {
     return {
       id: data.id,
