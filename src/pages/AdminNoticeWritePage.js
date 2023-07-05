@@ -1,26 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { dbService } from "fbase";
 import { async } from "q";
-import { setNewNoticeInList } from "functions/NoticeFunction";
+import {
+  onAdminWriteNewNoticeSubmit,
+  setNewNoticeInList,
+} from "functions/NoticeFunction";
 
 const AdminNoticeWritePage = (noticeListLength) => {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
-
-  const onSubmit = async (event) => {
-    event.preventDefault();
-
-    const newNoticeObj = {
-      title: postTitle,
-      body: postBody,
-      date: Date.now(),
-      writer: "image Station",
-    };
-
-    await dbService.collection("notices").add(newNoticeObj);
-    setPostTitle("");
-    setPostBody("");
-  };
 
   const onPostTitleChange = (event) => {
     const {
@@ -37,7 +25,10 @@ const AdminNoticeWritePage = (noticeListLength) => {
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form
+        onSubmit={async (e) => {
+          onAdminWriteNewNoticeSubmit(e, "id", postTitle, postBody, "writer");
+        }}>
         <input
           title={postTitle}
           onChange={onPostTitleChange}
