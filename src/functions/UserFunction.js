@@ -8,6 +8,7 @@ import {
 import {
   createNewUserDocument,
   deleteUserDocument,
+  readUserDocument,
   updateUserLogInDateDocument,
 } from "repositories/UserRepository";
 
@@ -66,6 +67,10 @@ export const logIn = async (userEmail, userPassword) => {
 
 export const logOut = () => {
   authService.signOut();
+};
+
+export const setUserModel = async () => {
+  return await readUserDocument(authService.currentUser.uid);
 };
 
 export const deleteAccount = async () => {
