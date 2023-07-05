@@ -3,7 +3,7 @@ import { dbService } from "fbase";
 import { async } from "q";
 import { setNewNoticeInList } from "functions/NoticeFunction";
 
-const AdminNoticeWritePage = ({ nocieListLength, setNotice }) => {
+const AdminNoticeWritePage = (noticeListLength) => {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
 
@@ -11,18 +11,17 @@ const AdminNoticeWritePage = ({ nocieListLength, setNotice }) => {
     event.preventDefault();
 
     const newNoticeObj = {
-      id: nocieListLength + 1,
+      id: noticeListLength.length + parseInt("1"),
       title: postTitle,
       body: postBody,
-      data: Date.now(),
+      date: Date.now(),
       writer: "image Station",
     };
 
-    console.log(newNoticeObj);
+    //console.log(noticeListLength.length);
     await dbService.collection("notices").add(newNoticeObj);
     setPostTitle("");
     setPostBody("");
-    setNewNoticeInList(newNoticeObj, setNotice);
   };
 
   const onPostTitleChange = (event) => {
@@ -58,7 +57,7 @@ const AdminNoticeWritePage = ({ nocieListLength, setNotice }) => {
           maxLength={2500}
           size="50"
         />
-        <input type="submit" />
+        <input type="submit" value="SAVE" />
       </form>
     </div>
   );

@@ -26,7 +26,7 @@ const NoticeListPage = () => {
       setNotice(noticeArray);
     });
   }, []);
-
+  console.log(notice.length);
   return (
     <Layout style={{ height: "100vh" }}>
       <header>
@@ -36,10 +36,10 @@ const NoticeListPage = () => {
         <button
           onClick={() =>
             navigate(NoticeWriteRouteName, {
-              nocieListLength: notice.length,
-              setNotice,
+              noticeListLength: notice,
             })
-          }>
+          }
+        >
           작성하기
         </button>
       ) : null}
@@ -50,7 +50,8 @@ const NoticeListPage = () => {
               No. {value.id} :
               <Link
                 to={`${process.env.PUBLIC_URL}/notice/${value.id}`}
-                state={value}>
+                state={value}
+              >
                 {value.title}
               </Link>
             </h4>
