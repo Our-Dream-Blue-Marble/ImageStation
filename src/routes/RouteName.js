@@ -7,3 +7,5 @@ export const SignInRouteName = `${process.env.PUBLIC_URL}/signin`;
 export const NoticeViewRouteName = `${process.env.PUBLIC_URL}/notice/:id`;
 
 export const NoticeWriteRouteName = `${process.env.PUBLIC_URL}/notice/write`;
+
+export const UpdatePasswordPageRouteName = `${process.env.PUBLIC_URL}/updatePasswd`;
