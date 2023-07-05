@@ -11,14 +11,12 @@ const AdminNoticeWritePage = (noticeListLength) => {
     event.preventDefault();
 
     const newNoticeObj = {
-      id: noticeListLength.length + parseInt("1"),
       title: postTitle,
       body: postBody,
       date: Date.now(),
       writer: "image Station",
     };
 
-    //console.log(noticeListLength.length);
     await dbService.collection("notices").add(newNoticeObj);
     setPostTitle("");
     setPostBody("");
