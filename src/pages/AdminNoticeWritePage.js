@@ -1,33 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { dbService } from "fbase";
 import { async } from "q";
+import { setNewNoticeInList } from "functions/NoticeFunction";
 
-const AdminNoticeWritePage = () => {
+const AdminNoticeWritePage = ({ nocieListLength, setNotice }) => {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
 
   const onSubmit = async (event) => {
-    if (postTitle === "" || postBody === "") {
-      return;
-    }
     event.preventDefault();
 
-    await dbService.collection("notices").add({
+    const newNoticeObj = {
+      id: nocieListLength + 1,
       title: postTitle,
       body: postBody,
       data: Date.now(),
-      writer: "admin",
-    });
+      writer: "image Station",
+    };
+
+    console.log(newNoticeObj);
+    await dbService.collection("notices").add(newNoticeObj);
     setPostTitle("");
     setPostBody("");
+    setNewNoticeInList(newNoticeObj, setNotice);
   };
 
-  const onChange = (event) => {
+  const onPostTitleChange = (event) => {
     const {
-      target: { title, body },
+      target: { value },
     } = event;
-    setPostTitle(title);
-    setPostBody(body);
+    setPostTitle(value);
+  };
+  const onPostBodyChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPostBody(value);
   };
 
   return (
@@ -35,17 +43,20 @@ const AdminNoticeWritePage = () => {
       <form onSubmit={onSubmit}>
         <input
           title={postTitle}
-          onChange={onChange}
+          onChange={onPostTitleChange}
           type="text"
           placeholder="제목을 입력하세요"
           maxLength={120}
         />
+        <br />
+
         <input
           body={postBody}
-          onChange={onChange}
+          onChange={onPostBodyChange}
           type="text"
           placeholder="게시글을 입력하세요"
           maxLength={2500}
+          size="50"
         />
         <input type="submit" />
       </form>
