@@ -1,8 +1,4 @@
-import { authService } from "fbase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { logIn, signIn } from "./UserFunction";
 
 export const onUserEmailOrPasswordChange = (event, setValue) => {
   const {
@@ -32,27 +28,20 @@ export const onUserEmailAndPasswordSubmit = async (
   setIsNewUser
 ) => {
   event.preventDefault();
-  try {
-    let data;
-    if (checkHandongEmail(userEmail) && isNewUser) {
-      data = await createUserWithEmailAndPassword(
-        authService,
-        userEmail,
-        userPassword
-      );
-      return true;
-    } else {
-      data = await signInWithEmailAndPassword(
-        authService,
-        userEmail,
-        userPassword
-      );
-      return true;
-    }
-  } catch (e) {
-    if (`${e.message}`.includes("email-already-in-use")) {
-      setIsNewUser(false);
-    }
+  if (checkHandongEmail(userEmail) && isNewUser) {
+    // TO DO : 회원 가입 시 정보 받기
+    return signIn(
+      setIsNewUser,
+      userEmail,
+      userPassword,
+      "email",
+      "010",
+      true,
+      false
+    );
+  } else if (checkHandongEmail(userEmail) && !isNewUser) {
+    return logIn(userEmail, userPassword);
+  } else {
+    return false;
   }
-  return false;
 };
