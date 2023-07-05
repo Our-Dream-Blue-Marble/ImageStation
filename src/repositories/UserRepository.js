@@ -2,7 +2,7 @@ import UserModel, { UserModelConveter } from "models/UserModel";
 
 const { dbService } = require("fbase");
 
-export const createNewUserDocument = async ({
+export const createNewUserDocument = async (
   uid,
   email,
   name,
@@ -10,8 +10,8 @@ export const createNewUserDocument = async ({
   role,
   isReceiveMail,
   signInDate,
-  logInDate,
-}) => {
+  logInDate
+) => {
   await dbService
     .collection("users")
     .doc(uid)
@@ -37,7 +37,7 @@ export const createNewUserDocument = async ({
   return false;
 };
 
-export const deleteUserDocument = async ({ uid }) => {
+export const deleteUserDocument = async (uid) => {
   await dbService
     .collection("users")
     .doc(uid)
@@ -51,7 +51,7 @@ export const deleteUserDocument = async ({ uid }) => {
   return false;
 };
 
-export const readUserDocument = async ({ uid }) => {
+export const readUserDocument = async (uid) => {
   await dbService
     .collection("users")
     .doc(uid)
@@ -71,7 +71,7 @@ export const readUserDocument = async ({ uid }) => {
   return false;
 };
 
-export const updateUserDocument = async ({
+export const updateUserDocument = async (
   uid,
   email,
   name,
@@ -79,8 +79,8 @@ export const updateUserDocument = async ({
   role,
   isReceiveMail,
   signInDate,
-  logInDate,
-}) => {
+  logInDate
+) => {
   const userDocumentRef = await dbService.collection("users").doc(uid);
   await userDocumentRef
     .withConverter(UserModelConveter)
@@ -105,7 +105,7 @@ export const updateUserDocument = async ({
   return false;
 };
 
-export const updateUserNameDocument = async ({ uid, newName }) => {
+export const updateUserNameDocument = async (uid, newName) => {
   const userDocumentRef = await dbService.collection("users").doc(uid);
   await userDocumentRef
     .update({
@@ -120,10 +120,7 @@ export const updateUserNameDocument = async ({ uid, newName }) => {
   return false;
 };
 
-export const updateUserPhoneNumberDocument = async ({
-  uid,
-  newPhoneNumber,
-}) => {
+export const updateUserPhoneNumberDocument = async (uid, newPhoneNumber) => {
   const userDocumentRef = await dbService.collection("users").doc(uid);
   await userDocumentRef
     .update({
@@ -138,7 +135,7 @@ export const updateUserPhoneNumberDocument = async ({
   return false;
 };
 
-export const updateUserRoleDocument = async ({ uid, newRole }) => {
+export const updateUserRoleDocument = async (uid, newRole) => {
   const userDocumentRef = await dbService.collection("users").doc(uid);
   await userDocumentRef
     .update({
@@ -153,10 +150,10 @@ export const updateUserRoleDocument = async ({ uid, newRole }) => {
   return false;
 };
 
-export const updateUserIsReceiveMailDocument = async ({
+export const updateUserIsReceiveMailDocument = async (
   uid,
-  newIsReceiveMail,
-}) => {
+  newIsReceiveMail
+) => {
   const userDocumentRef = await dbService.collection("users").doc(uid);
   await userDocumentRef
     .update({
@@ -171,7 +168,7 @@ export const updateUserIsReceiveMailDocument = async ({
   return false;
 };
 
-export const updateUserLogInDateDocument = async ({ uid, newLogInDate }) => {
+export const updateUserLogInDateDocument = async (uid, newLogInDate) => {
   const userDocumentRef = await dbService.collection("users").doc(uid);
   await userDocumentRef
     .update({
