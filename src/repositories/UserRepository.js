@@ -52,6 +52,7 @@ export const deleteUserDocument = async (uid) => {
 };
 
 export const readUserDocument = async (uid) => {
+  let userModel;
   await dbService
     .collection("users")
     .doc(uid)
@@ -59,16 +60,13 @@ export const readUserDocument = async (uid) => {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        const userModel = doc.data();
-        return userModel;
-      } else {
-        return UserModel();
+        userModel = doc.data().uid;
       }
     })
     .catch((e) => {
       console.log(e);
     });
-  return false;
+  return userModel;
 };
 
 export const updateUserDocument = async (

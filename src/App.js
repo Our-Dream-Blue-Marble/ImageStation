@@ -2,6 +2,8 @@ import { authService } from "fbase";
 import React, { useEffect, useState } from "react";
 import AppRouter from "routes/AppRouter";
 import { BrowserRouter } from "react-router-dom";
+import { setUserModel } from "functions/UserFunction";
+import { readUserDocument } from "repositories/UserRepository";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -9,10 +11,11 @@ function App() {
   const [userObject, setUserObject] = useState(null);
 
   useEffect(() => {
-    authService.onAuthStateChanged((user) => {
+    authService.onAuthStateChanged(async (user) => {
       if (user) {
         setIsLoggedIn(true);
-        setUserObject(user);
+        const data = await readUserDocument(authService.currentUser.uid);
+        setUserObject(data);
       } else {
         setIsLoggedIn(false);
       }
