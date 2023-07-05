@@ -11,12 +11,9 @@ import {
   SignInRouteName,
   NoticeWriteRouteName,
 } from "./RouteName";
-import AdminNoticePage from "pages/AdminNoticePage";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
-
-import LogInPage from "pages/LogInPage";
 import LoggedOut from "functions/LogoutFunction";
-
+import DeleteAccount from "functions/DeleteAccount";
 
 const AppRouter = ({ isLoggedIn, userObject }) => {
   const homePagePosition = useRef(null);
@@ -27,7 +24,12 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
     <>
       <header>
         {isLoggedIn ? (
-          <button onClick={() => LoggedOut()}>로그아웃</button>
+          <div>
+            <button onClick={() => LoggedOut()}>로그아웃</button>
+            <>
+              <button onClick={() => DeleteAccount()}>회원탈퇴</button>
+            </>
+          </div>
         ) : (
           <button onClick={() => navigate(SignInRouteName)}>
             회원가입 / 로그인
@@ -44,7 +46,8 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition">
+                    className="noticeListPagePosition"
+                  >
                     <NoticeListPage />
                   </div>
                 </div>
@@ -66,7 +69,8 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition">
+                    className="noticeListPagePosition"
+                  >
                     <NoticeListPage />
                   </div>
                 </div>
