@@ -12,25 +12,33 @@ import { readNoticeDocument } from "repositories/NoticeRepository";
 const NoticeViewPage = ({}) => {
   const navigate = useNavigate();
 
-  const [readNoticeDetail, setReadNoticeDetail] = useState([]);
-  const [detail, setDetail] = useState([]);
+  const [noticeViewObj, setNoticeViewObj] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
-    setReadNoticeDetail(readNoticeDocument(id));
-    console.log("read: ", readNoticeDetail);
+    if (noticeViewObj === null && id !== null) {
+      readNoticeDocument(id).then((result) => {
+        setNoticeViewObj(result);
+      });
+    }
   }, []);
   return (
-    <div>
-      no: {readNoticeDetail.id} <br />
-      title: {readNoticeDetail.title}
-      <br />
-      body: {readNoticeDetail.body}
-      <br />
-      <button onClick={() => navigate(NoticeListRouteName)}>
-        리스트로 돌아가기
-      </button>
-    </div>
+    <>
+      {noticeViewObj === null ? (
+        <>Loading...</>
+      ) : (
+        <div>
+          no: {noticeViewObj.id} <br />
+          title: {noticeViewObj.title}
+          <br />
+          body: {noticeViewObj.body}
+          <br />
+          <button onClick={() => navigate(NoticeListRouteName)}>
+            리스트로 돌아가기
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 

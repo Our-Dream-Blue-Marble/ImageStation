@@ -35,14 +35,12 @@ export const readNoticeDocument = async (id) => {
     .then((doc) => {
       if (doc.exists) {
         noticeModel = doc.data().id;
-        console.log("doc data: ", doc.data());
       }
     })
     .catch((e) => {
       console.log(e);
     });
 
-  console.log("noticeModel:", noticeModel);
   return noticeModel;
 };
 
