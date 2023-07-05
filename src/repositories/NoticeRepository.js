@@ -44,4 +44,49 @@ export const readNoticeDocument = async (id) => {
   return false;
 };
 
-export const updateNoticeDocument = async();
+export const updateNoticeDocument = async (
+  id,
+  title,
+  body,
+  writer,
+  date,
+  view
+) => {
+  const noticeDocumentRef = await dbService.collection("notices").doc(id);
+  await noticeDocumentRef
+    .withConverter(NoticeModelConveter)
+    .update(new NoticeModel(id, title, body, writer, date, view))
+    .then(() => {
+      return true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return false;
+};
+
+export const updateNoticeTitleDocument = async (id, newTitle) => {
+  const noticeDocumentRef = await dbService.collection("notices").doc(id);
+  await noticeDocumentRef
+    .update({ title: newTitle })
+    .then(() => {
+      return true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return false;
+};
+
+export const updateNoticeBodyDocument = async (id, newBody) => {
+  const noticeDocumentRef = await dbService.collection("notices").doc(id);
+  await noticeDocumentRef
+    .update({ body: newBody })
+    .then(() => {
+      return true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return false;
+};
