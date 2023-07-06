@@ -3,25 +3,14 @@ import { dbService } from "fbase";
 import { async } from "q";
 import {
   onAdminWriteNewNoticeSubmit,
+  onPostBodyChange,
+  onPostTitleChange,
   setNewNoticeInList,
 } from "functions/NoticeFunction";
 
 const AdminNoticeWritePage = (noticeListLength) => {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
-
-  const onPostTitleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPostTitle(value);
-  };
-  const onPostBodyChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPostBody(value);
-  };
 
   return (
     <div>
@@ -31,7 +20,9 @@ const AdminNoticeWritePage = (noticeListLength) => {
         }}>
         <input
           title={postTitle}
-          onChange={onPostTitleChange}
+          onChange={async (e) => {
+            onPostTitleChange(e, setPostTitle);
+          }}
           type="text"
           placeholder="제목을 입력하세요"
           maxLength={120}
@@ -40,7 +31,9 @@ const AdminNoticeWritePage = (noticeListLength) => {
 
         <input
           body={postBody}
-          onChange={onPostBodyChange}
+          onChange={async (e) => {
+            onPostBodyChange(e, setPostBody);
+          }}
           type="text"
           placeholder="게시글을 입력하세요"
           maxLength={2500}
