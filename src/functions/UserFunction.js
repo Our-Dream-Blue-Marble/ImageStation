@@ -49,10 +49,10 @@ export const signIn = async (
   return result;
 };
 
-export const logIn = async (userEmail, userPassword) => {
+export const logIn = async (userEmail, userPassword, setIsNewUser) => {
   var result = false;
-  await signInWithEmailAndPassword(authService, userEmail, userPassword).then(
-    async () => {
+  await signInWithEmailAndPassword(authService, userEmail, userPassword)
+    .then(async () => {
       await updateUserLogInDateDocument(authService.currentUser.uid, Date.now())
         .then(() => {
           result = true;
@@ -60,8 +60,12 @@ export const logIn = async (userEmail, userPassword) => {
         .catch((e) => {
           console.log(e);
         });
-    }
-  );
+    })
+    .catch((e) => {
+      if (`${e.message}`.includes("user-not-found")) {
+        setIsNewUser(true);
+      }
+    });
   return result;
 };
 
@@ -69,8 +73,10 @@ export const logOut = () => {
   authService.signOut();
 };
 
-export const setUserModel = async () => {
-  return await readUserDocument(authService.currentUser.uid);
+export const setUserModel = async (setUserObject) => {
+  await readUserDocument(authService.currentUser.uid).then((result) => {
+    setUserObject(result);
+  });
 };
 
 export const deleteAccount = async () => {
