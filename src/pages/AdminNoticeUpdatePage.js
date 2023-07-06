@@ -1,27 +1,17 @@
-import { dbService } from "fbase";
-import { getNoticeList } from "functions/NoticeFunction";
-import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { readNoticeDocument } from "repositories/NoticeRepository";
+import {
+  onUpdateTitleChange,
+  onUpdatedNoticeSubmit,
+  onupdateBodyChange,
+} from "functions/NoticeFunction";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
-const AdminNoticeUpdatePage = ({}) => {
+const AdminNoticeUpdatePage = () => {
   const location = useLocation();
-  const { id } = useParams();
-  const [notice, setNotice] = useState([]);
-  const [currentNoticeObj, setCurrentNoticeObj] = useState(location.state.data);
+  const currentNoticeObj = location.state.data;
+  const [noticeUpdatedTitle, setNoticeUpdatedTitle] = useState("");
+  const [noticeUpdatedBody, setNoticeUpdatedBody] = useState("");
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    await dbService.doc(`sweets/${id}`).update({
-      text: currentNoticeObj,
-    });
-  };
-  const onChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setCurrentNoticeObj(value);
-  };
   return (
     <>
       {currentNoticeObj === null ? (
@@ -30,14 +20,38 @@ const AdminNoticeUpdatePage = ({}) => {
         <div>
           no: {currentNoticeObj.id} <br />
           writer: {currentNoticeObj.writer} <br />
-          <form onSubmit={onSubmit} className="container sweetEdit">
+          <form
+            onSubmit={async (e) => {
+              onUpdatedNoticeSubmit(
+                e,
+                "id",
+                noticeUpdatedTitle,
+                noticeUpdatedBody,
+                currentNoticeObj.writer,
+                currentNoticeObj.date,
+                currentNoticeObj.view
+              );
+            }}
+            className="container sweetEdit">
             <input
               type="text"
               placeholder={currentNoticeObj.title}
               value={currentNoticeObj.title}
-              required
               autoFocus
-              onChange={onChange}
+              noticeUpdatedTitle
+              onChange={async (e) => {
+                onUpdateTitleChange(e, setNoticeUpdatedTitle);
+              }}
+            />
+            <br />
+            <input
+              type="text"
+              placholder={currentNoticeObj.body}
+              value={currentNoticeObj.body}
+              autoFocus
+              onChange={(e) => {
+                onupdateBodyChange(e, setNoticeUpdatedBody);
+              }}
             />
             <input type="submit" value="Update" />
           </form>
