@@ -1,5 +1,6 @@
 import {
   createNewNoticeDocument,
+  deleteNoticeDocument,
   readNoticeListDocument,
   updateNoticeDocument,
 } from "repositories/NoticeRepository";
@@ -60,5 +61,12 @@ export const onupdateTitleOrBodyChange = (event, setValue) => {
     setValue(value);
   } else if (name === "noticeUpdatedBody") {
     setValue(value);
+  }
+};
+
+export const onDeleteNoticeClick = async (id) => {
+  const confirmDeleteNotice = window.confirm("공지를 삭제하시겠습니까?");
+  if (confirmDeleteNotice) {
+    deleteNoticeDocument(id);
   }
 };
