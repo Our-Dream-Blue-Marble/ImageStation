@@ -11,10 +11,12 @@ import {
   SignInRouteName,
   NoticeWriteRouteName,
   UpdatePasswordPageRouteName,
+  NoticeUpdatePageRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 import { deleteAccount, logOut, updatePassword } from "functions/UserFunction";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
+import AdminNoticeUpdatePage from "pages/AdminNoticeUpdatePage";
 
 const AppRouter = ({ isLoggedIn, userObject }) => {
   const homePagePosition = useRef(null);
@@ -53,8 +55,7 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition"
-                  >
+                    className="noticeListPagePosition">
                     <NoticeListPage />
                   </div>
                 </div>
@@ -66,6 +67,10 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
               path={NoticeWriteRouteName}
               element={<AdminNoticeWritePage />}
             />
+            <Route
+              path={NoticeUpdatePageRouteName}
+              element={<AdminNoticeUpdatePage />}
+            />
           </>
         ) : (
           <>
@@ -76,8 +81,7 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition"
-                  >
+                    className="noticeListPagePosition">
                     <NoticeListPage />
                   </div>
                 </div>

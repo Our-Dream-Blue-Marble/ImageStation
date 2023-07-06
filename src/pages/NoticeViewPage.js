@@ -35,7 +35,10 @@ const NoticeViewPage = () => {
             리스트로 돌아가기
           </button>
           {isAdmin ? (
-            <button onClick={() => navigate(NoticeUpdatePageRouteName + id)}>
+            <button
+              onClick={() =>
+                navigate(`${process.env.PUBLIC_URL}/notice/update/${id}`)
+              }>
               수정하기
             </button>
           ) : null}
