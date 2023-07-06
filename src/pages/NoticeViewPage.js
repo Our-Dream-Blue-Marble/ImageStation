@@ -6,7 +6,10 @@ import {
   useParams,
 } from "react-router-dom";
 import { getNotice } from "functions/NoticeFunction";
-import { NoticeListRouteName } from "routes/RouteName";
+import {
+  NoticeListRouteName,
+  NoticeUpdatePageRouteName,
+} from "routes/RouteName";
 import { readNoticeDocument } from "repositories/NoticeRepository";
 
 const NoticeViewPage = ({}) => {
@@ -35,6 +38,9 @@ const NoticeViewPage = ({}) => {
           <br />
           <button onClick={() => navigate(NoticeListRouteName)}>
             리스트로 돌아가기
+          </button>
+          <button onClick={() => navigate(NoticeUpdatePageRouteName)}>
+            수정하기
           </button>
         </div>
       )}

@@ -8,4 +8,6 @@ export const NoticeViewRouteName = `${process.env.PUBLIC_URL}/notice/:id`;
 
 export const NoticeWriteRouteName = `${process.env.PUBLIC_URL}/notice/write`;
 
+export const NoticeUpdatePageRouteName = `${process.env.PUBLIC_URL}/update`;
+
 export const UpdatePasswordPageRouteName = `${process.env.PUBLIC_URL}/updatePasswd`;
