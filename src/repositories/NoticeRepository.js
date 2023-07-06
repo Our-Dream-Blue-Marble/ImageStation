@@ -100,3 +100,17 @@ export const updateNoticeBodyDocument = async (id, newBody) => {
     });
   return false;
 };
+
+export const deleteNoticeDocument = async (id) => {
+  await dbService
+    .collection("notices")
+    .doc(id)
+    .delete()
+    .then(() => {
+      return true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return false;
+};
