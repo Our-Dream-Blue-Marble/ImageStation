@@ -10,14 +10,6 @@ const AdminNoticeUpdatePage = ({}) => {
   const [notice, setNotice] = useState([]);
   const [currentNoticeObj, setCurrentNoticeObj] = useState(location.state.data);
 
-  useEffect(() => {
-    if (currentNoticeObj === null && id !== null) {
-      setCurrentNoticeObj(id).then((result) => {
-        setCurrentNoticeObj(result);
-      });
-    }
-  }, []);
-
   const onSubmit = async (event) => {
     event.preventDefault();
     await dbService.doc(`sweets/${id}`).update({
@@ -37,6 +29,7 @@ const AdminNoticeUpdatePage = ({}) => {
       ) : (
         <div>
           no: {currentNoticeObj.id} <br />
+          writer: {currentNoticeObj.writer} <br />
           <form onSubmit={onSubmit} className="container sweetEdit">
             <input
               type="text"
