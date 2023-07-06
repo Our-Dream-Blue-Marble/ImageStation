@@ -49,20 +49,16 @@ export const onUpdatedNoticeSubmit = async (
   view
 ) => {
   event.preventDefault();
-  console.log("1111");
   await updateNoticeDocument(id, title, body, writer, date, view);
-  console.log("11121");
 };
 
-export const onUpdateTitleChange = (event, setNoticeUpdatedTitle) => {
+export const onupdateTitleOrBodyChange = (event, setValue) => {
   const {
-    target: { value },
+    target: { name, value },
   } = event;
-  setNoticeUpdatedTitle(value);
-};
-export const onupdateBodyChange = (event, setNoticeUpdatedBody) => {
-  const {
-    target: { value },
-  } = event;
-  setNoticeUpdatedBody(value);
+  if (name === "noticeUpdatedTitle") {
+    setValue(value);
+  } else if (name === "noticeUpdatedBody") {
+    setValue(value);
+  }
 };

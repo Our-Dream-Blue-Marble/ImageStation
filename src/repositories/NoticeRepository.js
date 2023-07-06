@@ -61,10 +61,11 @@ export const updateNoticeDocument = async (
   view
 ) => {
   const noticeDocumentRef = await dbService.collection("notices").doc(id);
-
   await noticeDocumentRef
     .withConverter(NoticeModelConverter)
-    .set(new NoticeModel(id, title, body, writer, date, Date.now(), view))
+    .update(
+      new NoticeModel(id, title, body, writer, date, Date.now(), view).toData()
+    )
     .then(() => {
       return true;
     })

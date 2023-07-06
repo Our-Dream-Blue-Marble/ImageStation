@@ -1,7 +1,6 @@
 import {
-  onUpdateTitleChange,
+  onupdateTitleOrBodyChange,
   onUpdatedNoticeSubmit,
-  onupdateBodyChange,
 } from "functions/NoticeFunction";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -9,8 +8,12 @@ import { useLocation } from "react-router-dom";
 const AdminNoticeUpdatePage = () => {
   const location = useLocation();
   const currentNoticeObj = location.state.data;
-  const [noticeUpdatedTitle, setNoticeUpdatedTitle] = useState("");
-  const [noticeUpdatedBody, setNoticeUpdatedBody] = useState("");
+  const [noticeUpdatedTitle, setNoticeUpdatedTitle] = useState(
+    location.state.data.title
+  );
+  const [noticeUpdatedBody, setNoticeUpdatedBody] = useState(
+    location.state.data.body
+  );
 
   return (
     <>
@@ -21,10 +24,10 @@ const AdminNoticeUpdatePage = () => {
           no: {currentNoticeObj.id} <br />
           writer: {currentNoticeObj.writer} <br />
           <form
-            onSubmit={async (e) => {
+            onSubmit={(e) => {
               onUpdatedNoticeSubmit(
                 e,
-                "id",
+                currentNoticeObj.id,
                 noticeUpdatedTitle,
                 noticeUpdatedBody,
                 currentNoticeObj.writer,
@@ -35,22 +38,21 @@ const AdminNoticeUpdatePage = () => {
             className="container sweetEdit">
             <input
               type="text"
-              placeholder={currentNoticeObj.title}
-              value={currentNoticeObj.title}
-              autoFocus
-              noticeUpdatedTitle
-              onChange={async (e) => {
-                onUpdateTitleChange(e, setNoticeUpdatedTitle);
+              name="noticeUpdatedTitle"
+              placeholder="제목"
+              value={noticeUpdatedTitle}
+              onChange={(e) => {
+                onupdateTitleOrBodyChange(e, setNoticeUpdatedTitle);
               }}
             />
             <br />
             <input
               type="text"
-              placholder={currentNoticeObj.body}
-              value={currentNoticeObj.body}
-              autoFocus
+              name="noticeUpdatedBody"
+              placeholder="내용"
+              value={noticeUpdatedBody}
               onChange={(e) => {
-                onupdateBodyChange(e, setNoticeUpdatedBody);
+                onupdateTitleOrBodyChange(e, setNoticeUpdatedBody);
               }}
             />
             <input type="submit" value="Update" />
