@@ -42,7 +42,13 @@ const NoticeViewPage = () => {
                 }>
                 수정하기
               </button>
-              <button onClick={onDeleteNoticeClick(id)}>삭제하기</button>
+              <button
+                onClick={() => {
+                  onDeleteNoticeClick(id);
+                  navigate(NoticeListRouteName);
+                }}>
+                삭제하기
+              </button>
             </>
           ) : null}
         </div>

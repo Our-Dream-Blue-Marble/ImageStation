@@ -1,9 +1,11 @@
+import { Navigate, redirect, useNavigate } from "react-router-dom";
 import {
   createNewNoticeDocument,
   deleteNoticeDocument,
   readNoticeListDocument,
   updateNoticeDocument,
 } from "repositories/NoticeRepository";
+import { NoticeListRouteName } from "routes/RouteName";
 
 export const onAdminWriteNewNoticeSubmit = async (
   event,
@@ -65,8 +67,11 @@ export const onupdateTitleOrBodyChange = (event, setValue) => {
 };
 
 export const onDeleteNoticeClick = async (id) => {
-  const confirmDeleteNotice = window.confirm("공지를 삭제하시겠습니까?");
-  if (confirmDeleteNotice) {
-    deleteNoticeDocument(id);
+  const confirmDeleteNotice = window.confirm("해당 공지를 삭제하시겠습니까?");
+  if (!confirmDeleteNotice) return;
+  else {
+    await deleteNoticeDocument(id);
+    window.confirm("삭제를 완료하였습니다.");
+    return redirect(NoticeListRouteName);
   }
 };

@@ -3,7 +3,7 @@ import {
   onUpdatedNoticeSubmit,
 } from "functions/NoticeFunction";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AdminNoticeUpdatePage = () => {
   const location = useLocation();
@@ -14,6 +14,7 @@ const AdminNoticeUpdatePage = () => {
   const [noticeUpdatedBody, setNoticeUpdatedBody] = useState(
     location.state.data.body
   );
+  const navigate = useNavigate();
 
   return (
     <>
@@ -33,6 +34,9 @@ const AdminNoticeUpdatePage = () => {
                 currentNoticeObj.writer,
                 currentNoticeObj.date,
                 currentNoticeObj.view
+              );
+              navigate(
+                `${process.env.PUBLIC_URL}/notice/${currentNoticeObj.id}`
               );
             }}
             className="container sweetEdit">
@@ -57,9 +61,6 @@ const AdminNoticeUpdatePage = () => {
             />
             <input type="submit" value="Update" />
           </form>
-          <br />
-          body: {currentNoticeObj.body}
-          <br />
         </div>
       )}
     </>
