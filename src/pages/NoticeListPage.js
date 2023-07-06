@@ -28,14 +28,7 @@ const NoticeListPage = () => {
         <h1>[Notice List]</h1>
       </header>
       {isadmin ? (
-        <button
-          onClick={() =>
-            navigate(NoticeWriteRouteName, {
-              noticeListLength: notice,
-            })
-          }>
-          작성하기
-        </button>
+        <button onClick={() => navigate(NoticeWriteRouteName)}>작성하기</button>
       ) : null}
       <main>
         {notice.slice(offset, offset + limit).map((value) => (
