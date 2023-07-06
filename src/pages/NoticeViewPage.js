@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
+
 import { useNavigate, useParams } from "react-router-dom";
-import { NoticeListRouteName } from "routes/RouteName";
+import {
+  NoticeListRouteName,
+  NoticeUpdatePageRouteName,
+} from "routes/RouteName";
 import { readNoticeDocument } from "repositories/NoticeRepository";
 
 const NoticeViewPage = () => {
   const navigate = useNavigate();
-
+  const [isAdmin, setIsAdmin] = useState(true);
   const [noticeViewObj, setNoticeViewObj] = useState(null);
   const { id } = useParams();
 
@@ -30,6 +34,14 @@ const NoticeViewPage = () => {
           <button onClick={() => navigate(NoticeListRouteName)}>
             리스트로 돌아가기
           </button>
+          {isAdmin ? (
+            <button
+              onClick={() =>
+                navigate(`${process.env.PUBLIC_URL}/notice/update/${id}`)
+              }>
+              수정하기
+            </button>
+          ) : null}
         </div>
       )}
     </>
