@@ -26,7 +26,6 @@ const NoticeUpdatePage = ({}) => {
               value={newTitle}
               required
               autoFocus
-              onChange={onChange}
               className="formInput"
             />
             <input type="submit" value="Update" />

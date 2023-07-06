@@ -9,7 +9,7 @@ import { readNoticeDocument } from "repositories/NoticeRepository";
 
 const NoticeViewPage = () => {
   const navigate = useNavigate();
-
+  const [isAdmin, setIsAdmin] = useState(true);
   const [noticeViewObj, setNoticeViewObj] = useState(null);
   const { id } = useParams();
 
@@ -34,9 +34,11 @@ const NoticeViewPage = () => {
           <button onClick={() => navigate(NoticeListRouteName)}>
             리스트로 돌아가기
           </button>
-          <button onClick={() => navigate(NoticeUpdatePageRouteName)}>
-            수정하기
-          </button>
+          {isAdmin ? (
+            <button onClick={() => navigate(NoticeUpdatePageRouteName + id)}>
+              수정하기
+            </button>
+          ) : null}
         </div>
       )}
     </>
