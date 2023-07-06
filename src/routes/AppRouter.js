@@ -12,13 +12,15 @@ import {
   NoticeWriteRouteName,
   UpdatePasswordPageRouteName,
   NoticeUpdatePageRouteName,
+  logInRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 import { logOut } from "functions/UserFunction";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
 import AdminNoticeUpdatePage from "pages/AdminNoticeUpdatePage";
+import LogInPage from "pages/LogInPage";
 
-const AppRouter = ({ isLoggedIn, isKorean, userObject }) => {
+const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const homePagePosition = useRef(null);
   const noticeListPagePosition = useRef(null);
   const navigate = useNavigate();
@@ -38,12 +40,16 @@ const AppRouter = ({ isLoggedIn, isKorean, userObject }) => {
           </>
         ) : (
           <>
-            <button onClick={() => navigate(SignInRouteName)}>
+            <button onClick={() => navigate(logInRouteName)}>
               회원가입 / 로그인
             </button>
           </>
         )}
-        {isKorean ? <button>ENG</button> : <button>KOR</button>}
+        {isKorean ? (
+          <button onClick={() => setIsKorean(false)}>ENG</button>
+        ) : (
+          <button onClick={() => setIsKorean(true)}>KOR</button>
+        )}
       </header>
       <Routes>
         {isLoggedIn ? (
@@ -93,8 +99,14 @@ const AppRouter = ({ isLoggedIn, isKorean, userObject }) => {
             <Route
               path={SignInRouteName}
               replace
-              to={HomeRouteName}
+              to={logInRouteName}
               element={<SignInPage />}
+            />
+            <Route
+              path={logInRouteName}
+              replace
+              to={HomeRouteName}
+              element={<LogInPage />}
             />
             <Route path={NoticeViewRouteName} element={<NoticeViewPage />} />
             <Route

@@ -28,6 +28,21 @@ export const onUserEmailAndPasswordSubmit = async (
   setIsNewUser
 ) => {
   event.preventDefault();
+  if (checkHandongEmail(userEmail) && !isNewUser) {
+    return logIn(userEmail, userPassword, setIsNewUser);
+  } else {
+    return false;
+  }
+};
+
+export const onNewUserEmailAndPasswordSubmit = async (
+  event,
+  userEmail,
+  userPassword,
+  isNewUser,
+  setIsNewUser
+) => {
+  event.preventDefault();
   if (checkHandongEmail(userEmail) && isNewUser) {
     // TO DO : 회원 가입 시 정보 받기
     return signIn(

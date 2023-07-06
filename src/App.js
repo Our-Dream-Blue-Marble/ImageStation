@@ -31,7 +31,12 @@ function App() {
         "Looading..."
       ) : (
         <div className="App">
-          <AppRouter isLoggedIn={isLoggedIn} isKorean={isKorean} userObject={userObject} />
+          <AppRouter
+            isLoggedIn={isLoggedIn}
+            isKorean={isKorean}
+            setIsKorean={setIsKorean}
+            userObject={userObject}
+          />
         </div>
       )}
     </BrowserRouter>
