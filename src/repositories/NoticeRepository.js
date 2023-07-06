@@ -44,6 +44,14 @@ export const readNoticeDocument = async (id) => {
   return noticeModel;
 };
 
+export const readNoticeListDocument = async () => {
+  const noticeArrayModel = await dbService
+    .collection("notices")
+    .orderBy("id", "desc")
+    .get();
+  return noticeArrayModel;
+};
+
 export const updateNoticeDocument = async (
   id,
   title,
