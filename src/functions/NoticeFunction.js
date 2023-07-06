@@ -1,13 +1,7 @@
-import { dbService } from "fbase";
-import { NoticeModelConverter } from "models/NoticeModel";
-import { createNewNoticeDocument } from "repositories/NoticeRepository";
-
-export const getNotice = async (data, setDetail) => {
-  setDetail(data);
-};
-export const setNewNoticeInList = async (newNotice, setNotice) => {
-  setNotice(newNotice);
-};
+import {
+  createNewNoticeDocument,
+  readNoticeListDocument,
+} from "repositories/NoticeRepository";
 
 export const onAdminWriteNewNoticeSubmit = async (
   event,
@@ -29,4 +23,13 @@ export const onAdminWriteNewNoticeSubmit = async (
   ).then(async () => {
     await createNewNoticeDocument(id, title, body, writer, Date.now(), "", 0);
   });
+};
+
+export const getNoticeList = async (setNotice) => {
+  const noticeList = await readNoticeListDocument();
+  const noticeArray = noticeList.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  setNotice(noticeArray);
 };

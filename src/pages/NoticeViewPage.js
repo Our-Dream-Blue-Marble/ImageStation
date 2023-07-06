@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
-import {
-  Navigate,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
-import { getNotice } from "functions/NoticeFunction";
+import { useNavigate, useParams } from "react-router-dom";
 import { NoticeListRouteName } from "routes/RouteName";
 import { readNoticeDocument } from "repositories/NoticeRepository";
 
-const NoticeViewPage = ({}) => {
+const NoticeViewPage = () => {
   const navigate = useNavigate();
 
   const [noticeViewObj, setNoticeViewObj] = useState(null);
