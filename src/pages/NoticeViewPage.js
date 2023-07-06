@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
-import { NoticeListRouteName } from "routes/RouteName";
+import {
+  NoticeListRouteName,
+  NoticeUpdatePageRouteName,
+} from "routes/RouteName";
 import { readNoticeDocument } from "repositories/NoticeRepository";
 
 const NoticeViewPage = () => {
