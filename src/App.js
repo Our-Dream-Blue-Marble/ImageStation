@@ -7,6 +7,7 @@ import { readUserDocument } from "repositories/UserRepository";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isKorean, setIsKorean] = useState(true);
   const [userObject, setUserObject] = useState(null);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ function App() {
         "Looading..."
       ) : (
         <div className="App">
-          <AppRouter isLoggedIn={isLoggedIn} userObject={userObject} />
+          <AppRouter isLoggedIn={isLoggedIn} isKorean={isKorean} userObject={userObject} />
         </div>
       )}
     </BrowserRouter>

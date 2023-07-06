@@ -14,11 +14,11 @@ import {
   NoticeUpdatePageRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
-import { deleteAccount, logOut, updatePassword } from "functions/UserFunction";
+import { logOut } from "functions/UserFunction";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
 import AdminNoticeUpdatePage from "pages/AdminNoticeUpdatePage";
 
-const AppRouter = ({ isLoggedIn, userObject }) => {
+const AppRouter = ({ isLoggedIn, isKorean, userObject }) => {
   const homePagePosition = useRef(null);
   const noticeListPagePosition = useRef(null);
   const navigate = useNavigate();
@@ -26,24 +26,24 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
   return (
     <>
       <header>
+        <>IMAGE STATION</>
+        <>
+          <button>주문예약</button>
+          <button>종이정보</button>
+          <button>주문내역확인</button>
+        </>
         {isLoggedIn ? (
-          <div>
+          <>
             <button onClick={() => logOut()}>로그아웃</button>
-            <>
-              <button onClick={() => deleteAccount()}>회원탈퇴</button>
-              <button onClick={() => updatePassword()}>비밀번호 변경</button>
-            </>
-          </div>
+          </>
         ) : (
-          <div>
+          <>
             <button onClick={() => navigate(SignInRouteName)}>
               회원가입 / 로그인
             </button>
-            <button onClick={() => navigate(UpdatePasswordPageRouteName)}>
-              비밀번호 찾기
-            </button>
-          </div>
+          </>
         )}
+        {isKorean ? <button>ENG</button> : <button>KOR</button>}
       </header>
       <Routes>
         {isLoggedIn ? (
@@ -55,7 +55,8 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition">
+                    className="noticeListPagePosition"
+                  >
                     <NoticeListPage />
                   </div>
                 </div>
@@ -81,7 +82,8 @@ const AppRouter = ({ isLoggedIn, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition">
+                    className="noticeListPagePosition"
+                  >
                     <NoticeListPage />
                   </div>
                 </div>
