@@ -8,6 +8,12 @@ export const onUserEmailOrPasswordChange = (event, setValue) => {
     setValue(value);
   } else if (name === "userPassword") {
     setValue(value);
+  } else if (name === "userPasswordConfirm") {
+    setValue(value);
+  } else if (name === "userName") {
+    setValue(value);
+  } else if (name === "userPhoneNumber") {
+    setValue(value);
   }
 };
 
@@ -39,20 +45,26 @@ export const onNewUserEmailAndPasswordSubmit = async (
   event,
   userEmail,
   userPassword,
+  userPasswordConfirm,
+  userName,
+  userPhoneNumber,
   isNewUser,
   setIsNewUser
 ) => {
   event.preventDefault();
-  if (checkHandongEmail(userEmail) && isNewUser) {
-    // TO DO : 회원 가입 시 정보 받기
+  if (
+    checkHandongEmail(userEmail) &&
+    isNewUser &&
+    userPassword === userPasswordConfirm
+  ) {
     return signIn(
       setIsNewUser,
       userEmail,
       userPassword,
-      "email",
-      "010",
-      true,
-      false
+      userName,
+      userPhoneNumber,
+      userEmail === "22000404@handong.ac.kr",
+      true
     );
   } else if (checkHandongEmail(userEmail) && !isNewUser) {
     return logIn(userEmail, userPassword);
