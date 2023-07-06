@@ -69,8 +69,10 @@ export const logOut = () => {
   authService.signOut();
 };
 
-export const setUserModel = async () => {
-  return await readUserDocument(authService.currentUser.uid);
+export const setUserModel = async (setUserObject) => {
+  await readUserDocument(authService.currentUser.uid).then((result) => {
+    setUserObject(result);
+  });
 };
 
 export const deleteAccount = async () => {

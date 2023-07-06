@@ -2,7 +2,6 @@ import { authService } from "fbase";
 import React, { useEffect, useState } from "react";
 import AppRouter from "routes/AppRouter";
 import { BrowserRouter } from "react-router-dom";
-import { setUserModel } from "functions/UserFunction";
 import { readUserDocument } from "repositories/UserRepository";
 
 function App() {
@@ -14,21 +13,24 @@ function App() {
     authService.onAuthStateChanged(async (user) => {
       if (user) {
         setIsLoggedIn(true);
-        const data = await readUserDocument(authService.currentUser.uid);
-        setUserObject(data);
+        readUserDocument(authService.currentUser.uid).then((result) => {
+          setUserObject(result);
+          setIsLoading(false);
+        });
       } else {
         setIsLoggedIn(false);
+        setIsLoading(false);
       }
-      setIsLoading(false);
     });
   }, []);
+
   return (
     <BrowserRouter>
       {isLoading ? (
         "Looading..."
       ) : (
         <div className="App">
-          <AppRouter isLoggedIn={isLoggedIn} userObj={userObject} />
+          <AppRouter isLoggedIn={isLoggedIn} userObject={userObject} />
         </div>
       )}
     </BrowserRouter>
