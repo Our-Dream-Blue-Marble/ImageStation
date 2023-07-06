@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  NoticeListRouteName,
-  NoticeUpdatePageRouteName,
-} from "routes/RouteName";
+import { NoticeListRouteName } from "routes/RouteName";
 import { readNoticeDocument } from "repositories/NoticeRepository";
 
 const NoticeViewPage = () => {
@@ -37,8 +34,11 @@ const NoticeViewPage = () => {
           {isAdmin ? (
             <button
               onClick={() =>
-                navigate(`${process.env.PUBLIC_URL}/notice/update/${id}`)
-              }>
+                navigate(`${process.env.PUBLIC_URL}/notice/update/${id}`, {
+                  state: { data: noticeViewObj },
+                })
+              }
+            >
               수정하기
             </button>
           ) : null}

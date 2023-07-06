@@ -4,11 +4,7 @@ import NoticePagination from "../widgets/NoticePagination";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { HomeRouteName, NoticeWriteRouteName } from "routes/RouteName";
-import {
-  getNotice,
-  getNoticeInDb,
-  getNoticeList,
-} from "functions/NoticeFunction";
+import { getNoticeList } from "functions/NoticeFunction";
 import { readNoticeListDocument } from "repositories/NoticeRepository";
 
 const NoticeListPage = () => {
@@ -37,7 +33,8 @@ const NoticeListPage = () => {
               No. {value.id} :
               <Link
                 to={`${process.env.PUBLIC_URL}/notice/${value.id}`}
-                state={value}>
+                state={value}
+              >
                 {value.title}
               </Link>
             </h4>
