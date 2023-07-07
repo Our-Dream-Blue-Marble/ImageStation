@@ -33,7 +33,8 @@ const AdminNoticeUpdatePage = () => {
                 noticeUpdatedBody,
                 currentNoticeObj.writer,
                 currentNoticeObj.date,
-                currentNoticeObj.view
+                currentNoticeObj.view,
+                currentNoticeObj.attachment
               );
               navigate(
                 `${process.env.PUBLIC_URL}/notice/${currentNoticeObj.id}`

@@ -77,10 +77,11 @@ export const onUpdatedNoticeSubmit = async (
   body,
   writer,
   date,
-  view
+  view,
+  attachment
 ) => {
   event.preventDefault();
-  await updateNoticeDocument(id, title, body, writer, date, view);
+  await updateNoticeDocument(id, title, body, writer, date, view, attachment);
 };
 
 export const onupdateTitleOrBodyChange = (event, setValue) => {
