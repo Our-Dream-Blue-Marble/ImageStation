@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from "react";
 import {
   onAdminWriteNewNoticeSubmit,
+  onNoticeFileChange,
   onPostBodyChange,
   onPostTitleChange,
 } from "functions/NoticeFunction";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+
 import "styles/AdminNoticeWriteStyle.scss";
 
-const AdminNoticeWritePage = (noticeListLength) => {
+import { useLocation, useNavigate } from "react-router-dom";
+
+const AdminNoticeWritePage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
   const dataOfNotice = location.state.data;
   const newNoticeId = (parseInt(dataOfNotice.id) + 1).toString();
+  const [noticeAttachment, setNoticeAttachment] = useState("");
 
   return (
     <div>
-      {console.log(newNoticeId)}
       <form
         onSubmit={async (e) => {
           onAdminWriteNewNoticeSubmit(
@@ -25,9 +28,16 @@ const AdminNoticeWritePage = (noticeListLength) => {
             newNoticeId,
             postTitle,
             postBody,
-            "writer"
-          );
-          navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
+            "writer",
+            noticeAttachment,
+            setPostTitle,
+            setPostBody,
+            setNoticeAttachment
+          ).then((result) => {
+            if (result) {
+              navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
+            }
+          });
         }}
       >
         <input
@@ -50,6 +60,16 @@ const AdminNoticeWritePage = (noticeListLength) => {
           placeholder="게시글을 입력하세요"
           maxLength={2500}
           size="50"
+        />
+
+        <br />
+
+        <span>사진을 첨부하세요</span>
+        <input
+          type="file"
+          onChange={(e) => {
+            onNoticeFileChange(e, setNoticeAttachment);
+          }}
         />
         <input className="saveButton" type="submit" value="SAVE" />
       </form>
