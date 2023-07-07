@@ -6,6 +6,7 @@ import {
   onPostTitleChange,
 } from "functions/NoticeFunction";
 import { useLocation, useNavigate } from "react-router-dom";
+import { NoticeListRouteName } from "routes/RouteName";
 
 const AdminNoticeWritePage = () => {
   const location = useLocation();
@@ -18,7 +19,6 @@ const AdminNoticeWritePage = () => {
 
   return (
     <div>
-      {console.log(newNoticeId)}
       <form
         onSubmit={async (e) => {
           onAdminWriteNewNoticeSubmit(
@@ -28,9 +28,14 @@ const AdminNoticeWritePage = () => {
             postBody,
             "writer",
             noticeAttachment,
+            setPostTitle,
+            setPostBody,
             setNoticeAttachment
-          );
-          navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
+          ).then((result) => {
+            if (result) {
+              navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
+            }
+          });
         }}>
         <input
           title={postTitle}

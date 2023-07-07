@@ -16,17 +16,20 @@ export const onAdminWriteNewNoticeSubmit = async (
   body,
   writer,
   attachment,
+  setPostTitle,
+  setPostBody,
   setNoticeAttachment
 ) => {
-  console.log(attachment);
   event.preventDefault();
   let attachmentUrl = "";
   if (attachment !== "") {
-    const attachmentRef = storageService.ref().child(`${id}/${uuidv4()}`);
+    const attachmentRef = storageService
+      .ref()
+      .child(`notices/${id}/${uuidv4()}`);
     const response = await attachmentRef.putString(attachment, "data_url");
     attachmentUrl = await response.ref.getDownloadURL();
   }
-  await createNewNoticeDocument(
+  const taskDone = await createNewNoticeDocument(
     id,
     title,
     body,
@@ -36,7 +39,12 @@ export const onAdminWriteNewNoticeSubmit = async (
     0,
     attachmentUrl
   );
+  setPostTitle("");
+  setPostBody("");
   setNoticeAttachment("");
+  window.confirm("작성 되었습니다");
+  console.log(taskDone);
+  return taskDone;
 };
 
 export const onPostTitleChange = (event, setPostTitle) => {
