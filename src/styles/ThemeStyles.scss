@@ -1,0 +1,101 @@
+@import url(https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css);
+
+$primaryColor: rgba(90, 145, 255, 1);
+$primaryVariantColor: rgba(97, 165, 226, 1);
+$secondaryColor: rgba(15, 43, 84, 1);
+$gradiantColor: linear-gradient(144deg, #0F2B54 0%, #5A91FF 100%, #61A5E2 100%);
+$black100Color: rgba(33, 36, 39, 1);
+$black75Color: rgba(33, 36, 39, 0.75);
+$black50Color: rgba(33, 36, 39, 0.5);
+$black25Color: rgba(33, 36, 39, 0.25);
+$black10Color: rgba(33, 36, 39, 0.1);
+$black5Color: rgba(33, 36, 39, 0.05);
+$white100Color: rgba(255, 255, 255, 1);
+$errorColor: rgba(221, 82, 87, 1);
+$numberColor: rgba(53, 60, 73, 1);
+
+@mixin displayFont($color) {
+    color: $color;
+    font-family: "Pretendard Variable";
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: 7%;
+}
+
+@mixin heading1Font($color) {
+    color: $color;
+    font-family: "Pretendard Variable";
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 0%;
+}
+
+@mixin heading2Font($color) {
+    color: $color;
+    font-family: "Pretendard Variable";
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 0.92;
+    letter-spacing: 0%;
+}
+
+@mixin subHeading1Font($color) {
+    color: $color;
+    font-family: "Pretendard Variable";
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.375;
+    letter-spacing: 0%;
+}
+
+@mixin subHeading2Font($color) {
+    color: $color;
+    font-family: "Pretendard Variable";
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0%;
+}
+
+@mixin subHeading1Font($color) {
+    color: $color;
+    font-family: "Pretendard Variable";
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0%;
+}
+
+@mixin body1Font($color) {
+    color: $color;
+    font-family: "Pretendard Variable";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.375;
+    letter-spacing: 0%;
+}
+
+@mixin body2Font($color) {
+    color: $color;
+    font-family: "Pretendard Variable";
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.375;
+    letter-spacing: 0%;
+}
+
+@mixin button1Font($color) {
+    color: $color;
+    font-family: "Pretendard Variable";
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0%;
+}
+
+@mixin captionFont($color) {
+    color: $color;
+    font-family: "Pretendard Variable";
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.83;
+    letter-spacing: 0%;
+}
