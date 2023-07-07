@@ -9,20 +9,29 @@ export const createNewNoticeDocument = async (
   writer,
   date,
   dateupdated,
-  view
+  view,
+  attachment
 ) => {
   await dbService
     .collection("notices")
     .doc(id)
     .withConverter(NoticeModelConverter)
-    .set(new NoticeModel(id, title, body, writer, date, dateupdated, view))
+    .set(
+      new NoticeModel(
+        id,
+        title,
+        body,
+        writer,
+        date,
+        dateupdated,
+        view,
+        attachment
+      )
+    )
     .then(() => {
       return true;
-    })
-    .catch((e) => {
-      console.log(e);
     });
-  return false;
+  return true;
 };
 
 export const readNoticeDocument = async (id) => {
@@ -47,7 +56,7 @@ export const readNoticeDocument = async (id) => {
 export const readNoticeListDocument = async () => {
   const noticeArrayModel = await dbService
     .collection("notices")
-    .orderBy("id", "desc")
+    .orderBy("date", "desc")
     .get();
   return noticeArrayModel;
 };
@@ -58,13 +67,23 @@ export const updateNoticeDocument = async (
   body,
   writer,
   date,
-  view
+  view,
+  attachment
 ) => {
   const noticeDocumentRef = await dbService.collection("notices").doc(id);
   await noticeDocumentRef
     .withConverter(NoticeModelConverter)
     .update(
-      new NoticeModel(id, title, body, writer, date, Date.now(), view).toData()
+      new NoticeModel(
+        id,
+        title,
+        body,
+        writer,
+        date,
+        Date.now(),
+        view,
+        attachment
+      ).toData()
     )
     .then(() => {
       return true;
