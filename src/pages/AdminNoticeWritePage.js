@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { dbService } from "fbase";
-import { async } from "q";
 import {
   onAdminWriteNewNoticeSubmit,
+  onNoticeFileChange,
   onPostBodyChange,
   onPostTitleChange,
-  setNewNoticeInList,
 } from "functions/NoticeFunction";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { NoticeViewRouteName } from "routes/RouteName";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const AdminNoticeWritePage = (noticeListLength) => {
+const AdminNoticeWritePage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
   const dataOfNotice = location.state.data;
   const newNoticeId = (parseInt(dataOfNotice.id) + 1).toString();
+  const [noticeAttachment, setNoticeAttachment] = useState("");
 
   return (
     <div>
@@ -28,7 +26,9 @@ const AdminNoticeWritePage = (noticeListLength) => {
             newNoticeId,
             postTitle,
             postBody,
-            "writer"
+            "writer",
+            noticeAttachment,
+            setNoticeAttachment
           );
           navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
         }}>
@@ -52,6 +52,15 @@ const AdminNoticeWritePage = (noticeListLength) => {
           placeholder="게시글을 입력하세요"
           maxLength={2500}
           size="50"
+        />
+        <br />
+
+        <span>사진을 첨부하세요</span>
+        <input
+          type="file"
+          onChange={(e) => {
+            onNoticeFileChange(e, setNoticeAttachment);
+          }}
         />
         <input type="submit" value="SAVE" />
       </form>
