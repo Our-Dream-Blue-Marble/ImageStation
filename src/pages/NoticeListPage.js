@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { dbService } from "fbase";
 import NoticePagination from "../widgets/NoticePagination";
-import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import { HomeRouteName, NoticeWriteRouteName } from "routes/RouteName";
+import {
+  HomeRouteName,
+  NoticeListRouteName,
+  NoticeWriteRouteName,
+} from "routes/RouteName";
 import { getNoticeList } from "functions/NoticeFunction";
-import { readNoticeListDocument } from "repositories/NoticeRepository";
 import "styles/NoticeListStyle.scss";
 
-const NoticeListPage = () => {
-  const [isadmin, setIsAdmin] = useState(true);
+const NoticeListPage = ({ isAdmin }) => {
   const navigate = useNavigate();
   const [notice, setNotice] = useState([]);
   const [page, setPage] = useState(1);
@@ -25,7 +25,7 @@ const NoticeListPage = () => {
         <h1>공지사항</h1>
       </header>
 
-      {isadmin ? (
+      {isAdmin ? (
         <button
           onClick={() =>
             navigate(NoticeWriteRouteName, {
@@ -43,10 +43,7 @@ const NoticeListPage = () => {
               <h4>
                 <div>
                   No. {value.id} :
-                  <Link
-                    to={`${process.env.PUBLIC_URL}/notice/${value.id}`}
-                    state={value}
-                  >
+                  <Link to={`${NoticeListRouteName}/${value.id}`} state={value}>
                     {value.title}
                   </Link>
                 </div>

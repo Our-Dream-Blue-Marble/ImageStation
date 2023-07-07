@@ -5,9 +5,8 @@ import { NoticeListRouteName } from "routes/RouteName";
 import { readNoticeDocument } from "repositories/NoticeRepository";
 import { onDeleteNoticeClick } from "functions/NoticeFunction";
 
-const NoticeViewPage = () => {
+const NoticeViewPage = ({ isAdmin }) => {
   const navigate = useNavigate();
-  const [isAdmin, setIsAdmin] = useState(true);
   const [noticeViewObj, setNoticeViewObj] = useState(null);
   const { id } = useParams();
 
@@ -39,14 +38,16 @@ const NoticeViewPage = () => {
                   navigate(`${process.env.PUBLIC_URL}/notice/update/${id}`, {
                     state: { data: noticeViewObj },
                   })
-                }>
+                }
+              >
                 수정하기
               </button>
               <button
                 onClick={() => {
                   onDeleteNoticeClick(id);
                   navigate(NoticeListRouteName);
-                }}>
+                }}
+              >
                 삭제하기
               </button>
             </>

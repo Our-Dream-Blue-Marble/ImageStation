@@ -44,13 +44,19 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                     ref={noticeListPagePosition}
                     className="noticeListPagePosition"
                   >
-                    <NoticeListPage />
+                    <NoticeListPage isAdmin={userObject["role"]} />
                   </div>
                 </div>
               }
             />
-            <Route path={NoticeListRouteName} element={<NoticeListPage />} />
-            <Route path={NoticeViewRouteName} element={<NoticeViewPage />} />
+            <Route
+              path={NoticeListRouteName}
+              element={<NoticeListPage isAdmin={userObject["role"]} />}
+            />
+            <Route
+              path={NoticeViewRouteName}
+              element={<NoticeViewPage isAdmin={userObject["role"]} />}
+            />
             <Route
               path={NoticeWriteRouteName}
               element={<AdminNoticeWritePage />}
@@ -71,12 +77,19 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                     ref={noticeListPagePosition}
                     className="noticeListPagePosition"
                   >
-                    <NoticeListPage />
+                    <NoticeListPage isAdmin={false} />
                   </div>
                 </div>
               }
             />
-            <Route path={NoticeListRouteName} element={<NoticeListPage />} />
+            <Route
+              path={NoticeListRouteName}
+              element={<NoticeListPage isAdmin={false} />}
+            />
+            <Route
+              path={NoticeViewRouteName}
+              element={<NoticeViewPage isAdmin={false} />}
+            />
             <Route
               path={SignInRouteName}
               replace
@@ -89,7 +102,7 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               to={HomeRouteName}
               element={<LogInPage />}
             />
-            <Route path={NoticeViewRouteName} element={<NoticeViewPage />} />
+
             <Route
               path={UpdatePasswordPageRouteName}
               element={<UpdatePasswordPage />}

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   onAdminWriteNewNoticeSubmit,
-  onNoticeFileChange,
-  onPostBodyChange,
-  onPostTitleChange,
+  onNoticeAttachmentChange,
+  onPostTitleOrBodyChange,
 } from "functions/NoticeFunction";
 
 import "styles/AdminNoticeWriteStyle.scss";
@@ -29,10 +28,7 @@ const AdminNoticeWritePage = () => {
             postTitle,
             postBody,
             "writer",
-            noticeAttachment,
-            setPostTitle,
-            setPostBody,
-            setNoticeAttachment
+            noticeAttachment
           ).then((result) => {
             if (result) {
               navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
@@ -43,7 +39,7 @@ const AdminNoticeWritePage = () => {
         <input
           title={postTitle}
           onChange={async (e) => {
-            onPostTitleChange(e, setPostTitle);
+            onPostTitleOrBodyChange(e, setPostTitle);
           }}
           type="text"
           placeholder="제목을 입력하세요"
@@ -53,8 +49,8 @@ const AdminNoticeWritePage = () => {
 
         <input
           body={postBody}
-          onChange={async (e) => {
-            onPostBodyChange(e, setPostBody);
+          onChange={(e) => {
+            onPostTitleOrBodyChange(e, setPostBody);
           }}
           type="text"
           placeholder="게시글을 입력하세요"
@@ -66,9 +62,9 @@ const AdminNoticeWritePage = () => {
 
         <span>사진을 첨부하세요</span>
         <input
-          type="file"
+          type="attachment"
           onChange={(e) => {
-            onNoticeFileChange(e, setNoticeAttachment);
+            onNoticeAttachmentChange(e, setNoticeAttachment);
           }}
         />
         <input className="saveButton" type="submit" value="SAVE" />

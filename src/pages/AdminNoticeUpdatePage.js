@@ -1,9 +1,10 @@
 import {
-  onupdateTitleOrBodyChange,
+  onUpdateTitleOrBodyChange,
   onUpdatedNoticeSubmit,
 } from "functions/NoticeFunction";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { NoticeListRouteName } from "routes/RouteName";
 
 const AdminNoticeUpdatePage = () => {
   const location = useLocation();
@@ -36,18 +37,17 @@ const AdminNoticeUpdatePage = () => {
                 currentNoticeObj.view,
                 currentNoticeObj.attachment
               );
-              navigate(
-                `${process.env.PUBLIC_URL}/notice/${currentNoticeObj.id}`
-              );
+              navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`);
             }}
-            className="container sweetEdit">
+            className="container sweetEdit"
+          >
             <input
               type="text"
               name="noticeUpdatedTitle"
               placeholder="제목"
               value={noticeUpdatedTitle}
               onChange={(e) => {
-                onupdateTitleOrBodyChange(e, setNoticeUpdatedTitle);
+                onUpdateTitleOrBodyChange(e, setNoticeUpdatedTitle);
               }}
             />
             <br />
@@ -57,7 +57,7 @@ const AdminNoticeUpdatePage = () => {
               placeholder="내용"
               value={noticeUpdatedBody}
               onChange={(e) => {
-                onupdateTitleOrBodyChange(e, setNoticeUpdatedBody);
+                onUpdateTitleOrBodyChange(e, setNoticeUpdatedBody);
               }}
             />
             <input type="submit" value="Update" />

@@ -92,7 +92,7 @@ export const updateUserDocument = async (
         isReceiveMail,
         signInDate,
         logInDate
-      )
+      ).toData()
     )
     .then(() => {
       return true;

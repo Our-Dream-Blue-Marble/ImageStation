@@ -30,8 +30,11 @@ export const createNewNoticeDocument = async (
     )
     .then(() => {
       return true;
+    })
+    .catch((e) => {
+      console.log(e);
     });
-  return true;
+  return false;
 };
 
 export const readNoticeDocument = async (id) => {
