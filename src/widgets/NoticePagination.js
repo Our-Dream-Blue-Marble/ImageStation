@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import "styles/NoticeListStyle.scss";
 
 function Pagination({ total, notices, page, setPage }) {
   const numPages = Math.ceil(total / notices);
 
   return (
-    <>
-      <nav>
+    <div className="paginationBar">
+      <nav className="paginationBtn">
         <button onClick={() => setPage(page - 1)} disabled={page === 1}>
           &lt;
         </button>
@@ -20,11 +21,15 @@ function Pagination({ total, notices, page, setPage }) {
               {i + 1}
             </button>
           ))}
-        <button onClick={() => setPage(page + 1)} disabled={page === numPages}>
+        <button
+          className="paginationBtn"
+          onClick={() => setPage(page + 1)}
+          disabled={page === numPages}
+        >
           &gt;
         </button>
       </nav>
-    </>
+    </div>
   );
 }
 

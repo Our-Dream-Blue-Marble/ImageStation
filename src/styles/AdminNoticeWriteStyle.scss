@@ -1,0 +1,5 @@
+@import "ThemeStyles.scss";
+
+.saveButton {
+  @include button1Font($black50Color);
+}

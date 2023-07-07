@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { dbService } from "fbase";
-import { async } from "q";
 import {
   onAdminWriteNewNoticeSubmit,
   onPostBodyChange,
   onPostTitleChange,
-  setNewNoticeInList,
 } from "functions/NoticeFunction";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { NoticeViewRouteName } from "routes/RouteName";
+import "styles/AdminNoticeWriteStyle.scss";
 
 const AdminNoticeWritePage = (noticeListLength) => {
   const location = useLocation();
@@ -31,7 +28,8 @@ const AdminNoticeWritePage = (noticeListLength) => {
             "writer"
           );
           navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
-        }}>
+        }}
+      >
         <input
           title={postTitle}
           onChange={async (e) => {
@@ -53,7 +51,7 @@ const AdminNoticeWritePage = (noticeListLength) => {
           maxLength={2500}
           size="50"
         />
-        <input type="submit" value="SAVE" />
+        <input className="saveButton" type="submit" value="SAVE" />
       </form>
     </div>
   );
