@@ -112,7 +112,7 @@ $numberColor: rgba(53, 60, 73, 1);
     }
 }
 
-@mixin tablet {
+@mixin desktop {
     @media (min-width: 1024px) {
         @content;
     }
