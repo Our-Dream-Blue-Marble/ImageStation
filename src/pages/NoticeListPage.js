@@ -36,6 +36,7 @@ const NoticeListPage = ({ isAdmin }) => {
           작성하기
         </button>
       ) : null}
+      <br />
       <div className="noticeBoxContainer">
         {notice.slice(offset, offset + limit).map((value, i) => (
           <>
