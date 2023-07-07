@@ -5,8 +5,10 @@ import {
   onPostBodyChange,
   onPostTitleChange,
 } from "functions/NoticeFunction";
+
+import "styles/AdminNoticeWriteStyle.scss";
+
 import { useLocation, useNavigate } from "react-router-dom";
-import { NoticeListRouteName } from "routes/RouteName";
 
 const AdminNoticeWritePage = () => {
   const location = useLocation();
@@ -36,7 +38,8 @@ const AdminNoticeWritePage = () => {
               navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
             }
           });
-        }}>
+        }}
+      >
         <input
           title={postTitle}
           onChange={async (e) => {
@@ -58,6 +61,7 @@ const AdminNoticeWritePage = () => {
           maxLength={2500}
           size="50"
         />
+
         <br />
 
         <span>사진을 첨부하세요</span>
@@ -67,7 +71,7 @@ const AdminNoticeWritePage = () => {
             onNoticeFileChange(e, setNoticeAttachment);
           }}
         />
-        <input type="submit" value="SAVE" />
+        <input className="saveButton" type="submit" value="SAVE" />
       </form>
     </div>
   );

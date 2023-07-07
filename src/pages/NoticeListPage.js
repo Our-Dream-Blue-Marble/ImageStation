@@ -6,47 +6,60 @@ import { Link, useNavigate } from "react-router-dom";
 import { HomeRouteName, NoticeWriteRouteName } from "routes/RouteName";
 import { getNoticeList } from "functions/NoticeFunction";
 import { readNoticeListDocument } from "repositories/NoticeRepository";
+import "styles/NoticeListStyle.scss";
 
 const NoticeListPage = () => {
   const [isadmin, setIsAdmin] = useState(true);
   const navigate = useNavigate();
   const [notice, setNotice] = useState([]);
   const [page, setPage] = useState(1);
-  const limit = 2;
+  const limit = 3;
   const offset = (page - 1) * limit;
 
   useEffect(() => {
     getNoticeList(setNotice);
   }, []);
   return (
-    <Layout style={{ height: "100vh" }}>
-      <header>
-        <h1>[Notice List]</h1>
+    <div className="layout" style={{ height: "100vh" }}>
+      <header className="noticeTitle">
+        <h1>공지사항</h1>
       </header>
+
       {isadmin ? (
         <button
           onClick={() =>
             navigate(NoticeWriteRouteName, {
               state: { data: notice[0] },
             })
-          }>
+          }
+        >
           작성하기
         </button>
       ) : null}
-      <main>
+      <div className="noticeBoxContainer">
         {notice.slice(offset, offset + limit).map((value, i) => (
-          <div key={value.id}>
-            <h4>
-              No. {value.id} :
-              <Link
-                to={`${process.env.PUBLIC_URL}/notice/${value.id}`}
-                state={value}>
-                {value.title}
-              </Link>
-            </h4>
-          </div>
+          <>
+            <div className="cardNotice" key={value.id}>
+              <h4>
+                <div>
+                  No. {value.id} :
+                  <Link
+                    to={`${process.env.PUBLIC_URL}/notice/${value.id}`}
+                    state={value}
+                  >
+                    {value.title}
+                  </Link>
+                </div>
+                <br />
+                <div>date: {value.date}</div>
+                <br />
+                <div>body: {value.body}</div>
+              </h4>
+            </div>
+          </>
         ))}
-      </main>
+      </div>
+      <br />
       <footer>
         <NoticePagination
           total={notice.length}
@@ -56,17 +69,12 @@ const NoticeListPage = () => {
         />
       </footer>
       <br />
-      <button onClick={() => navigate(HomeRouteName)}>홈으로 돌아가기</button>
-    </Layout>
+
+      <div>
+        <button onClick={() => navigate(HomeRouteName)}>홈으로 돌아가기</button>
+      </div>
+    </div>
   );
 };
-
-const Layout = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  max-width: 800px;
-  margin: 0 auto;
-`;
 
 export default NoticeListPage;
