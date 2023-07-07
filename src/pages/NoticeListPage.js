@@ -24,17 +24,23 @@ const NoticeListPage = () => {
         <h1>[Notice List]</h1>
       </header>
       {isadmin ? (
-        <button onClick={() => navigate(NoticeWriteRouteName)}>작성하기</button>
+        <button
+          onClick={() =>
+            navigate(NoticeWriteRouteName, {
+              state: { data: notice[0] },
+            })
+          }>
+          작성하기
+        </button>
       ) : null}
       <main>
-        {notice.slice(offset, offset + limit).map((value) => (
+        {notice.slice(offset, offset + limit).map((value, i) => (
           <div key={value.id}>
             <h4>
               No. {value.id} :
               <Link
                 to={`${process.env.PUBLIC_URL}/notice/${value.id}`}
-                state={value}
-              >
+                state={value}>
                 {value.title}
               </Link>
             </h4>
