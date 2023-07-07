@@ -1,3 +1,4 @@
+import { storageService } from "fbase";
 import { Navigate, redirect, useNavigate } from "react-router-dom";
 import {
   createNewNoticeDocument,
@@ -6,17 +7,44 @@ import {
   updateNoticeDocument,
 } from "repositories/NoticeRepository";
 import { NoticeListRouteName } from "routes/RouteName";
+import { v4 as uuidv4 } from "uuid";
 
 export const onAdminWriteNewNoticeSubmit = async (
   event,
   id,
   title,
   body,
-  writer
+  writer,
+  attachment,
+  setPostTitle,
+  setPostBody,
+  setNoticeAttachment
 ) => {
   event.preventDefault();
-
-  await createNewNoticeDocument(id, title, body, writer, Date.now(), "", 0);
+  let attachmentUrl = "";
+  if (attachment !== "") {
+    const attachmentRef = storageService
+      .ref()
+      .child(`notices/${id}/${uuidv4()}`);
+    const response = await attachmentRef.putString(attachment, "data_url");
+    attachmentUrl = await response.ref.getDownloadURL();
+  }
+  const taskDone = await createNewNoticeDocument(
+    id,
+    title,
+    body,
+    writer,
+    Date.now(),
+    "",
+    0,
+    attachmentUrl
+  );
+  setPostTitle("");
+  setPostBody("");
+  setNoticeAttachment("");
+  window.confirm("작성 되었습니다");
+  console.log(taskDone);
+  return taskDone;
 };
 
 export const onPostTitleChange = (event, setPostTitle) => {
@@ -74,4 +102,19 @@ export const onDeleteNoticeClick = async (id) => {
     window.confirm("삭제를 완료하였습니다.");
     return redirect(NoticeListRouteName);
   }
+};
+
+export const onNoticeFileChange = (event, setNoticeAttachment) => {
+  const {
+    target: { files },
+  } = event;
+  const noticeFile = files[0];
+  const noticeFileReader = new FileReader();
+  noticeFileReader.onloadend = (finishedEvent) => {
+    const {
+      currentTarget: { result },
+    } = finishedEvent;
+    setNoticeAttachment(result);
+  };
+  noticeFileReader.readAsDataURL(noticeFile);
 };
