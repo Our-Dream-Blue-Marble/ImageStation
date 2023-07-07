@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import SignInPage from "pages/SignInPage";
 import NoticeListPage from "pages/NoticeListPage";
@@ -15,42 +15,23 @@ import {
   logInRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
-import { logOut } from "functions/UserFunction";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
 import AdminNoticeUpdatePage from "pages/AdminNoticeUpdatePage";
 import LogInPage from "pages/LogInPage";
+import HeaderPage from "pages/HeaderPage";
 
 const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const homePagePosition = useRef(null);
   const noticeListPagePosition = useRef(null);
-  const navigate = useNavigate();
 
   return (
     <>
-      <header>
-        <>IMAGE STATION</>
-        <>
-          <button>주문예약</button>
-          <button>종이정보</button>
-          <button>주문내역확인</button>
-        </>
-        {isLoggedIn ? (
-          <>
-            <button onClick={() => logOut()}>로그아웃</button>
-          </>
-        ) : (
-          <>
-            <button onClick={() => navigate(logInRouteName)}>
-              회원가입 / 로그인
-            </button>
-          </>
-        )}
-        {isKorean ? (
-          <button onClick={() => setIsKorean(false)}>ENG</button>
-        ) : (
-          <button onClick={() => setIsKorean(true)}>KOR</button>
-        )}
-      </header>
+      <HeaderPage
+        isLoggedIn={isLoggedIn}
+        isKorean={isKorean}
+        setIsKorean={setIsKorean}
+        userObject={userObject}
+      />
       <Routes>
         {isLoggedIn ? (
           <>
