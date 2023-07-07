@@ -3,7 +3,7 @@
 $primaryColor: rgba(90, 145, 255, 1);
 $primaryVariantColor: rgba(97, 165, 226, 1);
 $secondaryColor: rgba(15, 43, 84, 1);
-$gradiantColor: linear-gradient(144deg, #0F2B54 0%, #5A91FF 100%, #61A5E2 100%);
+$gradiantColor: linear-gradient(144deg, #0f2b54 0%, #5a91ff 100%, #61a5e2 100%);
 $black100Color: rgba(33, 36, 39, 1);
 $black75Color: rgba(33, 36, 39, 0.75);
 $black50Color: rgba(33, 36, 39, 0.5);
@@ -98,4 +98,22 @@ $numberColor: rgba(53, 60, 73, 1);
     font-weight: 300;
     line-height: 1.83;
     letter-spacing: 0%;
+}
+
+@mixin mobile {
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 768px) and (max-width: 1023px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 1024px) {
+        @content;
+    }
 }
