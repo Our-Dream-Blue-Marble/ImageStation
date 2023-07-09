@@ -1,6 +1,6 @@
 import UserModel, { UserModelConveter } from "models/UserModel";
 
-const { dbService } = require("fbase");
+import { dbService } from "fbase";
 
 export const createNewUserDocument = async (
   uid,

@@ -1,6 +1,5 @@
 import NoticeModel, { NoticeModelConverter } from "models/NoticeModel";
-
-const { dbService } = require("fbase");
+import { dbService } from "fbase";
 
 export const createNewNoticeDocument = async (
   id,
