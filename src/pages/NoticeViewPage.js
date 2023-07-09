@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { NoticeListRouteName } from "routes/RouteName";
 import { onDeleteNoticeClick } from "functions/NoticeFunction";
+import { readNoticeDocument } from "repositories/NoticeRepository";
 
 const NoticeViewPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -12,8 +13,16 @@ const NoticeViewPage = ({ isAdmin }) => {
   const noticeData = location.state;
 
   useEffect(() => {
-    if (noticeViewObj === null && id !== null) {
-      setNoticeViewObj(noticeData);
+    if (noticeData === null) {
+      if (noticeViewObj === null && id !== null) {
+        readNoticeDocument(id).then((result) => {
+          setNoticeViewObj(result);
+        });
+      }
+    } else {
+      if (noticeViewObj === null && id !== null) {
+        setNoticeViewObj(noticeData);
+      }
     }
   }, []);
   return (
