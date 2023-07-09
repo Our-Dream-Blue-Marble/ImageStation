@@ -34,8 +34,7 @@ const AdminNoticeWritePage = () => {
               navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
             }
           });
-        }}
-      >
+        }}>
         <input
           title={postTitle}
           onChange={async (e) => {
@@ -62,7 +61,7 @@ const AdminNoticeWritePage = () => {
 
         <span>사진을 첨부하세요</span>
         <input
-          type="attachment"
+          type="file"
           onChange={(e) => {
             onNoticeAttachmentChange(e, setNoticeAttachment);
           }}
