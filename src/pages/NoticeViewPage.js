@@ -37,15 +37,18 @@ const NoticeViewPage = ({ isAdmin }) => {
           공지번호: {noticeViewObj.id} <br />
           공지제목: {noticeViewObj.title}
           <br />
+          <>
+            {noticeViewObj.attachment ? (
+              <a href={noticeViewObj.attachment}> 첨부 파일 </a>
+            ) : (
+              <>첨부파일 없음</>
+            )}
+          </>
+          <br />
           공지 글: {noticeViewObj.body}
           <br />
           작성 날짜: {getNoticeWrittenDate(noticeViewObj)}
           <br />
-          <>
-            {noticeViewObj.attachment ? (
-              <img src={noticeViewObj.attachment} />
-            ) : null}
-          </>
           <button onClick={() => navigate(NoticeListRouteName)}>
             리스트로 돌아가기
           </button>
