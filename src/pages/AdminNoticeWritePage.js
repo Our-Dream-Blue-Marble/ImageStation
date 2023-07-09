@@ -15,9 +15,13 @@ const AdminNoticeWritePage = () => {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
   const dataOfNotice = location.state.data;
-  const newNoticeId = (parseInt(dataOfNotice.id) + 1).toString();
+  var newNoticeId;
   const [noticeAttachment, setNoticeAttachment] = useState("");
-
+  if (dataOfNotice) {
+    newNoticeId = (parseInt(dataOfNotice.id) + 1).toString();
+  } else {
+    newNoticeId = "1";
+  }
   return (
     <div>
       <form

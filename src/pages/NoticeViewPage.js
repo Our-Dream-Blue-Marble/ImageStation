@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { NoticeListRouteName } from "routes/RouteName";
-import { onDeleteNoticeClick } from "functions/NoticeFunction";
+import {
+  getNoticeWrittenDate,
+  onDeleteNoticeClick,
+} from "functions/NoticeFunction";
 import { readNoticeDocument } from "repositories/NoticeRepository";
 
 const NoticeViewPage = ({ isAdmin }) => {
@@ -11,7 +14,6 @@ const NoticeViewPage = ({ isAdmin }) => {
   const [noticeViewObj, setNoticeViewObj] = useState(null);
   const { id } = useParams();
   const noticeData = location.state;
-
   useEffect(() => {
     if (noticeData === null) {
       if (noticeViewObj === null && id !== null) {
@@ -25,18 +27,25 @@ const NoticeViewPage = ({ isAdmin }) => {
       }
     }
   }, []);
+
   return (
     <>
       {noticeViewObj === null ? (
         <>Loading...</>
       ) : (
         <div>
-          no: {noticeViewObj.id} <br />
-          title: {noticeViewObj.title}
+          공지번호: {noticeViewObj.id} <br />
+          공지제목: {noticeViewObj.title}
           <br />
-          body: {noticeViewObj.body}
+          공지 글: {noticeViewObj.body}
           <br />
+          작성 날짜: {getNoticeWrittenDate(noticeViewObj)}
           <br />
+          <>
+            {noticeViewObj.attachment ? (
+              <img src={noticeViewObj.attachment} />
+            ) : null}
+          </>
           <button onClick={() => navigate(NoticeListRouteName)}>
             리스트로 돌아가기
           </button>

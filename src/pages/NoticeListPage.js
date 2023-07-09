@@ -6,7 +6,7 @@ import {
   NoticeListRouteName,
   NoticeWriteRouteName,
 } from "routes/RouteName";
-import { getNoticeList } from "functions/NoticeFunction";
+import { getNoticeList, getNoticeWrittenDate } from "functions/NoticeFunction";
 import "styles/NoticeListStyle.scss";
 
 const NoticeListPage = ({ isAdmin }) => {
@@ -31,14 +31,13 @@ const NoticeListPage = ({ isAdmin }) => {
             navigate(NoticeWriteRouteName, {
               state: { data: notice[0] },
             })
-          }
-        >
+          }>
           작성하기
         </button>
       ) : null}
       <br />
       <div className="noticeBoxContainer">
-        {notice.slice(offset, offset + limit).map((value, i) => (
+        {notice.slice(offset, offset + limit).map((value) => (
           <>
             <div className="cardNotice" key={value.id}>
               <h4>
@@ -49,7 +48,7 @@ const NoticeListPage = ({ isAdmin }) => {
                   </Link>
                 </div>
                 <br />
-                <div>date: {value.date}</div>
+                <div>date: {getNoticeWrittenDate(value)}</div>
                 <br />
                 <div>body: {value.body}</div>
               </h4>

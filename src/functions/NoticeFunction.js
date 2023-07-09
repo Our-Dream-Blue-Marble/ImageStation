@@ -124,3 +124,15 @@ export const onNoticeAttachmentChange = (event, setNoticeAttachment) => {
   };
   noticeFileReader.readAsDataURL(noticeFile);
 };
+
+export const getNoticeWrittenDate = (noticeViewObj) => {
+  var noticeWrittenDate = noticeViewObj.date;
+  var date = new Date(noticeWrittenDate);
+  const dateInString =
+    date.getFullYear().toString() +
+    "/" +
+    ("0" + (date.getMonth() + 1)).slice(-2) +
+    "/" +
+    ("0" + date.getDate()).slice(-2);
+  return dateInString;
+};
