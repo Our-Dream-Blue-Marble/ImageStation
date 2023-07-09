@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { NoticeListRouteName } from "routes/RouteName";
-import { readNoticeDocument } from "repositories/NoticeRepository";
 import { onDeleteNoticeClick } from "functions/NoticeFunction";
 
 const NoticeViewPage = ({ isAdmin }) => {
+  const location = useLocation();
   const navigate = useNavigate();
   const [noticeViewObj, setNoticeViewObj] = useState(null);
   const { id } = useParams();
+  const noticeData = location.state;
 
   useEffect(() => {
     if (noticeViewObj === null && id !== null) {
-      readNoticeDocument(id).then((result) => {
-        setNoticeViewObj(result);
-      });
+      setNoticeViewObj(noticeData);
     }
   }, []);
   return (
@@ -28,6 +27,7 @@ const NoticeViewPage = ({ isAdmin }) => {
           <br />
           body: {noticeViewObj.body}
           <br />
+          <br />
           <button onClick={() => navigate(NoticeListRouteName)}>
             리스트로 돌아가기
           </button>
@@ -35,19 +35,17 @@ const NoticeViewPage = ({ isAdmin }) => {
             <>
               <button
                 onClick={() =>
-                  navigate(`${process.env.PUBLIC_URL}/notice/update/${id}`, {
+                  navigate(`${NoticeListRouteName}/update/${id}`, {
                     state: { data: noticeViewObj },
                   })
-                }
-              >
+                }>
                 수정하기
               </button>
               <button
                 onClick={() => {
                   onDeleteNoticeClick(id);
                   navigate(NoticeListRouteName);
-                }}
-              >
+                }}>
                 삭제하기
               </button>
             </>
