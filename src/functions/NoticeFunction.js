@@ -21,7 +21,7 @@ export const onAdminWriteNewNoticeSubmit = async (
   let attachmentUrl = "";
   let result = false;
   if (attachment !== "") {
-    attachmentUrl = uploadAttachmentOnStorage(id, attachment);
+    attachmentUrl = await uploadAttachmentOnStorage(id, attachment);
   }
   await createNewNoticeDocument(
     id,
@@ -114,6 +114,7 @@ export const onNoticeAttachmentChange = (event, setNoticeAttachment) => {
     target: { files },
   } = event;
   const noticeFile = files[0];
+
   const noticeFileReader = new FileReader();
   noticeFileReader.onloadend = (finishedEvent) => {
     const {
