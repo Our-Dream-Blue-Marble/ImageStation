@@ -1,0 +1,94 @@
+@import "styles/ThemeStyles.scss";
+
+.signin_container{
+
+    background-color: white;
+    position: absolute;
+    height: 680px;
+    width: 540px;
+    margin: -300px 0px 0px -300px;
+    top: 50%;
+    left: 50%;
+    padding: 5px;
+    border-radius : 10px;
+    align-items: center;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    // border-color: #212427;
+    // border: 10px;
+}
+
+.signin_contents{
+
+    position: absolute;
+    background-color: white;
+    margin-top: 20px;
+    margin-left: 84px;
+    margin-top: 68px;
+    height: 542px;
+    width: 375px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 46px;
+}
+
+.signin_textbox{
+
+    width: 372px;
+    height: 40px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1.5px solid;
+    border-color: var(--black-50, rgba(33, 36, 39, 0.50));
+    display: block;
+    margin-left: 0px;
+    padding-left: 1px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--black-50, rgba(33, 36, 39, 0.50));
+}
+
+.withLable{
+
+    margin-bottom: 14px;
+}
+
+.withoutLabel{
+
+    margin-bottom: 26px;
+}
+
+.label_style{
+
+    font-size: 12px;
+    line-height: 22px;
+    color: var(--black-50, rgba(33, 36, 39, 0.50));
+}
+
+.singinButton{
+
+    display: flex;
+    width: 375px;
+    height: 60px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 0px;
+    background: var(--primary, #5A91FF);
+    color: white;
+    font-size: 24px;
+    margin-bottom: 25px;
+    margin-top:30px;
+    font-family: "Pretendard Variable";
+}
+
+.confirmCheckBox{
+
+    margin-top: 31px;
+    
+}
+
