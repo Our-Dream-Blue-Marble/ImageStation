@@ -12,21 +12,19 @@
 
 @mixin noticeBox() {
   display: flex;
-  width: 200px;
-  height: 200px;
-  padding: 46px 52px;
-  align-items: flex-start;
+  width: 400px;
+  height: 400px;
+  margin: 10px;
   gap: 10px;
   flex-shrink: 0;
   border-radius: 10px;
   /*background: url(<path-to-image>), lightgray 50% / cover no-repeat;*/
   /* Filter */
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
-  margin: 40px;
 }
 .layout {
   width: 1512px;
-  height: 974px;
+  height: 884px;
   background: #fff;
 }
 .centered {
@@ -37,21 +35,45 @@
   @include leftItem();
 }
 .noticeBoxContainer {
-  padding-left: 100px;
+  justify-content: start;
+  width: 1770px;
+  height: 420px;
+  margin-left: 100px;
   display: flex;
-  background-color: rgb(168, 250, 250);
   overflow: hidden;
 }
 
 .cardNotice {
   @include noticeBox();
+  flex-direction: column;
+  background-color: #e8edfb80;
+
+  margin-right: 40px;
 }
 
-.noticeTitle {
-  background-color: rgb(171, 231, 180);
+.noticeListHead {
+  display: flex;
+  margin-left: 694px;
+  width: 125px;
+  height: 43px;
+  margin-top: 94px;
 
+  border: none;
   @include heading1Font($primaryColor);
   @include centerItem();
+}
+
+.noticeListTitle {
+  @include heading2Font($black100Color);
+}
+
+.noticeListDate {
+  @include body1Font($black75Color);
+}
+
+.noticeListBody {
+  @include body1Font($black75Color);
+  overflow: hidden;
 }
 
 .paginationBtn {
@@ -69,6 +91,14 @@
   display: flex;
   width: 1312px;
   align-items: center;
-  gap: 570px;
+  gap: 570%;
   margin: 100px;
+}
+
+.contentCard {
+  padding-left: 52px;
+  padding-top: 46px;
+  padding-right: 52px;
+  padding-bottom: 46px;
+  overflow: hidden;
 }

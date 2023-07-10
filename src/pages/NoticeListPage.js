@@ -21,39 +21,39 @@ const NoticeListPage = ({ isAdmin }) => {
   }, []);
   return (
     <div className="layout" style={{ height: "100vh" }}>
-      <header className="noticeTitle">
-        <h1>공지사항</h1>
-      </header>
+      <div className="noticeListHead">공지사항</div>
+      <div>
+        {isAdmin ? (
+          <button
+            onClick={() =>
+              navigate(NoticeWriteRouteName, {
+                state: { data: notice[0] },
+              })
+            }
+          >
+            작성하기
+          </button>
+        ) : null}
+      </div>
 
-      {isAdmin ? (
-        <button
-          onClick={() =>
-            navigate(NoticeWriteRouteName, {
-              state: { data: notice[0] },
-            })
-          }>
-          작성하기
-        </button>
-      ) : null}
       <br />
       <div className="noticeBoxContainer">
         {notice.slice(offset, offset + limit).map((value) => (
-          <>
-            <div className="cardNotice" key={value.id}>
-              <h4>
-                <div>
-                  No. {value.id} :
-                  <Link to={`${NoticeListRouteName}/${value.id}`} state={value}>
-                    {value.title}
-                  </Link>
-                </div>
-                <br />
-                <div>date: {getNoticeWrittenDate(value)}</div>
-                <br />
-                <div>body: {value.body}</div>
-              </h4>
+          <div className="cardNotice" key={value.id}>
+            <div className="contentCard">
+              <div className=" noticeListTitle">
+                <Link to={`${NoticeListRouteName}/${value.id}`} state={value}>
+                  {value.title}
+                </Link>
+              </div>
+              <br />
+              <div className=" noticeListDate">
+                {getNoticeWrittenDate(value)}
+              </div>
+              <br />
+              <div className="noticeListBody">{value.body}</div>
             </div>
-          </>
+          </div>
         ))}
       </div>
       <br />
