@@ -30,56 +30,66 @@ const NoticeViewPage = ({ isAdmin }) => {
   }, []);
 
   return (
-    <>
+    <div className="noticeViewLayout">
       {noticeViewObj === null ? (
         <>Loading...</>
       ) : (
         <>
           <div className="noticeViewBoxContainer">
-            <div className="noticeViewTitle">{noticeViewObj.title}</div>
-            <div className="noticeViewRightText">
-              {getNoticeWrittenDate(noticeViewObj)}
-            </div>
-            <div className="noticeViewRightText">no. {noticeViewObj.id}</div>
-            <div className="noticeViewRightText">
-              조회수 {noticeViewObj.view}
-            </div>
-            <>
-              {noticeViewObj.attachment ? (
-                <div className="noticeViewAttachmentText">
-                  <a href={noticeViewObj.attachment}> 첨부 파일 </a>
+            <div className="noticeViewContent">
+              <div className="noticeViewTopSection">
+                <div className="noticeViewTitle">{noticeViewObj.title}</div>
+                <div className="noticeViewRightSection">
+                  <div className="noticeViewRightText">
+                    {getNoticeWrittenDate(noticeViewObj)}{" "}
+                  </div>
+                  <div className="noticeViewRightText">
+                    no. {noticeViewObj.id}{" "}
+                  </div>
+                  <div className="noticeViewRightText">
+                    조회수 {noticeViewObj.view}
+                  </div>
+                  <>
+                    <div className="noticeViewAttachmentText">
+                      {noticeViewObj.attachment ? (
+                        <a href={noticeViewObj.attachment}> 첨부 파일 </a>
+                      ) : (
+                        <>첨부파일 없음</>
+                      )}
+                    </div>
+                  </>
                 </div>
-              ) : (
-                <>첨부파일 없음</>
-              )}
-            </>
-            <div className="noticeViewBodyText">{noticeViewObj.body}</div>
-            <button onClick={() => navigate(NoticeListRouteName)}>
-              리스트로 돌아가기
-            </button>
-            {isAdmin ? (
-              <>
-                <button
-                  onClick={() =>
-                    navigate(`${NoticeListRouteName}/update/${id}`, {
-                      state: { data: noticeViewObj },
-                    })
-                  }>
-                  수정하기
+              </div>
+              <div className="noticeViewBodyText">{noticeViewObj.body}</div>
+              <div>
+                <button onClick={() => navigate(NoticeListRouteName)}>
+                  리스트로 돌아가기
                 </button>
-                <button
-                  onClick={() => {
-                    onDeleteNoticeClick(id);
-                    navigate(NoticeListRouteName);
-                  }}>
-                  삭제하기
-                </button>
-              </>
-            ) : null}
+                {isAdmin ? (
+                  <>
+                    <button
+                      onClick={() =>
+                        navigate(`${NoticeListRouteName}/update/${id}`, {
+                          state: { data: noticeViewObj },
+                        })
+                      }>
+                      수정하기
+                    </button>
+                    <button
+                      onClick={() => {
+                        onDeleteNoticeClick(id);
+                        navigate(NoticeListRouteName);
+                      }}>
+                      삭제하기
+                    </button>
+                  </>
+                ) : null}
+              </div>
+            </div>
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 
