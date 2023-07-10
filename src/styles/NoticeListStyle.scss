@@ -24,8 +24,8 @@
 }
 .layout {
   width: 1512px;
-  height: 884px;
-  background: #fff;
+  height: 804px;
+  background: #edeaea;
 }
 .centered {
   @include centerItem();
@@ -34,6 +34,39 @@
 .lefted {
   @include leftItem();
 }
+
+.noticeHead {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 34px;
+  margin-bottom: 71px;
+}
+
+.noticeWriteBtn {
+  display: flex;
+  margin-left: 563px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 48px;
+  color: $primaryColor;
+  background-color: inherit;
+  border: none;
+  @include centerItem();
+}
+
+.noticeListHead {
+  display: flex;
+  margin-left: 694px;
+  width: 125px;
+  height: 43px;
+  border: none;
+  @include heading1Font($primaryColor);
+  @include centerItem();
+}
+
 .noticeBoxContainer {
   justify-content: start;
   width: 1770px;
@@ -51,54 +84,87 @@
   margin-right: 40px;
 }
 
-.noticeListHead {
-  display: flex;
-  margin-left: 694px;
-  width: 125px;
-  height: 43px;
-  margin-top: 94px;
-
-  border: none;
-  @include heading1Font($primaryColor);
-  @include centerItem();
-}
-
-.noticeListTitle {
-  @include heading2Font($black100Color);
-}
-
-.noticeListDate {
-  @include body1Font($black75Color);
-}
-
-.noticeListBody {
-  @include body1Font($black75Color);
-  overflow: hidden;
-}
-
-.paginationBtn {
-  @include centerItem();
-  display: flex;
-  width: 27px;
-  height: 19px;
-  justify-content: left;
-  align-items: flex-start;
-}
-
-.paginationBar {
-  background-color: rgb(171, 231, 180);
-  overflow: hidden;
-  display: flex;
-  width: 1312px;
-  align-items: center;
-  gap: 570%;
-  margin: 100px;
-}
-
 .contentCard {
   padding-left: 52px;
   padding-top: 46px;
   padding-right: 52px;
   padding-bottom: 46px;
+  width: 308px;
+  height: 298px;
   overflow: hidden;
+}
+
+.noticeListTitle {
+  @include heading2Font($black100Color);
+  padding-bottom: 24px;
+}
+
+.noticeListDate {
+  @include body1Font($black75Color);
+  padding-bottom: 24px;
+}
+
+.noticeListBody {
+  @include body1Font($black75Color);
+  width: 308px;
+  height: 206px;
+  overflow: hidden;
+}
+.paginationBar {
+  background-color: rgb(171, 231, 180);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 1312px;
+  height: 30px;
+  margin-top: 63px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 165px;
+}
+
+.paginationLtBtn {
+  width: 30px;
+  height: 30px;
+  float: left;
+  // border: none;
+  background-color: inherit;
+  transform: scaleX(-1);
+}
+
+.paginationBtn {
+  @include centerItem();
+  @include body1Font($black75Color);
+  padding-top: 5px;
+  display: flex;
+  width: 27px;
+  height: 19px;
+  border: none;
+  background-color: inherit;
+
+  &:hover {
+    color: black;
+    cursor: pointer;
+    transform: translateY(-2px);
+  }
+
+  &[disabled] {
+    cursor: revert;
+    transform: revert;
+  }
+
+  &[aria-current] {
+    font-weight: bold;
+    cursor: revert;
+    transform: revert;
+  }
+}
+
+.paginationRtBtn {
+  width: 30px;
+  height: 30px;
+  float: right;
+  // border: none;
+  background-color: inherit;
+  //transform: rotate(90deg);
 }
