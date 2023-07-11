@@ -31,8 +31,7 @@ const NoticeListPage = ({ isAdmin }) => {
                 navigate(NoticeWriteRouteName, {
                   state: { data: notice[0] },
                 })
-              }
-            >
+              }>
               +
             </button>
           ) : null}
@@ -42,12 +41,13 @@ const NoticeListPage = ({ isAdmin }) => {
       <div className="noticeBoxContainer">
         {notice.slice(offset, offset + limit).map((value) => (
           <div className="cardNotice" key={value.id}>
-            <div className="contentCard">
-              <div className=" noticeListTitle">
-                <Link to={`${NoticeListRouteName}/${value.id}`} state={value}>
-                  {value.title}
-                </Link>
-              </div>
+            <div
+              className="contentCard"
+              onClick={() => (
+                navigate(NoticeListRouteName + "/" + value.id),
+                { state: { data: value } }
+              )}>
+              <div className=" noticeListTitle">{value.title}</div>
               <div className=" noticeListDate">
                 {getNoticeWrittenDate(value)}
               </div>
