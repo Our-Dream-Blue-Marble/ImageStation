@@ -14,18 +14,20 @@ function Pagination({ total, notices, page, setPage }) {
       >
         <img src={ArrowImage} />
       </button>
-      {Array(numPages)
-        .fill()
-        .map((_, i) => (
-          <button
-            className="paginationBtn"
-            key={i + 1}
-            onClick={() => setPage(i + 1)}
-            aria-current={page === i + 1 ? "page" : null}
-          >
-            {i + 1}
-          </button>
-        ))}
+      <div id="centerPaginationNumBtns">
+        {Array(numPages)
+          .fill()
+          .map((_, i) => (
+            <button
+              className="paginationBtn"
+              key={i + 1}
+              onClick={() => setPage(i + 1)}
+              aria-current={page === i + 1 ? "page" : null}
+            >
+              {i + 1}
+            </button>
+          ))}
+      </div>
       <button
         className="paginationRtBtn"
         onClick={() => setPage(page + 1)}
