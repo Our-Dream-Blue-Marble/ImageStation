@@ -4,25 +4,25 @@
   .container {
     background-color: $white100Color;
     position: absolute;
-    height: 615px;
-    width: 540px;
+    height: 35.7%;
+    width: 40.7%;
     top: 50%;
     left: 50%;
-    padding: 5px;
+    padding: 5.6%;
     border-radius: 10px;
     align-items: center;
     box-shadow: 0px 4px 10px 0px $black25Color;
     .contents {
       background-color: $white100Color;
-      margin-top: 20px;
-      margin-left: 84px;
+      margin-left: 15.5%;
       height: 500px;
-      width: 372px;
+      width: 30%;
     }
     p {
       @include heading2Font($primaryColor);
       text-align: center;
-      margin-top: 30px;
+      margin-top: 11.5%;
+      margin-bottom: 9.8%;
     }
   }
 
