@@ -51,13 +51,9 @@ const AdminNoticeWritePage = () => {
             placeholder="제목을 입력하세요               "
             maxLength={200}
           />
-          <label className="noticeWriteFileChoose" for="inputFile">
-            파일선택
-          </label>
           <input
+            className="noticeWriteFileChoose"
             type="file"
-            id="inputFile"
-            style={{ display: "none" }}
             onChange={(e) => {
               onNoticeAttachmentChange(e, setNoticeAttachment);
             }}
