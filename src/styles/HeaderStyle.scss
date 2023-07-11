@@ -24,18 +24,52 @@ header {
   @include centerFormat();
 }
 
-#centerButtons {
+#logoAsset {
+  @include centerFormat();
   display: flex;
-  width: 27%;
+  width: 14.7vw;
   align-items: flex-start;
-  gap: 10%;
-  padding-left: 18%;
-  padding-right: 14%;
+  padding-left: 5vw;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#centerButtons {
+  @include centerFormat();
+  display: flex;
+  width: 27vw;
+  align-items: flex-start;
+  gap: 6vw;
+  padding-left: 17.7vw;
+  padding-right: 14vw;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .centerButton {
   @include subHeading2Font($black100Color);
   background-color: transparent;
   border: none;
+}
+
+.centerButton:nth-child(1) {
+  width: 3.6wh;
+}
+
+.centerButton:nth-child(2) {
+  width: 3.6wh;
+}
+
+.centerButton:nth-child(3) {
+  width: 5.3wh;
+}
+
+#rightButtons {
+  display: flex;
+  width: 27vw;
+  align-items: flex-start;
+  gap: 3.2vw;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .rightButton {
@@ -47,11 +81,17 @@ header {
 }
 
 .rightButton:first-child {
-  width: 7%;
+  width: 124px;
   height: 23px;
 }
 
 .rightButton:last-child {
-  width: 4%;
+  width: 70px;
   height: 23px;
+}
+
+#globalIconAsset {
+  padding: none;
+  margin: none;
+  vertical-align: text-bottom;
 }
