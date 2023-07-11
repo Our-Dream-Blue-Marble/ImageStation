@@ -23,7 +23,7 @@ const AdminNoticeWritePage = () => {
     newNoticeId = "1";
   }
   return (
-    <div>
+    <div className="noticeWritelayout">
       <form
         onSubmit={async (e) => {
           onAdminWriteNewNoticeSubmit(
@@ -38,39 +38,41 @@ const AdminNoticeWritePage = () => {
               navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
             }
           });
-        }}>
-        <input
-          title={postTitle}
-          onChange={async (e) => {
-            onPostTitleOrBodyChange(e, setPostTitle);
-          }}
-          type="text"
-          placeholder="제목을 입력하세요"
-          maxLength={120}
-        />
-        <br />
+        }}
+      >
+        <div className="writeContainer">
+          <input
+            className="noticeTitleTextBox"
+            title={postTitle}
+            onChange={async (e) => {
+              onPostTitleOrBodyChange(e, setPostTitle);
+            }}
+            type="text"
+            placeholder="제목을 입력하세요"
+            maxLength={120}
+          />
+          <input
+            className="noticeWriteFileChoose"
+            type="file"
+            onChange={(e) => {
+              onNoticeAttachmentChange(e, setNoticeAttachment);
+            }}
+          />
 
-        <input
-          body={postBody}
-          onChange={(e) => {
-            onPostTitleOrBodyChange(e, setPostBody);
-          }}
-          type="text"
-          placeholder="게시글을 입력하세요"
-          maxLength={2500}
-          size="50"
-        />
-
-        <br />
-
-        <span>사진을 첨부하세요</span>
-        <input
-          type="file"
-          onChange={(e) => {
-            onNoticeAttachmentChange(e, setNoticeAttachment);
-          }}
-        />
-        <input className="saveButton" type="submit" value="SAVE" />
+          <textarea
+            className="noticeBodyTextBox"
+            body={postBody}
+            onChange={(e) => {
+              onPostTitleOrBodyChange(e, setPostBody);
+            }}
+            type="text"
+            placeholder="게시글을 입력하세요"
+            maxLength={2500}
+          />
+        </div>
+        <div>
+          <input className="noticeWriteSaveBtn" type="submit" value="올리기" />
+        </div>
       </form>
     </div>
   );
