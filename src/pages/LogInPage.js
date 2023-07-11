@@ -24,9 +24,9 @@ const LogInPage = () => {
   });
 
   return (
-    <div className="login_container">
-      <h1>로그인</h1>
-      <div className="login_contents">
+    <div className="login container">
+      <div className="login container contents">
+        <p>로그인</p>
         <form
           onSubmit={async (e) => {
             await onUserEmailAndPasswordSubmit(
@@ -43,7 +43,7 @@ const LogInPage = () => {
           }}
         >
           <input
-            class="login_emailandpasswordOntextbox"
+            className="login emailandpasswordOntextbox"
             name="userEmail"
             type="email"
             placeholder="학교 이메일"
@@ -52,7 +52,7 @@ const LogInPage = () => {
             onChange={(e) => onUserEmailOrPasswordChange(e, setUserEmail)}
           />
           <input
-            class="login_emailandpasswordOntextbox"
+            className="login emailandpasswordOntextbox"
             name="userPassword"
             type="password"
             placeholder="비밀번호"
@@ -60,27 +60,25 @@ const LogInPage = () => {
             value={userPassword}
             onChange={(e) => onUserEmailOrPasswordChange(e, setUserPassword)}
           />
-          <>
-            <div className="saveIdContainer">
-              <input class="saveIdCheckBox" type="checkbox" />
-              <label>아이디 저장</label>
-            </div>
-          </>
+          <div className="saveIdContainer">
+            <input className="saveIdCheckBox" type="checkbox" />
+            <label>아이디 저장</label>
+          </div>
           <input
-            className="loginButton"
+            className="login submitButton"
             type="submit"
             value={isNewUser ? "Sign In" : "로그인"}
           />
         </form>
         <div className="updateAndSigninButtonsContainer">
           <button
-            class="updateAndSigninButtons"
+            className="updateAndSigninButtons"
             onClick={() => navigate(UpdatePasswordPageRouteName)}
           >
             비밀번호 찾기
           </button>
           <button
-            class="updateAndSigninButtons"
+            className="updateAndSigninButtons"
             onClick={() => navigate(SignInRouteName)}
           >
             회원가입

@@ -1,92 +1,46 @@
 @import "styles/ThemeStyles.scss";
 
-
-h1{
-    font-size: 24px;
-    font-family: "Pretendard Variable";
-    color:  rgba(90, 145, 255, 1);
-    text-align: center;
-    margin-top: 30px;
-}
-
-label{
-
-    font-size: 14px;
-    color: var(--black-50, rgba(33, 36, 39, 0.50));
-}
-
-.login_container{
-
-    background-color: white;
+.login {
+  .container {
+    background-color: $white100Color;
     position: absolute;
     height: 615px;
     width: 540px;
-    margin: -300px 0px 0px -300px;
     top: 50%;
     left: 50%;
     padding: 5px;
-    border-radius : 10px;
+    border-radius: 10px;
     align-items: center;
-    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
-    
-}
+    box-shadow: 0px 4px 10px 0px $black25Color;
+    .contents {
+      background-color: $white100Color;
+      margin-top: 20px;
+      margin-left: 84px;
+      height: 500px;
+      width: 372px;
+    }
+    p {
+      @include heading2Font($primaryColor);
+      text-align: center;
+      margin-top: 30px;
+    }
+  }
 
-.login_contents{
-
-    position: absolute;
-    background-color: white;
-    margin-top: 20px;
-    margin-left: 84px;
-    height: 500px;
-    width: 372px;
-    
-}
-
-.login_emailandpasswordOntextbox{
-    width: 364px;
-    height: 40px;
+  .emailandpasswordOntextbox {
+    width: 99.6%;
+    height: 8.1%;
     border-top: none;
     border-left: none;
     border-right: none;
     border-bottom: 1.5px solid;
-    border-color: var(--black-50, rgba(33, 36, 39, 0.50));
-    display: block;
-    margin-bottom: 40px;
-    margin-top: 10px;
-    margin-left: 5px;
-    padding-left: 1px;
-    font-size: 16px;
-}
-
-.saveIdCheckBox{
-
+    border-color: $black50Color;
     display: flex;
-    width: 22px;
-    height: 22px;
-    padding: 2px 3px;
-    align-items: flex-start;
-    flex-shrink: 0;
-    border-color: var(--black-50, rgba(33, 36, 39, 0.50));
+    margin-bottom: 14.5%;
+    @include subHeading3Font($black100Color);
+  }
 
-}
-
-.saveIdContainer{ 
-
-    display: flex;
-    width: 120px;
-    height: 25.621px;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-    margin-bottom: 50px;
-    margin-top: 50px;
-   
-}
-
-.loginButton{
-
-    display: flex;
-    width: 372px;
+  .submitButton {
+    width: 99.7%;
     height: 60px;
     padding: 10px;
     justify-content: center;
@@ -95,34 +49,46 @@ label{
     flex-shrink: 0;
     border-radius: 8px;
     border: 0px;
-    background: var(--primary, #5A91FF);
-    color: white;
-    font-size: 24px;
-    margin-bottom: 25px;
-    font-family: "Pretendard Variable";
+    background: $primaryColor;
+    @include heading2Font($white100Color);
+  }
 }
 
-.updateAndSigninButtonsContainer{
-    display: flex;
-    width: 300px;
-    height: 19px;
-    align-items: flex-start;
-    gap: 27px;
-    flex-shrink: 0;
-    margin-left: 80px;
-    align-items: center;
+.saveIdCheckBox {
+  display: flex;
+  width: 13.7%;
+  height: 70%;
+  align-items: flex-start;
+  border-color: $black50Color;
 }
 
-.updateAndSigninButtons{
+.saveIdContainer {
+  display: flex;
+  width: 29%;
+  height: 8.7%;
+  align-items: center;
+  flex-shrink: 0;
+  margin-bottom: 14.5%;
+}
+label {
+  @include body2Font($black100Color);
+}
 
-    display: flex;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1.5px solid;
-    background-color: transparent;
-    border-color: var(--primary, #5A91FF);
-    color: var(--primary, #5A91FF);
-    font-weight: bold;
+.updateAndSigninButtonsContainer {
+  display: flex;
+  width: 300px;
+  height: 19px;
+  align-items: flex-start;
+  gap: 27px;
+}
 
+.updateAndSigninButtons {
+  display: flex;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1.5px solid;
+  background-color: transparent;
+  border-color: $primaryColor;
+  @include subHeading3Font($primaryColor);
 }
