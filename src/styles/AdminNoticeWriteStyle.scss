@@ -6,6 +6,7 @@
   // background: #ebe9e9;
   overflow-y: scroll;
   background-image: url(../assets/BackgroundAsset.svg);
+  background-size: cover;
 }
 
 .writeContainer {
@@ -24,12 +25,12 @@
 }
 
 .noticeTitleTextBox {
-  width: 11.4vw;
-  height: 2.5vh;
+  width: 42.3vw;
+  height: 3vh;
   margin-left: 7.6vw;
   margin-top: 13.8vh;
   margin-bottom: 3.95vh;
-  @include heading2Font($black25Color);
+  @include heading2Font($black100Color);
   border: none;
 }
 
@@ -37,11 +38,15 @@ input::placeholder {
   color: $black25Color;
 }
 
+input:focus::placeholder {
+  color: transparent;
+}
+
 .noticeBodyTextBox {
   width: 42.3vw;
   height: 36.4vh;
   margin-left: 7.6vw;
-  @include body1Font($black50Color);
+  @include body1Font($black100Color);
   border: none;
 }
 
