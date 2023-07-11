@@ -20,7 +20,7 @@ const NoticeListPage = ({ isAdmin }) => {
     getNoticeList(setNotice);
   }, []);
   return (
-    <div className="layout" style={{ height: "100vh" }}>
+    <div className="layout">
       <div className="noticeHead">
         <div className="noticeListHead">공지사항</div>
         <div>
