@@ -1,4 +1,5 @@
 import {
+  onNoticeAttachmentChange,
   onUpdateTitleOrBodyChange,
   onUpdatedNoticeSubmit,
 } from "functions/NoticeFunction";
@@ -14,6 +15,9 @@ const AdminNoticeUpdatePage = () => {
   );
   const [noticeUpdatedBody, setNoticeUpdatedBody] = useState(
     location.state.data.body
+  );
+  const [noticeUpdatedAttachment, setNoticeupdatedAttachment] = useState(
+    location.state.data.attachment
   );
   const navigate = useNavigate();
 
@@ -35,12 +39,11 @@ const AdminNoticeUpdatePage = () => {
                 currentNoticeObj.writer,
                 currentNoticeObj.date,
                 currentNoticeObj.view,
-                currentNoticeObj.attachment
+                noticeUpdatedAttachment
               );
               navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`);
             }}
-            className="container sweetEdit"
-          >
+            className="container sweetEdit">
             <input
               type="text"
               name="noticeUpdatedTitle"
@@ -58,6 +61,13 @@ const AdminNoticeUpdatePage = () => {
               value={noticeUpdatedBody}
               onChange={(e) => {
                 onUpdateTitleOrBodyChange(e, setNoticeUpdatedBody);
+              }}
+            />
+            <br />
+            <input
+              type="file"
+              onChange={(e) => {
+                onNoticeAttachmentChange(e, setNoticeupdatedAttachment);
               }}
             />
             <input type="submit" value="Update" />
