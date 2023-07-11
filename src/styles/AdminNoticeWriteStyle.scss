@@ -1,5 +1,68 @@
 @import "ThemeStyles.scss";
 
-.saveButton {
-  @include button1Font($black50Color);
+.noticeWritelayout {
+  width: 100%;
+  height: 91vh;
+  // background: #ebe9e9;
+  overflow-y: scroll;
+  background-image: url(../assets/BackgroundAsset.svg);
+}
+
+.writeContainer {
+  background-color: white;
+  margin-left: 21.5%;
+  margin-top: 7.9vh;
+  display: inline-flex;
+  width: 57vw;
+  height: 69.2vh;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.noticeTitleTextBox {
+  width: 11.4vw;
+  height: 2.5vh;
+  margin-left: 7.6vw;
+  margin-top: 13.8vh;
+  margin-bottom: 3.95vh;
+  @include heading2Font($black25Color);
+  border: none;
+}
+
+input::placeholder {
+  color: $black25Color;
+}
+
+.noticeBodyTextBox {
+  width: 42.3vw;
+  height: 36.4vh;
+  margin-left: 7.6vw;
+  @include body1Font($black50Color);
+  border: none;
+}
+
+textarea::placeholder {
+  color: $black50Color;
+}
+
+.noticeWriteFileChoose {
+  text-align: center;
+  @include button1Font($primaryColor);
+  margin-bottom: 0.45vh;
+  margin-left: 7.6vw;
+}
+
+.noticeWriteSaveBtn {
+  @include heading2Font($white100Color);
+  background-color: $primaryColor;
+  border: none;
+  border-radius: 8px;
+  margin-top: 3.5vh;
+  margin-left: 43.05vw;
+  width: 13.8vw;
+  height: 6.7vh;
 }
