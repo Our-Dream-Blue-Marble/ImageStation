@@ -61,31 +61,31 @@ const NoticeViewPage = ({ isAdmin }) => {
                 </div>
               </div>
               <div className="noticeViewBodyText">{noticeViewObj.body}</div>
-              <div>
-                <button onClick={() => navigate(NoticeListRouteName)}>
-                  리스트로 돌아가기
-                </button>
-                {isAdmin ? (
-                  <>
-                    <button
-                      onClick={() =>
-                        navigate(`${NoticeListRouteName}/update/${id}`, {
-                          state: { data: noticeViewObj },
-                        })
-                      }>
-                      수정하기
-                    </button>
-                    <button
-                      onClick={() => {
-                        onDeleteNoticeClick(id);
-                        navigate(NoticeListRouteName);
-                      }}>
-                      삭제하기
-                    </button>
-                  </>
-                ) : null}
-              </div>
             </div>
+          </div>
+          <div>
+            <button onClick={() => navigate(NoticeListRouteName)}>
+              리스트로 돌아가기
+            </button>
+            {isAdmin ? (
+              <>
+                <button
+                  onClick={() =>
+                    navigate(`${NoticeListRouteName}/update/${id}`, {
+                      state: { data: noticeViewObj },
+                    })
+                  }>
+                  수정하기
+                </button>
+                <button
+                  onClick={() => {
+                    onDeleteNoticeClick(id);
+                    navigate(NoticeListRouteName);
+                  }}>
+                  삭제하기
+                </button>
+              </>
+            ) : null}
           </div>
         </>
       )}
