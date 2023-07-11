@@ -8,48 +8,45 @@
   flex-shrink: 0;
   flex-direction: column;
   background-image: url(../assets/BackgroundAsset.svg);
+  background-size: cover;
 }
 .noticeViewTitle {
   @include heading2Font($black100Color);
-  background-color: tomato;
   align-items: flex-start;
-  width: 100%;
   float: left;
+  width: 21vw;
+  margin-right: 13.4vw;
 }
 
 .noticeViewRightText {
   @include body1Font($black75Color);
-  background-color: aquamarine;
 }
 .noticeViewTopSection {
   display: flex;
   align-items: justify;
-  width: 100%;
-  background: green;
+  justify-content: space-between;
 }
+
 .noticeViewRightSection {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 8px;
-  background: var(--white-100, #fff);
-  width: 100%;
+  width: 7.4vw;
 }
 
+.noticeViewAttachmentText {
+  @include body1Font($primaryColor);
+  display: flex;
+  flex-direction: column;
+}
 .noticeViewBodyText {
   @include body1Font($black75Color);
   background-color: yellow;
   display: flex;
   height: auto;
-  min-width: 636px;
   flex-direction: column;
 }
-
-.noticeViewAttachmentText {
-  @include body1Font($primaryColor);
-  background-color: violet;
-}
-
 .noticeViewBoxContainer {
   width: 57.1%;
   min-height: 61.2vh;
@@ -69,7 +66,6 @@
 }
 
 .noticeViewContent {
-  padding: 11.3vh 13.2%;
   display: inline-flex;
   padding: 11.3vh 13.2%;
   flex-direction: column;
