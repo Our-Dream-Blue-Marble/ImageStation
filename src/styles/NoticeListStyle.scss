@@ -12,20 +12,21 @@
 
 @mixin noticeBox() {
   display: flex;
-  width: 400px;
+  width: 30.8%;
   height: 400px;
-  margin: 10px;
-  gap: 10px;
+  margin: 0.7%;
+  gap: 0.7%;
   flex-shrink: 0;
-  border-radius: 10px;
+  border-radius: 0.7%;
   /*background: url(<path-to-image>), lightgray 50% / cover no-repeat;*/
   /* Filter */
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
 }
 .layout {
-  width: 1512px;
-  height: 804px;
+  width: 100%;
+  height: 100vh;
   background: #edeaea;
+  overflow-y: scroll;
 }
 .centered {
   @include centerItem();
@@ -36,12 +37,12 @@
 }
 
 .noticeHead {
-  width: auto;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-top: 34px;
-  margin-bottom: 71px;
+  padding-top: 4.2%;
+  margin-bottom: 82px;
 }
 
 .noticeWriteBtn {
@@ -59,8 +60,8 @@
 
 .noticeListHead {
   display: flex;
-  margin-left: 694px;
-  width: 125px;
+  margin-left: 45.9%;
+  width: 8.26vw;
   height: 43px;
   border: none;
   @include heading1Font($primaryColor);
@@ -69,9 +70,10 @@
 
 .noticeBoxContainer {
   justify-content: start;
-  width: 1770px;
+  width: 86.7vw;
   height: 420px;
-  margin-left: 100px;
+  margin-left: 6.6vw;
+  margin-right: 6.6vw;
   display: flex;
   overflow: hidden;
 }
@@ -81,15 +83,16 @@
   flex-direction: column;
   background-color: #e8edfb80;
 
-  margin-right: 40px;
+  margin-right: 2.6%;
 }
 
 .contentCard {
-  padding-left: 52px;
   padding-top: 46px;
-  padding-right: 52px;
   padding-bottom: 46px;
-  width: 308px;
+  padding-right: 15%;
+  margin-left: 13%;
+
+  width: 77%;
   height: 298px;
   overflow: hidden;
 }
@@ -106,7 +109,7 @@
 
 .noticeListBody {
   @include body1Font($black75Color);
-  width: 308px;
+  width: 100%;
   height: 206px;
   overflow: hidden;
 }
@@ -115,11 +118,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 1312px;
+  width: 86.7%;
   height: 30px;
   margin-top: 63px;
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 6.6%;
+  margin-right: 6.6%;
   margin-bottom: 165px;
 }
 
@@ -127,7 +130,7 @@
   width: 30px;
   height: 30px;
   float: left;
-  // border: none;
+  border: none;
   background-color: inherit;
   transform: scaleX(-1);
 }
@@ -164,7 +167,7 @@
   width: 30px;
   height: 30px;
   float: right;
-  // border: none;
+  border: none;
   background-color: inherit;
   //transform: rotate(90deg);
 }
