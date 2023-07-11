@@ -47,7 +47,8 @@
 
 .noticeWriteBtn {
   display: flex;
-  margin-left: 36.8vw;
+  position: absolute;
+  margin-left: 32.5vw;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
@@ -61,8 +62,8 @@
 .noticeListHead {
   display: flex;
   margin-left: 45.9%;
-  width: 8.27vw;
-  height: 4.8vh;
+  width: 200px;
+  height: 43px;
   border: none;
   @include heading1Font($primaryColor);
   @include centerItem();
