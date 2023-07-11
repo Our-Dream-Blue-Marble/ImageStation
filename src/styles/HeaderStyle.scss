@@ -22,6 +22,11 @@ header {
   top: 0;
   display: flex;
   @include centerFormat();
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+  background-color: $white100Color;
 }
 
 #logoAsset {
