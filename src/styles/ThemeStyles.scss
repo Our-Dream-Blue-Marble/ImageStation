@@ -117,3 +117,8 @@ $numberColor: rgba(53, 60, 73, 1);
     @content;
   }
 }
+
+@mixin centerFormat() {
+  justify-content: center;
+  align-items: center;
+}
