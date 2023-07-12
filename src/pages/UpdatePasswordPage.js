@@ -29,7 +29,7 @@ const UpdatePasswordPage = () => {
             <input type="submit" value="비밀번호 재설정" />
             <ul>
               <li>
-                <label className="OptionLabel">
+                <label>
                   로그인하고 싶은가요?<button>로그인 하기</button>
                 </label>
               </li>

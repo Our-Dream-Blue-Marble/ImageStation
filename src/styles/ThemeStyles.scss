@@ -13,6 +13,7 @@ $black5Color: rgba(33, 36, 39, 0.05);
 $white100Color: rgba(255, 255, 255, 1);
 $errorColor: rgba(221, 82, 87, 1);
 $numberColor: rgba(53, 60, 73, 1);
+$hovorAndClickColor: rgba(61, 97, 171, 1);
 
 @mixin displayFont($color) {
   color: $color;
