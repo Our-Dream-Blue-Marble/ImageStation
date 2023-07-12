@@ -129,23 +129,36 @@ const SignInPage = () => {
             />
             <label>* "-" 제외 11자리 입력</label>
           </div>
-          <input
-            type="checkbox"
-            name="isAgreePersonalInfo"
-            value={isAgreePersonalInfo}
-            onClick={(e) =>
-              onUserEmailOrPasswordChange(e, setIsAgreePersonalInfo)
-            }
-          />
-          <span>개인정보 처리방침에 동의합니다.</span>
-          <input
-            class="Input_confirm_checkBox"
-            type="checkbox"
-            name="isAgreeUsingInfo"
-            value={isAgreeUsingInfo}
-            onClick={(e) => onUserEmailOrPasswordChange(e, setIsAgreeUsingInfo)}
-          />
-          <span>이용약관에 동의합니다.</span>
+
+          <label
+            class="CheckBoxLabel"
+            id="PersonalInfoCheckBox"
+            for="isAgreePersonalInfo"
+          >
+            <input
+              type="checkbox"
+              id="isAgreePersonalInfo"
+              name="isAgreePersonalInfo"
+              value={isAgreePersonalInfo}
+              onClick={(e) =>
+                onUserEmailOrPasswordChange(e, setIsAgreePersonalInfo)
+              }
+            />
+            개인정보 처리방침에 동의합니다.
+          </label>
+
+          <label class="CheckBoxLabel" for="isAgreeUsingInfo">
+            <input
+              type="checkbox"
+              id="isAgreeUsingInfo"
+              name="isAgreeUsingInfo"
+              value={isAgreeUsingInfo}
+              onClick={(e) =>
+                onUserEmailOrPasswordChange(e, setIsAgreeUsingInfo)
+              }
+            />
+            이용약관에 동의합니다.
+          </label>
           <input
             id="SubmitButton"
             type={isPossibleSubmit ? "submit" : "button"}
