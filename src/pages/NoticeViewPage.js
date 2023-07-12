@@ -88,7 +88,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                     className="adminNoticeDeleteButton"
                     onClick={() => {
                       onDeleteNoticeClick(id);
-                      navigate(NoticeListRouteName);
+                      navigate(NoticeListRouteName, { state: true });
                     }}>
                     <img src={deleteAsset} />
                   </button>
