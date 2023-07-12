@@ -23,7 +23,7 @@ const AdminNoticeUpdatePage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="noticeUpdatelayout">
+    <div className="noticeUpdateLayout">
       {currentNoticeObj === null ? (
         <>Loading...</>
       ) : (
@@ -42,7 +42,6 @@ const AdminNoticeUpdatePage = () => {
               );
               navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`);
             }}
-            className="container sweetEdit"
           >
             <div className="updateContainer">
               <input
@@ -56,7 +55,7 @@ const AdminNoticeUpdatePage = () => {
                 }}
               />
               <input
-                className="noticeUpeateFileChoose"
+                className="noticeUpdateFileChoose"
                 type="file"
                 onChange={(e) => {
                   onNoticeAttachmentChange(e, setNoticeupdatedAttachment);
@@ -74,11 +73,17 @@ const AdminNoticeUpdatePage = () => {
                 }}
               />
             </div>
-            <div>
+            <div className="noticeUpdateBtns">
+              <button
+                className="noticeUpdateCancelBtn"
+                onClick={() => navigate(NoticeListRouteName)}
+              >
+                취소하기
+              </button>
               <input
                 className="noticeUpdateSaveBtn"
                 type="submit"
-                value="수정완료"
+                value="올리기"
               />
             </div>
           </form>
