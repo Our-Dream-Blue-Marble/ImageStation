@@ -9,7 +9,8 @@ export const createNewNoticeDocument = async (
   date,
   dateupdated,
   view,
-  attachment
+  attachment,
+  attachmentName
 ) => {
   await dbService
     .collection("notices")
@@ -24,7 +25,8 @@ export const createNewNoticeDocument = async (
         date,
         dateupdated,
         view,
-        attachment
+        attachment,
+        attachmentName
       )
     )
     .then(() => {
@@ -70,7 +72,8 @@ export const updateNoticeDocument = async (
   writer,
   date,
   view,
-  attachment
+  attachment,
+  attachmentName
 ) => {
   const noticeDocumentRef = await dbService.collection("notices").doc(id);
   await noticeDocumentRef
@@ -84,7 +87,8 @@ export const updateNoticeDocument = async (
         date,
         Date.now(),
         view,
-        attachment
+        attachment,
+        attachmentName
       ).toData()
     )
     .then(() => {

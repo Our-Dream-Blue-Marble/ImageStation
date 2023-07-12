@@ -20,6 +20,8 @@ const AdminNoticeUpdatePage = () => {
   const [noticeUpdatedAttachment, setNoticeupdatedAttachment] = useState(
     location.state.data.attachment
   );
+  const [noticeUpdatedAttachmentName, setNoticeupdatedAttachmentName] =
+    useState(location.state.data.attachmentName);
   const navigate = useNavigate();
 
   return (
@@ -38,11 +40,11 @@ const AdminNoticeUpdatePage = () => {
                 currentNoticeObj.writer,
                 currentNoticeObj.date,
                 currentNoticeObj.view,
-                noticeUpdatedAttachment
+                noticeUpdatedAttachment,
+                noticeUpdatedAttachmentName
               );
               navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`);
-            }}
-          >
+            }}>
             <div className="updateContainer">
               <input
                 className="noticeUpdateTitleTextBox"
@@ -58,7 +60,11 @@ const AdminNoticeUpdatePage = () => {
                 className="noticeUpdateFileChoose"
                 type="file"
                 onChange={(e) => {
-                  onNoticeAttachmentChange(e, setNoticeupdatedAttachment);
+                  onNoticeAttachmentChange(
+                    e,
+                    setNoticeupdatedAttachment,
+                    setNoticeupdatedAttachmentName
+                  );
                 }}
               />
 
@@ -76,8 +82,7 @@ const AdminNoticeUpdatePage = () => {
             <div className="noticeUpdateBtns">
               <button
                 className="noticeUpdateCancelBtn"
-                onClick={() => navigate(NoticeListRouteName)}
-              >
+                onClick={() => navigate(NoticeListRouteName)}>
                 취소하기
               </button>
               <input
