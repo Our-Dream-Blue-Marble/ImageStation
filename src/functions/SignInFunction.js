@@ -14,6 +14,10 @@ export const onUserEmailOrPasswordChange = (event, setValue) => {
     setValue(value);
   } else if (name === "userPhoneNumber") {
     setValue(value);
+  } else if (name === "isAgreePersonalInfo") {
+    setValue((prev) => !prev);
+  } else if (name === "isAgreeUsingInfo") {
+    setValue((prev) => !prev);
   }
 };
 

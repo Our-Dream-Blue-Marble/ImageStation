@@ -5,6 +5,7 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HomeRouteName, logInRouteName } from "routes/RouteName";
+import "styles/ThemeStyles.scss";
 import "styles/SignInStyle.scss";
 
 const SignInPage = () => {
@@ -14,6 +15,8 @@ const SignInPage = () => {
   const [userPasswordConfirm, setUserPasswordConfirm] = useState("");
   const [userName, setUserName] = useState("");
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
+  const [isAgreePersonalInfo, setIsAgreePersonalInfo] = useState(false);
+  const [isAgreeUsingInfo, setIsAgreeUsingInfo] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [isNewUser, setIsNewUser] = useState(true);
 
@@ -23,10 +26,35 @@ const SignInPage = () => {
     }
   });
 
+  useEffect(() => {
+    if (
+      userEmail !== "" &&
+      userPassword !== "" &&
+      userPassword === userPasswordConfirm &&
+      userName !== "" &&
+      userPhoneNumber !== "" &&
+      isAgreePersonalInfo === true &&
+      isAgreeUsingInfo === true
+    ) {
+      setIsPossibleSubmit(true);
+    } else {
+      setIsPossibleSubmit(false);
+    }
+  }, [
+    userEmail,
+    userPassword,
+    userPasswordConfirm,
+    userName,
+    userPhoneNumber,
+    isAgreePersonalInfo,
+    isAgreeUsingInfo,
+  ]);
+
   return (
-    <div className="signin_container">
-      <div className="signin_contents">
+    <div className="SignIn">
+      <div className="SignInContainer">
         <form
+          method="POST"
           onSubmit={async (e) => {
             onNewUserEmailAndPasswordSubmit(
               e,
@@ -44,9 +72,8 @@ const SignInPage = () => {
             });
           }}
         >
-          <div className="withLable">
+          <div className="InputWithLabel">
             <input
-              className="signin_textbox"
               name="userEmail"
               type="email"
               placeholder="학교 이메일"
@@ -54,13 +81,10 @@ const SignInPage = () => {
               value={userEmail}
               onChange={(e) => onUserEmailOrPasswordChange(e, setUserEmail)}
             />
-            <label className="label_style">
-              * handong.ac.kr 혹은 handong.edu
-            </label>
+            <label>* handong.ac.kr 아니면 handong.edu</label>
           </div>
-          <div className="withLable">
+          <div className="InputWithLabel">
             <input
-              className="signin_textbox"
               name="userPassword"
               type="password"
               placeholder="비밀번호"
@@ -68,11 +92,10 @@ const SignInPage = () => {
               value={userPassword}
               onChange={(e) => onUserEmailOrPasswordChange(e, setUserPassword)}
             />
-            <label className="label_style">* 영문자, 숫자 포함 8자 이상</label>
+            <label>* 영문자, 숫자 포함 8자 이상</label>
           </div>
-          <div className="withoutLabel">
+          <div className="InputWithoutLabel">
             <input
-              className="signin_textbox"
               name="userPasswordConfirm"
               type="password"
               placeholder="비밀번호 재입력"
@@ -83,9 +106,8 @@ const SignInPage = () => {
               }
             />
           </div>
-          <div className="withoutLabel">
+          <div className="InputWithoutLabel">
             <input
-              className="signin_textbox"
               name="userName"
               type="text"
               placeholder="이름"
@@ -94,9 +116,8 @@ const SignInPage = () => {
               onChange={(e) => onUserEmailOrPasswordChange(e, setUserName)}
             />
           </div>
-          <div className="withoutLabel">
+          <div className="InputWithoutLabel">
             <input
-              className="signin_textbox"
               name="userPhoneNumber"
               type="tel"
               placeholder="전화번호"
@@ -106,25 +127,35 @@ const SignInPage = () => {
                 onUserEmailOrPasswordChange(e, setUserPhoneNumber)
               }
             />
-            <label className="label_style">* "-"제외 11자리 입력</label>
+            <label>* "-" 제외 11자리 입력</label>
           </div>
-          <div className="confirmCheckBox">
-            <div>
-              <input type="checkbox" />
-              <>개인정보 처리방침에 동의합니다.</>
-            </div>
-            <div>
-              <input class="Input_confirm_checkBox" type="checkbox" />
-              <>이용약관에 동의합니다.</>
-            </div>
-            <input
-              className="singinButton"
-              type="submit"
-              value={
-                isPossibleSubmit ? "회원 가입 (파란색)" : "회원 가입 (회색)"
-              }
-            />
-          </div>
+          <input
+            type="checkbox"
+            name="isAgreePersonalInfo"
+            value={isAgreePersonalInfo}
+            onClick={(e) =>
+              onUserEmailOrPasswordChange(e, setIsAgreePersonalInfo)
+            }
+          />
+          <span>개인정보 처리방침에 동의합니다.</span>
+          <input
+            class="Input_confirm_checkBox"
+            type="checkbox"
+            name="isAgreeUsingInfo"
+            value={isAgreeUsingInfo}
+            onClick={(e) => onUserEmailOrPasswordChange(e, setIsAgreeUsingInfo)}
+          />
+          <span>이용약관에 동의합니다.</span>
+          <input
+            id="SubmitButton"
+            type={isPossibleSubmit ? "submit" : "button"}
+            style={
+              isPossibleSubmit
+                ? { background: `rgba(90, 145, 255, 1)` }
+                : { background: `rgba(33, 36, 39, 0.5)` }
+            }
+            value={"가입하기"}
+          />
         </form>
       </div>
     </div>
