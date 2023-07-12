@@ -1,5 +1,15 @@
 class NoticeModel {
-  constructor(id, title, body, writer, date, dateupdated, view, attachment) {
+  constructor(
+    id,
+    title,
+    body,
+    writer,
+    date,
+    dateupdated,
+    view,
+    attachment,
+    attachmentName
+  ) {
     this.id = id;
     this.title = title;
     this.body = body;
@@ -8,6 +18,7 @@ class NoticeModel {
     this.dateupdated = dateupdated;
     this.view = view;
     this.attachment = attachment;
+    this.attachmentName = attachmentName;
   }
   toData() {
     return {
@@ -19,6 +30,7 @@ class NoticeModel {
       dateupdated: this.dateupdated,
       view: this.view,
       attachment: this.attachment,
+      attachmentName: this.attachmentName,
     };
   }
 }
@@ -34,6 +46,7 @@ export const NoticeModelConverter = {
       dateupdated: data.dateupdated,
       view: data.view,
       attachment: data.attachment,
+      attachmentName: data.attachmentName,
     };
   },
   fromFirestore: function (snapshot, options) {

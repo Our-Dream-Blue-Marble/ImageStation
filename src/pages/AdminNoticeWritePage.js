@@ -17,6 +17,7 @@ const AdminNoticeWritePage = () => {
   const dataOfNotice = location.state.data;
   var newNoticeId;
   const [noticeAttachment, setNoticeAttachment] = useState("");
+  const [noticeAttachmentName, setNoticeAttachmentName] = useState("");
   if (dataOfNotice) {
     newNoticeId = (parseInt(dataOfNotice.id) + 1).toString();
   } else {
@@ -33,14 +34,14 @@ const AdminNoticeWritePage = () => {
             postTitle,
             postBody,
             "writer",
-            noticeAttachment
+            noticeAttachment,
+            noticeAttachmentName
           ).then((result) => {
             if (result) {
               navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
             }
           });
-        }}
-      >
+        }}>
         <div className="writeContainer">
           <input
             className="noticeTitleTextBox"
@@ -56,7 +57,11 @@ const AdminNoticeWritePage = () => {
             className="noticeWriteFileChoose"
             type="file"
             onChange={(e) => {
-              onNoticeAttachmentChange(e, setNoticeAttachment);
+              onNoticeAttachmentChange(
+                e,
+                setNoticeAttachment,
+                setNoticeAttachmentName
+              );
             }}
           />
 
