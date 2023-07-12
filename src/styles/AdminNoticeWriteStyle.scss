@@ -1,75 +1,105 @@
 @import "ThemeStyles.scss";
 
 .noticeWriteLayout {
+  display: flex;
+  justify-content: center;
+  text-align: center;
   width: 100%;
   height: 91vh;
-  overflow-y: scroll;
+  padding-top: 7.9vh;
+  padding-bottom: 7.9vh;
   background-image: url(../assets/BackgroundAsset.svg);
+  background-repeat: no-repeat;
+  background-position: left top;
   background-size: cover;
-}
 
-.writeContainer {
-  background-color: white;
-  margin-left: 21.5%;
-  margin-top: 7.9vh;
-  display: inline-flex;
-  width: 57vw;
-  height: 63.3vh;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
-}
+  .writeContainer {
+    display: flex;
+    flex-direction: column;
+    @include centerFormat();
+    text-align: center;
+    flex-shrink: 0;
+    width: 57vw;
+    height: 63.3vh;
+    background-color: $white100Color;
+    box-shadow: 0px 4px 10px 0px $black25Color;
+    gap: 10px;
+    border-radius: 10px;
 
-.noticeTitleTextBox {
-  width: 42.3vw;
-  height: 3vh;
-  margin-left: 7.6vw;
-  margin-top: 13.8vh;
-  margin-bottom: 3vh;
-  @include heading2Font($black100Color);
-  border: none;
-}
+    .noticeTitleTextBox {
+      width: 42.3vw;
+      height: 22px;
+      padding-bottom: 3.4vh;
+      border: none;
+      @include heading2Font($black100Color);
+    }
 
-input::placeholder {
-  color: $black25Color;
-}
+    input::placeholder {
+      color: $black25Color;
+    }
 
-input:focus::placeholder {
-  color: transparent;
-}
+    input:focus {
+      outline: none;
+    }
 
-.noticeBodyTextBox {
-  width: 42.3vw;
-  height: 35vh;
-  margin-left: 7.6vw;
-  margin-bottom: 6.56vh;
-  @include body1Font($black100Color);
-  border: none;
-  resize: none;
-}
+    input:focus::placeholder {
+      color: transparent;
+    }
 
-textarea::placeholder {
-  color: $black50Color;
-}
+    .noticeBodyTextBox {
+      width: 42.3vw;
+      height: 35vh;
+      @include body1Font($black100Color);
+      border: none;
+      resize: none;
+    }
 
-.noticeWriteFileChoose {
-  text-align: center;
-  height: 4.5vh;
-  @include button1Font($primaryColor);
-  margin-bottom: 0.45vh;
-  margin-left: 7.6vw;
-}
+    textarea::placeholder {
+      color: $black50Color;
+    }
 
-.noticeWriteSaveBtn {
-  @include heading2Font($white100Color);
-  background-color: $primaryColor;
-  border: none;
-  border-radius: 8px;
-  margin-top: 4.52vh;
-  margin-left: 43.05vw;
-  width: 13.8vw;
-  height: 6.7vh;
+    input:focus {
+      outline: none;
+    }
+
+    .noticeWriteFileChoose {
+      width: 42.3vw;
+      height: 40px;
+      @include button1Font($black50Color);
+    }
+
+    .noticeWriteFileChoose::-webkit-file-upload-button {
+      width: 10.4vw;
+      height: 40px;
+      text-align: center;
+      border: 1px solid $black100Color;
+      border-radius: 8px;
+      background-color: transparent;
+      @include button1Font($black100Color);
+    }
+  }
+  .noticeWriteBtns {
+    display: inline;
+    gap: 20px;
+    #noticeWriteCancelBtn {
+      width: 13.8vw;
+      height: 60px;
+      margin-top: 4.5vh;
+      background-color: transparent;
+      border: 1px solid $secondaryColor;
+      border-radius: 8px;
+      @include heading2Font($black100Color);
+    }
+
+    #noticeWriteSaveBtn {
+      width: 13.8vw;
+      height: 60px;
+      margin-top: 4.5vh;
+      margin-left: 20px;
+      background-color: $primaryColor;
+      border: none;
+      border-radius: 8px;
+      @include heading2Font($white100Color);
+    }
+  }
 }

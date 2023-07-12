@@ -8,6 +8,7 @@ import {
 import "styles/AdminNoticeWriteStyle.scss";
 
 import { useLocation, useNavigate } from "react-router-dom";
+import { NoticeListRouteName } from "routes/RouteName";
 
 const AdminNoticeWritePage = () => {
   const location = useLocation();
@@ -33,15 +34,16 @@ const AdminNoticeWritePage = () => {
             newNoticeId,
             postTitle,
             postBody,
-            "writer",
+            "사장님",
             noticeAttachment,
             noticeAttachmentName
           ).then((result) => {
             if (result) {
-              navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
+              navigate(`${NoticeListRouteName}/${newNoticeId}`);
             }
           });
-        }}>
+        }}
+      >
         <div className="writeContainer">
           <input
             className="noticeTitleTextBox"
@@ -79,12 +81,15 @@ const AdminNoticeWritePage = () => {
               onPostTitleOrBodyChange(e, setPostBody);
             }}
             type="text"
-            placeholder="게시글을 입력하세요"
+            placeholder="게시글을 입력하세요."
             maxLength={2500}
           />
         </div>
-        <div>
-          <input className="noticeWriteSaveBtn" type="submit" value="올리기" />
+        <div className="noticeWriteBtns">
+          <button id="noticeWriteCancelBtn" onClick={() => navigate(-1)}>
+            취소하기
+          </button>
+          <input id="noticeWriteSaveBtn" type="submit" value="올리기" />
         </div>
       </form>
     </div>
