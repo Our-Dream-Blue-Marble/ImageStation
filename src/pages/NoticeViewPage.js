@@ -8,6 +8,7 @@ import {
 } from "functions/NoticeFunction";
 import { readNoticeDocument } from "repositories/NoticeRepository";
 import "styles/NoticeViewStyle.scss";
+import deleteAsset from "../assets/icons/NoticeDeleteAsset.svg";
 
 const NoticeViewPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -63,27 +64,35 @@ const NoticeViewPage = ({ isAdmin }) => {
               <div className="noticeViewBodyText">{noticeViewObj.body}</div>
             </div>
           </div>
-          <div>
-            <button onClick={() => navigate(NoticeListRouteName)}>
-              리스트로 돌아가기
-            </button>
+          <div className="adminNoticeViewButtonsSection">
             {isAdmin ? (
               <>
-                <button
-                  onClick={() =>
-                    navigate(`${NoticeListRouteName}/update/${id}`, {
-                      state: { data: noticeViewObj },
-                    })
-                  }>
-                  수정하기
-                </button>
-                <button
-                  onClick={() => {
-                    onDeleteNoticeClick(id);
-                    navigate(NoticeListRouteName);
-                  }}>
-                  삭제하기
-                </button>
+                <div className="adminNoticeViewButtonsContainer">
+                  <button
+                    className="noticeViewNavigateList"
+                    onClick={() => navigate(NoticeListRouteName)}>
+                    홈으로
+                  </button>
+                  <button
+                    className="adminNoticeUpdateButton"
+                    onClick={() =>
+                      navigate(`${NoticeListRouteName}/update/${id}`, {
+                        state: { data: noticeViewObj },
+                      })
+                    }>
+                    수정하기
+                  </button>
+                </div>
+                <div>
+                  <button
+                    className="adminNoticeDeleteButton"
+                    onClick={() => {
+                      onDeleteNoticeClick(id);
+                      navigate(NoticeListRouteName);
+                    }}>
+                    <img src={deleteAsset} />
+                  </button>
+                </div>
               </>
             ) : null}
           </div>
