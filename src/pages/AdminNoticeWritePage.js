@@ -22,8 +22,9 @@ const AdminNoticeWritePage = () => {
   } else {
     newNoticeId = "1";
   }
+
   return (
-    <div className="noticeWritelayout">
+    <div className="noticeWriteLayout">
       <form
         onSubmit={async (e) => {
           onAdminWriteNewNoticeSubmit(
@@ -61,7 +62,14 @@ const AdminNoticeWritePage = () => {
 
           <textarea
             className="noticeBodyTextBox"
-            body={postBody}
+            body={postBody.split("\n").map((line) => {
+              return (
+                <span>
+                  {line}
+                  <br />
+                </span>
+              );
+            })}
             onChange={(e) => {
               onPostTitleOrBodyChange(e, setPostBody);
             }}

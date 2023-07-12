@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from "react";
 import NoticePagination from "../widgets/NoticePagination";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  HomeRouteName,
-  NoticeListRouteName,
-  NoticeWriteRouteName,
-} from "routes/RouteName";
+import { useLocation, useNavigate } from "react-router-dom";
+import { NoticeListRouteName, NoticeWriteRouteName } from "routes/RouteName";
 import { getNoticeList, getNoticeWrittenDate } from "functions/NoticeFunction";
 import "styles/NoticeListStyle.scss";
 
 const NoticeListPage = ({ isAdmin }) => {
+  const location = useLocation();
   const navigate = useNavigate();
   const [notice, setNotice] = useState([]);
   const [page, setPage] = useState(1);
   const limit = 3;
   const offset = (page - 1) * limit;
+  const isNoticeDeleted = location.state;
 
   useEffect(() => {
     getNoticeList(setNotice);
   }, []);
+
+  if (isNoticeDeleted) {
+    getNoticeList(setNotice);
+  }
+
   return (
     <div className="noticeListLayout">
       <div className="noticeHead">
@@ -31,8 +34,7 @@ const NoticeListPage = ({ isAdmin }) => {
                 navigate(NoticeWriteRouteName, {
                   state: { data: notice[0] },
                 })
-              }
-            >
+              }>
               +
             </button>
           ) : null}
@@ -47,8 +49,7 @@ const NoticeListPage = ({ isAdmin }) => {
               onClick={() => (
                 navigate(NoticeListRouteName + "/" + value.id),
                 { state: { data: value } }
-              )}
-            >
+              )}>
               <div className=" noticeListTitle">{value.title}</div>
               <div className=" noticeListDate">
                 {getNoticeWrittenDate(value)}

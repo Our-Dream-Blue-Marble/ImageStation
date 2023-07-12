@@ -61,7 +61,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                   </>
                 </div>
               </div>
-              <div className="noticeViewBodyText">{noticeViewObj.body}</div>
+              <pre className="noticeViewBodyText">{noticeViewObj.body}</pre>
             </div>
           </div>
           <div className="adminNoticeViewButtonsSection">
@@ -70,7 +70,8 @@ const NoticeViewPage = ({ isAdmin }) => {
                 <div className="adminNoticeViewButtonsContainer">
                   <button
                     className="noticeViewNavigateList"
-                    onClick={() => navigate(NoticeListRouteName)}>
+                    onClick={() => navigate(NoticeListRouteName)}
+                  >
                     홈으로
                   </button>
                   <button
@@ -79,7 +80,8 @@ const NoticeViewPage = ({ isAdmin }) => {
                       navigate(`${NoticeListRouteName}/update/${id}`, {
                         state: { data: noticeViewObj },
                       })
-                    }>
+                    }
+                  >
                     수정하기
                   </button>
                 </div>
@@ -88,8 +90,9 @@ const NoticeViewPage = ({ isAdmin }) => {
                     className="adminNoticeDeleteButton"
                     onClick={() => {
                       onDeleteNoticeClick(id);
-                      navigate(NoticeListRouteName);
-                    }}>
+                      navigate(NoticeListRouteName, { state: true });
+                    }}
+                  >
                     <img src={deleteAsset} />
                   </button>
                 </div>
