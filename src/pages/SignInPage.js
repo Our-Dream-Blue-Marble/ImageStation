@@ -5,7 +5,7 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HomeRouteName, logInRouteName } from "routes/RouteName";
-import "styles/SignInPageStyle.scss";
+import "styles/SignInStyle.scss";
 
 const SignInPage = () => {
   const navigate = useNavigate();
