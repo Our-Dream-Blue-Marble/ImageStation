@@ -53,7 +53,9 @@ const NoticeViewPage = ({ isAdmin }) => {
                   <>
                     <div className="noticeViewAttachmentText">
                       {noticeViewObj.attachment ? (
-                        <a href={noticeViewObj.attachment}> 첨부 파일 </a>
+                        <a href={noticeViewObj.attachment}>
+                          {noticeViewObj.attachmentName}
+                        </a>
                       ) : (
                         <>첨부파일 없음</>
                       )}
@@ -70,8 +72,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                 <div className="adminNoticeViewButtonsContainer">
                   <button
                     className="noticeViewNavigateList"
-                    onClick={() => navigate(NoticeListRouteName)}
-                  >
+                    onClick={() => navigate(NoticeListRouteName)}>
                     홈으로
                   </button>
                   <button
@@ -80,8 +81,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                       navigate(`${NoticeListRouteName}/update/${id}`, {
                         state: { data: noticeViewObj },
                       })
-                    }
-                  >
+                    }>
                     수정하기
                   </button>
                 </div>
@@ -91,8 +91,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                     onClick={() => {
                       onDeleteNoticeClick(id);
                       navigate(NoticeListRouteName, { state: true });
-                    }}
-                  >
+                    }}>
                     <img src={deleteAsset} />
                   </button>
                 </div>
