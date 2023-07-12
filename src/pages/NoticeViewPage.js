@@ -51,9 +51,11 @@ const NoticeViewPage = ({ isAdmin }) => {
                     조회수 {noticeViewObj.view}
                   </div>
                   <>
-                    <div className="noticeViewAttachmentText">
+                    <div>
                       {noticeViewObj.attachment ? (
-                        <a href={noticeViewObj.attachment}>
+                        <a
+                          className="noticeViewAttachmentText"
+                          href={noticeViewObj.attachment}>
                           {noticeViewObj.attachmentName}
                         </a>
                       ) : (
