@@ -1,9 +1,8 @@
 @import "ThemeStyles.scss";
 
-.noticeUpdatelayout {
+.noticeUpdateLayout {
   width: 100%;
   height: 91vh;
-  // background: #ebe9e9;
   overflow-y: scroll;
   background-image: url(../assets/BackgroundAsset.svg);
   background-size: cover;
@@ -15,7 +14,7 @@
   margin-top: 7.9vh;
   display: inline-flex;
   width: 57vw;
-  height: 69.2vh;
+  height: 63.3vh;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
@@ -44,22 +43,40 @@ input:focus::placeholder {
 
 .noticeUpdateBodyTextBox {
   width: 42.3vw;
-  height: 36.4vh;
+  height: 35vh;
   margin-left: 7.6vw;
-  margin-bottom: 12.4vh;
+  margin-bottom: 6.56vh;
   @include body1Font($black100Color);
   border: none;
+  resize: none;
 }
 
 textarea::placeholder {
   color: $black50Color;
 }
 
-.noticeUpeateFileChoose {
+.noticeUpdateFileChoose {
   text-align: center;
+  height: 4.5vh;
   @include button1Font($primaryColor);
   margin-bottom: 0.45vh;
   margin-left: 7.6vw;
+}
+
+.noticeUpdateBtns {
+  margin-top: 4.52vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.noticeUpdateCancelBtn {
+  @include heading2Font($black100Color);
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  margin-left: 35.4vw;
+  width: 13.8vw;
+  height: 6.7vh;
 }
 
 .noticeUpdateSaveBtn {
@@ -67,8 +84,7 @@ textarea::placeholder {
   background-color: $primaryColor;
   border: none;
   border-radius: 8px;
-  margin-top: 3.5vh;
-  margin-left: 43.05vw;
+  margin-left: 1.3vw;
   width: 13.8vw;
   height: 6.7vh;
 }

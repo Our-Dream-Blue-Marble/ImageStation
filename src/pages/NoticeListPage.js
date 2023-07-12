@@ -20,7 +20,7 @@ const NoticeListPage = ({ isAdmin }) => {
     getNoticeList(setNotice);
   }, []);
   return (
-    <div className="noticeListlayout">
+    <div className="noticeListLayout">
       <div className="noticeHead">
         <div className="noticeListHead">공지사항</div>
         <div>
@@ -31,7 +31,8 @@ const NoticeListPage = ({ isAdmin }) => {
                 navigate(NoticeWriteRouteName, {
                   state: { data: notice[0] },
                 })
-              }>
+              }
+            >
               +
             </button>
           ) : null}
@@ -46,7 +47,8 @@ const NoticeListPage = ({ isAdmin }) => {
               onClick={() => (
                 navigate(NoticeListRouteName + "/" + value.id),
                 { state: { data: value } }
-              )}>
+              )}
+            >
               <div className=" noticeListTitle">{value.title}</div>
               <div className=" noticeListDate">
                 {getNoticeWrittenDate(value)}
