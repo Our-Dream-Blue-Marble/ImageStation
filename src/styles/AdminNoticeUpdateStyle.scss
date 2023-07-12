@@ -74,6 +74,7 @@ textarea::placeholder {
   @include heading2Font($black100Color);
   background-color: rgba(0, 0, 0, 0);
   border-radius: 8px;
+  border: 1px solid $secondaryColor;
   margin-left: 35.4vw;
   width: 13.8vw;
   height: 6.7vh;
