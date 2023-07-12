@@ -9,7 +9,7 @@ import {
   SignInRouteName,
   UpdatePasswordPageRouteName,
 } from "routes/RouteName";
-import "styles/LogInPageStyle.scss";
+import "styles/LogInStyle.scss";
 
 const LogInPage = () => {
   const navigate = useNavigate();
