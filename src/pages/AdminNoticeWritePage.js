@@ -38,7 +38,9 @@ const AdminNoticeWritePage = () => {
             noticeAttachmentName
           ).then((result) => {
             if (result) {
-              navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`);
+              navigate(`${process.env.PUBLIC_URL}/notice/${newNoticeId}`, {
+                replace: true,
+              });
             }
           });
         }}>

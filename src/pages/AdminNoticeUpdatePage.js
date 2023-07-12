@@ -43,7 +43,9 @@ const AdminNoticeUpdatePage = () => {
                 noticeUpdatedAttachment,
                 noticeUpdatedAttachmentName
               );
-              navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`);
+              navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`, {
+                replace: true,
+              });
             }}>
             <div className="updateContainer">
               <input
@@ -82,7 +84,9 @@ const AdminNoticeUpdatePage = () => {
             <div className="noticeUpdateBtns">
               <button
                 className="noticeUpdateCancelBtn"
-                onClick={() => navigate(NoticeListRouteName)}>
+                onClick={() =>
+                  navigate(NoticeListRouteName, { replace: true })
+                }>
                 취소하기
               </button>
               <input
