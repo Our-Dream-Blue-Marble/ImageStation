@@ -15,7 +15,8 @@ export const onAdminWriteNewNoticeSubmit = async (
   title,
   body,
   writer,
-  attachment
+  attachment,
+  attachmentName
 ) => {
   event.preventDefault();
   let attachmentUrl = "";
@@ -31,7 +32,8 @@ export const onAdminWriteNewNoticeSubmit = async (
     Date.now(),
     "",
     0,
-    attachmentUrl
+    attachmentUrl,
+    attachmentName
   )
     .then(() => {
       result = true;
@@ -77,10 +79,20 @@ export const onUpdatedNoticeSubmit = async (
   writer,
   date,
   view,
-  attachment
+  attachment,
+  attachmentName
 ) => {
   event.preventDefault();
-  await updateNoticeDocument(id, title, body, writer, date, view, attachment);
+  await updateNoticeDocument(
+    id,
+    title,
+    body,
+    writer,
+    date,
+    view,
+    attachment,
+    attachmentName
+  );
 };
 
 export const onUpdateTitleOrBodyChange = (event, setValue) => {
@@ -109,12 +121,16 @@ export const onDeleteNoticeClick = async (id) => {
   }
 };
 
-export const onNoticeAttachmentChange = (event, setNoticeAttachment) => {
+export const onNoticeAttachmentChange = (
+  event,
+  setNoticeAttachment,
+  setNoticeAttachmentName
+) => {
   const {
     target: { files },
   } = event;
   const noticeFile = files[0];
-
+  setNoticeAttachmentName(noticeFile.name);
   const noticeFileReader = new FileReader();
   noticeFileReader.onloadend = (finishedEvent) => {
     const {
