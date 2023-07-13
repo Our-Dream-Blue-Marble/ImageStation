@@ -1,34 +1,116 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useRef } from "react";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import SignInPage from "pages/SignInPage";
-import NoticListPage from "pages/NoticListPage";
-import Navigation from "./Navigation";
+import NoticeListPage from "pages/NoticeListPage";
+import NoticeViewPage from "pages/NoticeViewPage";
+import {
+  HomeRouteName,
+  NoticeViewRouteName,
+  NoticeListRouteName,
+  SignInRouteName,
+  NoticeWriteRouteName,
+  UpdatePasswordPageRouteName,
+  NoticeUpdatePageRouteName,
+  logInRouteName,
+} from "./RouteName";
+import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
+import UpdatePasswordPage from "pages/UpdatePasswordPage";
+import AdminNoticeUpdatePage from "pages/AdminNoticeUpdatePage";
+import LogInPage from "pages/LogInPage";
+import HeaderPage from "pages/HeaderPage";
 
-const AppRouter = ({ isLoggedIn, userObject }) => {
+const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
+  const homePagePosition = useRef(null);
+  const noticeListPagePosition = useRef(null);
+
   return (
-    <Router>
-      {isLoggedIn && <Navigation />}
+    <>
+      <HeaderPage
+        isLoggedIn={isLoggedIn}
+        isKorean={isKorean}
+        setIsKorean={setIsKorean}
+        userObject={userObject}
+      />
       <Routes>
         {isLoggedIn ? (
           <>
-            <Route path={`${process.env.PUBLIC_URL}/`} element={<HomePage />} />
             <Route
-              path={`${process.env.PUBLIC_URL}/notice`}
-              element={<NoticListPage />}
+              path={HomeRouteName}
+              element={
+                <div ref={homePagePosition} className="homePagePosition">
+                  <HomePage elementRef={noticeListPagePosition} />
+                  <div
+                    ref={noticeListPagePosition}
+                    className="noticeListPagePosition"
+                  >
+                    <NoticeListPage isAdmin={userObject["role"]} />
+                  </div>
+                </div>
+              }
+            />
+            <Route
+              path={NoticeListRouteName}
+              element={<NoticeListPage isAdmin={userObject["role"]} />}
+            />
+            <Route
+              path={NoticeViewRouteName}
+              element={<NoticeViewPage isAdmin={userObject["role"]} />}
+            />
+            <Route
+              path={NoticeWriteRouteName}
+              element={<AdminNoticeWritePage />}
+            />
+            <Route
+              path={NoticeUpdatePageRouteName}
+              element={<AdminNoticeUpdatePage />}
             />
           </>
         ) : (
           <>
-            <Route path={`${process.env.PUBLIC_URL}/`} element={<HomePage />} />
             <Route
-              path={`${process.env.PUBLIC_URL}/signIn`}
+              path={HomeRouteName}
+              element={
+                <div ref={homePagePosition} className="homePagePosition">
+                  <HomePage elementRef={noticeListPagePosition} />
+                  <div
+                    ref={noticeListPagePosition}
+                    className="noticeListPagePosition"
+                  >
+                    <NoticeListPage isAdmin={false} />
+                  </div>
+                </div>
+              }
+            />
+            <Route
+              path={NoticeListRouteName}
+              element={<NoticeListPage isAdmin={false} />}
+            />
+            <Route
+              path={NoticeViewRouteName}
+              element={<NoticeViewPage isAdmin={false} />}
+            />
+            <Route
+              path={SignInRouteName}
+              replace
+              to={logInRouteName}
               element={<SignInPage />}
+            />
+            <Route
+              path={logInRouteName}
+              replace
+              to={HomeRouteName}
+              element={<LogInPage />}
+            />
+
+            <Route
+              path={UpdatePasswordPageRouteName}
+              element={<UpdatePasswordPage />}
             />
           </>
         )}
       </Routes>
-    </Router>
+    </>
   );
 };
 

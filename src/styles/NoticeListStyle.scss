@@ -1,0 +1,168 @@
+@import "ThemeStyles.scss";
+
+@mixin centerItem() {
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin leftItem() {
+  align-items: left;
+  justify-content: left;
+}
+
+@mixin noticeBox() {
+  display: flex;
+  width: 30.8%;
+  height: 45.2vh;
+  margin: 0.7%;
+  gap: 0.7%;
+  flex-shrink: 0;
+  border-radius: 0.7%;
+  /*background: url(<path-to-image>), lightgray 50% / cover no-repeat;*/
+  /* Filter */
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+}
+.noticeListLayout {
+  width: 100%;
+  height: 91vh;
+  background: #ffffff;
+  overflow-y: scroll;
+}
+.centered {
+  @include centerItem();
+}
+
+.noticeHead {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 4.2%;
+  margin-bottom: 9.3vh;
+}
+
+.noticeWriteBtn {
+  display: flex;
+  position: absolute;
+  margin-left: 32.5vw;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 48px;
+  color: $primaryColor;
+  background-color: inherit;
+  border: none;
+  @include centerItem();
+}
+
+.noticeListHead {
+  display: flex;
+  margin-left: 45.9%;
+  width: 200px;
+  height: 43px;
+  border: none;
+  @include heading1Font($primaryColor);
+  @include centerItem();
+}
+
+.noticeBoxContainer {
+  justify-content: start;
+  width: 86.7%;
+  height: 47.5vh;
+  margin-left: 6.6%;
+  margin-right: 6.6%;
+  display: flex;
+  overflow: hidden;
+}
+
+.cardNotice {
+  @include noticeBox();
+  flex-direction: column;
+  background-color: #e8edfb80;
+  margin-right: 2.6%;
+}
+
+.contentCard {
+  padding-top: 5.2vh;
+  padding-bottom: 5.2vh;
+  padding-right: 15%;
+  margin-left: 13%;
+
+  width: 77%;
+  height: 33.7vh;
+  overflow: hidden;
+}
+
+.noticeListTitle {
+  @include heading2Font($black100Color);
+  padding-bottom: 2.7vh;
+}
+
+.noticeListDate {
+  @include body1Font($black75Color);
+  padding-bottom: 2.7vh;
+}
+
+.noticeListBody {
+  @include body1Font($black75Color);
+  width: 100%;
+  height: 23.3vh;
+  overflow: hidden;
+  white-space: pre-line;
+}
+.paginationBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 3.4vh;
+  margin-top: 6.78vh;
+  margin-bottom: 9.6vh;
+}
+
+.paginationLtBtn {
+  margin-left: 6.6vw;
+  width: 2.3%;
+  height: 3.9vh;
+  border: none;
+  background-color: inherit;
+  transform: scaleX(-1);
+}
+
+#centerPaginationNumBtns {
+  @include centerItem();
+  display: flex;
+  width: 82.8vw;
+  align-items: flex-start;
+  gap: 1.06vw;
+  margin-top: 9vh;
+  margin-bottom: 10.2vh;
+}
+
+.paginationBtn {
+  @include body1Font($black75Color);
+  padding-top: 0.56vh;
+  display: flex;
+  width: 2.05%;
+  height: 2.15vh;
+  border: none;
+  background-color: inherit;
+
+  &[disabled] {
+    cursor: revert;
+    transform: revert;
+  }
+
+  &[aria-current] {
+    font-weight: bold;
+    cursor: revert;
+    transform: revert;
+  }
+}
+
+.paginationRtBtn {
+  margin-right: 6.54vw;
+  width: 2.3%;
+  height: 3.9vh;
+  border: none;
+  background-color: inherit;
+}

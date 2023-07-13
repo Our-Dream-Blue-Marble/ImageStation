@@ -1,0 +1,101 @@
+@import "ThemeStyles.scss";
+
+.noticeUpdateLayout {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 91vh;
+  padding-top: 7.9vh;
+  padding-bottom: 7.9vh;
+  background-image: url(../assets/BackgroundAsset.svg);
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+  .updateContainer {
+    display: flex;
+    flex-direction: column;
+    @include centerFormat();
+    text-align: center;
+    background-color: $white100Color;
+    flex-shrink: 0;
+    width: 57vw;
+    height: 63.3vh;
+    gap: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px 0px $black25Color;
+    .noticeUpdateTitleTextBox {
+      width: 42.3vw;
+      height: 22px;
+      padding-bottom: 3.4vh;
+      border: none;
+      @include heading2Font($black100Color);
+    }
+
+    input::placeholder {
+      color: $black25Color;
+    }
+    input:focus {
+      outline: none;
+    }
+    input:focus::placeholder {
+      color: transparent;
+    }
+
+    .noticeUpdateBodyTextBox {
+      width: 42.3vw;
+      height: 35vh;
+      @include body1Font($black100Color);
+      border: none;
+      resize: none;
+    }
+
+    textarea::placeholder {
+      color: $black50Color;
+    }
+
+    textarea:focus {
+      outline: none;
+    }
+
+    .noticeUpdateFileChoose {
+      width: 42.3vw;
+      height: 40px;
+      @include button1Font($black50Color);
+    }
+
+    .noticeUpdateFileChoose::-webkit-file-upload-button {
+      width: 10.4vw;
+      height: 40px;
+      text-align: center;
+      border: 1px solid $black100Color;
+      border-radius: 8px;
+      background-color: transparent;
+      @include button1Font($black100Color);
+    }
+  }
+  #noticeUpdateBtns {
+    display: inline;
+    gap: 20px;
+    #noticeUpdateCancelBtn {
+      width: 13.8vw;
+      height: 60px;
+      margin-top: 4.5vh;
+      background-color: transparent;
+      border: 1px solid $secondaryColor;
+      border-radius: 8px;
+      @include heading2Font($black100Color);
+    }
+
+    #noticeUpdateSaveBtn {
+      width: 13.8vw;
+      height: 60px;
+      margin-top: 4.5vh;
+      margin-left: 20px;
+      background-color: $primaryColor;
+      border: none;
+      border-radius: 8px;
+      @include heading2Font($white100Color);
+    }
+  }
+}
