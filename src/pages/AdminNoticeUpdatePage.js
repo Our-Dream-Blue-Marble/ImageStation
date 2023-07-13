@@ -84,10 +84,7 @@ const AdminNoticeUpdatePage = () => {
               />
             </div>
             <div id="noticeUpdateBtns">
-              <button
-                id="noticeUpdateCancelBtn"
-                onClick={() => navigate(NoticeListRouteName)}
-              >
+              <button id="noticeUpdateCancelBtn" onClick={() => navigate(-1)}>
                 취소하기
               </button>
               <input id="noticeUpdateSaveBtn" type="submit" value="올리기" />
