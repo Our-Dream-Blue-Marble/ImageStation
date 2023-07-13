@@ -1,15 +1,18 @@
 import { logOut } from "functions/UserFunction";
 import { useNavigate } from "react-router";
-import { logInRouteName } from "routes/RouteName";
+import { HomeRouteName, logInRouteName } from "routes/RouteName";
 import { ReactComponent as LogoAsset } from "assets/LogoAsset.svg";
 import { ReactComponent as GlobalIconAsset } from "assets/icons/GlobalIconAsset.svg";
 import "styles/HeaderStyle.scss";
+import { Link } from "react-router-dom";
 
 const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const navigate = useNavigate();
   return (
     <header>
-      <LogoAsset width={223} height={46.9} id="logoAsset" />
+      <Link to={`${HomeRouteName}`} replace={true}>
+        <LogoAsset width={223} height={46.9} id="logoAsset" />
+      </Link>
       <div id="centerButtons">
         <button className="centerButton">주문예약</button>
         <button className="centerButton">종이정보</button>
