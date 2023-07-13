@@ -52,7 +52,7 @@ const AdminNoticeWritePage = () => {
               onPostTitleOrBodyChange(e, setPostTitle);
             }}
             type="text"
-            placeholder="제목을 입력하세요               "
+            placeholder="제목을 입력하세요"
             maxLength={200}
           />
           <input

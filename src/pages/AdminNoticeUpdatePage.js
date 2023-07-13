@@ -42,15 +42,19 @@ const AdminNoticeUpdatePage = () => {
                 currentNoticeObj.view,
                 noticeUpdatedAttachment,
                 noticeUpdatedAttachmentName
-              );
-              navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`);
-            }}>
+              ).then((result) => {
+                if (result) {
+                  navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`);
+                }
+              });
+            }}
+          >
             <div className="updateContainer">
               <input
                 className="noticeUpdateTitleTextBox"
                 type="text"
                 name="noticeUpdatedTitle"
-                placeholder="제목"
+                placeholder="제목을 입력하세요"
                 value={noticeUpdatedTitle}
                 onChange={(e) => {
                   onUpdateTitleOrBodyChange(e, setNoticeUpdatedTitle);
@@ -72,24 +76,21 @@ const AdminNoticeUpdatePage = () => {
                 className="noticeUpdateBodyTextBox"
                 type="text"
                 name="noticeUpdatedBody"
-                placeholder="내용"
+                placeholder="게시글을 입력하세요."
                 value={noticeUpdatedBody}
                 onChange={(e) => {
                   onUpdateTitleOrBodyChange(e, setNoticeUpdatedBody);
                 }}
               />
             </div>
-            <div className="noticeUpdateBtns">
+            <div id="noticeUpdateBtns">
               <button
-                className="noticeUpdateCancelBtn"
-                onClick={() => navigate(NoticeListRouteName)}>
+                id="noticeUpdateCancelBtn"
+                onClick={() => navigate(NoticeListRouteName)}
+              >
                 취소하기
               </button>
-              <input
-                className="noticeUpdateSaveBtn"
-                type="submit"
-                value="올리기"
-              />
+              <input id="noticeUpdateSaveBtn" type="submit" value="올리기" />
             </div>
           </form>
         </div>
