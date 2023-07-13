@@ -12,15 +12,21 @@ const NoticeListPage = ({ isAdmin }) => {
   const [page, setPage] = useState(1);
   const limit = 3;
   const offset = (page - 1) * limit;
-  const isNoticeDeleted = location.state;
+  const [isNoticeDeleted, setIsNoticeDeleted] = useState(location.state);
 
   useEffect(() => {
     getNoticeList(setNotice);
   }, []);
 
-  if (isNoticeDeleted) {
-    getNoticeList(setNotice);
-  }
+  useEffect(() => {
+    if (isNoticeDeleted) {
+      getNoticeList(setNotice).then((result) => {
+        if (result) {
+          setIsNoticeDeleted(false);
+        }
+      });
+    }
+  }, [isNoticeDeleted]);
 
   return (
     <div className="noticeListLayout">
