@@ -83,6 +83,7 @@ export const onUpdatedNoticeSubmit = async (
   attachmentName
 ) => {
   event.preventDefault();
+  let result = false;
   await updateNoticeDocument(
     id,
     title,
@@ -92,7 +93,10 @@ export const onUpdatedNoticeSubmit = async (
     view,
     attachment,
     attachmentName
-  );
+  ).then(() => {
+    result = true;
+  });
+  return true;
 };
 
 export const onUpdateTitleOrBodyChange = (event, setValue) => {

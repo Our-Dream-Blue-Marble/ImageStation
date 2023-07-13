@@ -5,7 +5,6 @@ import {
 } from "functions/NoticeFunction";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { NoticeListRouteName } from "routes/RouteName";
 import "styles/AdminNoticeUpdateStyle.scss";
 
 const AdminNoticeUpdatePage = () => {
@@ -22,6 +21,7 @@ const AdminNoticeUpdatePage = () => {
   );
   const [noticeUpdatedAttachmentName, setNoticeupdatedAttachmentName] =
     useState(location.state.data.attachmentName);
+  const [isSubmitButton, setIsSubmitButton] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -31,24 +31,29 @@ const AdminNoticeUpdatePage = () => {
       ) : (
         <div>
           <form
+            method="POST"
             onSubmit={(e) => {
-              onUpdatedNoticeSubmit(
-                e,
-                currentNoticeObj.id,
-                noticeUpdatedTitle,
-                noticeUpdatedBody,
-                currentNoticeObj.writer,
-                currentNoticeObj.date,
-                currentNoticeObj.view,
-                noticeUpdatedAttachment,
-                noticeUpdatedAttachmentName
-              ).then((result) => {
-                if (result) {
-                  navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`);
-                }
-              });
-            }}
-          >
+              e.preventDefault();
+              if (isSubmitButton === true) {
+                onUpdatedNoticeSubmit(
+                  e,
+                  currentNoticeObj.id,
+                  noticeUpdatedTitle,
+                  noticeUpdatedBody,
+                  currentNoticeObj.writer,
+                  currentNoticeObj.date,
+                  currentNoticeObj.view,
+                  noticeUpdatedAttachment,
+                  noticeUpdatedAttachmentName
+                ).then((result) => {
+                  if (result) {
+                    navigate(-1, { replace: true });
+                  }
+                });
+              } else {
+                navigate(-1, { replace: true });
+              }
+            }}>
             <div className="updateContainer">
               <input
                 className="noticeUpdateTitleTextBox"
@@ -84,10 +89,22 @@ const AdminNoticeUpdatePage = () => {
               />
             </div>
             <div id="noticeUpdateBtns">
-              <button id="noticeUpdateCancelBtn" onClick={() => navigate(-1)}>
+              <button
+                id="noticeUpdateCancelBtn"
+                name="cancel"
+                onClick={(e) => {
+                  setIsSubmitButton(false);
+                }}>
                 취소하기
               </button>
-              <input id="noticeUpdateSaveBtn" type="submit" value="올리기" />
+              <input
+                id="noticeUpdateSaveBtn"
+                type="submit"
+                value="올리기"
+                onClick={(e) => {
+                  setIsSubmitButton(true);
+                }}
+              />
             </div>
           </form>
         </div>
