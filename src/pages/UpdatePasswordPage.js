@@ -4,9 +4,12 @@ import {
   onUpdatePasswordSubmitWithEmail,
 } from "functions/UpdatePasswordFunction";
 import "styles/UpdatePasswordStyle.scss";
+import { useNavigate } from "react-router-dom";
+import { logInRouteName, SignInRouteName } from "routes/RouteName";
 
 const UpdatePasswordPage = () => {
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div className="UpdatePassword">
@@ -29,13 +32,19 @@ const UpdatePasswordPage = () => {
             <input type="submit" value="비밀번호 재설정" />
             <ul>
               <li>
-                <label className="OptionLabel">
-                  로그인하고 싶은가요?<button>로그인 하기</button>
+                <label>
+                  로그인하고 싶은가요?
+                  <button onClick={() => navigate(logInRouteName)}>
+                    로그인 하기
+                  </button>
                 </label>
               </li>
               <li>
                 <label>
-                  회원가입은 하셨나요?<button>회원가입 하기</button>
+                  회원가입은 하셨나요?
+                  <button onClick={() => navigate(SignInRouteName)}>
+                    회원가입 하기
+                  </button>
                 </label>
               </li>
             </ul>
