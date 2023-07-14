@@ -19,6 +19,7 @@ const AdminNoticeWritePage = () => {
   var newNoticeId;
   const [noticeAttachment, setNoticeAttachment] = useState("");
   const [noticeAttachmentName, setNoticeAttachmentName] = useState("");
+  const [isSubmitButton, setIsSubmitButton] = useState(false);
   if (dataOfNotice) {
     newNoticeId = (parseInt(dataOfNotice.id) + 1).toString();
   } else {
@@ -28,22 +29,28 @@ const AdminNoticeWritePage = () => {
   return (
     <div className="noticeWriteLayout">
       <form
+        method="POST"
         onSubmit={async (e) => {
-          onAdminWriteNewNoticeSubmit(
-            e,
-            newNoticeId,
-            postTitle,
-            postBody,
-            "사장님",
-            noticeAttachment,
-            noticeAttachmentName
-          ).then((result) => {
-            if (result) {
-              navigate(`${NoticeListRouteName}/${newNoticeId}`, {
-                replace: true,
-              });
-            }
-          });
+          e.preventDefault();
+          if (isSubmitButton === true) {
+            onAdminWriteNewNoticeSubmit(
+              e,
+              newNoticeId,
+              postTitle,
+              postBody,
+              "사장님",
+              noticeAttachment,
+              noticeAttachmentName
+            ).then((result) => {
+              if (result) {
+                navigate(`${NoticeListRouteName}/${newNoticeId}`, {
+                  replace: true,
+                });
+              }
+            });
+          } else {
+            navigate(NoticeListRouteName, { replace: true });
+          }
         }}>
         <div className="writeContainer">
           <input
@@ -87,10 +94,22 @@ const AdminNoticeWritePage = () => {
           />
         </div>
         <div className="noticeWriteBtns">
-          <button id="noticeWriteCancelBtn" onClick={() => navigate(-1)}>
+          <button
+            id="noticeWriteCancelBtn"
+            name="cancel"
+            onClick={(e) => {
+              setIsSubmitButton(false);
+            }}>
             취소하기
           </button>
-          <input id="noticeWriteSaveBtn" type="submit" value="올리기" />
+          <input
+            id="noticeWriteSaveBtn"
+            type="submit"
+            value="올리기"
+            onClick={(e) => {
+              setIsSubmitButton(true);
+            }}
+          />
         </div>
       </form>
     </div>
