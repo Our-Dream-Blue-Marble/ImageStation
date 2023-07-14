@@ -81,7 +81,7 @@
   .noticeWriteBtns {
     display: inline;
     gap: 20px;
-    #noticeWriteCancelBtn {
+    .noticeWriteCancelBtn {
       width: 13.8vw;
       height: 60px;
       margin-top: 4.5vh;
@@ -89,9 +89,14 @@
       border: 1px solid $secondaryColor;
       border-radius: 8px;
       @include heading2Font($black100Color);
+      cursor: pointer;
+    }
+    .noticeWriteCancelBtn:hover {
+      background-color: $black10Color;
+      transition: 0.5s;
     }
 
-    #noticeWriteSaveBtn {
+    .noticeWriteSaveBtn {
       width: 13.8vw;
       height: 60px;
       margin-top: 4.5vh;
@@ -100,6 +105,11 @@
       border: none;
       border-radius: 8px;
       @include heading2Font($white100Color);
+      cursor: pointer;
+    }
+    .noticeWriteSaveBtn:hover {
+      background-color: $hoverAndClickColor;
+      transition: 0.5s;
     }
   }
 }

@@ -74,10 +74,11 @@
       @include button1Font($black100Color);
     }
   }
+
   #noticeUpdateBtns {
     display: inline;
     gap: 20px;
-    #noticeUpdateCancelBtn {
+    .noticeUpdateCancelBtn {
       width: 13.8vw;
       height: 60px;
       margin-top: 4.5vh;
@@ -85,9 +86,14 @@
       border: 1px solid $secondaryColor;
       border-radius: 8px;
       @include heading2Font($black100Color);
+      cursor: pointer;
+    }
+    .noticeUpdateCancelBtn:hover {
+      background-color: $black10Color;
+      transition: 0.5s;
     }
 
-    #noticeUpdateSaveBtn {
+    .noticeUpdateSaveBtn {
       width: 13.8vw;
       height: 60px;
       margin-top: 4.5vh;
@@ -96,6 +102,11 @@
       border: none;
       border-radius: 8px;
       @include heading2Font($white100Color);
+      cursor: pointer;
+    }
+    .noticeUpdateSaveBtn:hover {
+      background-color: $hoverAndClickColor;
+      transition: 0.5s;
     }
   }
 }

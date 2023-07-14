@@ -111,48 +111,18 @@ export const onUpdateTitleOrBodyChange = (event, setValue) => {
   }
 };
 
-// export const onDeleteNoticeClick = async (id) => {
-//   const confirmDeleteNotice = window.confirm("해당 공지를 삭제하시겠습니까?");
-//   if (!confirmDeleteNotice) return;
-//   else {
-//     await deleteNoticeDocument(id)
-//       .then(() => {
-//         window.confirm("삭제를 완료하였습니다.");
-//         //return redirect(NoticeListRouteName);
-//       })
-//       .catch((e) => {
-//         console.log(e);
-//       });
-//   }
-// };
-
 export const onDeleteNoticeClick = async (id) => {
-  Swal.fire({
-    title: "공지를 삭제할까요?",
-    text: "삭제를 하면 복구가 불가능합니다!",
-    showCancelButton: true,
-    confirmButtonText: "삭제하기",
-    cancelButtonText: "취소",
-    cancelButtonColor: "#FFFFF",
-    confirmButtonColor: "#dd5257",
-    reverseButtons: true,
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-      await deleteNoticeDocument(id)
-        .then(() => {
-          Swal.fire({
-            title: "삭제를 완료하였습니다!",
-            confirmButtonText: "확인",
-          });
-          //return redirect(NoticeListRouteName);
-          return true;
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
-    return false;
-  });
+  const confirmDeleteNotice = window.confirm("해당 공지를 삭제하시겠습니까?");
+  if (!confirmDeleteNotice) return;
+  else {
+    await deleteNoticeDocument(id)
+      .then(() => {
+        window.confirm("삭제를 완료하였습니다.");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
 };
 
 export const onNoticeAttachmentChange = (
