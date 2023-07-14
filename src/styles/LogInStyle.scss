@@ -46,6 +46,18 @@
       margin-bottom: 53px;
       @include subHeading3Font($black100Color);
     }
+
+    .InputTextBox::placeholder {
+      @include body1Font($black50Color);
+    }
+
+    .InputTextBox:focus {
+      outline: none;
+    }
+    .InputTextBox:focus::placeholder {
+      color: transparent;
+    }
+
     .SaveIdContainer {
       width: 6.9vw;
       padding-bottom: 53px;
@@ -56,13 +68,36 @@
         @include body2Font($black100Color);
       }
     }
+
+    input[type="checkbox"] {
+      display: inline;
+      vertical-align: middle;
+      width: 22px;
+      height: 22px;
+      margin: 0;
+      margin-right: 12px;
+    }
+
+    label {
+      display: inline;
+      vertical-align: middle;
+      width: 17vw;
+      height: 22px;
+      @include body2Font($black50Color);
+    }
+
     .SubmitButton {
-      width: 23.3vw;
+      width: 24.6vw;
       height: 60px;
       border-radius: 8px;
       border: none;
       background: $primaryColor;
       @include heading2Font($white100Color);
+    }
+
+    .SubmitButton:hover {
+      background-color: $hovorAndClickColor;
+      transition: 0.5s;
     }
 
     .UpdateAndSigninButtonsContainer {
@@ -75,12 +110,10 @@
     }
 
     .UpdateAndSigninButtons {
-      border-top: none;
-      border-left: none;
-      border-right: none;
-      border-bottom: 1.5px solid;
+      border: none;
       background-color: transparent;
       border-color: $primaryColor;
+      text-decoration-line: underline;
       @include subHeading3Font($primaryColor);
     }
   }

@@ -50,10 +50,11 @@
       }
 
       input:focus {
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        border-bottom: 1.5px solid $black75Color;
+        outline: none;
+      }
+
+      input:focus::placeholder {
+        color: transparent;
       }
 
       label {
