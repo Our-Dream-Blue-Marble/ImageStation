@@ -39,11 +39,12 @@ const AdminNoticeWritePage = () => {
             noticeAttachmentName
           ).then((result) => {
             if (result) {
-              navigate(`${NoticeListRouteName}/${newNoticeId}`);
+              navigate(`${NoticeListRouteName}/${newNoticeId}`, {
+                replace: true,
+              });
             }
           });
-        }}
-      >
+        }}>
         <div className="writeContainer">
           <input
             className="noticeTitleTextBox"
