@@ -2,13 +2,10 @@
 
 .noticeViewLayout {
   display: flex;
-  justify-content: center;
-
   width: 100%;
   min-height: 91vh;
   padding-bottom: 7.9vh;
-  padding-left: 21%;
-  padding-right: 21%;
+  padding-top: 7.9vh;
   background-image: url(../assets/BackgroundAsset.svg);
   background-repeat: no-repeat;
   background-position: left top;
@@ -18,7 +15,8 @@
   .noticeViewBoxContainer {
     display: flex;
     flex-direction: column;
-
+    margin-left: 21%;
+    margin-right: 21%;
     background-color: $white100Color;
     flex-shrink: 0;
     width: 57vw;
@@ -80,7 +78,7 @@
     .adminNoticeViewButtonsContainer {
       display: flex;
       gap: 20px;
-      margin-left: 13.76%;
+      margin-left: 35.2%;
       .noticeViewNavigateList {
         @include heading2Font($black100Color);
         display: flex;
