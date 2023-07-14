@@ -93,6 +93,7 @@
       border: none;
       background: $primaryColor;
       @include heading2Font($white100Color);
+      cursor: pointer;
     }
 
     .SubmitButton:hover {
@@ -115,6 +116,7 @@
       border-color: $primaryColor;
       text-decoration-line: underline;
       @include subHeading3Font($primaryColor);
+      cursor: pointer;
     }
   }
 }
