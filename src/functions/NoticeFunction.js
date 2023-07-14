@@ -8,6 +8,7 @@ import {
 } from "repositories/NoticeRepository";
 import { NoticeListRouteName } from "routes/RouteName";
 import { v4 as uuidv4 } from "uuid";
+import Swal from "sweetalert2";
 
 export const onAdminWriteNewNoticeSubmit = async (
   event,
@@ -117,7 +118,6 @@ export const onDeleteNoticeClick = async (id) => {
     await deleteNoticeDocument(id)
       .then(() => {
         window.confirm("삭제를 완료하였습니다.");
-        return redirect(NoticeListRouteName);
       })
       .catch((e) => {
         console.log(e);

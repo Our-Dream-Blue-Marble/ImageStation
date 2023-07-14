@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   onAdminWriteNewNoticeSubmit,
   onNoticeAttachmentChange,
@@ -20,11 +20,21 @@ const AdminNoticeWritePage = () => {
   const [noticeAttachment, setNoticeAttachment] = useState("");
   const [noticeAttachmentName, setNoticeAttachmentName] = useState("");
   const [isSubmitButton, setIsSubmitButton] = useState(false);
+  const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
+
   if (dataOfNotice) {
     newNoticeId = (parseInt(dataOfNotice.id) + 1).toString();
   } else {
     newNoticeId = "1";
   }
+
+  useEffect(() => {
+    if (postTitle !== "" && postBody !== "") {
+      setIsPossibleSubmit(true);
+    } else {
+      setIsPossibleSubmit(false);
+    }
+  }, [postTitle, postBody]);
 
   return (
     <div className="noticeWriteLayout">
@@ -51,7 +61,8 @@ const AdminNoticeWritePage = () => {
           } else {
             navigate(NoticeListRouteName, { replace: true });
           }
-        }}>
+        }}
+      >
         <div className="writeContainer">
           <input
             className="noticeTitleTextBox"
@@ -95,17 +106,23 @@ const AdminNoticeWritePage = () => {
         </div>
         <div className="noticeWriteBtns">
           <button
-            id="noticeWriteCancelBtn"
+            className="noticeWriteCancelBtn"
             name="cancel"
             onClick={(e) => {
               setIsSubmitButton(false);
-            }}>
+            }}
+          >
             취소하기
           </button>
           <input
-            id="noticeWriteSaveBtn"
-            type="submit"
-            value="올리기"
+            className="noticeWriteSaveBtn"
+            type={isPossibleSubmit ? "submit" : "button"}
+            style={
+              isPossibleSubmit
+                ? { background: `rgba(90, 145, 255, 1)` }
+                : { background: `rgba(33, 36, 39, 0.5)` }
+            }
+            value={"올리기"}
             onClick={(e) => {
               setIsSubmitButton(true);
             }}

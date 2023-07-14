@@ -9,6 +9,7 @@ import {
 import { readNoticeDocument } from "repositories/NoticeRepository";
 import "styles/NoticeViewStyle.scss";
 import deleteAsset from "../assets/icons/NoticeDeleteAsset.svg";
+import { async } from "q";
 
 const NoticeViewPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -55,7 +56,8 @@ const NoticeViewPage = ({ isAdmin }) => {
                       {noticeViewObj.attachment ? (
                         <a
                           className="noticeViewAttachmentText"
-                          href={noticeViewObj.attachment}>
+                          href={noticeViewObj.attachment}
+                        >
                           {noticeViewObj.attachmentName}
                         </a>
                       ) : (
@@ -74,7 +76,8 @@ const NoticeViewPage = ({ isAdmin }) => {
                 <div className="adminNoticeViewButtonsContainer">
                   <button
                     className="noticeViewNavigateList"
-                    onClick={() => navigate(NoticeListRouteName)}>
+                    onClick={() => navigate(NoticeListRouteName)}
+                  >
                     홈으로
                   </button>
                   <button
@@ -83,7 +86,8 @@ const NoticeViewPage = ({ isAdmin }) => {
                       navigate(`${NoticeListRouteName}/update/${id}`, {
                         state: { data: noticeViewObj },
                       })
-                    }>
+                    }
+                  >
                     수정하기
                   </button>
                 </div>
@@ -97,7 +101,8 @@ const NoticeViewPage = ({ isAdmin }) => {
                         { replace: true },
                         { state: true }
                       );
-                    }}>
+                    }}
+                  >
                     <img src={deleteAsset} />
                   </button>
                 </div>

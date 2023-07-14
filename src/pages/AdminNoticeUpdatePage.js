@@ -18,10 +18,10 @@ const AdminNoticeUpdatePage = () => {
   const [noticeUpdatedBody, setNoticeUpdatedBody] = useState(
     location.state.data.body
   );
-  const [noticeUpdatedAttachment, setNoticeupdatedAttachment] = useState(
+  const [noticeUpdatedAttachment, setNoticeUpdatedAttachment] = useState(
     location.state.data.attachment
   );
-  const [noticeUpdatedAttachmentName, setNoticeupdatedAttachmentName] =
+  const [noticeUpdatedAttachmentName, setNoticeUpdatedAttachmentName] =
     useState(location.state.data.attachmentName);
   const [isSubmitButton, setIsSubmitButton] = useState(false);
   const navigate = useNavigate();
@@ -59,7 +59,8 @@ const AdminNoticeUpdatePage = () => {
                   replace: true,
                 });
               }
-            }}>
+            }}
+          >
             <div className="updateContainer">
               <input
                 className="noticeUpdateTitleTextBox"
@@ -77,8 +78,8 @@ const AdminNoticeUpdatePage = () => {
                 onChange={(e) => {
                   onNoticeAttachmentChange(
                     e,
-                    setNoticeupdatedAttachment,
-                    setNoticeupdatedAttachmentName
+                    setNoticeUpdatedAttachment,
+                    setNoticeUpdatedAttachmentName
                   );
                 }}
               />
@@ -96,15 +97,16 @@ const AdminNoticeUpdatePage = () => {
             </div>
             <div id="noticeUpdateBtns">
               <button
-                id="noticeUpdateCancelBtn"
+                className="noticeUpdateCancelBtn"
                 name="cancel"
                 onClick={(e) => {
                   setIsSubmitButton(false);
-                }}>
+                }}
+              >
                 취소하기
               </button>
               <input
-                id="noticeUpdateSaveBtn"
+                className="noticeUpdateSaveBtn"
                 type="submit"
                 value="올리기"
                 onClick={(e) => {
