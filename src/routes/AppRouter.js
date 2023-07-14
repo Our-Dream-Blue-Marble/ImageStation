@@ -43,18 +43,18 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                   <div
                     ref={noticeListPagePosition}
                     className="noticeListPagePosition">
-                    <NoticeListPage isAdmin={userObject["role"]} />
+                    <NoticeListPage isAdmin={userObject?.role || false} />
                   </div>
                 </div>
               }
             />
             <Route
               path={NoticeListRouteName}
-              element={<NoticeListPage isAdmin={userObject["role"]} />}
+              element={<NoticeListPage isAdmin={userObject?.role || false} />}
             />
             <Route
               path={NoticeViewRouteName}
-              element={<NoticeViewPage isAdmin={userObject["role"]} />}
+              element={<NoticeViewPage isAdmin={userObject?.role || false} />}
             />
             <Route
               path={NoticeWriteRouteName}
