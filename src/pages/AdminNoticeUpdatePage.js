@@ -6,6 +6,8 @@ import {
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "styles/AdminNoticeUpdateStyle.scss";
+import NoticeListPage from "./NoticeListPage";
+import { NoticeListRouteName } from "routes/RouteName";
 
 const AdminNoticeUpdatePage = () => {
   const location = useLocation();
@@ -47,11 +49,15 @@ const AdminNoticeUpdatePage = () => {
                   noticeUpdatedAttachmentName
                 ).then((result) => {
                   if (result) {
-                    navigate(-1, { replace: true });
+                    navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`, {
+                      replace: true,
+                    });
                   }
                 });
               } else {
-                navigate(-1, { replace: true });
+                navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`, {
+                  replace: true,
+                });
               }
             }}>
             <div className="updateContainer">
