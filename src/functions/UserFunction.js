@@ -49,7 +49,12 @@ export const signIn = async (
   return result;
 };
 
-export const logIn = async (userEmail, userPassword, setIsNewUser) => {
+export const logIn = async (
+  userEmail,
+  userPassword,
+  setIsNewUser,
+  setIsRouteConfirm
+) => {
   var result = false;
   await signInWithEmailAndPassword(authService, userEmail, userPassword)
     .then(async () => {
@@ -64,6 +69,9 @@ export const logIn = async (userEmail, userPassword, setIsNewUser) => {
     .catch((e) => {
       if (`${e.message}`.includes("user-not-found")) {
         setIsNewUser(true);
+        setIsRouteConfirm(
+          window.confirm("회원가입 화면으로 이동하시겠습니까?")
+        );
       }
     });
   return result;

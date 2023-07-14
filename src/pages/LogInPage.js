@@ -16,9 +16,10 @@ const LogInPage = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [isNewUser, setIsNewUser] = useState(false);
+  const [isRouteConfirm, setIsRouteConfirm] = useState(false);
 
   useEffect(() => {
-    if (isNewUser) {
+    if (isNewUser && isRouteConfirm) {
       navigate(SignInRouteName);
     }
   });
@@ -35,7 +36,8 @@ const LogInPage = () => {
                 userEmail,
                 userPassword,
                 isNewUser,
-                setIsNewUser
+                setIsNewUser,
+                setIsRouteConfirm
               ).then((result) => {
                 if (result) {
                   navigate(HomeRouteName);
@@ -65,11 +67,7 @@ const LogInPage = () => {
               <input type="checkbox" />
               <label>아이디 저장</label>
             </div>
-            <input
-              className="SubmitButton"
-              type="submit"
-              value={isNewUser ? "Sign In" : "로그인"}
-            />
+            <input className="SubmitButton" type="submit" value={"로그인"} />
           </form>
           <div className="UpdateAndSigninButtonsContainer">
             <button
