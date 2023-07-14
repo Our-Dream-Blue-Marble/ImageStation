@@ -54,6 +54,7 @@ header {
   @include subHeading2Font($black100Color);
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .centerButton:nth-child(1) {
@@ -83,6 +84,7 @@ header {
   border: none;
   justify-content: center;
   justify-items: center;
+  cursor: pointer;
 }
 
 .rightButton:first-child {
