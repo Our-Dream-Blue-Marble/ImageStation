@@ -16,6 +16,7 @@ import {
   OrderCategoryPageRouteName,
   OrderPageRouteName,
   OrderConfirmListRouteName,
+  OrderConfirmViewRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
@@ -25,6 +26,7 @@ import HeaderPage from "pages/HeaderPage";
 import OrderPage from "pages/OrderPage";
 import OrderCategoryPage from "pages/OrderCategoryPage";
 import OrderConfirmListPage from "pages/OrderConfirmListPage";
+import OrderConfirmViewPage from "pages/OrderConfirmViewPage";
 
 const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const homePagePosition = useRef(null);
@@ -79,6 +81,11 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
             <Route
               path={OrderConfirmListRouteName}
               element={<OrderConfirmListPage />}
+            />
+
+            <Route
+              path={OrderConfirmViewRouteName}
+              element={<OrderConfirmViewPage />}
             />
           </>
         ) : (
