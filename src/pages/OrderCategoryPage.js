@@ -1,43 +1,35 @@
 import { OrderPageRouteName } from "routes/RouteName";
 import { useNavigate } from "react-router";
+import "styles/OrderCategoryStyle.scss";
 
 const OrderCategoryPage = () => {
   const navigate = useNavigate();
   return (
-    <div>
-      <div>
-        <button
-          className="centerButton"
+    <div className="OrderCategoryPageLayout">
+      <div className="CategoryUpperSection">
+        <div
+          className="normalCard"
           onClick={() => navigate(OrderPageRouteName)}
         >
-          일반
-        </button>
-        <button
-          className="centerButton"
+          <div className="normalText">일반</div>
+        </div>
+        <div
+          className="bindingCard"
           onClick={() => navigate(OrderPageRouteName)}
         >
-          제본
-        </button>
-        <button
-          className="centerButton"
-          onClick={() => navigate(OrderPageRouteName)}
-        >
-          라벨지
-        </button>
+          <div className="bindingText">제본</div>
+        </div>
+        <div className="labelCard" onClick={() => navigate(OrderPageRouteName)}>
+          <div className="labelText">라벨지</div>
+        </div>
       </div>
-      <div>
-        <button
-          className="centerButton"
-          onClick={() => navigate(OrderPageRouteName)}
-        >
-          실사대형출력
-        </button>
-        <button
-          className="centerButton"
-          onClick={() => navigate(OrderPageRouteName)}
-        >
-          사진인화
-        </button>
+      <div className="CategoryLowerSection">
+        <div className="bigCard" onClick={() => navigate(OrderPageRouteName)}>
+          <div className="bigText">실사대형출력</div>
+        </div>
+        <div className="photoCard" onClick={() => navigate(OrderPageRouteName)}>
+          <div className="photoText">사진인화</div>
+        </div>
       </div>
     </div>
   );
