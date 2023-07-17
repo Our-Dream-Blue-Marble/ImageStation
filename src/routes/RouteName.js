@@ -17,3 +17,5 @@ export const UpdatePasswordPageRouteName = `${process.env.PUBLIC_URL}/updatePass
 export const OrderCategoryPageRouteName = `${process.env.PUBLIC_URL}/order`;
 
 export const OrderPageRouteName = `${process.env.PUBLIC_URL}/order/:type`;
+
+export const OrderConfirmListRouteName = `${process.env.PUBLIC_URL}/orderConfirm`;
