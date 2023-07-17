@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { NoticeListRouteName } from "routes/RouteName";
+import { HomeRouteName, NoticeListRouteName } from "routes/RouteName";
 import {
   getNoticeWrittenDate,
   onDeleteNoticeClick,
@@ -54,8 +54,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                       {noticeViewObj.attachment ? (
                         <a
                           className="noticeViewAttachmentText"
-                          href={noticeViewObj.attachment}
-                        >
+                          href={noticeViewObj.attachment}>
                           {noticeViewObj.attachmentName}
                         </a>
                       ) : (
@@ -74,8 +73,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                 <div className="adminNoticeViewButtonsContainer">
                   <button
                     className="noticeViewNavigateList"
-                    onClick={() => navigate(-1)}
-                  >
+                    onClick={() => navigate(-1)}>
                     홈으로
                   </button>
                   <button
@@ -83,9 +81,9 @@ const NoticeViewPage = ({ isAdmin }) => {
                     onClick={() =>
                       navigate(`${NoticeListRouteName}/update/${id}`, {
                         state: { data: noticeViewObj },
+                        replace: true,
                       })
-                    }
-                  >
+                    }>
                     수정하기
                   </button>
                 </div>
@@ -94,13 +92,11 @@ const NoticeViewPage = ({ isAdmin }) => {
                     className="adminNoticeDeleteButton"
                     onClick={() => {
                       onDeleteNoticeClick(id);
-                      navigate(
-                        NoticeListRouteName,
-                        { replace: true },
-                        { state: true }
-                      );
-                    }}
-                  >
+                      navigate(NoticeListRouteName, {
+                        state: true,
+                        replace: true,
+                      });
+                    }}>
                     <DeleteAsset />
                   </button>
                 </div>

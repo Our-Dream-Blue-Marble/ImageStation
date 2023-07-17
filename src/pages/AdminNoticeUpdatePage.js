@@ -49,17 +49,18 @@ const AdminNoticeUpdatePage = () => {
                 ).then((result) => {
                   if (result) {
                     navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`, {
+                      state: { data: null },
                       replace: true,
                     });
                   }
                 });
               } else {
                 navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`, {
+                  state: { data: currentNoticeObj },
                   replace: true,
                 });
               }
-            }}
-          >
+            }}>
             <div className="updateContainer">
               <input
                 className="noticeUpdateTitleTextBox"
@@ -100,8 +101,7 @@ const AdminNoticeUpdatePage = () => {
                 name="cancel"
                 onClick={(e) => {
                   setIsSubmitButton(false);
-                }}
-              >
+                }}>
                 취소하기
               </button>
               <input
