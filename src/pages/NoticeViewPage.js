@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { NoticeListRouteName } from "routes/RouteName";
 import {
@@ -7,16 +6,15 @@ import {
   onDeleteNoticeClick,
 } from "functions/NoticeFunction";
 import { readNoticeDocument } from "repositories/NoticeRepository";
+import { ReactComponent as DeleteAsset } from "assets/icons/NoticeDeleteIconAsset.svg";
 import "styles/NoticeViewStyle.scss";
-import deleteAsset from "../assets/icons/NoticeDeleteAsset.svg";
-import { async } from "q";
 
 const NoticeViewPage = ({ isAdmin }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [noticeViewObj, setNoticeViewObj] = useState(null);
   const { id } = useParams();
-  const noticeData = location.state;
+  const noticeData = location.state.data;
   useEffect(() => {
     if (noticeData === null) {
       if (noticeViewObj === null && id !== null) {
@@ -29,7 +27,7 @@ const NoticeViewPage = ({ isAdmin }) => {
         setNoticeViewObj(noticeData);
       }
     }
-  }, []);
+  }, [noticeData, noticeViewObj, id]);
 
   return (
     <div className="noticeViewLayout">
@@ -76,7 +74,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                 <div className="adminNoticeViewButtonsContainer">
                   <button
                     className="noticeViewNavigateList"
-                    onClick={() => navigate(NoticeListRouteName)}
+                    onClick={() => navigate(-1)}
                   >
                     홈으로
                   </button>
@@ -103,7 +101,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                       );
                     }}
                   >
-                    <img src={deleteAsset} />
+                    <DeleteAsset />
                   </button>
                 </div>
               </>

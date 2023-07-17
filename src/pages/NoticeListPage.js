@@ -53,10 +53,11 @@ const NoticeListPage = ({ isAdmin }) => {
           <div className="cardNotice" key={value.id}>
             <div
               className="contentCard"
-              onClick={() => (
-                navigate(NoticeListRouteName + "/" + value.id),
-                { state: { data: value } }
-              )}
+              onClick={() =>
+                navigate(NoticeListRouteName + "/" + value.id, {
+                  state: { data: value },
+                })
+              }
             >
               <div className=" noticeListTitle">{value.title}</div>
               <div className=" noticeListDate">

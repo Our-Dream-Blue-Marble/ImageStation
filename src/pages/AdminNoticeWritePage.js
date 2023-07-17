@@ -4,11 +4,9 @@ import {
   onNoticeAttachmentChange,
   onPostTitleOrBodyChange,
 } from "functions/NoticeFunction";
-
-import "styles/AdminNoticeWriteStyle.scss";
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoticeListRouteName } from "routes/RouteName";
+import "styles/AdminNoticeWriteStyle.scss";
 
 const AdminNoticeWritePage = () => {
   const location = useLocation();

@@ -5,9 +5,8 @@ import {
 } from "functions/NoticeFunction";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "styles/AdminNoticeUpdateStyle.scss";
-import NoticeListPage from "./NoticeListPage";
 import { NoticeListRouteName } from "routes/RouteName";
+import "styles/AdminNoticeUpdateStyle.scss";
 
 const AdminNoticeUpdatePage = () => {
   const location = useLocation();
