@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { HomeRouteName, NoticeListRouteName } from "routes/RouteName";
+import { NoticeListRouteName } from "routes/RouteName";
 import {
   getNoticeWrittenDate,
   onDeleteNoticeClick,
