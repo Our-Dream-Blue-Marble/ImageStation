@@ -4,6 +4,7 @@ class OrderModel {
   constructor(
     docId,
     uid,
+    category,
     title,
     page,
     layout,
@@ -21,6 +22,7 @@ class OrderModel {
   ) {
     this.docId = docId;
     this.uid = uid;
+    this.category = category;
     this.title = title;
     this.page = page;
     this.layout = layout;
@@ -40,6 +42,7 @@ class OrderModel {
     return {
       docId: this.docId,
       uid: this.uid,
+      category: this.category,
       title: this.title,
       page: this.page,
       layout: this.layout,
@@ -63,6 +66,7 @@ export const OrderModelConverter = {
     return {
       docId: data.docId,
       uid: data.uid,
+      category: data.category,
       title: data.title,
       page: data.page,
       layout: data.layout,
@@ -88,6 +92,7 @@ export const OrderModelConverter = {
 OrderModel.propTypes = {
   docId: PropTypes.number.isRequired,
   uid: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   page: PropTypes.number.isRequired,
   layout: PropTypes.bool,
