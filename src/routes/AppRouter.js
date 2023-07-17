@@ -13,12 +13,16 @@ import {
   UpdatePasswordPageRouteName,
   NoticeUpdatePageRouteName,
   logInRouteName,
+  OrderCategoryPageRouteName,
+  OrderPageRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
 import AdminNoticeUpdatePage from "pages/AdminNoticeUpdatePage";
 import LogInPage from "pages/LogInPage";
 import HeaderPage from "pages/HeaderPage";
+import OrderPage from "pages/OrderPage";
+import OrderCategoryPage from "pages/OrderCategoryPage";
 
 const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const homePagePosition = useRef(null);
@@ -42,7 +46,8 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition">
+                    className="noticeListPagePosition"
+                  >
                     <NoticeListPage isAdmin={userObject?.role || false} />
                   </div>
                 </div>
@@ -64,6 +69,11 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               path={NoticeUpdatePageRouteName}
               element={<AdminNoticeUpdatePage />}
             />
+            <Route
+              path={OrderCategoryPageRouteName}
+              element={<OrderCategoryPage />}
+            />
+            <Route path={OrderPageRouteName} element={<OrderPage />} />
           </>
         ) : (
           <>
@@ -74,7 +84,8 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition">
+                    className="noticeListPagePosition"
+                  >
                     <NoticeListPage isAdmin={false} />
                   </div>
                 </div>
