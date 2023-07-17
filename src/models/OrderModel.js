@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 class OrderModel {
   constructor(
     docId,
@@ -13,7 +15,9 @@ class OrderModel {
     moreInfo,
     attachment,
     attachmentName,
-    state
+    state,
+    totalMoney,
+    completeTime
   ) {
     this.docId = docId;
     this.uid = uid;
@@ -29,6 +33,8 @@ class OrderModel {
     this.attachment = attachment;
     this.attachmentName = attachmentName;
     this.state = state;
+    this.totalMoney = totalMoney;
+    this.completeTime = completeTime;
   }
   toData() {
     return {
@@ -46,6 +52,8 @@ class OrderModel {
       attachment: this.attachment,
       attachmentName: this.attachmentName,
       state: this.state,
+      totalMoney: this.totalMoney,
+      completeTime: this.completeTime,
     };
   }
 }
@@ -67,12 +75,33 @@ export const OrderModelConverter = {
       attachment: data.attachment,
       attachmentName: data.attachmentName,
       state: data.state,
+      totalMoney: data.totalMoney,
+      completeTime: data.completeTime,
     };
   },
   fromFirestore: function (snapshot, options) {
     const data = snapshot.data(options);
     return new OrderModel(data);
   },
+};
+
+OrderModel.propTypes = {
+  docId: PropTypes.number.isRequired,
+  uid: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  page: PropTypes.number.isRequired,
+  layout: PropTypes.bool,
+  size: PropTypes.string,
+  bindingMethod: PropTypes.string,
+  coating: PropTypes.bool,
+  paper: PropTypes.string,
+  color: PropTypes.number,
+  moreInfo: PropTypes.string,
+  attachment: PropTypes.string.isRequired,
+  attachmentName: PropTypes.string.isRequired,
+  state: PropTypes.number,
+  totalMoney: PropTypes.number,
+  completeTime: PropTypes.number,
 };
 
 export default OrderModel;
