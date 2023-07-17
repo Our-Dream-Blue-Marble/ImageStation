@@ -15,6 +15,7 @@ import {
   logInRouteName,
   OrderCategoryPageRouteName,
   OrderPageRouteName,
+  OrderConfirmListRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
@@ -23,6 +24,7 @@ import LogInPage from "pages/LogInPage";
 import HeaderPage from "pages/HeaderPage";
 import OrderPage from "pages/OrderPage";
 import OrderCategoryPage from "pages/OrderCategoryPage";
+import OrderConfirmListPage from "pages/OrderConfirmListPage";
 
 const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const homePagePosition = useRef(null);
@@ -46,8 +48,7 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition"
-                  >
+                    className="noticeListPagePosition">
                     <NoticeListPage isAdmin={userObject?.role || false} />
                   </div>
                 </div>
@@ -74,6 +75,11 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               element={<OrderCategoryPage />}
             />
             <Route path={OrderPageRouteName} element={<OrderPage />} />
+
+            <Route
+              path={OrderConfirmListRouteName}
+              element={<OrderConfirmListPage />}
+            />
           </>
         ) : (
           <>
@@ -84,8 +90,7 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition"
-                  >
+                    className="noticeListPagePosition">
                     <NoticeListPage isAdmin={false} />
                   </div>
                 </div>

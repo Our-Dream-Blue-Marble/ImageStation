@@ -4,11 +4,13 @@ import {
   HomeRouteName,
   logInRouteName,
   OrderCategoryPageRouteName,
+  OrderConfirmListRouteName,
 } from "routes/RouteName";
 import { ReactComponent as LogoAsset } from "assets/LogoAsset.svg";
 import { ReactComponent as GlobalIconAsset } from "assets/icons/GlobalIconAsset.svg";
 import "styles/HeaderStyle.scss";
 import { Link } from "react-router-dom";
+import OrderConfirmListPage from "./OrderConfirmListPage";
 
 const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const navigate = useNavigate();
@@ -20,12 +22,15 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
       <div id="centerButtons">
         <button
           className="centerButton"
-          onClick={() => navigate(OrderCategoryPageRouteName)}
-        >
+          onClick={() => navigate(OrderCategoryPageRouteName)}>
           주문예약
         </button>
         <button className="centerButton">종이정보</button>
-        <button className="centerButton">주문내역확인</button>
+        <button
+          className="centerButton"
+          onClick={() => navigate(OrderConfirmListRouteName)}>
+          주문내역확인
+        </button>
       </div>
       <div id="rightButtons">
         {isLoggedIn ? (
@@ -35,8 +40,7 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
         ) : (
           <button
             className="rightButton"
-            onClick={() => navigate(logInRouteName)}
-          >
+            onClick={() => navigate(logInRouteName)}>
             회원가입 / 로그인
           </button>
         )}
