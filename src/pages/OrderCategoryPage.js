@@ -1,6 +1,11 @@
 import { OrderPageRouteName } from "routes/RouteName";
 import { useNavigate } from "react-router";
 import "styles/OrderCategoryStyle.scss";
+import { ReactComponent as NormalAsset } from "assets/NormalAsset.svg";
+import { ReactComponent as BindingAsset } from "assets/BindingAsset.svg";
+import LabelAsset from "../assets/LabelAsset.svg";
+import PhotoAsset from "../assets/PhotoAsset.svg";
+import { async } from "q";
 
 const OrderCategoryPage = () => {
   const navigate = useNavigate();
@@ -12,23 +17,38 @@ const OrderCategoryPage = () => {
           onClick={() => navigate(OrderPageRouteName)}
         >
           <div className="normalText">일반</div>
+          <div className="normalImg">
+            <NormalAsset width={138} height={147} id="Asset" />
+          </div>
         </div>
         <div
           className="bindingCard"
           onClick={() => navigate(OrderPageRouteName)}
         >
           <div className="bindingText">제본</div>
+          <div className="bindingImg">
+            <BindingAsset width={138} height={147} id="Asset" />
+          </div>
         </div>
         <div className="labelCard" onClick={() => navigate(OrderPageRouteName)}>
           <div className="labelText">라벨지</div>
+          <div>
+            <img className="labelImg" src={LabelAsset} />
+          </div>
         </div>
       </div>
       <div className="CategoryLowerSection">
         <div className="bigCard" onClick={() => navigate(OrderPageRouteName)}>
           <div className="bigText">실사대형출력</div>
+          <div>
+            <img className="labelImg" src={LabelAsset} />
+          </div>
         </div>
         <div className="photoCard" onClick={() => navigate(OrderPageRouteName)}>
           <div className="photoText">사진인화</div>
+          <div>
+            <img className="photoImg" src={PhotoAsset} />
+          </div>
         </div>
       </div>
     </div>

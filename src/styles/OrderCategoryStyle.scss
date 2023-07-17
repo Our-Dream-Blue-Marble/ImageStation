@@ -7,9 +7,9 @@
 
 @mixin UpperCategoryCard() {
   display: flex;
-  width: 15.67vw;
+  width: 30.9%;
   padding: 46px 52px;
-  align-items: flex-start;
+  gap: 1.85vw;
   gap: 10px;
   border-radius: 10px;
   background: var(--white-60, rgba(255, 255, 255, 0.6));
@@ -22,7 +22,6 @@
   display: flex;
   width: 15.67vw;
   padding: 46px 52px;
-  align-items: flex-start;
   gap: 10px;
   border-radius: 10px;
   background: var(--white-60, rgba(255, 255, 255, 0.6));
@@ -49,30 +48,55 @@
     margin-right: 24.7vw;
     margin-top: 18.3vh;
     margin-bottom: 3.16vh;
+
     .normalCard {
       @include UpperCategoryCard();
+      flex-direction: column;
       margin-right: 1.85vw;
       .normalText {
         @include heading2Font($black100Color);
         @include centerItem();
-        margin-left: 31%;
+        margin-left: 34%;
+      }
+      #Asset {
+        @include centerItem();
+        position: absolute;
+        border: none;
+      }
+      .normalCard:hover {
+        background-color: red;
       }
     }
     .bindingCard {
       @include UpperCategoryCard();
+      flex-direction: column;
       margin-right: 1.85vw;
       .bindingText {
         @include heading2Font($black100Color);
         @include centerItem();
-        margin-left: 31%;
+        margin-left: 34%;
+      }
+      .bindingImg {
+        width: 138px;
+        height: 167px;
+        border: none;
+        background-color: inherit;
       }
     }
     .labelCard {
       @include UpperCategoryCard();
+      flex-direction: column;
       .labelText {
         @include heading2Font($black100Color);
         @include centerItem();
         margin-left: 23%;
+      }
+      .labelImg {
+        position: absolute;
+        width: 9.4vw;
+        height: 20vh;
+        border: none;
+        background-color: inherit;
       }
     }
   }
@@ -87,19 +111,35 @@
     .bigCard {
       @include LowerCategoryCard();
       margin-right: 1.85vw;
+      flex-direction: column;
       .bigText {
         @include heading2Font($black100Color);
         @include centerItem();
-        margin-left: 1%;
+        margin-left: 5%;
+      }
+      .bigImg {
+        position: absolute;
+        width: 9.4vw;
+        height: 20vh;
+        border: none;
+        background-color: inherit;
       }
     }
     .photoCard {
       @include LowerCategoryCard();
+      flex-direction: column;
       .photoText {
         @include heading2Font($black100Color);
         @include centerItem();
         width: 83px;
         margin-left: 18%;
+      }
+      .photoImg {
+        position: absolute;
+        width: 9.4vw;
+        height: 20vh;
+        border: none;
+        background-color: inherit;
       }
     }
   }
