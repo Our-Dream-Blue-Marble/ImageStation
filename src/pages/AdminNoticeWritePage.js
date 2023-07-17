@@ -52,6 +52,7 @@ const AdminNoticeWritePage = () => {
             ).then((result) => {
               if (result) {
                 navigate(`${NoticeListRouteName}/${newNoticeId}`, {
+                  state: { data: null },
                   replace: true,
                 });
               }
@@ -59,8 +60,7 @@ const AdminNoticeWritePage = () => {
           } else {
             navigate(NoticeListRouteName, { replace: true });
           }
-        }}
-      >
+        }}>
         <div className="writeContainer">
           <input
             className="noticeTitleTextBox"
@@ -108,8 +108,7 @@ const AdminNoticeWritePage = () => {
             name="cancel"
             onClick={(e) => {
               setIsSubmitButton(false);
-            }}
-          >
+            }}>
             취소하기
           </button>
           <input
