@@ -5,11 +5,8 @@
   justify-content: center;
 }
 
-@mixin UpperCategoryCard() {
-  display: flex;
-  width: 30.9%;
-  padding: 46px 52px;
-  gap: 1.85vw;
+@mixin CardForm() {
+  padding: 3.04vw 5.88vh;
   gap: 10px;
   border-radius: 10px;
   background: var(--white-60, rgba(255, 255, 255, 0.6));
@@ -18,149 +15,86 @@
   background-color: $white100Color;
 }
 
-@mixin LowerCategoryCard() {
+@mixin CardText {
+  @include heading2Font($black100Color);
   display: flex;
-  width: 15.67vw;
-  padding: 46px 52px;
-  gap: 10px;
-  border-radius: 10px;
-  background: var(--white-60, rgba(255, 255, 255, 0.6));
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  background-color: $white100Color;
+  @include centerItem();
 }
 
 .OrderCategoryPageLayout {
+  @include centerItem();
   display: flex;
-  width: 100%;
-  min-height: 91vh;
+  width: 100vw;
+  height: 91vh;
   background-image: url(../assets/BackgroundAsset.svg);
   background-repeat: no-repeat;
   background-position: left top;
   background-size: cover;
-  flex-direction: column;
-
-  .CategoryUpperSection {
-    display: flex;
-    width: 50.72vw;
-    height: 29.48vh;
-    margin-left: 24.7vw;
-    margin-right: 24.7vw;
-    margin-top: 18.3vh;
-    margin-bottom: 3.16vh;
-
+  .cardContainer {
+    display: grid;
+    grid-template-columns: 15.675vw 15.675vw 15.675vw;
+    grid-template-rows: 26.81vh 26.81vh;
+    grid-column-gap: 1.85vw;
+    grid-row-gap: 3.16vh;
     .normalCard {
-      @include UpperCategoryCard();
-      flex-direction: column;
-      margin-right: 1.85vw;
+      grid-column: 1/2;
+      @include CardForm();
       .normalText {
-        @include heading2Font($black100Color);
-        @include centerItem();
-        margin-left: 34%;
-      }
-      .normalImg {
-        width: 138px;
-        height: 167px;
-        border: none;
-        background-color: inherit;
+        @include CardText();
       }
     }
     .normalCard:hover {
-      transform: rotateY(180deg);
-      backface-visibility: hidden;
       background-image: url(../assets/BackgroundAsset.svg);
     }
-  }
-  .normalCardBack {
-    background: royalblue;
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-  }
-  .bindingCard {
-    @include UpperCategoryCard();
-    flex-direction: column;
-    margin-right: 1.85vw;
-    .bindingText {
-      @include heading2Font($black100Color);
-      @include centerItem();
-      margin-left: 34%;
+    .bindingCard {
+      grid-column: 2/3;
+      @include CardForm();
+      .bindingText {
+        @include CardText();
+      }
     }
-    .bindingImg {
-      width: 138px;
-      height: 167px;
-      border: none;
-      background-color: inherit;
+    .bindingCard:hover {
+      background-image: url(../assets/BackgroundAsset.svg);
     }
-  }
-  .bindingCard:hover {
-    background-image: url(../assets/BackgroundAsset.svg);
-  }
-  .labelCard {
-    @include UpperCategoryCard();
-    flex-direction: column;
-    .labelText {
-      @include heading2Font($black100Color);
-      @include centerItem();
-      margin-left: 23%;
+    .labelCard {
+      grid-column: 3/4;
+      @include CardForm();
+      .labelText {
+        @include CardText();
+      }
     }
-    .labelImg {
-      position: absolute;
-      width: 9.4vw;
-      height: 20vh;
-      border: none;
-      background-color: inherit;
+    .labelCard:hover {
+      background-image: url(../assets/BackgroundAsset.svg);
     }
-  }
-  .labelCard:hover {
-    background-image: url(../assets/BackgroundAsset.svg);
-  }
-}
-.CategoryLowerSection {
-  display: flex;
-  width: 33.2vw;
-  height: 29.48vh;
-  margin-left: 33.43vw;
-  margin-right: 33.36vw;
-  margin-bottom: 15.8vh;
-
-  .bigCard {
-    @include LowerCategoryCard();
-    margin-right: 1.85vw;
-    flex-direction: column;
-    .bigText {
-      @include heading2Font($black100Color);
-      @include centerItem();
-      margin-left: 5%;
+    .actualCard {
+      grid-column: 1/2;
+      @include CardForm();
+      .actualText {
+        @include CardText();
+      }
     }
-    .bigImg {
-      position: absolute;
-      width: 9.4vw;
-      height: 20vh;
-      border: none;
-      background-color: inherit;
+    .actualCard:hover {
+      background-image: url(../assets/BackgroundAsset.svg);
     }
-  }
-  .bigCard:hover {
-    background-image: url(../assets/BackgroundAsset.svg);
-  }
-  .photoCard {
-    @include LowerCategoryCard();
-    flex-direction: column;
-    .photoText {
-      @include heading2Font($black100Color);
-      @include centerItem();
-      width: 83px;
-      margin-left: 18%;
+    .photoCard {
+      grid-column: 2/3;
+      @include CardForm();
+      .photoText {
+        @include CardText();
+      }
     }
-    .photoImg {
-      position: absolute;
-      width: 9.4vw;
-      height: 20vh;
-      border: none;
-      background-color: inherit;
+    .photoCard:hover {
+      background-image: url(../assets/BackgroundAsset.svg);
     }
-  }
-  .photoCard:hover {
-    background-image: url(../assets/BackgroundAsset.svg);
+    .etcCard {
+      grid-column: 3/4;
+      @include CardForm();
+      .etcText {
+        @include CardText();
+      }
+    }
+    .etcCard:hover {
+      background-image: url(../assets/BackgroundAsset.svg);
+    }
   }
 }
