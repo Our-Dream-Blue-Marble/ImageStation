@@ -25,17 +25,14 @@ const OrderConfirmListPage = () => {
           <div key={order.docId}>
             <div
               onClick={() =>
-                navigate(`${OrderConfirmListRouteName}/${order.docId}`)
+                navigate(`${OrderConfirmListRouteName}/${order.docId}`, {
+                  state: { data: order },
+                })
               }>
               {order.docId} {getOrderSubmitDate(order)} {order.category}{" "}
               {order.totalMoney}{" "}
-              <button
-                onClick={() =>
-                  onOrderConfirmClick(order, setUpdatedOrderConfirmState)
-                }>
-                주문
-              </button>
             </div>
+            {order.state}
           </div>
         ))}
       </div>
