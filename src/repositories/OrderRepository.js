@@ -73,7 +73,7 @@ export const readOrderDocument = async (docId) => {
 export const readOrderListDocument = async () => {
   const orderArrayModel = await dbService
     .collection("order")
-    .orderBy("docId", "desc")
+    .orderBy("state", "desc")
     .get();
   return orderArrayModel;
 };
