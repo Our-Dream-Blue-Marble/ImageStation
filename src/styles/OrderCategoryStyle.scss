@@ -1,28 +1,26 @@
 @import "ThemeStyles.scss";
 
-@mixin centerItem() {
-  align-items: center;
-  justify-content: center;
-}
-
 @mixin CardForm() {
-  padding: 3.04vw 5.88vh;
-  gap: 10px;
   border-radius: 10px;
   background: var(--white-60, rgba(255, 255, 255, 0.6));
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 10px 0px $black25Color;
   cursor: pointer;
-  background-color: $white100Color;
 }
 
-@mixin CardText {
+.frontCardText {
+  margin: 42px;
   @include heading2Font($black100Color);
-  display: flex;
-  @include centerItem();
+  text-align: center;
+}
+
+.backCardText {
+  margin: 42px;
+  @include body1Font($black100Color);
+  text-align: center;
 }
 
 .OrderCategoryPageLayout {
-  @include centerItem();
+  @include centerFormat();
   display: flex;
   width: 100vw;
   height: 91vh;
@@ -30,71 +28,46 @@
   background-repeat: no-repeat;
   background-position: left top;
   background-size: cover;
-  .cardContainer {
+  .cardLayout {
     display: grid;
     grid-template-columns: 15.675vw 15.675vw 15.675vw;
     grid-template-rows: 26.81vh 26.81vh;
     grid-column-gap: 1.85vw;
     grid-row-gap: 3.16vh;
-    .normalCard {
-      grid-column: 1/2;
+    backface-visibility: hidden;
+
+    .flip {
+      perspective: 800px;
+    }
+    .card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: 0.8s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .front,
+    .back {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      backface-visibility: hidden;
+    }
+    .front {
       @include CardForm();
-      .normalText {
-        @include CardText();
-      }
     }
-    .normalCard:hover {
+    .back {
+      background: var(--white-60, rgba(255, 255, 255, 0.6));
       background-image: url(../assets/BackgroundAsset.svg);
+      box-shadow: 0px 4px 10px 0px $black25Color;
+      border-radius: 10px;
+      transform: rotateY(180deg);
     }
-    .bindingCard {
-      grid-column: 2/3;
-      @include CardForm();
-      .bindingText {
-        @include CardText();
-      }
-    }
-    .bindingCard:hover {
-      background-image: url(../assets/BackgroundAsset.svg);
-    }
-    .labelCard {
-      grid-column: 3/4;
-      @include CardForm();
-      .labelText {
-        @include CardText();
-      }
-    }
-    .labelCard:hover {
-      background-image: url(../assets/BackgroundAsset.svg);
-    }
-    .actualCard {
-      grid-column: 1/2;
-      @include CardForm();
-      .actualText {
-        @include CardText();
-      }
-    }
-    .actualCard:hover {
-      background-image: url(../assets/BackgroundAsset.svg);
-    }
-    .photoCard {
-      grid-column: 2/3;
-      @include CardForm();
-      .photoText {
-        @include CardText();
-      }
-    }
-    .photoCard:hover {
-      background-image: url(../assets/BackgroundAsset.svg);
-    }
-    .etcCard {
-      grid-column: 3/4;
-      @include CardForm();
-      .etcText {
-        @include CardText();
-      }
-    }
-    .etcCard:hover {
-      background-image: url(../assets/BackgroundAsset.svg);
-    }
+  }
+
+  .flip:hover .card {
+    transform: rotateY(180deg);
   }
 }
