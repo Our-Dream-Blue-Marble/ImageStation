@@ -1,17 +1,16 @@
 import {
   getOrderConfirmList,
   getOrderSubmitDate,
+  onOrderConfirmClick,
 } from "functions/OrderConfirmFunction";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  OrderConfirmListRouteName,
-  OrderConfirmViewRouteName,
-} from "routes/RouteName";
+import { OrderConfirmListRouteName } from "routes/RouteName";
 
 const OrderConfirmListPage = () => {
-  const [orderConfirmList, setOrderConfirmList] = useState([]);
   const navigate = useNavigate();
+  const [orderConfirmList, setOrderConfirmList] = useState([]);
+  const [updatedOrderConfirmState, setUpdatedOrderConfirmState] = useState();
 
   useEffect(() => {
     getOrderConfirmList(setOrderConfirmList);
@@ -29,7 +28,13 @@ const OrderConfirmListPage = () => {
                 navigate(`${OrderConfirmListRouteName}/${order.docId}`)
               }>
               {order.docId} {getOrderSubmitDate(order)} {order.category}{" "}
-              {order.totalMoney} {order.state}
+              {order.totalMoney}{" "}
+              <button
+                onClick={() =>
+                  onOrderConfirmClick(order, setUpdatedOrderConfirmState)
+                }>
+                주문
+              </button>
             </div>
           </div>
         ))}
