@@ -1,0 +1,123 @@
+@import "ThemeStyles.scss";
+
+.OrderBody {
+  height: 100vh;
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: $white100Color;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.OrderWholeContainer {
+  height: 580px;
+  width: 58.4vw;
+  border-radius: 10px;
+  background-color: $white100Color;
+  display: block;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  .OrderContainer-left {
+    float: left;
+    height: 580px;
+    width: 59%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: $black25Color;
+    box-sizing: border-box;
+  }
+
+  .OrderContainer-right {
+    float: right;
+    width: 41%;
+    height: 580px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-sizing: border-box;
+
+    fieldset {
+      border-color: $black50Color;
+      margin: 0;
+      padding: 0;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: solid 0.5px;
+      width: 308px;
+    }
+    h1 {
+      @include heading2Font($black100Color);
+      height: 22px;
+      width: 131px;
+      margin-top: 30px;
+      margin-bottom: 18px;
+      margin-left: 29px;
+    }
+
+    form {
+      width: 240px;
+      height: 499px;
+      margin-left: 29px;
+      @include body1Font($black100Color);
+
+      input[type="text"] {
+        height: 42px;
+        width: 192px;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.05);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 14px;
+        width: auto;
+      }
+
+      select {
+        height: 42px;
+        width: 192px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.05);
+        padding: 10px 18px;
+        border: none;
+      }
+      summary {
+        margin-top: 14px;
+        margin-bottom: 14px;
+        height: 22px;
+      }
+      
+      textarea {
+        height: 99px;
+        width: 192px;
+        resize: none;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 18px;
+        box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.05);
+        float: right;
+      }
+
+      textarea::placeholder {
+        @include captionFont($black50Color);
+      }
+
+      span {
+        width: 308px;
+        display: inline-block;
+        margin-top: 14px;
+      }
+    }
+  }
+  .buttons {
+    width: 440px;
+    display: block;
+  }
+  
+}
+
