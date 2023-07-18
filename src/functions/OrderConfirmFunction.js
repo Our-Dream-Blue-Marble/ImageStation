@@ -1,4 +1,7 @@
-import { readOrderListDocument } from "repositories/OrderRepository";
+import {
+  readOrderListDocument,
+  updateOrderStateDocument,
+} from "repositories/OrderRepository";
 
 export const getOrderConfirmList = async (setOrderList) => {
   const orderConfirmList = await readOrderListDocument();
@@ -21,12 +24,35 @@ export const getOrderSubmitDate = (orderConfirm) => {
   return dateInString;
 };
 
-export const onOrderConfirmClick = (order, setUpdatedOrderConfirmState) => {
+export const onOrderConfirmClick = async (
+  order,
+  orderConfirmList,
+  setOrderConfirmList,
+  i
+) => {
   const currentOrderState = order.state;
+  let newOrderState;
   if (currentOrderState === 1) {
-    setUpdatedOrderConfirmState(2);
+    newOrderState = 2;
   } else if (currentOrderState === 2) {
-    setUpdatedOrderConfirmState(0);
+    newOrderState = 0;
+  }
+  if (currentOrderState !== newOrderState) {
+    await updateOrderStateDocument(order.docId, newOrderState);
+    orderConfirmList[i].state = newOrderState;
+    console.log(orderConfirmList[i].state);
+    setOrderConfirmList([...orderConfirmList]);
   }
 };
-export const getOrderConfirmStateWord = (updatedOrderConfirmState) => {};
+
+export const getOrderConfirmStateWord = (orderState) => {
+  if (orderState === 0) {
+    return "완료";
+  }
+  if (orderState === 1) {
+    return "주문";
+  }
+  if (orderState === 2) {
+    return "접수";
+  }
+};

@@ -1,5 +1,6 @@
 import {
   getOrderConfirmList,
+  getOrderConfirmStateWord,
   getOrderSubmitDate,
   onOrderConfirmClick,
 } from "functions/OrderConfirmFunction";
@@ -10,7 +11,6 @@ import { OrderConfirmListRouteName } from "routes/RouteName";
 const OrderConfirmListPage = () => {
   const navigate = useNavigate();
   const [orderConfirmList, setOrderConfirmList] = useState([]);
-  const [updatedOrderConfirmState, setUpdatedOrderConfirmState] = useState();
 
   useEffect(() => {
     getOrderConfirmList(setOrderConfirmList);
@@ -21,7 +21,7 @@ const OrderConfirmListPage = () => {
       <div>
         <h1>주문번호 주문일 주문 종류 예상 수령일 예상 가격 주문 상태</h1>
         <br />
-        {orderConfirmList.map((order) => (
+        {orderConfirmList.map((order, i) => (
           <div key={order.docId}>
             <div
               onClick={() =>
@@ -32,7 +32,21 @@ const OrderConfirmListPage = () => {
               {order.docId} {getOrderSubmitDate(order)} {order.category}{" "}
               {order.totalMoney}{" "}
             </div>
-            {order.state}
+            {order.state !== 0 ? (
+              <button
+                onClick={() =>
+                  onOrderConfirmClick(
+                    order,
+                    orderConfirmList,
+                    setOrderConfirmList,
+                    i
+                  )
+                }>
+                {getOrderConfirmStateWord(order.state)}
+              </button>
+            ) : (
+              <button>완료</button>
+            )}
           </div>
         ))}
       </div>

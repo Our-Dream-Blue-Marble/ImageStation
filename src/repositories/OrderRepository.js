@@ -78,49 +78,12 @@ export const readOrderListDocument = async () => {
   return orderArrayModel;
 };
 
-export const updateOrderStateDocument = async (
-  docId,
-  uid,
-  category,
-  title,
-  page,
-  layout,
-  size,
-  bindingMethod,
-  coating,
-  paper,
-  color,
-  moreInfo,
-  attachment,
-  attachmentName,
-  state,
-  totalMoney,
-  completeTime
-) => {
-  const orderDocumentRef = await dbService.collection("order").doc(docId);
+export const updateOrderStateDocument = async (docId, newState) => {
+  const orderDocumentRef = await dbService
+    .collection("order")
+    .doc(String(docId));
   await orderDocumentRef
-    .withConverter(OrderModelConverter)
-    .update(
-      new OrderModel(
-        docId,
-        uid,
-        category,
-        title,
-        page,
-        layout,
-        size,
-        bindingMethod,
-        coating,
-        paper,
-        color,
-        moreInfo,
-        attachment,
-        attachmentName,
-        state,
-        totalMoney,
-        completeTime
-      ).toData()
-    )
+    .update({ state: newState })
     .then(() => {
       return true;
     })
