@@ -58,89 +58,109 @@
         @include centerItem();
         margin-left: 34%;
       }
-      #Asset {
-        @include centerItem();
-        position: absolute;
-        border: none;
-      }
-      .normalCard:hover {
-        background-color: red;
-      }
-    }
-    .bindingCard {
-      @include UpperCategoryCard();
-      flex-direction: column;
-      margin-right: 1.85vw;
-      .bindingText {
-        @include heading2Font($black100Color);
-        @include centerItem();
-        margin-left: 34%;
-      }
-      .bindingImg {
+      .normalImg {
         width: 138px;
         height: 167px;
         border: none;
         background-color: inherit;
       }
     }
-    .labelCard {
-      @include UpperCategoryCard();
-      flex-direction: column;
-      .labelText {
-        @include heading2Font($black100Color);
-        @include centerItem();
-        margin-left: 23%;
-      }
-      .labelImg {
-        position: absolute;
-        width: 9.4vw;
-        height: 20vh;
-        border: none;
-        background-color: inherit;
-      }
+    .normalCard:hover {
+      transform: rotateY(180deg);
+      backface-visibility: hidden;
+      background-image: url(../assets/BackgroundAsset.svg);
     }
   }
-  .CategoryLowerSection {
-    display: flex;
-    width: 33.2vw;
-    height: 29.48vh;
-    margin-left: 33.43vw;
-    margin-right: 33.36vw;
-    margin-bottom: 15.8vh;
+  .normalCardBack {
+    background: royalblue;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+  }
+  .bindingCard {
+    @include UpperCategoryCard();
+    flex-direction: column;
+    margin-right: 1.85vw;
+    .bindingText {
+      @include heading2Font($black100Color);
+      @include centerItem();
+      margin-left: 34%;
+    }
+    .bindingImg {
+      width: 138px;
+      height: 167px;
+      border: none;
+      background-color: inherit;
+    }
+  }
+  .bindingCard:hover {
+    background-image: url(../assets/BackgroundAsset.svg);
+  }
+  .labelCard {
+    @include UpperCategoryCard();
+    flex-direction: column;
+    .labelText {
+      @include heading2Font($black100Color);
+      @include centerItem();
+      margin-left: 23%;
+    }
+    .labelImg {
+      position: absolute;
+      width: 9.4vw;
+      height: 20vh;
+      border: none;
+      background-color: inherit;
+    }
+  }
+  .labelCard:hover {
+    background-image: url(../assets/BackgroundAsset.svg);
+  }
+}
+.CategoryLowerSection {
+  display: flex;
+  width: 33.2vw;
+  height: 29.48vh;
+  margin-left: 33.43vw;
+  margin-right: 33.36vw;
+  margin-bottom: 15.8vh;
 
-    .bigCard {
-      @include LowerCategoryCard();
-      margin-right: 1.85vw;
-      flex-direction: column;
-      .bigText {
-        @include heading2Font($black100Color);
-        @include centerItem();
-        margin-left: 5%;
-      }
-      .bigImg {
-        position: absolute;
-        width: 9.4vw;
-        height: 20vh;
-        border: none;
-        background-color: inherit;
-      }
+  .bigCard {
+    @include LowerCategoryCard();
+    margin-right: 1.85vw;
+    flex-direction: column;
+    .bigText {
+      @include heading2Font($black100Color);
+      @include centerItem();
+      margin-left: 5%;
     }
-    .photoCard {
-      @include LowerCategoryCard();
-      flex-direction: column;
-      .photoText {
-        @include heading2Font($black100Color);
-        @include centerItem();
-        width: 83px;
-        margin-left: 18%;
-      }
-      .photoImg {
-        position: absolute;
-        width: 9.4vw;
-        height: 20vh;
-        border: none;
-        background-color: inherit;
-      }
+    .bigImg {
+      position: absolute;
+      width: 9.4vw;
+      height: 20vh;
+      border: none;
+      background-color: inherit;
     }
+  }
+  .bigCard:hover {
+    background-image: url(../assets/BackgroundAsset.svg);
+  }
+  .photoCard {
+    @include LowerCategoryCard();
+    flex-direction: column;
+    .photoText {
+      @include heading2Font($black100Color);
+      @include centerItem();
+      width: 83px;
+      margin-left: 18%;
+    }
+    .photoImg {
+      position: absolute;
+      width: 9.4vw;
+      height: 20vh;
+      border: none;
+      background-color: inherit;
+    }
+  }
+  .photoCard:hover {
+    background-image: url(../assets/BackgroundAsset.svg);
   }
 }
