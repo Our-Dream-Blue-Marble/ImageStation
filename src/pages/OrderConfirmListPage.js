@@ -3,6 +3,7 @@ import {
   getOrderConfirmStateWord,
   getOrderSubmitDate,
   onOrderConfirmClick,
+  onOrderConfirmStateSelect,
 } from "functions/OrderConfirmFunction";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -32,21 +33,21 @@ const OrderConfirmListPage = () => {
               {order.docId} {getOrderSubmitDate(order)} {order.category}{" "}
               {order.totalMoney}{" "}
             </div>
-            {order.state !== 0 ? (
-              <button
-                onClick={() =>
-                  onOrderConfirmClick(
-                    order,
-                    orderConfirmList,
-                    setOrderConfirmList,
-                    i
-                  )
-                }>
-                {getOrderConfirmStateWord(order.state)}
-              </button>
-            ) : (
-              <button>완료</button>
-            )}
+            <select
+              value={order.state}
+              onChange={(e) =>
+                onOrderConfirmStateSelect(
+                  e,
+                  order,
+                  orderConfirmList,
+                  setOrderConfirmList,
+                  i
+                )
+              }>
+              <option value={0}>완료</option>
+              <option value={1}>주문</option>
+              <option value={2}>접수</option>
+            </select>
           </div>
         ))}
       </div>

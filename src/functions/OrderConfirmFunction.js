@@ -24,35 +24,15 @@ export const getOrderSubmitDate = (orderConfirm) => {
   return dateInString;
 };
 
-export const onOrderConfirmClick = async (
+export const onOrderConfirmStateSelect = async (
+  e,
   order,
   orderConfirmList,
   setOrderConfirmList,
   i
 ) => {
-  const currentOrderState = order.state;
-  let newOrderState;
-  if (currentOrderState === 1) {
-    newOrderState = 2;
-  } else if (currentOrderState === 2) {
-    newOrderState = 0;
-  }
-  if (currentOrderState !== newOrderState) {
-    await updateOrderStateDocument(order.docId, newOrderState);
-    orderConfirmList[i].state = newOrderState;
-    console.log(orderConfirmList[i].state);
-    setOrderConfirmList([...orderConfirmList]);
-  }
-};
-
-export const getOrderConfirmStateWord = (orderState) => {
-  if (orderState === 0) {
-    return "완료";
-  }
-  if (orderState === 1) {
-    return "주문";
-  }
-  if (orderState === 2) {
-    return "접수";
-  }
+  let newOrderState = e.target.value;
+  await updateOrderStateDocument(order.docId, newOrderState);
+  orderConfirmList[i].state = newOrderState;
+  setOrderConfirmList([...orderConfirmList]);
 };
