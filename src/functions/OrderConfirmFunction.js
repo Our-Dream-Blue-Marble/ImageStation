@@ -20,3 +20,13 @@ export const getOrderSubmitDate = (orderConfirm) => {
     ("0" + date.getDate()).slice(-2);
   return dateInString;
 };
+
+export const onOrderConfirmClick = (order, setUpdatedOrderConfirmState) => {
+  const currentOrderState = order.state;
+  if (currentOrderState === 1) {
+    setUpdatedOrderConfirmState(2);
+  } else if (currentOrderState === 2) {
+    setUpdatedOrderConfirmState(0);
+  }
+};
+export const getOrderConfirmStateWord = (updatedOrderConfirmState) => {};
