@@ -1,4 +1,7 @@
-import { readOrderListDocument } from "repositories/OrderRepository";
+import {
+  readOrderListDocument,
+  updateOrderStateDocument,
+} from "repositories/OrderRepository";
 
 export const getOrderConfirmList = async (setOrderList) => {
   const orderConfirmList = await readOrderListDocument();
@@ -21,12 +24,15 @@ export const getOrderSubmitDate = (orderConfirm) => {
   return dateInString;
 };
 
-export const onOrderConfirmClick = (order, setUpdatedOrderConfirmState) => {
-  const currentOrderState = order.state;
-  if (currentOrderState === 1) {
-    setUpdatedOrderConfirmState(2);
-  } else if (currentOrderState === 2) {
-    setUpdatedOrderConfirmState(0);
-  }
+export const onOrderConfirmStateSelect = async (
+  e,
+  order,
+  orderConfirmList,
+  setOrderConfirmList,
+  i
+) => {
+  let newOrderState = e.target.value;
+  await updateOrderStateDocument(order.docId, newOrderState);
+  orderConfirmList[i].state = newOrderState;
+  setOrderConfirmList([...orderConfirmList]);
 };
-export const getOrderConfirmStateWord = (updatedOrderConfirmState) => {};
