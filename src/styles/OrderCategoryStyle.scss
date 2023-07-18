@@ -1,28 +1,23 @@
 @import "ThemeStyles.scss";
 
-@mixin centerItem() {
-  align-items: center;
-  justify-content: center;
-}
-
 @mixin CardForm() {
-  padding: 3.04vw 5.88vh;
-  gap: 10px;
+  position: relative;
   border-radius: 10px;
   background: var(--white-60, rgba(255, 255, 255, 0.6));
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 10px 0px $black25Color;
   cursor: pointer;
-  background-color: $white100Color;
+  backface-visibility: hidden;
+  visibility: visible;
+  transition: 1.5s;
 }
 
-@mixin CardText {
+@mixin CardText() {
   @include heading2Font($black100Color);
-  display: flex;
-  @include centerItem();
+  text-align: center;
 }
 
 .OrderCategoryPageLayout {
-  @include centerItem();
+  @include centerFormat();
   display: flex;
   width: 100vw;
   height: 91vh;
@@ -30,71 +25,51 @@
   background-repeat: no-repeat;
   background-position: left top;
   background-size: cover;
-  .cardContainer {
+  .cardLayout {
     display: grid;
     grid-template-columns: 15.675vw 15.675vw 15.675vw;
     grid-template-rows: 26.81vh 26.81vh;
     grid-column-gap: 1.85vw;
     grid-row-gap: 3.16vh;
-    .normalCard {
-      grid-column: 1/2;
-      @include CardForm();
-      .normalText {
-        @include CardText();
+
+    .cardContainer {
+      position: relative;
+      border-radius: 10px;
+      background: var(--white-60, rgba(255, 255, 255, 0.6));
+      box-shadow: 0px 4px 10px 0px $black25Color;
+      cursor: pointer;
+      perspective: 800px;
+      transform-style: preserve-3d;
+      transition: transform 1.5s;
+    }
+
+    .card {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      @include CardText();
+      backface-visibility: hidden;
+    }
+    .front {
+    }
+
+    .back {
+      transform: rotateY(-180deg);
+    }
+
+    .cardContainer:hover {
+      .front {
+        transform: rotateY(180deg);
+      }
+      .back {
+        transform: rotateY(0deg);
+        background-image: url(../assets/BackgroundAsset.svg);
+        border-radius: 10px;
       }
     }
-    .normalCard:hover {
-      background-image: url(../assets/BackgroundAsset.svg);
-    }
-    .bindingCard {
-      grid-column: 2/3;
-      @include CardForm();
-      .bindingText {
-        @include CardText();
-      }
-    }
-    .bindingCard:hover {
-      background-image: url(../assets/BackgroundAsset.svg);
-    }
-    .labelCard {
-      grid-column: 3/4;
-      @include CardForm();
-      .labelText {
-        @include CardText();
-      }
-    }
-    .labelCard:hover {
-      background-image: url(../assets/BackgroundAsset.svg);
-    }
-    .actualCard {
-      grid-column: 1/2;
-      @include CardForm();
-      .actualText {
-        @include CardText();
-      }
-    }
-    .actualCard:hover {
-      background-image: url(../assets/BackgroundAsset.svg);
-    }
-    .photoCard {
-      grid-column: 2/3;
-      @include CardForm();
-      .photoText {
-        @include CardText();
-      }
-    }
-    .photoCard:hover {
-      background-image: url(../assets/BackgroundAsset.svg);
-    }
-    .etcCard {
-      grid-column: 3/4;
-      @include CardForm();
-      .etcText {
-        @include CardText();
-      }
-    }
-    .etcCard:hover {
-      background-image: url(../assets/BackgroundAsset.svg);
+
+    .contents {
+      margin: 42px;
     }
   }
 }
