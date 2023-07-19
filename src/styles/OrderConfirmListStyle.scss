@@ -1,0 +1,27 @@
+@import "styles/ThemeStyles.scss";
+
+.OrderConfirmListBody {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  @include centerFormat();
+  text-align: center;
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+
+  span {
+    padding-top: 6vh;
+    padding-bottom: 6vh;
+    @include heading2Font($primaryColor);
+  }
+
+  .OrderConfirmListContainer {
+    width: 86.8vw;
+    margin: 5.7vh 6.6vh;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px 0px $black25Color;
+    background-color: $white60Color;
+  }
+}
