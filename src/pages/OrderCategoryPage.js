@@ -1,4 +1,7 @@
-import { OrderPageRouteName } from "routes/RouteName";
+import {
+  OrderCategoryPageRouteName,
+  OrderPageRouteName,
+} from "routes/RouteName";
 import { useNavigate } from "react-router";
 import "styles/OrderCategoryStyle.scss";
 
@@ -15,7 +18,9 @@ const OrderCategoryPage = () => {
             <div
               className="back"
               onClick={() =>
-                navigate(OrderPageRouteName, { state: { data: "normal" } })
+                navigate(`${OrderCategoryPageRouteName}/normal`, {
+                  state: { data: "normal" },
+                })
               }
             >
               <div className="frontCardText">일반</div>
@@ -48,7 +53,12 @@ const OrderCategoryPage = () => {
             <div className="front">
               <div className="frontCardText">라벨지</div>
             </div>
-            <div className="back" onClick={() => navigate(OrderPageRouteName, {state: {data: "labeling"}})}>
+            <div
+              className="back"
+              onClick={() =>
+                navigate(OrderPageRouteName, { state: { data: "labeling" } })
+              }
+            >
               <div className="frontCardText">라벨지</div>
               <div className="backCardText">라벨지 설명 블라블라!</div>
             </div>
@@ -60,7 +70,14 @@ const OrderCategoryPage = () => {
             <div className="front">
               <div className="frontCardText">실사대형출력</div>
             </div>
-            <div className="back" onClick={() => navigate(OrderPageRouteName, {state: {data: " large format "}})}>
+            <div
+              className="back"
+              onClick={() =>
+                navigate(OrderPageRouteName, {
+                  state: { data: " large format " },
+                })
+              }
+            >
               <div className="frontCardText">실사대형출력</div>
               <div className="backCardText">실사대형출력 설명 블라블라!</div>
             </div>

@@ -19,7 +19,7 @@ export const createNewOrderDocument = async (
   const uid = authService.currentUser.uid;
   await dbService
     .collection("order")
-    .doc(docId)
+    .doc(String(docId))
     .withConverter(OrderModelConverter)
     .set(
       new OrderModel(

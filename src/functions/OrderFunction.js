@@ -2,6 +2,7 @@ import { createNewOrderDocument } from "repositories/OrderRepository";
 
 export const onOrderSubmit = async (
   event,
+  category,
   title,
   page,
   layout,
@@ -13,13 +14,18 @@ export const onOrderSubmit = async (
   event.preventDefault();
   let result = false;
   await createNewOrderDocument(
+    category,
     title,
     page,
     layout,
     size,
+    "",
+    false,
     paper,
     color,
-    moreInfo
+    moreInfo,
+    "",
+    ""
   )
     .then(() => {
       result = true;

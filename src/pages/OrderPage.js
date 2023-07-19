@@ -18,7 +18,7 @@ const OrderPage = () => {
   const [orderMoreInfo, setOrderMoreInfo] = useState("");
   const [isSubmitButton, setIsSubmitButton] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
- const location = useLocation();
+  const location = useLocation();
   const category = location.state.data;
 
   useEffect(() => {
@@ -37,21 +37,17 @@ const OrderPage = () => {
           if (isSubmitButton === true) {
             onOrderSubmit(
               e,
-              "normal",
+              category,
               orderTitle,
               orderPage,
               orderLayout,
               orderSize,
-              "",
-              "",
               orderPaper,
               orderColor,
-              orderMoreInfo,
-              "",
-              ""
+              orderMoreInfo
             ).then((result) => {
               if (result) {
-                navigate(OrderCategoryPageRouteName);
+                navigate(OrderConfirmListRouteName);
               }
             });
           } else {
@@ -76,8 +72,8 @@ const OrderPage = () => {
             <label for="page">페이지</label>
             <select id="page">
               <option value={0}>전체</option>
-                  <option value={1}>짝수</option>
-                  <option value={2}>홀수</option>
+              <option value={1}>짝수</option>
+              <option value={2}>홀수</option>
             </select>
           </li>
           <li>
