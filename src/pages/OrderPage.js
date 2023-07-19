@@ -48,12 +48,9 @@ const OrderPage = () => {
                 <summary>설정 더보기</summary>
                 <label for="paper">
                   종이
-                  <select id="paper">
-                    <option>스노우지</option>
-                    <option>마시멜로우지</option>
-                    <option>마시멜로우지</option>
-                    <option>마시멜로우지</option>
-                    <option>마시멜로우지</option>
+                  <select id="paper" name = "paper" value = "paper">
+                    <option value = "snow">스노우지</option>
+                    <option value = "marshmallow">마시멜로우지</option>
                   </select>
                 </label>
                 <label for="color">
@@ -61,8 +58,6 @@ const OrderPage = () => {
                   <select id="color">
                     <option>빨간색</option>
                     <option>파란색</option>
-                    <option>아이보리색</option>
-                    <option>검은색</option>
                   </select>
                 </label>
               </details>
