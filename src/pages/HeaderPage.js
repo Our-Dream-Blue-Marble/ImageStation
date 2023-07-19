@@ -15,31 +15,69 @@ import { Link } from "react-router-dom";
 const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const location = useLocation();
   const navigate = useNavigate();
+
   return (
     <header>
       <Link to={`${HomeRouteName}`} replace={true}>
         <LogoAsset width={223} height={46.9} id="logoAsset" />
       </Link>
       <div id="centerButtons">
-        <button
-          className="centerButton"
-          onClick={() => navigate(OrderCategoryPageRouteName)}
-        >
-          주문예약
-        </button>
-        <button className="centerButton">종이정보</button>
-        <button
-          className="centerButton"
-          onClick={() => navigate(NoticeListRouteName)}
-        >
-          공지사항
-        </button>
-        <button
-          className="centerButton"
-          onClick={() => navigate(OrderConfirmListRouteName)}
-        >
-          주문내역확인
-        </button>
+        <div id="centerButtons_button">
+          <button
+            className="centerButton"
+            onClick={() => navigate(OrderCategoryPageRouteName)}
+          >
+            주문예약
+          </button>
+          <button className="centerButton">종이정보</button>
+          <button
+            className="centerButton"
+            onClick={() => navigate(NoticeListRouteName)}
+          >
+            공지사항
+          </button>
+          <button
+            className="centerButton"
+            onClick={() => navigate(OrderConfirmListRouteName)}
+          >
+            주문내역확인
+          </button>
+        </div>
+        <div id="centerButtons_line">
+          <hr
+            className="centerLine"
+            style={
+              location.pathname.includes("order") &&
+              !location.pathname.includes("Confirm")
+                ? {}
+                : { backgroundColor: "transparent" }
+            }
+          />
+          <hr
+            className="centerLine"
+            style={
+              location.pathname.includes("paper")
+                ? {}
+                : { backgroundColor: "transparent" }
+            }
+          />
+          <hr
+            className="centerLine"
+            style={
+              location.pathname.includes("notice")
+                ? {}
+                : { backgroundColor: "transparent" }
+            }
+          />
+          <hr
+            className="centerLine"
+            style={
+              location.pathname.includes("orderConfirm")
+                ? {}
+                : { backgroundColor: "transparent" }
+            }
+          />
+        </div>
       </div>
       <div id="rightButtons">
         {isLoggedIn ? (

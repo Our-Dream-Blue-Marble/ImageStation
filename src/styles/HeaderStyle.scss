@@ -8,15 +8,15 @@
 header {
   @include mobile {
     width: 100%;
-    height: 80px;
+    height: 69px;
   }
   @include tablet {
     height: 80px;
-    width: 100%;
+    width: 69px;
   }
   @include desktop {
     width: 100%;
-    height: 80px;
+    height: 69px;
   }
   position: sticky;
   top: 0;
@@ -40,33 +40,84 @@ header {
 }
 
 #centerButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 28px;
+}
+
+#centerButtons_button {
   @include centerFormat();
   display: flex;
-  width: 27vw;
+  width: 32.5vw;
   align-items: flex-start;
   gap: 5vw;
-  padding-left: 17.7vw;
-  padding-right: 14vw;
+  padding-left: 13.9vw;
+  padding-right: 12.4vw;
   overflow: hidden;
   white-space: nowrap;
 }
+
+#centerButtons_line {
+  @include centerFormat();
+  display: flex;
+  width: 32.5vw;
+  height: 22px;
+  gap: 5vw;
+  align-items: flex-end;
+  padding-left: 13.9vw;
+  padding-right: 12.4vw;
+  padding-bottom: 0;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.centerLine {
+  height: 2px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  border: none;
+  background-color: $black100Color;
+}
+
+.centerLine:nth-child(1) {
+  width: 56px;
+}
+.centerLine:nth-child(2) {
+  width: 56px;
+}
+.centerLine:nth-child(3) {
+  width: 56px;
+}
+.centerLine:nth-child(4) {
+  width: 83px;
+}
+
 .centerButton {
+  padding: 0;
   @include subHeading2Font($black100Color);
+  text-align: center;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
 .centerButton:nth-child(1) {
-  width: 3.6wh;
+  width: 56px;
 }
 
 .centerButton:nth-child(2) {
-  width: 3.6wh;
+  width: 56px;
 }
 
 .centerButton:nth-child(3) {
-  width: 5.3wh;
+  width: 56px;
+}
+
+.centerButton:nth-child(4) {
+  width: 83px;
 }
 
 #rightButtons {
