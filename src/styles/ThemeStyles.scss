@@ -10,6 +10,7 @@ $black50Color: rgba(33, 36, 39, 0.5);
 $black25Color: rgba(33, 36, 39, 0.25);
 $black10Color: rgba(33, 36, 39, 0.1);
 $black5Color: rgba(33, 36, 39, 0.05);
+$white60Color: rgba(255, 255, 255, 0.6);
 $white100Color: rgba(255, 255, 255, 1);
 $errorColor: rgba(221, 82, 87, 1);
 $numberColor: rgba(53, 60, 73, 1);
@@ -38,6 +39,15 @@ $hoverAndClickColor: rgba(61, 97, 171, 1);
   font-size: 24px;
   font-weight: 600;
   line-height: 0.92;
+  letter-spacing: 0%;
+}
+
+@mixin heading3Font($color) {
+  color: $color;
+  font-family: "Pretendard Variable";
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 0.82;
   letter-spacing: 0%;
 }
 
