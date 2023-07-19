@@ -12,7 +12,12 @@ const OrderCategoryPage = () => {
             <div className="front">
               <div className="frontCardText">일반</div>
             </div>
-            <div className="back" onClick={() => navigate(OrderPageRouteName)}>
+            <div
+              className="back"
+              onClick={() =>
+                navigate(OrderPageRouteName, { state: { data: "normal" } })
+              }
+            >
               <div className="frontCardText">일반</div>
               <div className="backCardText">
                 간단한 사무용, 포스터, 카다로그 등 추천합니다!
@@ -26,7 +31,12 @@ const OrderCategoryPage = () => {
             <div className="front">
               <div className="frontCardText">제본</div>
             </div>
-            <div className="back" onClick={() => navigate(OrderPageRouteName)}>
+            <div
+              className="back"
+              onClick={() =>
+                navigate(OrderPageRouteName, { state: { data: "binding" } })
+              }
+            >
               <div className="frontCardText">제본</div>
               <div className="backCardText">제본 설명 블라블라!</div>
             </div>
@@ -38,7 +48,7 @@ const OrderCategoryPage = () => {
             <div className="front">
               <div className="frontCardText">라벨지</div>
             </div>
-            <div className="back" onClick={() => navigate(OrderPageRouteName)}>
+            <div className="back" onClick={() => navigate(OrderPageRouteName, {state: {data: "labeling"}})}>
               <div className="frontCardText">라벨지</div>
               <div className="backCardText">라벨지 설명 블라블라!</div>
             </div>
@@ -50,7 +60,7 @@ const OrderCategoryPage = () => {
             <div className="front">
               <div className="frontCardText">실사대형출력</div>
             </div>
-            <div className="back" onClick={() => navigate(OrderPageRouteName)}>
+            <div className="back" onClick={() => navigate(OrderPageRouteName, {state: {data: " large format "}})}>
               <div className="frontCardText">실사대형출력</div>
               <div className="backCardText">실사대형출력 설명 블라블라!</div>
             </div>

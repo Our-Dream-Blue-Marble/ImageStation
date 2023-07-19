@@ -5,6 +5,7 @@ import {
   OrderConfirmListRouteName,
 } from "routes/RouteName";
 import { onOrderSubmit, onOrderTitleChange } from "functions/OrderFunction";
+import "styles/OrderStyle.scss";
 
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ const OrderPage = () => {
   const [orderMoreInfo, setOrderMoreInfo] = useState("");
   const [isSubmitButton, setIsSubmitButton] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
+ const location = useLocation();
+  const category = location.state.data;
 
   useEffect(() => {
     if (orderTitle !== "") {
@@ -72,9 +75,9 @@ const OrderPage = () => {
           <li>
             <label for="page">페이지</label>
             <select id="page">
-              <option>전체</option>
-              <option>짝수</option>
-              <option>홀수</option>
+              <option value={0}>전체</option>
+                  <option value={1}>짝수</option>
+                  <option value={2}>홀수</option>
             </select>
           </li>
           <li>

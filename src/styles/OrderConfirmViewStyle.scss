@@ -1,0 +1,31 @@
+@import "styles/ThemeStyles.scss";
+
+.OrderConfirmViewBody {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  @include centerFormat();
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+
+  .FileLayout {
+    width: 34.6%;
+    height: 79.2vh;
+    margin-right: 10.1%;
+    border-radius: 10px;
+    background: $white60Color;
+  }
+
+  .InfoLayout {
+    width: 21.2%;
+    height: 79.2vh;
+  }
+
+  #title {
+    display: inline-flex;
+    flex-direction: row;
+    @include heading2Font($black100Color);
+  }
+}
