@@ -1,9 +1,7 @@
-import { dbService } from "fbase";
+import { authService, dbService } from "fbase";
 import OrderModel, { OrderModelConverter } from "models/OrderModel";
 
 export const createNewOrderDocument = async (
-  docId,
-  uid,
   category,
   title,
   page,
@@ -15,9 +13,10 @@ export const createNewOrderDocument = async (
   color,
   moreInfo,
   attachment,
-  attachmentName,
-  state
+  attachmentName
 ) => {
+  const docId = Date.now();
+  const uid = authService.currentUser.uid;
   await dbService
     .collection("order")
     .doc(docId)
@@ -38,7 +37,7 @@ export const createNewOrderDocument = async (
         moreInfo,
         attachment,
         attachmentName,
-        state,
+        1,
         0,
         0
       )
