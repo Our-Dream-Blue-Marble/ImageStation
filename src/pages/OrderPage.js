@@ -30,116 +30,131 @@ const OrderPage = () => {
   }, [orderTitle]);
 
   return (
-    <div>
-      <form
-        onSubmit={async (e) => {
-          e.preventDefault();
-          if (isSubmitButton === true) {
-            onOrderSubmit(
-              e,
-              category,
-              orderTitle,
-              orderPage,
-              orderLayout,
-              orderSize,
-              orderPaper,
-              orderColor,
-              orderMoreInfo
-            ).then((result) => {
-              if (result) {
-                navigate(OrderConfirmListRouteName);
+    <div className="OrderBody">
+      <div className="OrderWholeContainer">
+        <div className="OrderContainer-left"></div>
+        <div className="OrderContainer-right">
+          <h1>일반 주문예약</h1>
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              if (isSubmitButton === true) {
+                onOrderSubmit(
+                  e,
+                  category,
+                  orderTitle,
+                  orderPage,
+                  orderLayout,
+                  orderSize,
+                  orderPaper,
+                  orderColor,
+                  orderMoreInfo
+                ).then((result) => {
+                  if (result) {
+                    navigate(OrderConfirmListRouteName);
+                  }
+                });
+              } else {
+                navigate(OrderCategoryPageRouteName);
               }
-            });
-          } else {
-            navigate(OrderCategoryPageRouteName);
-          }
-        }}
-      >
-        <ul>
-          <li>
-            <label for="title">제목</label>
+            }}
+          >
+            <fieldset>
+              <label for="title">
+                제목
+                <input
+                  id="title"
+                  title={orderTitle}
+                  onChange={async (e) => {
+                    onOrderTitleChange(e, setOrderTitle);
+                  }}
+                  type="text"
+                  placeholder="제목을 입력하세요"
+                  maxLength={100}
+                />
+              </label>
+              <label for="page">
+                페이지
+                <select id="page">
+                  <option value={0}>전체</option>
+                  <option value={1}>짝수</option>
+                  <option value={2}>홀수</option>
+                </select>
+              </label>
+              <label for="layout">
+                레이아웃
+                <select id="layout">
+                  <option>가로 방향</option>
+                  <option>세로 방향</option>
+                </select>
+              </label>
+              <label for="size">
+                사이즈
+                <select id="size">
+                  <option>A2</option>
+                  <option>A3</option>
+                  <option>A4</option>
+                  <option>A5</option>
+                </select>
+              </label>
+            </fieldset>
+            <fieldset>
+              <details>
+                <summary>설정 더보기</summary>
+
+                <label for="paper">
+                  종이
+                  <select id="paper">
+                    <option>스노우지</option>
+                    <option>마시멜로우지</option>
+                  </select>
+                </label>
+                <label for="color">
+                  컬러
+                  <select id="color">
+                    <option>빨간색</option>
+                    <option>파란색</option>
+                    <option>아이보리색</option>
+                    <option>검은색</option>
+                  </select>
+                </label>
+              </details>
+            </fieldset>
+            <span>
+              <label for="request">
+                주문사항
+                <textarea
+                  id="request"
+                  placeholder="추가요청 사항을 적어주세요!"
+                ></textarea>
+              </label>
+            </span>
+            <span>
             <input
-              title={orderTitle}
-              onChange={async (e) => {
-                onOrderTitleChange(e, setOrderTitle);
+              type={isPossibleSubmit ? "submit" : "button"}
+              style={
+                isPossibleSubmit
+                  ? { background: `rgba(90, 145, 255, 1)` }
+                  : { background: `rgba(33, 36, 39, 0.5)` }
+              }
+              value={"주문하기"}
+              onClick={(e) => {
+                setIsSubmitButton(true);
               }}
-              type="text"
-              placeholder="제목을 입력하세요"
-              maxLength={100}
             />
-          </li>
-          <li>
-            <label for="page">페이지</label>
-            <select id="page">
-              <option value={0}>전체</option>
-              <option value={1}>짝수</option>
-              <option value={2}>홀수</option>
-            </select>
-          </li>
-          <li>
-            <label for="layout">레이아웃</label>
-            <select id="layout">
-              <option>가로 방향</option>
-              <option>세로 방향</option>
-            </select>
-          </li>
-          <li>
-            <label for="size">사이즈</label>
-            <select id="size">
-              <option>A2</option>
-              <option>A3</option>
-              <option>A4</option>
-              <option>A5</option>
-            </select>
-          </li>
-        </ul>
-        <ul>
-          <details>
-            <summary>설정 더보기</summary>
-            <li>
-              <label for="paper">종이</label>
-              <select id="paper">
-                <option>스노우지</option>
-                <option>마시멜로우지</option>
-              </select>
-            </li>
-            <li>
-              <label for="color">컬러</label>
-              <select id="color">
-                <option>빨간색</option>
-                <option>파란색</option>
-                <option>아이보리색</option>
-                <option>검은색</option>
-              </select>
-            </li>
-          </details>
-        </ul>
-        <label for="request">주문사항</label>
-        <textarea
-          id="request"
-          placeholder="추가요청 사항을 적어주세요!"
-        ></textarea>
-        <input
-          type={isPossibleSubmit ? "submit" : "button"}
-          style={
-            isPossibleSubmit
-              ? { background: `rgba(90, 145, 255, 1)` }
-              : { background: `rgba(33, 36, 39, 0.5)` }
-          }
-          value={"주문하기"}
-          onClick={(e) => {
-            setIsSubmitButton(true);
-          }}
-        />
-        <button
-          name="cancel"
-          onClick={(e) => {
-            setIsSubmitButton(false);
-          }}
-        >
-          취소하기
-        </button>
-      </form>
+            <button
+              name="cancel"
+              onClick={(e) => {
+                setIsSubmitButton(false);
+              }}
+            >
+              취소하기
+            </button>
+          </span>
+          </form>
+         
+        </div>
+      </div>
     </div>
   );
 };
