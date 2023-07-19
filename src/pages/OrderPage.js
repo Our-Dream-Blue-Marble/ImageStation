@@ -152,7 +152,6 @@ const OrderPage = () => {
             </button>
           </span>
           </form>
-         
         </div>
       </div>
     </div>
