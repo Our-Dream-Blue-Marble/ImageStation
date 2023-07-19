@@ -22,6 +22,7 @@ const AdminNoticeUpdatePage = () => {
   );
   const [noticeUpdatedAttachmentName, setNoticeUpdatedAttachmentName] =
     useState(location.state.data.attachmentName);
+  const [isNewAttachmentUploaded, setIsNewAttachmentUploaded] = useState(false);
   const [isSubmitButton, setIsSubmitButton] = useState(false);
   const navigate = useNavigate();
 
@@ -45,7 +46,8 @@ const AdminNoticeUpdatePage = () => {
                   currentNoticeObj.date,
                   currentNoticeObj.view,
                   noticeUpdatedAttachment,
-                  noticeUpdatedAttachmentName
+                  noticeUpdatedAttachmentName,
+                  isNewAttachmentUploaded
                 ).then((result) => {
                   if (result) {
                     navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`, {
@@ -81,6 +83,7 @@ const AdminNoticeUpdatePage = () => {
                     setNoticeUpdatedAttachment,
                     setNoticeUpdatedAttachmentName
                   );
+                  setIsNewAttachmentUploaded(true);
                 }}
               />
 

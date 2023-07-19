@@ -1,14 +1,11 @@
 import { storageService } from "fbase";
-import { redirect } from "react-router-dom";
+
 import {
   createNewNoticeDocument,
   deleteNoticeDocument,
   readNoticeListDocument,
   updateNoticeDocument,
 } from "repositories/NoticeRepository";
-import { NoticeListRouteName } from "routes/RouteName";
-import { v4 as uuidv4 } from "uuid";
-import Swal from "sweetalert2";
 
 export const onAdminWriteNewNoticeSubmit = async (
   event,
@@ -23,7 +20,11 @@ export const onAdminWriteNewNoticeSubmit = async (
   let attachmentUrl = "";
   let result = false;
   if (attachment !== "") {
-    attachmentUrl = await uploadAttachmentOnStorage(id, attachment);
+    attachmentUrl = await uploadAttachmentOnStorage(
+      id,
+      attachment,
+      attachmentName
+    );
   }
   await createNewNoticeDocument(
     id,
@@ -46,10 +47,15 @@ export const onAdminWriteNewNoticeSubmit = async (
   return result;
 };
 
-const uploadAttachmentOnStorage = async (id, attachment) => {
-  const attachmentRef = storageService.ref().child(`notices/${id}/${uuidv4()}`);
+const uploadAttachmentOnStorage = async (id, attachment, attachmentName) => {
+  const attachmentRef = storageService
+    .ref()
+    .child(`notices/${id}/${attachmentName}`);
   const response = await attachmentRef.putString(attachment, "data_url");
-  return await response.ref.getDownloadURL();
+  const bucketName = response.ref.bucket;
+  const encodedAttachmentName = encodeURIComponent(attachmentName);
+  const httpsUrl = `https://firebasestorage.googleapis.com/v0/b/${bucketName}/o/notices%2F${id}%2F${encodedAttachmentName}?alt=media`;
+  return httpsUrl;
 };
 
 export const onPostTitleOrBodyChange = (event, setValue) => {
@@ -81,9 +87,18 @@ export const onUpdatedNoticeSubmit = async (
   date,
   view,
   attachment,
-  attachmentName
+  attachmentName,
+  isNewAttachmentUploaded
 ) => {
   event.preventDefault();
+  let attachmentUrl = attachment;
+  if (isNewAttachmentUploaded) {
+    attachmentUrl = await uploadAttachmentOnStorage(
+      id,
+      attachment,
+      attachmentName
+    );
+  }
   let result = false;
   await updateNoticeDocument(
     id,
@@ -92,12 +107,16 @@ export const onUpdatedNoticeSubmit = async (
     writer,
     date,
     view,
-    attachment,
+    attachmentUrl,
     attachmentName
-  ).then(() => {
-    result = true;
-  });
-  return true;
+  )
+    .then(() => {
+      result = true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return result;
 };
 
 export const onUpdateTitleOrBodyChange = (event, setValue) => {
