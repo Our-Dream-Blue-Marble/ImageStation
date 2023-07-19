@@ -39,7 +39,9 @@ const OrderCategoryPage = () => {
             <div
               className="back"
               onClick={() =>
-                navigate(OrderPageRouteName, { state: { data: "binding" } })
+                navigate(`${OrderCategoryPageRouteName}/binding`, {
+                  state: { data: "binding" },
+                })
               }
             >
               <div className="frontCardText">제본</div>
@@ -56,7 +58,9 @@ const OrderCategoryPage = () => {
             <div
               className="back"
               onClick={() =>
-                navigate(OrderPageRouteName, { state: { data: "labeling" } })
+                navigate(`${OrderCategoryPageRouteName}/labeling`, {
+                  state: { data: "labeling" },
+                })
               }
             >
               <div className="frontCardText">라벨지</div>
@@ -73,8 +77,8 @@ const OrderCategoryPage = () => {
             <div
               className="back"
               onClick={() =>
-                navigate(OrderPageRouteName, {
-                  state: { data: " large format " },
+                navigate(`${OrderCategoryPageRouteName}/actual`, {
+                  state: { data: "actual" },
                 })
               }
             >
@@ -89,7 +93,14 @@ const OrderCategoryPage = () => {
             <div className="front">
               <div className="frontCardText">사진인화</div>
             </div>
-            <div className="back" onClick={() => navigate(OrderPageRouteName)}>
+            <div
+              className="back"
+              onClick={() =>
+                navigate(`${OrderCategoryPageRouteName}/photo`, {
+                  state: { data: "photo" },
+                })
+              }
+            >
               <div className="frontCardText">사진인화</div>
               <div className="backCardText">사진인화 설명 블라블라!</div>
             </div>
@@ -101,7 +112,14 @@ const OrderCategoryPage = () => {
             <div className="front">
               <div className="frontCardText">기타</div>
             </div>
-            <div className="back" onClick={() => navigate(OrderPageRouteName)}>
+            <div
+              className="back"
+              onClick={() =>
+                navigate(`${OrderCategoryPageRouteName}/etc`, {
+                  state: { data: "etc" },
+                })
+              }
+            >
               <div className="frontCardText">기타</div>
               <div className="backCardText">기타 설명 블라블라!</div>
             </div>
