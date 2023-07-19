@@ -64,7 +64,12 @@ const NoticeViewPage = ({ isAdmin }) => {
                   </>
                 </div>
               </div>
-              <pre className="noticeViewBodyText">{noticeViewObj.body}</pre>
+              <pre className="noticeViewBodyText">
+                {noticeViewObj.body}
+                {noticeViewObj.attachmentName.match(
+                  /(.*?)\.(jpg|jpeg|png|gif|bmp)$/
+                ) && <img src={noticeViewObj.attachment} />}
+              </pre>
             </div>
           </div>
           <div className="adminNoticeViewButtonsSection">
