@@ -12,7 +12,9 @@ const OrderConfirmViewPage = () => {
         <>Loading</>
       ) : (
         <>
-          <div className="FileLayout">File</div>
+          <div className="FileLayout">
+            <iframe src={orderData.attachment} title="PDF Viewer" />
+          </div>
           <div className="InfoLayout">
             {orderData.category}
             <span id="title_docId_caption">주문번호</span>
