@@ -102,6 +102,8 @@ const OrderPage = () => {
                     onOrderFieldChange(e, setOrderPage);
                   }}
                 >
+                  {" "}
+                  <option>-----</option>
                   <option value={0}>전체</option>
                   <option value={1}>짝수</option>
                   <option value={2}>홀수</option>
@@ -116,6 +118,7 @@ const OrderPage = () => {
                     onOrderFieldChange(e, setOrderLayout);
                   }}
                 >
+                  <option>-----</option>
                   <option>가로 방향</option>
                   <option>세로 방향</option>
                 </select>
@@ -130,6 +133,7 @@ const OrderPage = () => {
                       onOrderFieldChange(e, setOrderSize);
                     }}
                   >
+                    <option>-----</option>
                     <option>A2</option>
                     <option>A3</option>
                     <option>A4</option>
@@ -148,6 +152,7 @@ const OrderPage = () => {
                         onOrderFieldChange(e, setOrderBinding);
                       }}
                     >
+                      <option>-----</option>
                       <option>B4</option>
                       <option>B2</option>
                     </select>
@@ -161,6 +166,7 @@ const OrderPage = () => {
                         onOrderFieldChange(e, setOrderCoating);
                       }}
                     >
+                      <option>-----</option>
                       <option>코팅 있음</option>
                       <option>코팅 없음</option>
                     </select>
@@ -184,6 +190,7 @@ const OrderPage = () => {
                         onOrderFieldChange(e, setOrderPaper);
                       }}
                     >
+                      <option>-----</option>
                       <option>스노우지</option>
                       <option>마시멜로우지</option>
                     </select>
@@ -197,6 +204,7 @@ const OrderPage = () => {
                         onOrderFieldChange(e, setOrderColor);
                       }}
                     >
+                      <option>-----</option>
                       <option>빨간색</option>
                       <option>파란색</option>
                       <option>아이보리색</option>
@@ -215,6 +223,7 @@ const OrderPage = () => {
                       onOrderFieldChange(e, setOrderColor);
                     }}
                   >
+                    <option>-----</option>
                     <option>빨간색</option>
                     <option>파란색</option>
                     <option>아이보리색</option>
@@ -224,7 +233,7 @@ const OrderPage = () => {
               )}
               <span>
                 <label for="moreInfo">
-                  주문사항
+                  추가사항
                   <textarea
                     id="moreInfo"
                     name="moreInfo"
