@@ -2,6 +2,10 @@ import React from "react";
 import { useLocation } from "react-router";
 import "styles/OrderConfirmViewStyle.scss";
 
+import { Worker, Viewer } from "@react-pdf-viewer/core";
+
+import "@react-pdf-viewer/core/lib/styles/index.css";
+
 const OrderConfirmViewPage = () => {
   const location = useLocation();
   const orderData = location.state.data;
@@ -13,7 +17,31 @@ const OrderConfirmViewPage = () => {
       ) : (
         <>
           <div className="FileLayout">
-            <iframe src={orderData.attachment} title="PDF Viewer" />
+            {orderData.attachmentName.match(/(.*?)\.(pdf)$/) ? (
+              <>
+                <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                  <div
+                    style={{
+                      border: "1px solid rgba(0, 0, 0, 0.3)",
+                      height: "600px",
+                    }}>
+                    <Viewer
+                      fileUrl={orderData.attachment}
+                      httpHeaders={{
+                        Authorization: "firebasestorage.googleapis.com",
+                      }}
+                      withCredentials={false}
+                    />
+                  </div>
+                </Worker>
+              </>
+            ) : orderData.attachmentName.match(
+                /(.*?)\.(jpg|jpeg|png|gif|bmp|svg)$/
+              ) ? (
+              <>{<img src={orderData.attachment} />}</>
+            ) : (
+              <div> error</div>
+            )}
           </div>
           <div className="InfoLayout">
             {orderData.category}
