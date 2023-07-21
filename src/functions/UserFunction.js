@@ -11,6 +11,7 @@ import {
   readUserDocument,
   updateUserLogInDateDocument,
 } from "repositories/UserRepository";
+import CryptoJS from "crypto-js";
 
 export const signIn = async (
   setIsNewUser,
@@ -117,4 +118,21 @@ export const updatePassword = async () => {
     .catch((e) => {
       window.alert("메세지 전송이 실패되었습니다.");
     });
+};
+
+export const getEncryptedData = (uid, userData) => {
+  const privateKey = uid;
+  const encryptedData = CryptoJS.AES.encrypt(
+    JSON.stringify(userData),
+    privateKey
+  ).toString();
+  console.log(uid);
+  return encryptedData;
+};
+
+export const getDecryptedData = (uid, userData) => {
+  const privateKey = uid;
+  const bytes = CryptoJS.AES.decrypt(userData, privateKey);
+  const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+  return decryptedData;
 };
