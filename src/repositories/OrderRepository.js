@@ -2,6 +2,7 @@ import { authService, dbService } from "fbase";
 import OrderModel, { OrderModelConverter } from "models/OrderModel";
 
 export const createNewOrderDocument = async (
+  docId,
   category,
   title,
   page,
@@ -15,7 +16,7 @@ export const createNewOrderDocument = async (
   attachment,
   attachmentName
 ) => {
-  const docId = Date.now();
+ 
   const uid = authService.currentUser.uid;
   await dbService
     .collection("order")

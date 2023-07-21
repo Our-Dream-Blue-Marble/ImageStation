@@ -24,7 +24,8 @@ const OrderConfirmViewPage = () => {
                     style={{
                       border: "1px solid rgba(0, 0, 0, 0.3)",
                       height: "600px",
-                    }}>
+                    }}
+                  >
                     <Viewer
                       fileUrl={orderData.attachment}
                       httpHeaders={{

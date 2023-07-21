@@ -6,9 +6,8 @@ import {
 } from "routes/RouteName";
 import {
   onOrderFieldChange,
-  onOrderPageChange,
+  onOrderAttachmentChage,
   onOrderSubmit,
-  onOrderTitleChange,
 } from "functions/OrderFunction";
 import "styles/OrderStyle.scss";
 
@@ -70,7 +69,18 @@ const OrderPage = () => {
         }}
       >
         <div className="OrderWholeContainer">
-          <div className="OrderContainer-left"></div>
+          <div className="OrderContainer-left">
+            <input
+              type="file"
+              onChange={(e) => {
+                onOrderAttachmentChage(
+                  e,
+                  setOrderAttachment,
+                  setOrderAttachmentName
+                );
+              }}
+            />
+          </div>
           <div className="OrderContainer-right">
             {category === "normal" && <h1>일반 주문예약</h1>}
             {category === "binding" && <h1>제본 주문예약</h1>}
