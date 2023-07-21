@@ -70,16 +70,27 @@ const OrderPage = () => {
       >
         <div className="OrderWholeContainer">
           <div className="OrderContainer-left">
-            <input
-              type="file"
-              onChange={(e) => {
-                onOrderAttachmentChage(
-                  e,
-                  setOrderAttachment,
-                  setOrderAttachmentName
-                );
-              }}
-            />
+            <div>
+              <label for="fileuploadbutton" className="FileUploadButton">
+                파일 선택
+              </label>
+              <input
+                type="file"
+                id="fileuploadbutton"
+                onChange={(e) => {
+                  onOrderAttachmentChage(
+                    e,
+                    setOrderAttachment,
+                    setOrderAttachmentName
+                  );
+                }}
+              />
+              <label className="drag">
+                드래그를 통해서도
+                <br />
+                파일 업로드 가능해요
+              </label>
+            </div>
           </div>
           <div className="OrderContainer-right">
             {category === "normal" && <h1>일반 주문예약</h1>}
