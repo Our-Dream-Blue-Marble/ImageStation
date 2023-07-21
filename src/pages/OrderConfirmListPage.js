@@ -18,41 +18,68 @@ const OrderConfirmListPage = () => {
 
   return (
     <div className="OrderConfirmListBody">
-      <span>주문했던 내역을 확인해보세요!</span>
-      <div className="OrderConfirmListContainer">
-        <h1>주문번호 주문일 주문 종류 예상 수령일 예상 가격 주문 상태</h1>
-        <hr />
+      <span id="OrderConfirmList_title">주문했던 내역을 확인해보세요!</span>
+      <table className="OrderConfirmListContainer">
+        <div className="headers">
+          <th style={{ width: "50px" }}></th>
+          <th className="header_text">주문정보</th>
+          <th className="header_text">주문일자</th>
+          <th className="header_text">주문번호</th>
+          <th className="header_text">총 금액(수량)</th>
+          <th className="header_text">주문 상태</th>
+        </div>
+        <hr id="headers_line" />
         {orderConfirmList.map((order, i) => (
-          <div key={order.docId}>
-            <div
+          <>
+            <tr
+              key={order.docId}
+              className="OrderConfirmView_Container"
               onClick={() =>
                 navigate(`${OrderConfirmListRouteName}/${order.docId}`, {
                   state: { data: order },
                 })
               }
             >
-              {order.docId} {getOrderSubmitDate(order)} {order.category}{" "}
-              {order.totalMoney}{" "}
-            </div>
-            <select
-              value={order.state}
-              onChange={(e) =>
-                onOrderConfirmStateSelect(
-                  e,
-                  order,
-                  orderConfirmList,
-                  setOrderConfirmList,
-                  i
-                )
-              }
-            >
-              <option value={0}>완료</option>
-              <option value={1}>주문</option>
-              <option value={2}>접수</option>
-            </select>
-          </div>
+              <td id="order_attachemnt">
+                <embed src={order.attachment}></embed>
+              </td>
+              <td id="order_info">
+                <span id="info_category">{order.category}</span>
+                <span id="info_title">{order.title}</span>
+                <span id="info_paper">{order.size}</span>
+              </td>
+              <td id="order_date">{getOrderSubmitDate(order)}</td>
+              <td id="order_num">{order.docId}</td>
+              <td id="order_money">{order.totalMoney}</td>
+              <td id="order_state">
+                {order.state === 0 && "완료"}
+                {order.state === 1 && "주문완료"}
+                {order.state === 2 && "준비중"}
+                {/* <select
+                  value={order.state}
+                  onChange={(e) =>
+                    onOrderConfirmStateSelect(
+                      e,
+                      order,
+                      orderConfirmList,
+                      setOrderConfirmList,
+                      i
+                    )
+                  }
+                >
+                  <option value={0}>완료</option>
+                  <option value={1}>주문</option>
+                  <option value={2}>접수</option>
+                </select> */}
+              </td>
+            </tr>
+            {orderConfirmList.length - 1 > i && (
+              <hr id="OrderConfirmView_line" />
+            )}
+          </>
         ))}
-      </div>
+      </table>
+      <div id="OrderConfirmListFooter">1</div>
     </div>
   );
 };
