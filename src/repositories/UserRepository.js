@@ -1,6 +1,7 @@
 import UserModel, { UserModelConveter } from "models/UserModel";
 
 import { dbService } from "fbase";
+import { getDecryptedData, getEncryptedData } from "functions/UserFunction";
 
 export const createNewUserDocument = async (
   uid,
@@ -12,6 +13,8 @@ export const createNewUserDocument = async (
   signInDate,
   logInDate
 ) => {
+  const encryptUserName = getEncryptedData(uid, name);
+  const encryptPhoneNumber = getEncryptedData(uid, phoneNumber);
   await dbService
     .collection("users")
     .doc(uid)
@@ -20,8 +23,8 @@ export const createNewUserDocument = async (
       new UserModel(
         uid,
         email,
-        name,
-        phoneNumber,
+        encryptUserName,
+        encryptPhoneNumber,
         role,
         isReceiveMail,
         signInDate,
@@ -66,6 +69,8 @@ export const readUserDocument = async (uid) => {
     .catch((e) => {
       console.log(e);
     });
+  userModel.name = getDecryptedData(uid, userModel.name);
+  userModel.phoneNumber = getDecryptedData(uid, userModel.phoneNumber);
   return userModel;
 };
 
@@ -80,14 +85,16 @@ export const updateUserDocument = async (
   logInDate
 ) => {
   const userDocumentRef = await dbService.collection("users").doc(uid);
+  const encryptUserName = getEncryptedData(uid, name);
+  const encryptPhoneNumber = getEncryptedData(uid, phoneNumber);
   await userDocumentRef
     .withConverter(UserModelConveter)
     .update(
       new UserModel(
         uid,
         email,
-        name,
-        phoneNumber,
+        encryptUserName,
+        encryptPhoneNumber,
         role,
         isReceiveMail,
         signInDate,
@@ -105,9 +112,10 @@ export const updateUserDocument = async (
 
 export const updateUserNameDocument = async (uid, newName) => {
   const userDocumentRef = await dbService.collection("users").doc(uid);
+  const encryptNewUserName = getEncryptedData(uid, newName);
   await userDocumentRef
     .update({
-      name: newName,
+      name: encryptNewUserName,
     })
     .then(() => {
       return true;
@@ -120,9 +128,10 @@ export const updateUserNameDocument = async (uid, newName) => {
 
 export const updateUserPhoneNumberDocument = async (uid, newPhoneNumber) => {
   const userDocumentRef = await dbService.collection("users").doc(uid);
+  const encryptNewPhoneNumber = getEncryptedData(uid, newPhoneNumber);
   await userDocumentRef
     .update({
-      phoneNumber: newPhoneNumber,
+      phoneNumber: encryptNewPhoneNumber,
     })
     .then(() => {
       return true;
