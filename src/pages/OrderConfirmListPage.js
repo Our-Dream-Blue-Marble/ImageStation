@@ -73,7 +73,9 @@ const OrderConfirmListPage = () => {
                 </select> */}
               </td>
             </tr>
-            <hr id="OrderConfirmView_line" />
+            {orderConfirmList.length - 1 > i && (
+              <hr id="OrderConfirmView_line" />
+            )}
           </>
         ))}
       </table>
