@@ -1,7 +1,7 @@
 @import "styles/ThemeStyles.scss";
 
 .OrderConfirmListBody {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   @include centerFormat();
@@ -11,17 +11,134 @@
   background-position: left top;
   background-size: cover;
 
-  span {
+  #OrderConfirmList_title {
     padding-top: 6vh;
     padding-bottom: 6vh;
     @include heading2Font($primaryColor);
   }
 
   .OrderConfirmListContainer {
-    width: 86.8vw;
-    margin: 5.7vh 6.6vh;
+    width: 75vw;
+    padding-top: 5.7vh;
+    padding-bottom: 5.7vh;
+    padding-left: 6.6vw;
+    padding-right: 6.6vw;
     border-radius: 10px;
     box-shadow: 0px 4px 10px 0px $black25Color;
     background-color: $white60Color;
+
+    .headers {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 20px;
+      padding-left: 1vw;
+      padding-right: 1vw;
+
+      th {
+        @include heading3Font($black100Color);
+        width: 100px;
+        text-align: center;
+      }
+    }
+
+    #headers_line {
+      width: 100%;
+      height: 1px;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      border: none;
+      background-color: $black100Color;
+    }
+
+    .OrderConfirmView_Container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2.5vh;
+      margin-bottom: 2.5vh;
+      margin-left: 1vw;
+      margin-right: 1vw;
+      @include body1Font($black100Color);
+      cursor: pointer;
+
+      #order_attachemnt {
+        width: 50px;
+        height: 72px;
+        embed {
+          width: 50px;
+          height: 72px;
+          border: none;
+          overflow: hidden;
+        }
+      }
+
+      #order_info {
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        text-align: start;
+        gap: 2px;
+
+        #info_category {
+          @include body2Font($black50Color);
+        }
+
+        #info_paper {
+          @include body2Font($black50Color);
+        }
+      }
+
+      #order_date {
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+
+      #order_num {
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+
+      #order_money {
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+
+      #order_state {
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    #OrderConfirmView_line {
+      width: 100%;
+      height: 0.5px;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      border: none;
+      background-color: $black50Color;
+    }
+  }
+
+  #OrderConfirmListFooter {
+    width: 75vw;
+    padding-top: 10.2vh;
+    padding-bottom: 11.8vh;
+    padding-left: 6.6vw;
+    padding-right: 6.6vw;
   }
 }
