@@ -3,29 +3,33 @@ import { createNewOrderDocument } from "repositories/OrderRepository";
 export const onOrderSubmit = async (
   event,
   category,
-  title,
-  page,
-  layout,
-  size,
-  paper,
-  color,
-  moreInfo
+  Title,
+  Page,
+  Layout,
+  Size,
+  Binding,
+  Coating,
+  Paper,
+  Color,
+  MoreInfo,
+  Attachment,
+  AttachmentName
 ) => {
   event.preventDefault();
   let result = false;
   await createNewOrderDocument(
     category,
-    title,
-    page,
-    layout,
-    size,
-    "",
-    false,
-    paper,
-    color,
-    moreInfo,
-    "",
-    ""
+    Title,
+    Page,
+    Layout,
+    Size,
+    Binding,
+    Coating,
+    Paper,
+    Color,
+    MoreInfo,
+    Attachment,
+    AttachmentName
   )
     .then(() => {
       result = true;
@@ -37,13 +41,27 @@ export const onOrderSubmit = async (
   return result;
 };
 
-export const onOrderTitleChange = (event, setValue) => {
+export const onOrderFieldChange = (event, setValue) => {
   const {
     target: { name, value },
   } = event;
-  if (name === "") {
+  if (name === "title") {
     setValue(value);
-  } else if (name === "") {
+  } else if (name === "page") {
+    setValue(value);
+  } else if (name === "layout") {
+    setValue(value);
+  } else if (name === "size") {
+    setValue(value);
+  } else if (name === "binding") {
+    setValue(value);
+  } else if (name === "coating") {
+    setValue(value);
+  } else if (name === "paper") {
+    setValue(value);
+  } else if (name === "color") {
+    setValue(value);
+  } else if (name === "moreInfo") {
     setValue(value);
   }
 };
