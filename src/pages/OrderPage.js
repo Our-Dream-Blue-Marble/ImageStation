@@ -28,6 +28,7 @@ const OrderPage = () => {
   const [isSubmitButton, setIsSubmitButton] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [url, setUrl] = useState("");
+  const [isFileUploadButton, setIsFileUploadButton] = useState(true);
   const location = useLocation();
   const category = location.state.data;
 
@@ -72,46 +73,55 @@ const OrderPage = () => {
       >
         <div className="OrderWholeContainer">
           <div className="OrderContainer-left">
-            <div>
-              <label for="fileuploadbutton" className="FileUploadButton">
-                파일 선택
-              </label>
-              <input
-                type="file"
-                id="fileuploadbutton"
-                onChange={(e) => {
-                  onOrderAttachmentChage(
-                    e,
-                    setOrderAttachment,
-                    setOrderAttachmentName,
-                    setUrl
-                  );
+            {isFileUploadButton ? (
+              <>
+                <label htmlFor="fileuploadbutton" className="FileUploadButton">
+                  파일 업로드
+                </label>
+                <input
+                  type="file"
+                  id="fileuploadbutton"
+                  onChange={(e) => {
+                    onOrderAttachmentChage(
+                      e,
+                      setOrderAttachment,
+                      setOrderAttachmentName,
+                      setUrl,
+                      setIsFileUploadButton
+                    );
+                  }}
+                />
+                <label className="drag">
+                  드래그를 통해서도
+                  <br />
+                  파일 업로드 가능해요
+                </label>
+              </>
+            ) : (
+              <button
+                onClick={(e) => {
+                  setIsFileUploadButton(true);
                 }}
-              />
-              <div style={{height: "402px", width: "304px"}}>
-                {url ? (
-                  <>
-                    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-                      <div
-                        style={{
-                          border: "1px solid rgba(0, 0, 0, 0.3)",
-                          height: "100%",
-                        }}
-                      >
-                        <Viewer fileUrl={url} />
-                      </div>
-                    </Worker>
-                  </>
-                ) : (
-                  <label className="drag">
-                    드래그를 통해서도
-                    <br />
-                    파일 업로드 가능해요
-                  </label>
-                )}
-              </div>
+              >
+                업로드 취소
+              </button>
+            )}
+            <div style={{ height: "402px", width: "304px" }}>
+              {url !== "" && isFileUploadButton === false && (
+                <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                  <div
+                    style={{
+                      border: "1px solid rgba(0, 0, 0, 0.3)",
+                      height: "100%",
+                    }}
+                  >
+                    <Viewer fileUrl={url} />
+                  </div>
+                </Worker>
+              )}
             </div>
           </div>
+          ;
           <div className="OrderContainer-right">
             {category === "normal" && <h1>일반 주문예약</h1>}
             {category === "binding" && <h1>제본 주문예약</h1>}
@@ -287,7 +297,6 @@ const OrderPage = () => {
               </span>
             </fieldset>
           </div>
-
           <div id="buttons">
             <button
               className="OrderCancelBtn"
