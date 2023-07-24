@@ -3,6 +3,9 @@ import { storageService } from "fbase";
 import moment from "moment";
 import "moment/locale/ko";
 
+import { Viewer } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+
 export const onOrderSubmit = async (
   event,
   category,
@@ -81,7 +84,8 @@ export const onOrderFieldChange = (event, setValue) => {
 export const onOrderAttachmentChage = (
   event,
   setOrderAttachment,
-  setOrderAttachmentName
+  setOrderAttachmentName,
+  setUrl
 ) => {
   const {
     target: { files },
@@ -96,6 +100,7 @@ export const onOrderAttachmentChage = (
     setOrderAttachment(result);
   };
   orderFileReader.readAsDataURL(orderFile);
+  setUrl(URL.createObjectURL(files[0]));
 };
 
 const uploadOrderAttachmentOnStorage = async (
@@ -120,3 +125,7 @@ const uploadOrderAttachmentOnStorage = async (
   const httpsUrl = `https://firebasestorage.googleapis.com/v0/b/${bucketName}/o/orders%2F${orderTime}%2F${encodedAttachmentName}?alt=media`;
   return httpsUrl;
 };
+
+// const previewUploadFile = (event: ChangeEvent<HTMLInputElement>) => {
+
+// }
