@@ -36,7 +36,7 @@
 .noticeWriteBtn {
   display: flex;
   position: absolute;
-  margin-left: 31vw;
+  margin-left: 23vw;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
@@ -49,8 +49,8 @@
 
 .noticeListHead {
   display: flex;
-  margin-left: 45.9%;
-  width: 200px;
+  margin-left: 33%;
+  width: 514px;
   height: 43px;
   border: none;
   @include heading1Font($primaryColor);
@@ -65,46 +65,50 @@
   margin-right: 6.6%;
   display: flex;
   overflow: hidden;
+  .cardNotice {
+    @include noticeBox();
+    flex-direction: column;
+    background-color: #e8edfb80;
+    margin-right: 2.6%;
+  }
+  .contentCard {
+    padding-top: 5.2vh;
+    padding-bottom: 5.2vh;
+    padding-right: 15%;
+    margin-left: 13%;
+    width: 77%;
+    height: 33.7vh;
+    overflow: hidden;
+    cursor: pointer;
+
+    .noticeListTitle {
+      @include heading2Font($black100Color);
+      height: 20px;
+      padding-bottom: 2.7vh;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .noticeListDate {
+      @include body1Font($black75Color);
+      padding-bottom: 2.7vh;
+    }
+
+    .noticeListBody {
+      @include body1Font($black75Color);
+      width: 308px;
+      height: 198px;
+      overflow: hidden;
+      white-space: pre-line;
+      word-break: break-all;
+    }
+  }
 }
 
-.cardNotice {
-  @include noticeBox();
-  flex-direction: column;
-  background-color: #e8edfb80;
-  margin-right: 2.6%;
-}
 .cardNotice:hover {
   background-image: url(../assets/BackgroundAsset.svg);
 }
 
-.contentCard {
-  padding-top: 5.2vh;
-  padding-bottom: 5.2vh;
-  padding-right: 15%;
-  margin-left: 13%;
-  width: 77%;
-  height: 33.7vh;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.noticeListTitle {
-  @include heading2Font($black100Color);
-  padding-bottom: 2.7vh;
-}
-
-.noticeListDate {
-  @include body1Font($black75Color);
-  padding-bottom: 2.7vh;
-}
-
-.noticeListBody {
-  @include body1Font($black75Color);
-  width: 100%;
-  height: 23.3vh;
-  overflow: hidden;
-  white-space: pre-line;
-}
 .paginationBar {
   display: flex;
   flex-direction: row;
@@ -112,15 +116,43 @@
   height: 3.4vh;
   margin-top: 6.78vh;
   margin-bottom: 9.6vh;
-}
 
-.paginationLtBtn {
-  margin-left: 6.6vw;
-  width: 2.3%;
-  height: 3.9vh;
-  border: none;
-  background-color: inherit;
-  transform: scaleX(-1);
+  .paginationLtBtn {
+    margin-left: 6.6vw;
+    width: 2.3%;
+    height: 3.9vh;
+    border: none;
+    background-color: inherit;
+    transform: scaleX(-1);
+  }
+  .paginationBtn {
+    @include body1Font($black75Color);
+    padding-top: 0.56vh;
+    display: flex;
+    width: 2.05%;
+    height: 2.15vh;
+    border: none;
+    background-color: inherit;
+
+    &[disabled] {
+      cursor: revert;
+      transform: revert;
+    }
+
+    &[aria-current] {
+      font-weight: bold;
+      cursor: revert;
+      transform: revert;
+    }
+  }
+
+  .paginationRtBtn {
+    margin-right: 6.54vw;
+    width: 2.3%;
+    height: 3.9vh;
+    border: none;
+    background-color: inherit;
+  }
 }
 
 #centerPaginationNumBtns {
@@ -131,33 +163,4 @@
   gap: 1.06vw;
   margin-top: 9vh;
   margin-bottom: 10.2vh;
-}
-
-.paginationBtn {
-  @include body1Font($black75Color);
-  padding-top: 0.56vh;
-  display: flex;
-  width: 2.05%;
-  height: 2.15vh;
-  border: none;
-  background-color: inherit;
-
-  &[disabled] {
-    cursor: revert;
-    transform: revert;
-  }
-
-  &[aria-current] {
-    font-weight: bold;
-    cursor: revert;
-    transform: revert;
-  }
-}
-
-.paginationRtBtn {
-  margin-right: 6.54vw;
-  width: 2.3%;
-  height: 3.9vh;
-  border: none;
-  background-color: inherit;
 }

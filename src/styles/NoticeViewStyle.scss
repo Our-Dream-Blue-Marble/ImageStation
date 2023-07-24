@@ -42,6 +42,7 @@
           height: 22px;
           padding-bottom: 3.4vh;
           border: none;
+          word-break: break-all;
           @include heading2Font($black100Color);
         }
         .noticeViewRightSection {
@@ -68,6 +69,7 @@
         flex-direction: column;
         width: 42.3vw;
         white-space: pre-line;
+        word-break: break-all;
       }
     }
   }
