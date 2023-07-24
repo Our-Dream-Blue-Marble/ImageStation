@@ -10,6 +10,7 @@ import {
   onOrderSubmit,
 } from "functions/OrderFunction";
 import "styles/OrderStyle.scss";
+import { Viewer, Worker } from "@react-pdf-viewer/core";
 
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const OrderPage = () => {
   const [orderAttachmentName, setOrderAttachmentName] = useState("");
   const [isSubmitButton, setIsSubmitButton] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
+  const [url, setUrl] = useState("");
   const location = useLocation();
   const category = location.state.data;
 
@@ -81,15 +83,33 @@ const OrderPage = () => {
                   onOrderAttachmentChage(
                     e,
                     setOrderAttachment,
-                    setOrderAttachmentName
+                    setOrderAttachmentName,
+                    setUrl
                   );
                 }}
               />
-              <label className="drag">
-                드래그를 통해서도
-                <br />
-                파일 업로드 가능해요
-              </label>
+              <div style={{height: "402px", width: "304px"}}>
+                {url ? (
+                  <>
+                    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                      <div
+                        style={{
+                          border: "1px solid rgba(0, 0, 0, 0.3)",
+                          height: "100%",
+                        }}
+                      >
+                        <Viewer fileUrl={url} />
+                      </div>
+                    </Worker>
+                  </>
+                ) : (
+                  <label className="drag">
+                    드래그를 통해서도
+                    <br />
+                    파일 업로드 가능해요
+                  </label>
+                )}
+              </div>
             </div>
           </div>
           <div className="OrderContainer-right">
