@@ -31,7 +31,7 @@ const NoticeListPage = ({ isAdmin }) => {
   return (
     <div className="noticeListLayout">
       <div className="noticeHead">
-        <div className="noticeListHead">공지사항</div>
+        <div className="noticeListHead">이미지스테이션의 소식을 전해드려요</div>
         <div>
           {isAdmin ? (
             <button
