@@ -121,7 +121,7 @@ const OrderPage = () => {
               )}
             </div>
           </div>
-          ;
+
           <div className="OrderContainer-right">
             {category === "normal" && <h1>일반 주문예약</h1>}
             {category === "binding" && <h1>제본 주문예약</h1>}
