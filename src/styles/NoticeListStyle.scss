@@ -5,16 +5,6 @@
   justify-content: center;
 }
 
-@mixin noticeBox() {
-  display: flex;
-  width: 30.8%;
-  height: 45.2vh;
-  margin: 0.7%;
-  gap: 0.7%;
-  flex-shrink: 0;
-  border-radius: 0.7%;
-  box-shadow: 0px 4px 10px 0px $black25Color;
-}
 .noticeListLayout {
   width: 100%;
   height: 91vh;
@@ -28,33 +18,31 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  padding-top: 4.2%;
-  margin-bottom: 9.3vh;
-}
+  margin-top: 10vh;
+  margin-bottom: 6vh;
 
-.noticeWriteBtn {
-  display: flex;
-  position: absolute;
-  margin-left: 23vw;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  font-size: 48px;
-  color: $primaryColor;
-  background-color: inherit;
-  border: none;
-  @include centerItem();
-}
-
-.noticeListHead {
-  display: flex;
-  margin-left: 33%;
-  width: 514px;
-  height: 43px;
-  border: none;
-  @include heading1Font($primaryColor);
-  @include centerItem();
+  .noticeListHead {
+    display: flex;
+    margin-left: 33%;
+    width: 34vw;
+    height: 4.87vh;
+    border: none;
+    @include heading1Font($primaryColor);
+    @include centerItem();
+  }
+  .noticeWriteBtn {
+    @include centerItem();
+    display: flex;
+    position: absolute;
+    margin-left: 23vw;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    font-size: 48px;
+    color: $primaryColor;
+    background-color: inherit;
+    border: none;
+  }
 }
 
 .noticeBoxContainer {
@@ -66,41 +54,49 @@
   display: flex;
   overflow: hidden;
   .cardNotice {
-    @include noticeBox();
-    flex-direction: column;
-    background-color: #e8edfb80;
+    display: flex;
+    width: 30.8%;
+    height: 45.2vh;
+    margin: 0.7%;
     margin-right: 2.6%;
-  }
-  .contentCard {
-    padding-top: 5.2vh;
-    padding-bottom: 5.2vh;
-    padding-right: 15%;
-    margin-left: 13%;
-    width: 77%;
-    height: 33.7vh;
-    overflow: hidden;
-    cursor: pointer;
+    gap: 0.7%;
+    flex-shrink: 0;
+    border-radius: 0.7%;
+    box-shadow: 0px 4px 10px 0px $black25Color;
+    background-color: #e8edfb80;
 
-    .noticeListTitle {
-      @include heading2Font($black100Color);
-      height: 20px;
-      padding-bottom: 2.7vh;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    .contentCard {
+      margin-top: 5.2vh;
+      margin-bottom: 5.2vh;
+      margin-right: 15%;
+      margin-left: 13%;
+      width: 20.37vw;
+      height: 32.8vh;
+      cursor: pointer;
 
-    .noticeListDate {
-      @include body1Font($black75Color);
-      padding-bottom: 2.7vh;
-    }
+      .noticeListTitle {
+        @include heading2Font($black100Color);
+        height: 25px;
+        margin-bottom: 24px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
-    .noticeListBody {
-      @include body1Font($black75Color);
-      width: 308px;
-      height: 198px;
-      overflow: hidden;
-      white-space: pre-line;
-      word-break: break-all;
+      .noticeListDate {
+        @include body1Font($black75Color);
+        height: 22px;
+        margin-bottom: 24px;
+      }
+
+      .noticeListBody {
+        @include body1Font($black75Color);
+        display: block;
+        height: 23vh;
+        white-space: pre-wrap;
+        word-break: break-all;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
     }
   }
 }
