@@ -85,7 +85,9 @@ export const onOrderAttachmentChage = (
   event,
   setOrderAttachment,
   setOrderAttachmentName,
-  setUrl
+  setUrl,
+  setIsFileUploadButton
+
 ) => {
   const {
     target: { files },
@@ -101,6 +103,7 @@ export const onOrderAttachmentChage = (
   };
   orderFileReader.readAsDataURL(orderFile);
   setUrl(URL.createObjectURL(files[0]));
+  setIsFileUploadButton(false);
 };
 
 const uploadOrderAttachmentOnStorage = async (
@@ -126,6 +129,7 @@ const uploadOrderAttachmentOnStorage = async (
   return httpsUrl;
 };
 
-// const previewUploadFile = (event: ChangeEvent<HTMLInputElement>) => {
+function getUploadButton(props){
 
-// }
+  const isFileUploadButton = props.isFileUploadButton;
+}
