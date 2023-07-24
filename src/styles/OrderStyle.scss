@@ -2,7 +2,9 @@
 
 .OrderLayout {
   width: 100%;
-  height: 91vh;
+  min-height: 91vh;
+  padding-top: 2vh;
+  padding-bottom: 9vh;
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -30,6 +32,34 @@
     border-bottom-left-radius: 10px;
     background-color: $black25Color;
     box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .FileUploadButton {
+      @include body1Font($numberColor);
+      text-align: center;
+      width: 99px;
+      height: 22px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid;
+      cursor: pointer;
+      display: block;
+    }
+
+    .drag {
+      margin-top: 27px;
+      display: block;
+      text-align: center;
+      @include body2Font($black50Color);
+      width: 133px;
+      height: 44px;
+    }
   }
 
   .OrderContainer-right {

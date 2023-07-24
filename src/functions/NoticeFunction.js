@@ -131,17 +131,14 @@ export const onUpdateTitleOrBodyChange = (event, setValue) => {
 };
 
 export const onDeleteNoticeClick = async (id) => {
-  const confirmDeleteNotice = window.confirm("해당 공지를 삭제하시겠습니까?");
-  if (!confirmDeleteNotice) return;
-  else {
-    await deleteNoticeDocument(id)
-      .then(() => {
-        window.confirm("삭제를 완료하였습니다.");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }
+  await deleteNoticeDocument(id)
+    .then(() => {
+      return true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return false;
 };
 
 export const onNoticeAttachmentChange = (

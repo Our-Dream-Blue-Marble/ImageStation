@@ -1,4 +1,10 @@
 import { createNewOrderDocument } from "repositories/OrderRepository";
+import { storageService } from "fbase";
+import moment from "moment";
+import "moment/locale/ko";
+
+import { Viewer } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
 
 export const onOrderSubmit = async (
   event,
@@ -17,7 +23,15 @@ export const onOrderSubmit = async (
 ) => {
   event.preventDefault();
   let result = false;
+  const docId = Date.now();
+  let attachmentUrl = await uploadOrderAttachmentOnStorage(
+    AttachmentName,
+    Attachment,
+    docId
+  );
+
   await createNewOrderDocument(
+    docId,
     category,
     Title,
     Page,
@@ -28,7 +42,7 @@ export const onOrderSubmit = async (
     Paper,
     Color,
     MoreInfo,
-    Attachment,
+    attachmentUrl,
     AttachmentName
   )
     .then(() => {
@@ -45,6 +59,7 @@ export const onOrderFieldChange = (event, setValue) => {
   const {
     target: { name, value },
   } = event;
+  console.log(event);
   if (name === "title") {
     setValue(value);
   } else if (name === "page") {
@@ -65,3 +80,56 @@ export const onOrderFieldChange = (event, setValue) => {
     setValue(value);
   }
 };
+
+export const onOrderAttachmentChage = (
+  event,
+  setOrderAttachment,
+  setOrderAttachmentName,
+  setUrl,
+  setIsFileUploadButton
+
+) => {
+  const {
+    target: { files },
+  } = event;
+  const orderFile = files[0];
+  setOrderAttachmentName(orderFile.name);
+  const orderFileReader = new FileReader();
+  orderFileReader.onloadend = (finishedEvent) => {
+    const {
+      currentTarget: { result },
+    } = finishedEvent;
+    setOrderAttachment(result);
+  };
+  orderFileReader.readAsDataURL(orderFile);
+  setUrl(URL.createObjectURL(files[0]));
+  setIsFileUploadButton(false);
+};
+
+const uploadOrderAttachmentOnStorage = async (
+  attachmentName,
+  attachment,
+  docid
+) => {
+  var filename = attachmentName;
+  var fileLength = filename.length;
+  var lastDot = filename.lastIndexOf(".");
+  var type = filename.substring(lastDot + 1, fileLength);
+  const newattachmentName = docid + "." + type;
+  const orderTime = moment().format("YYYYMMDD");
+  const attachmentRef = storageService
+    .ref()
+    .child(`orders/${orderTime}/${newattachmentName}`);
+  const response = await attachmentRef.putString(attachment, "data_url");
+  const bucketName = response.ref.bucket;
+
+  const encodedAttachmentName = encodeURIComponent(newattachmentName);
+
+  const httpsUrl = `https://firebasestorage.googleapis.com/v0/b/${bucketName}/o/orders%2F${orderTime}%2F${encodedAttachmentName}?alt=media`;
+  return httpsUrl;
+};
+
+function getUploadButton(props){
+
+  const isFileUploadButton = props.isFileUploadButton;
+}
