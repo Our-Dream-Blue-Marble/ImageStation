@@ -16,16 +16,17 @@ export const createNewOrderDocument = async (
   attachment,
   attachmentName
 ) => {
- 
-  const uid = authService.currentUser.uid;
+  const userDocRef = dbService
+    .collection("users")
+    .doc(authService.currentUser.uid);
   await dbService
-    .collection("order")
+    .collection("orders")
     .doc(String(docId))
     .withConverter(OrderModelConverter)
     .set(
       new OrderModel(
         docId,
-        uid,
+        userDocRef,
         category,
         title,
         page,
@@ -55,7 +56,7 @@ export const createNewOrderDocument = async (
 export const readOrderDocument = async (docId) => {
   let orderModel;
   await dbService
-    .collection("order")
+    .collection("orders")
     .doc(docId)
     .withConverter(OrderModelConverter)
     .get()
@@ -72,7 +73,7 @@ export const readOrderDocument = async (docId) => {
 
 export const readOrderListDocument = async () => {
   const orderArrayModel = await dbService
-    .collection("order")
+    .collection("orders")
     .orderBy("state", "desc")
     .get();
   return orderArrayModel;
@@ -80,7 +81,7 @@ export const readOrderListDocument = async () => {
 
 export const updateOrderStateDocument = async (docId, newState) => {
   const orderDocumentRef = await dbService
-    .collection("order")
+    .collection("orders")
     .doc(String(docId));
   await orderDocumentRef
     .update({ state: newState })
