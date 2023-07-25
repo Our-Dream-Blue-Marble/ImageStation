@@ -86,14 +86,16 @@ export const onOrderAttachmentChage = (
   setOrderAttachment,
   setOrderAttachmentName,
   setUrl,
-  setIsFileUploadButton
+  setIsFileUploadButton,
+  setIsPdf
 
 ) => {
   const {
     target: { files },
   } = event;
   const orderFile = files[0];
-  setOrderAttachmentName(orderFile.name);
+  const orderFileName = orderFile.name;
+  setOrderAttachmentName(orderFileName);
   const orderFileReader = new FileReader();
   orderFileReader.onloadend = (finishedEvent) => {
     const {
@@ -104,6 +106,10 @@ export const onOrderAttachmentChage = (
   orderFileReader.readAsDataURL(orderFile);
   setUrl(URL.createObjectURL(files[0]));
   setIsFileUploadButton(false);
+  if(orderFileName.match(".pdf")) setIsPdf(true);
+  else if(orderFileName.match(".png") ||orderFileName.match(".jpg") || orderFileName.match(".jpeg") || orderFileName.match(".gif") || orderFileName.match(".bmp") || orderFile.match(".svg")){
+    setIsPdf(false);
+  }
 };
 
 const uploadOrderAttachmentOnStorage = async (
@@ -128,8 +134,3 @@ const uploadOrderAttachmentOnStorage = async (
   const httpsUrl = `https://firebasestorage.googleapis.com/v0/b/${bucketName}/o/orders%2F${orderTime}%2F${encodedAttachmentName}?alt=media`;
   return httpsUrl;
 };
-
-function getUploadButton(props){
-
-  const isFileUploadButton = props.isFileUploadButton;
-}
