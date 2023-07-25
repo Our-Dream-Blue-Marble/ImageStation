@@ -44,8 +44,7 @@ const NoticeListPage = ({ isAdmin }) => {
                 navigate(NoticeWriteRouteName, {
                   state: { data: notice[0] },
                 })
-              }
-            >
+              }>
               +
             </button>
           ) : null}
@@ -84,7 +83,7 @@ const NoticeListPage = ({ isAdmin }) => {
                 <div className=" noticeListDate">
                   {getNoticeWrittenDate(value)}
                 </div>
-                <pre className="noticeListBody">{value.body}</pre>
+                <pre className="noticeListBody">{value.body}</pre>            
               </div>
             </SwiperSlide>
           ))}

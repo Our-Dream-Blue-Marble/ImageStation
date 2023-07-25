@@ -129,179 +129,186 @@ const OrderPage = () => {
             </div>
           </div>
           <div className="OrderContainer-right">
-            {category === "normal" && <h1>일반 주문예약</h1>}
-            {category === "binding" && <h1>제본 주문예약</h1>}
-            {category === "labeling" && <h1>라벨지 주문예약</h1>}
-            {category === "actual" && <h1>실사대형출력 주문예약</h1>}
-            {category === "photo" && <h1>사진인화 주문예약</h1>}
-            {category === "etc" && <h1>기타 주문예약</h1>}
-            <fieldset>
-              <label for="title">
-                제목
-                <input
-                  id="title"
-                  name="page"
-                  title={orderTitle}
-                  onChange={async (e) => {
-                    onOrderFieldChange(e, setOrderTitle);
-                  }}
-                  type="text"
-                  placeholder="제목을 입력하세요"
-                  maxLength={100}
-                />
-              </label>
-              <label for="page">
-                페이지
-                <select
-                  id="page"
-                  name="page"
-                  onChange={async (e) => {
-                    onOrderFieldChange(e, setOrderPage);
-                  }}
-                >
-                  {" "}
-                  <option>-----</option>
-                  <option value={0}>전체</option>
-                  <option value={1}>짝수</option>
-                  <option value={2}>홀수</option>
-                </select>
-              </label>
-              <label for="layout">
-                레이아웃
-                <select
-                  id="layout"
-                  name="layout"
-                  onChange={async (e) => {
-                    onOrderFieldChange(e, setOrderLayout);
-                  }}
-                >
-                  <option>-----</option>
-                  <option>가로 방향</option>
-                  <option>세로 방향</option>
-                </select>
-              </label>
-              {category !== "labeling" && (
-                <label for="size">
-                  사이즈
-                  <select
-                    id="size"
-                    name="size"
-                    onChange={async (e) => {
-                      onOrderFieldChange(e, setOrderSize);
-                    }}
-                  >
-                    <option>-----</option>
-                    <option>A2</option>
-                    <option>A3</option>
-                    <option>A4</option>
-                    <option>A5</option>
-                  </select>
-                </label>
-              )}
-              {category === "binding" && (
-                <span>
-                  <label for="binding">
-                    제본방식
-                    <select
-                      id="binding"
-                      name="binding"
+            {category === "etc" ? (
+              <>
+                <h1>기타주문 사항 입니다.</h1>
+                <div>Hello</div>
+              </>
+            ) : (
+              <>
+                {category === "normal" && <h1>일반 주문예약</h1>}
+                {category === "binding" && <h1>제본 주문예약</h1>}
+                {category === "labeling" && <h1>라벨지 주문예약</h1>}
+                {category === "actual" && <h1>실사대형출력 주문예약</h1>}
+                {category === "photo" && <h1>사진인화 주문예약</h1>}
+                <fieldset>
+                  <label for="title">
+                    제목
+                    <input
+                      id="title"
+                      name="page"
+                      title={orderTitle}
                       onChange={async (e) => {
-                        onOrderFieldChange(e, setOrderBinding);
+                        onOrderFieldChange(e, setOrderTitle);
+                      }}
+                      type="text"
+                      placeholder="제목을 입력하세요"
+                      maxLength={100}
+                    />
+                  </label>
+                  <label for="page">
+                    페이지
+                    <select
+                      id="page"
+                      name="page"
+                      onChange={async (e) => {
+                        onOrderFieldChange(e, setOrderPage);
+                      }}
+                    >
+                      {" "}
+                      <option>-----</option>
+                      <option value={0}>전체</option>
+                      <option value={1}>짝수</option>
+                      <option value={2}>홀수</option>
+                    </select>
+                  </label>
+                  <label for="layout">
+                    레이아웃
+                    <select
+                      id="layout"
+                      name="layout"
+                      onChange={async (e) => {
+                        onOrderFieldChange(e, setOrderLayout);
                       }}
                     >
                       <option>-----</option>
-                      <option>B4</option>
-                      <option>B2</option>
+                      <option>가로 방향</option>
+                      <option>세로 방향</option>
                     </select>
                   </label>
-                  <label for="coating">
-                    코팅
-                    <select
-                      id="coating"
-                      name="coating"
-                      onChange={async (e) => {
-                        onOrderFieldChange(e, setOrderCoating);
-                      }}
-                    >
-                      <option>-----</option>
-                      <option>코팅 있음</option>
-                      <option>코팅 없음</option>
-                    </select>
-                  </label>
-                </span>
-              )}
-            </fieldset>
-            <fieldset>
-              {(category === "normal" ||
-                category === "binding" ||
-                category === "actual" ||
-                category === "etc") && (
-                <details>
-                  <summary>설정 더보기</summary>
-                  <label for="paper">
-                    종이
-                    <select
-                      id="paper"
-                      name="paper"
-                      onChange={async (e) => {
-                        onOrderFieldChange(e, setOrderPaper);
-                      }}
-                    >
-                      <option>-----</option>
-                      <option>스노우지</option>
-                      <option>마시멜로우지</option>
-                    </select>
-                  </label>
-                  <label for="color">
-                    컬러
-                    <select
-                      id="color"
-                      name="color"
-                      onChange={async (e) => {
-                        onOrderFieldChange(e, setOrderColor);
-                      }}
-                    >
-                      <option>-----</option>
-                      <option>빨간색</option>
-                      <option>파란색</option>
-                      <option>아이보리색</option>
-                      <option>검은색</option>
-                    </select>
-                  </label>
-                </details>
-              )}
-              {(category === "labeling" || category === "photo") && (
-                <label for="color">
-                  컬러
-                  <select
-                    id="color"
-                    name="color"
-                    onChange={async (e) => {
-                      onOrderFieldChange(e, setOrderColor);
-                    }}
-                  >
-                    <option>-----</option>
-                    <option>빨간색</option>
-                    <option>파란색</option>
-                    <option>아이보리색</option>
-                    <option>검은색</option>
-                  </select>
-                </label>
-              )}
-              <span>
-                <label for="moreInfo">
-                  추가사항
-                  <textarea
-                    id="moreInfo"
-                    name="moreInfo"
-                    onChange={async (e) => {
-                      onOrderFieldChange(e, setOrderMoreInfo);
-                    }}
-                    placeholder="추가요청 사항을 적어주세요!"
-                  ></textarea>
-                </label>
-              </span>
-            </fieldset>
+                  {category !== "labeling" && (
+                    <label for="size">
+                      사이즈
+                      <select
+                        id="size"
+                        name="size"
+                        onChange={async (e) => {
+                          onOrderFieldChange(e, setOrderSize);
+                        }}
+                      >
+                        <option>-----</option>
+                        <option>A2</option>
+                        <option>A3</option>
+                        <option>A4</option>
+                        <option>A5</option>
+                      </select>
+                    </label>
+                  )}
+                  {category === "binding" && (
+                    <span>
+                      <label for="binding">
+                        제본방식
+                        <select
+                          id="binding"
+                          name="binding"
+                          onChange={async (e) => {
+                            onOrderFieldChange(e, setOrderBinding);
+                          }}
+                        >
+                          <option>-----</option>
+                          <option>B4</option>
+                          <option>B2</option>
+                        </select>
+                      </label>
+                      <label for="coating">
+                        코팅
+                        <select
+                          id="coating"
+                          name="coating"
+                          onChange={async (e) => {
+                            onOrderFieldChange(e, setOrderCoating);
+                          }}
+                        >
+                          <option>-----</option>
+                          <option>코팅 있음</option>
+                          <option>코팅 없음</option>
+                        </select>
+                      </label>
+                    </span>
+                  )}
+                </fieldset>
+                <fieldset>
+                  {(category === "normal" ||
+                    category === "binding" ||
+                    category === "actual") && (
+                    <details>
+                      <summary>설정 더보기</summary>
+                      <label for="paper">
+                        종이
+                        <select
+                          id="paper"
+                          name="paper"
+                          onChange={async (e) => {
+                            onOrderFieldChange(e, setOrderPaper);
+                          }}
+                        >
+                          <option>-----</option>
+                          <option>스노우지</option>
+                          <option>마시멜로우지</option>
+                        </select>
+                      </label>
+                      <label for="color">
+                        컬러
+                        <select
+                          id="color"
+                          name="color"
+                          onChange={async (e) => {
+                            onOrderFieldChange(e, setOrderColor);
+                          }}
+                        >
+                          <option>-----</option>
+                          <option>빨간색</option>
+                          <option>파란색</option>
+                          <option>아이보리색</option>
+                          <option>검은색</option>
+                        </select>
+                      </label>
+                    </details>
+                  )}
+                  {(category === "labeling" || category === "photo") && (
+                    <label for="color">
+                      컬러
+                      <select
+                        id="color"
+                        name="color"
+                        onChange={async (e) => {
+                          onOrderFieldChange(e, setOrderColor);
+                        }}
+                      >
+                        <option>-----</option>
+                        <option>빨간색</option>
+                        <option>파란색</option>
+                        <option>아이보리색</option>
+                        <option>검은색</option>
+                      </select>
+                    </label>
+                  )}
+                  <span>
+                    <label for="moreInfo">
+                      추가사항
+                      <textarea
+                        id="moreInfo"
+                        name="moreInfo"
+                        onChange={async (e) => {
+                          onOrderFieldChange(e, setOrderMoreInfo);
+                        }}
+                        placeholder="추가요청 사항을 적어주세요!"
+                      ></textarea>
+                    </label>
+                  </span>
+                </fieldset>
+              </>
+            )}
           </div>
           <div id="buttons">
             <button
