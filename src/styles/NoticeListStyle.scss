@@ -48,9 +48,10 @@
 }
 
 .noticeBoxContainer {
-  justify-content: start;
-  width: 100%;
+  justify-content: flex-start;
+  width: 1412px;
   height: 490px;
+  margin-left: 100px;
   display: flex;
   overflow: hidden;
   .cardNotice {
@@ -58,8 +59,6 @@
     width: 400px;
     height: 45.2vh;
     margin: 0.7%;
-    //margin-right: 2.6%;
-    // gap: 0.7%;
     flex-shrink: 0;
     border-radius: 0.7%;
     box-shadow: 0px 4px 10px 0px $black25Color;
@@ -106,25 +105,27 @@
 }
 
 .swiper-wrapper {
-  margin-left: 100px;
-  max-width: 1412px;
+  width: 1412px;
+  .swiper-container {
+    width: 100%;
+    height: 400px;
+    .swiper-pagination-bullet-active {
+      background: $black100Color;
+    }
+  }
+  .swiper-slide {
+    width: 400px;
+  }
 }
-.swiper-pagination-bullet-active {
-  background: $black100Color;
-}
-
 .swiper-button-prev::after {
   color: $black100Color;
   margin-top: 450px;
-  margin-left: 200px;
 }
-
 .swiper-button-next::after {
   color: $black100Color;
   margin-top: 450px;
   margin-right: 200px;
 }
-
 .swiper-pagination {
   display: flex;
   justify-content: center;
