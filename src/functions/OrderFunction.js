@@ -110,7 +110,7 @@ export const onOrderAttachmentChage = (
     orderFileName.match(".jpeg") ||
     orderFileName.match(".gif") ||
     orderFileName.match(".bmp") ||
-    orderFile.match(".svg")
+    orderFileName.match(".svg")
   ) {
     setIsPdf(false);
   }
