@@ -2,8 +2,6 @@ import { createNewOrderDocument } from "repositories/OrderRepository";
 import { storageService } from "fbase";
 import moment from "moment";
 import "moment/locale/ko";
-
-import { Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 
 export const onOrderSubmit = async (
@@ -85,10 +83,9 @@ export const onOrderAttachmentChage = (
   event,
   setOrderAttachment,
   setOrderAttachmentName,
-  setUrl,
+  setImageUrl,
   setIsFileUploadButton,
   setIsPdf
-
 ) => {
   const {
     target: { files },
@@ -104,10 +101,17 @@ export const onOrderAttachmentChage = (
     setOrderAttachment(result);
   };
   orderFileReader.readAsDataURL(orderFile);
-  setUrl(URL.createObjectURL(files[0]));
+  setImageUrl(URL.createObjectURL(files[0]));
   setIsFileUploadButton(false);
-  if(orderFileName.match(".pdf")) setIsPdf(true);
-  else if(orderFileName.match(".png") ||orderFileName.match(".jpg") || orderFileName.match(".jpeg") || orderFileName.match(".gif") || orderFileName.match(".bmp") || orderFile.match(".svg")){
+  if (orderFileName.match(".pdf")) setIsPdf(true);
+  else if (
+    orderFileName.match(".png") ||
+    orderFileName.match(".jpg") ||
+    orderFileName.match(".jpeg") ||
+    orderFileName.match(".gif") ||
+    orderFileName.match(".bmp") ||
+    orderFile.match(".svg")
+  ) {
     setIsPdf(false);
   }
 };

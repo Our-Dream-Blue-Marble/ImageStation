@@ -27,7 +27,7 @@ const OrderPage = () => {
   const [orderAttachmentName, setOrderAttachmentName] = useState("");
   const [isSubmitButton, setIsSubmitButton] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
-  const [url, setUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [isFileUploadButton, setIsFileUploadButton] = useState(true);
   const [isPdf, setIsPdf] = useState(false);
   const location = useLocation();
@@ -87,7 +87,7 @@ const OrderPage = () => {
                       e,
                       setOrderAttachment,
                       setOrderAttachmentName,
-                      setUrl,
+                      setImageUrl,
                       setIsFileUploadButton,
                       setIsPdf
                     );
@@ -110,7 +110,7 @@ const OrderPage = () => {
             )}
             <div style={{ height: "402px", width: "304px" }}>
               {isPdf
-                ? url !== "" &&
+                ? imageUrl !== "" &&
                   isFileUploadButton === false && (
                     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
                       <div
@@ -119,12 +119,12 @@ const OrderPage = () => {
                           height: "100%",
                         }}
                       >
-                        <Viewer fileUrl={url} />
+                        <Viewer fileUrl={imageUrl} />
                       </div>
                     </Worker>
                   )
-                : url !== "" &&
-                  isFileUploadButton === false && <img src={url} />}
+                : imageUrl !== "" &&
+                  isFileUploadButton === false && <img src={imageUrl} />}
             </div>
           </div>
           <div className="OrderContainer-right">
