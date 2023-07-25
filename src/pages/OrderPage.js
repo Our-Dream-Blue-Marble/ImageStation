@@ -29,6 +29,7 @@ const OrderPage = () => {
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [url, setUrl] = useState("");
   const [isFileUploadButton, setIsFileUploadButton] = useState(true);
+  const [isPdf, setIsPdf] = useState(false);
   const location = useLocation();
   const category = location.state.data;
 
@@ -87,7 +88,8 @@ const OrderPage = () => {
                       setOrderAttachment,
                       setOrderAttachmentName,
                       setUrl,
-                      setIsFileUploadButton
+                      setIsFileUploadButton,
+                      setIsPdf
                     );
                   }}
                 />
@@ -107,21 +109,24 @@ const OrderPage = () => {
               </button>
             )}
             <div style={{ height: "402px", width: "304px" }}>
-              {url !== "" && isFileUploadButton === false && (
-                <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-                  <div
-                    style={{
-                      border: "1px solid rgba(0, 0, 0, 0.3)",
-                      height: "100%",
-                    }}
-                  >
-                    <Viewer fileUrl={url} />
-                  </div>
-                </Worker>
-              )}
+              {isPdf
+                ? url !== "" &&
+                  isFileUploadButton === false && (
+                    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                      <div
+                        style={{
+                          border: "1px solid rgba(0, 0, 0, 0.3)",
+                          height: "100%",
+                        }}
+                      >
+                        <Viewer fileUrl={url} />
+                      </div>
+                    </Worker>
+                  )
+                : url !== "" &&
+                  isFileUploadButton === false && <img src={url} />}
             </div>
           </div>
-
           <div className="OrderContainer-right">
             {category === "normal" && <h1>일반 주문예약</h1>}
             {category === "binding" && <h1>제본 주문예약</h1>}
