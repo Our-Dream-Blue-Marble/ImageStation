@@ -126,7 +126,6 @@ export const getEncryptedData = (uid, userData) => {
     JSON.stringify(userData),
     privateKey
   ).toString();
-  console.log(uid);
   return encryptedData;
 };
 
