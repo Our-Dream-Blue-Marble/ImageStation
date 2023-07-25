@@ -34,12 +34,12 @@ const OrderPage = () => {
   const category = location.state.data;
 
   useEffect(() => {
-    if (orderTitle !== "") {
+    if (orderTitle !== "" && imageUrl !== "") {
       setIsPossibleSubmit(true);
     } else {
       setIsPossibleSubmit(false);
     }
-  }, [orderTitle]);
+  }, [orderTitle, imageUrl]);
 
   return (
     <div className="OrderLayout">
@@ -103,6 +103,7 @@ const OrderPage = () => {
               <button
                 onClick={(e) => {
                   setIsFileUploadButton(true);
+                  setImageUrl("");
                 }}
               >
                 업로드 취소
