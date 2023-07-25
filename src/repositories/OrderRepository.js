@@ -1,4 +1,5 @@
 import { authService, dbService } from "fbase";
+import MyOrderModel, { MyOrderModelConverter } from "models/MyOrderModel";
 import OrderModel, { OrderModelConverter } from "models/OrderModel";
 
 export const createNewOrderDocument = async (
@@ -44,8 +45,19 @@ export const createNewOrderDocument = async (
         0
       )
     )
-    .then(() => {
-      return true;
+    .then(async () => {
+      const myOrderRef = dbService.collection("orders").doc(String(docId));
+      await userDocRef
+        .collection("myOrders")
+        .doc(String(docId))
+        .withConverter(MyOrderModelConverter)
+        .set(new MyOrderModel(docId, authService.currentUser.uid, myOrderRef))
+        .then(() => {
+          return true;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     })
     .catch((e) => {
       console.log(e);

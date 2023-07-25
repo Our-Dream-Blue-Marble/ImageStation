@@ -1,4 +1,3 @@
-import { element } from "prop-types";
 import {
   readOrderListDocument,
   updateOrderStateDocument,
@@ -15,9 +14,6 @@ export const getOrderConfirmList = async (setOrderList) => {
       element.userDocRef = value.data();
     });
   });
-
-  console.log(orderConfirmArray);
-
   setOrderList(orderConfirmArray);
 };
 
