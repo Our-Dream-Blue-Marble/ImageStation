@@ -5,7 +5,7 @@ import { NoticeListRouteName, NoticeWriteRouteName } from "routes/RouteName";
 import { getNoticeList, getNoticeWrittenDate } from "functions/NoticeFunction";
 import "styles/NoticeListStyle.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination } from "swiper";
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 
 const NoticeListPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -44,7 +44,8 @@ const NoticeListPage = ({ isAdmin }) => {
                 navigate(NoticeWriteRouteName, {
                   state: { data: notice[0] },
                 })
-              }>
+              }
+            >
               +
             </button>
           ) : null}
@@ -53,10 +54,11 @@ const NoticeListPage = ({ isAdmin }) => {
 
       <div className="noticeBoxContainer">
         <Swiper
-          spaceBetween={40}
-          slidesPerView={3.55}
+          spaceBetween={150}
+          slidesPerView={3.5}
           slidesPerGroup={3}
           navigation={true}
+          loop={true}
           pagination={{
             clickable: true,
             // el: ".snp-pagination",
@@ -69,21 +71,23 @@ const NoticeListPage = ({ isAdmin }) => {
           modules={[Navigation, Pagination]}
         >
           {notice.map((value) => (
-            <SwiperSlide
-              key={value.id}
-              className="cardNotice"
-              onClick={() =>
-                navigate(NoticeListRouteName + "/" + value.id, {
-                  state: { data: value },
-                })
-              }
-            >
-              <div className="contentCard">
-                <div className=" noticeListTitle">{value.title}</div>
-                <div className=" noticeListDate">
-                  {getNoticeWrittenDate(value)}
+            <SwiperSlide className="swiper-wrapper ">
+              <div
+                key={value.id}
+                className="cardNotice"
+                onClick={() =>
+                  navigate(NoticeListRouteName + "/" + value.id, {
+                    state: { data: value },
+                  })
+                }
+              >
+                <div className="contentCard">
+                  <div className=" noticeListTitle">{value.title}</div>
+                  <div className=" noticeListDate">
+                    {getNoticeWrittenDate(value)}
+                  </div>
+                  <pre className="noticeListBody">{value.body}</pre>
                 </div>
-                <pre className="noticeListBody">{value.body}</pre>            
               </div>
             </SwiperSlide>
           ))}
