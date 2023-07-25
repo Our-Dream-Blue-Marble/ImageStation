@@ -91,7 +91,7 @@ export const OrderModelConverter = {
 
 OrderModel.propTypes = {
   docId: PropTypes.number.isRequired,
-  userDocRef: PropTypes.string.isRequired,
+  userDocRef: PropTypes.object.isRequired,
   category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   page: PropTypes.number.isRequired,

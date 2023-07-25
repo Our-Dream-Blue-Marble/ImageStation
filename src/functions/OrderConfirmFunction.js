@@ -1,3 +1,4 @@
+import { element } from "prop-types";
 import {
   readOrderListDocument,
   updateOrderStateDocument,
@@ -5,10 +6,18 @@ import {
 
 export const getOrderConfirmList = async (setOrderList) => {
   const orderConfirmList = await readOrderListDocument();
-  const orderConfirmArray = orderConfirmList.docs.map((doc) => ({
+  let orderConfirmArray = orderConfirmList.docs.map((doc) => ({
     docId: doc.docId,
     ...doc.data(),
   }));
+  orderConfirmArray.forEach((element) => {
+    element.userDocRef.get().then((value) => {
+      element.userDocRef = value.data();
+    });
+  });
+
+  console.log(orderConfirmArray);
+
   setOrderList(orderConfirmArray);
 };
 
