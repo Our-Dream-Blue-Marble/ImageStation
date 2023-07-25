@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { NoticeListRouteName, NoticeWriteRouteName } from "routes/RouteName";
 import { getNoticeList, getNoticeWrittenDate } from "functions/NoticeFunction";
 import "styles/NoticeListStyle.scss";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation, Pagination } from "swiper";
 
 const NoticeListPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -28,6 +30,8 @@ const NoticeListPage = ({ isAdmin }) => {
     }
   }, [isNoticeDeleted]);
 
+  SwiperCore.use([Navigation, Pagination]);
+
   return (
     <div className="noticeListLayout">
       <div className="noticeHead">
@@ -49,34 +53,52 @@ const NoticeListPage = ({ isAdmin }) => {
       </div>
 
       <div className="noticeBoxContainer">
-        {notice.slice(offset, offset + limit).map((value) => (
-          <div className="cardNotice" key={value.id}>
-            <div
-              className="contentCard"
+        <Swiper
+          spaceBetween={40}
+          slidesPerView={3.55}
+          slidesPerGroup={3}
+          navigation={true}
+          pagination={{
+            clickable: true,
+            // el: ".snp-pagination",
+            // renderBullet: function (index, className) {
+            //   return (
+            //     '<span class="' + className + '">' + (index + 1) + "</span>"
+            //   );
+            // },
+          }}
+          modules={[Navigation, Pagination]}
+        >
+          {notice.map((value) => (
+            <SwiperSlide
+              key={value.id}
+              className="cardNotice"
               onClick={() =>
                 navigate(NoticeListRouteName + "/" + value.id, {
                   state: { data: value },
                 })
               }
             >
-              <div className=" noticeListTitle">{value.title}</div>
-              <div className=" noticeListDate">
-                {getNoticeWrittenDate(value)}
+              <div className="contentCard">
+                <div className=" noticeListTitle">{value.title}</div>
+                <div className=" noticeListDate">
+                  {getNoticeWrittenDate(value)}
+                </div>
+                <pre className="noticeListBody">{value.body}</pre>
               </div>
-              <pre className="noticeListBody">{value.body}</pre>
-            </div>
-          </div>
-        ))}
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
-      <footer>
+      {/* <footer>
         <NoticePagination
           total={notice.length}
           notices={limit}
           page={page}
           setPage={setPage}
         />
-      </footer>
+      </footer> */}
     </div>
   );
 };
