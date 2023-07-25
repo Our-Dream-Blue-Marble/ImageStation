@@ -1,31 +1,123 @@
 @import "styles/ThemeStyles.scss";
 
 .OrderConfirmViewBody {
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  @include centerFormat();
+  height: 100%;
+  padding-top: 9.3vh;
+  padding-bottom: 4.2vh;
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: cover;
 
-  .FileLayout {
-    width: 34.6%;
-    height: 79.2vh;
-    margin-right: 10.1%;
-    border-radius: 10px;
-    background: $white60Color;
-  }
-
-  .InfoLayout {
-    width: 21.2%;
-    height: 79.2vh;
-  }
-
-  #title {
-    display: inline-flex;
+  .AllLayout {
+    display: flex;
     flex-direction: row;
-    @include heading2Font($black100Color);
+    @include centerFormat();
+    .FileLayout {
+      width: 32.7%;
+      height: 79.2vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px 0px 0px 10px;
+      background: $black25Color;
+      margin: 0;
+      padding: 0;
+
+      .rpv-core__inner-page {
+        display: inline-flex;
+        justify-content: end;
+        background-color: transparent;
+      }
+
+      .rpv-core__inner-container {
+        margin: 0;
+        padding: 0;
+      }
+
+      .core__inner-pages {
+        scrollbar-width: 8px;
+      }
+
+      div {
+        justify-content: center;
+        width: 95%;
+        height: 95%;
+        margin: 0;
+        padding: 0;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+      }
+    }
+
+    .InfoLayout {
+      width: 24.3%;
+      height: 79.2vh;
+      display: flex;
+      flex-direction: column;
+
+      border-radius: 0px 10px 10px 0px;
+      background: $white60Color;
+    }
+
+    .categoryAllContent {
+      margin-left: 2.6vw;
+      padding-right: 2.2vw;
+      margin-top: 2.4vh;
+      margin-bottom: 2.4vh;
+      overflow-y: scroll;
+
+      hr {
+        height: 1px;
+        padding: 0;
+        margin: 0;
+        margin-top: 1.9vh;
+        margin-bottom: 2.4vh;
+        border: none;
+        background-color: $black100Color;
+      }
+    }
+
+    #categoryTitleLayout {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      #category {
+        @include heading2Font($black100Color);
+        text-align: left;
+      }
+
+      #docId {
+        @include body1Font($black100Color);
+        text-align: right;
+      }
+    }
+
+    .categoryAllLayout {
+      display: flex;
+      flex-direction: row;
+      padding-top: 3.4vh;
+
+      .categoryKeyText {
+        width: 70px;
+        padding-right: 2.8vw;
+        @include body1Font($black75Color);
+      }
+
+      .categoryValueText {
+        @include subHeading3Font($black100Color);
+      }
+    }
+
+    .categoryAttachment {
+      display: flex;
+      @include body1Font($primaryColor);
+      margin-bottom: 2.5vh;
+    }
   }
 }
