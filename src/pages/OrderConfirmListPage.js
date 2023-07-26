@@ -8,6 +8,8 @@ import {
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { OrderConfirmListRouteName } from "routes/RouteName";
+import { ReactComponent as ArrowLeftIconAsset } from "assets/icons/ArrowLeftIconAsset.svg";
+import { ReactComponent as ArrowRightIconAsset } from "assets/icons/ArrowRightIconAsset.svg";
 import "styles/OrderConfirmListStyle.scss";
 
 const OrderConfirmListPage = ({ isAdmin, userObject }) => {
@@ -72,7 +74,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
           onClick={(e) => setPaginationNowPage(paginationNowPage - 1)}
           disabled={paginationNowPage === 1}
         >
-          &lt;
+          <ArrowLeftIconAsset />
         </button>
 
         {Array(Math.ceil(orderConfirmList.length / paginationLimit))
@@ -101,7 +103,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
             Math.ceil(orderConfirmList.length / paginationLimit)
           }
         >
-          &gt;
+          <ArrowRightIconAsset />
         </button>
       </div>
     </div>
