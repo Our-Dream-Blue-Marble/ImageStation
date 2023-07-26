@@ -171,19 +171,24 @@ const OrderPage = () => {
                           <option value={2}>홀수</option>
                         </select>
                       </span>
-                      <span>
-                        <label>레이아웃</label>
-                        <select
-                          name="layout"
-                          onChange={async (e) => {
-                            onOrderFieldChange(e, setOrderLayout);
-                          }}
-                        >
-                          <option></option>
-                          <option>가로 방향</option>
-                          <option>세로 방향</option>
-                        </select>
-                      </span>
+                      {(category === "normal" ||
+                        category === "binding" ||
+                        category === "actual") && (
+                        <span>
+                          <label>레이아웃</label>
+                          <select
+                            name="layout"
+                            onChange={async (e) => {
+                              onOrderFieldChange(e, setOrderLayout);
+                            }}
+                          >
+                            <option></option>
+                            <option>가로 방향</option>
+                            <option>세로 방향</option>
+                          </select>
+                        </span>
+                      )}
+
                       {category !== "labeling" && (
                         <span>
                           <label>사이즈</label>
@@ -202,32 +207,39 @@ const OrderPage = () => {
                         </span>
                       )}
                       {category === "binding" && (
-                        <span>
-                          <label>
-                            제본방식
-                            <select
-                              name="binding"
-                              onChange={async (e) => {
-                                onOrderFieldChange(e, setOrderBinding);
-                              }}
-                            >
-                              <option></option>
-                              <option>B4</option>
-                              <option>B2</option>
-                            </select>
-                          </label>
-                          <label>코팅</label>
-                          <select
-                            name="coating"
-                            onChange={async (e) => {
-                              onOrderFieldChange(e, setOrderCoating);
-                            }}
-                          >
-                            <option></option>
-                            <option>코팅 있음</option>
-                            <option>코팅 없음</option>
-                          </select>
-                        </span>
+                        <>
+                          <span>
+                            <label>
+                              제본방식
+                              <select
+                                name="binding"
+                                onChange={async (e) => {
+                                  onOrderFieldChange(e, setOrderBinding);
+                                }}
+                              >
+                                <option></option>
+                                <option>B4</option>
+                                <option>B2</option>
+                              </select>
+                            </label>
+                          </span>
+
+                          <span>
+                            <label>
+                              코팅
+                              <select
+                                name="coating"
+                                onChange={async (e) => {
+                                  onOrderFieldChange(e, setOrderCoating);
+                                }}
+                              >
+                                <option></option>
+                                <option>코팅 있음</option>
+                                <option>코팅 없음</option>
+                              </select>
+                            </label>
+                          </span>
+                        </>
                       )}
                     </fieldset>
                     <fieldset>
@@ -266,22 +278,23 @@ const OrderPage = () => {
                           </span>
                         </details>
                       )}
-                      {(category === "labeling" || category === "photo") && (
-                        <label>
-                          컬러
-                          <select
-                            name="color"
-                            onChange={async (e) => {
-                              onOrderFieldChange(e, setOrderColor);
-                            }}
-                          >
-                            <option></option>
-                            <option>흑백</option>
-                            <option>컬러</option>
-                          </select>
-                        </label>
-                      )}
                     </fieldset>
+                    {(category === "labeling" || category === "photo") && (
+                      <span>
+                        <label>컬러</label>
+                        <select
+                          name="layout"
+                          onChange={async (e) => {
+                            onOrderFieldChange(e, setOrderLayout);
+                          }}
+                        >
+                          <option></option>
+                          <option>컬러</option>
+                          <option>흑백</option>
+                        </select>
+                      </span>
+                    )}
+
                     <span className="moreInfoContainer">
                       <label>
                         주문사항
