@@ -1,3 +1,5 @@
+import { dbService } from "fbase";
+import MyOrderModel, { MyOrderModelConverter } from "models/MyOrderModel";
 import {
   readOrderListDocument,
   updateOrderStateDocument,
@@ -18,17 +20,23 @@ export const getAdminOrderConfirmList = async (setOrderList) => {
 };
 
 export const getNotAdminOrderConfirmList = async (userObject, setOrderList) => {
-  const orderConfirmList = await readOrderListDocument();
-  let orderConfirmArray = orderConfirmList.docs.map((doc) => ({
-    docId: doc.docId,
+  const userMyOrderDocRef = await dbService
+    .collection("users")
+    .doc(userObject.uid)
+    .collection("myOrders")
+    .get();
+  const userMyOrderDocList = userMyOrderDocRef.docs.map((doc) => ({
+    docId: doc.Id,
     ...doc.data(),
   }));
-  orderConfirmArray.forEach((element) => {
-    element.userDocRef.get().then((value) => {
-      element.userDocRef = value.data();
+
+  userMyOrderDocList.forEach((element) => {
+    element.orderDocRef.get().then((value) => {
+      element.orderDocRef = value.data();
     });
   });
-  setOrderList(orderConfirmArray);
+  console.log(userMyOrderDocList);
+  setOrderList(userMyOrderDocList);
 };
 
 export const getOrderSubmitDate = (orderConfirm) => {
