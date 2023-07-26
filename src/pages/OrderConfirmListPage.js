@@ -13,6 +13,9 @@ import "styles/OrderConfirmListStyle.scss";
 const OrderConfirmListPage = ({ isAdmin, userObject }) => {
   const navigate = useNavigate();
   const [orderConfirmList, setOrderConfirmList] = useState([]);
+  const paginationLimit = 2;
+  const [paginationNowPage, setPaginationNowPage] = useState(1);
+  const paginationOffset = (paginationNowPage - 1) * paginationLimit;
 
   useEffect(() => {
     if (isAdmin) {
@@ -35,37 +38,72 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
           <th className="header_text">주문 상태</th>
         </div>
         <hr id="headers_line" />
-        {orderConfirmList.map((order, i) => (
-          <>
-            {isAdmin ? {} : <></>}
-            <tr
-              key={order.docId}
-              className="OrderConfirmView_Container"
-              onClick={() =>
-                navigate(`${OrderConfirmListRouteName}/${order.docId}`, {
-                  state: { data: order },
-                })
-              }>
-              <td id="order_attachemnt">
-                <embed src={order.attachment}></embed>
-              </td>
-              <td id="order_info">
-                <span id="info_category">{order.category}</span>
-                <span id="info_title">{order.title}</span>
-                <span id="info_paper">{order.size}</span>
-              </td>
-              <td id="order_date">{getOrderSubmitDate(order)}</td>
-              <td id="order_num">{order.docId}</td>
-              <td id="order_money">{order.totalMoney}</td>
-              <td id="order_state"></td>
-            </tr>
-            {orderConfirmList.length - 1 > i && (
-              <hr id="OrderConfirmView_line" />
-            )}
-          </>
-        ))}
+        {orderConfirmList
+          .slice(paginationOffset, paginationOffset + paginationLimit)
+          .map((order, i) => (
+            <>
+              <tr
+                className="OrderConfirmView_Container"
+                onClick={() =>
+                  navigate(`${OrderConfirmListRouteName}/${order.docId}`, {
+                    state: { data: order },
+                  })
+                }
+              >
+                <td id="order_attachemnt">
+                  <embed src={order.attachment}></embed>
+                </td>
+                <td id="order_info">
+                  <span id="info_category">{order.category}</span>
+                  <span id="info_title">{order.title}</span>
+                  <span id="info_paper">{order.size}</span>
+                </td>
+                <td id="order_date">{getOrderSubmitDate(order)}</td>
+                <td id="order_num">{order.docId}</td>
+                <td id="order_money">{order.totalMoney}</td>
+                <td id="order_state"></td>
+              </tr>
+              {paginationLimit - 1 > i && <hr id="OrderConfirmView_line" />}
+            </>
+          ))}
       </table>
-      <div id="OrderConfirmListFooter">1</div>
+      <div id="OrderConfirmListFooter">
+        <button
+          onClick={(e) => setPaginationNowPage(paginationNowPage - 1)}
+          disabled={paginationNowPage === 1}
+        >
+          &lt;
+        </button>
+
+        {Array(Math.ceil(orderConfirmList.length / paginationLimit))
+          .fill
+          // [],
+          // paginationNowPage === 1 ? 1 : paginationNowPage - 1,
+          // paginationNowPage ===
+          //   Math.ceil(OrderConfirmListPage.length / paginationLimit)
+          //   ? paginationNowPage
+          //   : paginationNowPage + 1
+          ()
+          .map((_, i) => (
+            <button
+              key={i + 1}
+              onClick={(e) => setPaginationNowPage(i + 1)}
+              aria-current={paginationNowPage === i + 1 && "nowPage"}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+        <button
+          onClick={(e) => setPaginationNowPage(paginationNowPage + 1)}
+          disabled={
+            paginationNowPage ===
+            Math.ceil(orderConfirmList.length / paginationLimit)
+          }
+        >
+          &gt;
+        </button>
+      </div>
     </div>
   );
 };
