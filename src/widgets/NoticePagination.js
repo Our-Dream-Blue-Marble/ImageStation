@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import "styles/NoticeListStyle.scss";
 import ArrowImage from "../assets/ArrowAsset.svg";
+import { useState } from "react";
 
 function Pagination({ total, notices, page, setPage }) {
   const numPages = Math.ceil(total / notices);
-
   return (
     <div className="paginationBar">
       <button
         className="paginationLtBtn"
-        onClick={() => setPage(page - 1)}
+        onClick={() => {
+          setPage(page - 1);
+        }}
         disabled={page === 1}
       >
         <img src={ArrowImage} />
