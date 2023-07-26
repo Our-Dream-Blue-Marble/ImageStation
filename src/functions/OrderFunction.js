@@ -57,7 +57,6 @@ export const onOrderFieldChange = (event, setValue) => {
   const {
     target: { name, value },
   } = event;
-  console.log(event);
   if (name === "title") {
     setValue(value);
   } else if (name === "page") {
