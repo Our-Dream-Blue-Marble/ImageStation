@@ -151,12 +151,26 @@
           float: right;
         }
 
-    .moreInfoContainer {
-      height: 190px;
-      width: 308px;
-      display: inline-block;
-      padding-bottom: 14px;
-      margin-left: 20px;
+        textarea::placeholder {
+          padding-left: 10px;
+          @include captionFont($black50Color);
+        }
+
+        span {
+          width: 290px;
+          display: block;
+          margin-top: 14px;
+          margin-bottom: 14px;
+          height: 42px;
+        }
+
+        .moreInfoContainer {
+          height: 99px;
+          width: 290px;
+          display: inline-block;
+          padding-bottom: 14px;
+        }
+      }
     }
   }
 
@@ -171,7 +185,7 @@
 #buttons {
   display: inline;
   gap: 20px;
-}
+
   .OrderCancelBtn {
     @include heading2Font($black100Color);
     width: 13.8vw;
