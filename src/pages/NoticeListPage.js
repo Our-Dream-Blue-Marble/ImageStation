@@ -54,24 +54,18 @@ const NoticeListPage = ({ isAdmin }) => {
 
       <div className="noticeBoxContainer">
         <Swiper
-          spaceBetween={150}
-          slidesPerView={3.5}
+          spaceBetween={350}
+          slidesPerView={4}
           slidesPerGroup={3}
           navigation={true}
-          loop={true}
+          loopPreventsSliding={true}
           pagination={{
             clickable: true,
-            // el: ".snp-pagination",
-            // renderBullet: function (index, className) {
-            //   return (
-            //     '<span class="' + className + '">' + (index + 1) + "</span>"
-            //   );
-            // },
           }}
           modules={[Navigation, Pagination]}
         >
           {notice.map((value) => (
-            <SwiperSlide className="swiper-wrapper ">
+            <SwiperSlide className="swiper-wrapper">
               <div
                 key={value.id}
                 className="cardNotice"
