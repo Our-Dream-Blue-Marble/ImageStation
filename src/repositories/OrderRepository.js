@@ -1,4 +1,5 @@
 import { authService, dbService } from "fbase";
+import MyOrderModel, { MyOrderModelConverter } from "models/MyOrderModel";
 import OrderModel, { OrderModelConverter } from "models/OrderModel";
 
 export const createNewOrderDocument = async (
@@ -16,16 +17,17 @@ export const createNewOrderDocument = async (
   attachment,
   attachmentName
 ) => {
- 
-  const uid = authService.currentUser.uid;
+  const userDocRef = dbService
+    .collection("users")
+    .doc(authService.currentUser.uid);
   await dbService
-    .collection("order")
+    .collection("orders")
     .doc(String(docId))
     .withConverter(OrderModelConverter)
     .set(
       new OrderModel(
         docId,
-        uid,
+        userDocRef,
         category,
         title,
         page,
@@ -43,8 +45,19 @@ export const createNewOrderDocument = async (
         0
       )
     )
-    .then(() => {
-      return true;
+    .then(async () => {
+      const myOrderRef = dbService.collection("orders").doc(String(docId));
+      await userDocRef
+        .collection("myOrders")
+        .doc(String(docId))
+        .withConverter(MyOrderModelConverter)
+        .set(new MyOrderModel(docId, authService.currentUser.uid, myOrderRef))
+        .then(() => {
+          return true;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     })
     .catch((e) => {
       console.log(e);
@@ -55,7 +68,7 @@ export const createNewOrderDocument = async (
 export const readOrderDocument = async (docId) => {
   let orderModel;
   await dbService
-    .collection("order")
+    .collection("orders")
     .doc(docId)
     .withConverter(OrderModelConverter)
     .get()
@@ -72,7 +85,7 @@ export const readOrderDocument = async (docId) => {
 
 export const readOrderListDocument = async () => {
   const orderArrayModel = await dbService
-    .collection("order")
+    .collection("orders")
     .orderBy("state", "desc")
     .get();
   return orderArrayModel;
@@ -80,7 +93,7 @@ export const readOrderListDocument = async () => {
 
 export const updateOrderStateDocument = async (docId, newState) => {
   const orderDocumentRef = await dbService
-    .collection("order")
+    .collection("orders")
     .doc(String(docId));
   await orderDocumentRef
     .update({ state: newState })

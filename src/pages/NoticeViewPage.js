@@ -15,9 +15,8 @@ const NoticeViewPage = ({ isAdmin }) => {
   const [noticeViewObj, setNoticeViewObj] = useState(null);
   const { id } = useParams();
   const [clickedDelete, setClickedDelete] = useState(false);
-  const noticeData = location.state.data;
   useEffect(() => {
-    if (noticeData === null) {
+    if (location.state === null) {
       if (noticeViewObj === null && id !== null) {
         readNoticeDocument(id).then((result) => {
           setNoticeViewObj(result);
@@ -25,10 +24,10 @@ const NoticeViewPage = ({ isAdmin }) => {
       }
     } else {
       if (noticeViewObj === null && id !== null) {
-        setNoticeViewObj(noticeData);
+        setNoticeViewObj(location.state.data);
       }
     }
-  }, [noticeData, noticeViewObj, id]);
+  }, [noticeViewObj, id, location.state]);
 
   return (
     <>

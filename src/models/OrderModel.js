@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 class OrderModel {
   constructor(
     docId,
-    uid,
+    userDocRef,
     category,
     title,
     page,
@@ -21,7 +21,7 @@ class OrderModel {
     completeTime
   ) {
     this.docId = docId;
-    this.uid = uid;
+    this.userDocRef = userDocRef;
     this.category = category;
     this.title = title;
     this.page = page;
@@ -41,7 +41,7 @@ class OrderModel {
   toData() {
     return {
       docId: this.docId,
-      uid: this.uid,
+      userDocRef: this.userDocRef,
       category: this.category,
       title: this.title,
       page: this.page,
@@ -65,7 +65,7 @@ export const OrderModelConverter = {
   toFirestore: function (data) {
     return {
       docId: data.docId,
-      uid: data.uid,
+      userDocRef: data.userDocRef,
       category: data.category,
       title: data.title,
       page: data.page,
@@ -91,7 +91,7 @@ export const OrderModelConverter = {
 
 OrderModel.propTypes = {
   docId: PropTypes.number.isRequired,
-  uid: PropTypes.string.isRequired,
+  userDocRef: PropTypes.object.isRequired,
   category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   page: PropTypes.number.isRequired,

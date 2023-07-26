@@ -51,7 +51,6 @@ const AdminNoticeUpdatePage = () => {
                 ).then((result) => {
                   if (result) {
                     navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`, {
-                      state: { data: null },
                       replace: true,
                     });
                   }
