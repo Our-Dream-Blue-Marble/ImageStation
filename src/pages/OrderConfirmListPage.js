@@ -1,4 +1,6 @@
 import {
+  getAdminOrderConfirmList,
+  getNotAdminOrderConfirmList,
   getOrderConfirmList,
   getOrderSubmitDate,
   onOrderConfirmStateSelect,
@@ -8,12 +10,16 @@ import { useNavigate } from "react-router-dom";
 import { OrderConfirmListRouteName } from "routes/RouteName";
 import "styles/OrderConfirmListStyle.scss";
 
-const OrderConfirmListPage = () => {
+const OrderConfirmListPage = ({ isAdmin, userObject }) => {
   const navigate = useNavigate();
   const [orderConfirmList, setOrderConfirmList] = useState([]);
 
   useEffect(() => {
-    getOrderConfirmList(setOrderConfirmList);
+    if (isAdmin) {
+      getAdminOrderConfirmList(setOrderConfirmList);
+    } else {
+      getNotAdminOrderConfirmList(userObject, setOrderConfirmList);
+    }
   }, []);
 
   return (
@@ -31,6 +37,7 @@ const OrderConfirmListPage = () => {
         <hr id="headers_line" />
         {orderConfirmList.map((order, i) => (
           <>
+            {isAdmin ? {} : <></>}
             <tr
               key={order.docId}
               className="OrderConfirmView_Container"
@@ -38,8 +45,7 @@ const OrderConfirmListPage = () => {
                 navigate(`${OrderConfirmListRouteName}/${order.docId}`, {
                   state: { data: order },
                 })
-              }
-            >
+              }>
               <td id="order_attachemnt">
                 <embed src={order.attachment}></embed>
               </td>
@@ -51,27 +57,7 @@ const OrderConfirmListPage = () => {
               <td id="order_date">{getOrderSubmitDate(order)}</td>
               <td id="order_num">{order.docId}</td>
               <td id="order_money">{order.totalMoney}</td>
-              <td id="order_state">
-                {order.state === 0 && "완료"}
-                {order.state === 1 && "주문완료"}
-                {order.state === 2 && "준비중"}
-                {/* <select
-                  value={order.state}
-                  onChange={(e) =>
-                    onOrderConfirmStateSelect(
-                      e,
-                      order,
-                      orderConfirmList,
-                      setOrderConfirmList,
-                      i
-                    )
-                  }
-                >
-                  <option value={0}>완료</option>
-                  <option value={1}>주문</option>
-                  <option value={2}>접수</option>
-                </select> */}
-              </td>
+              <td id="order_state"></td>
             </tr>
             {orderConfirmList.length - 1 > i && (
               <hr id="OrderConfirmView_line" />

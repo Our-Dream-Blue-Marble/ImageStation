@@ -3,7 +3,21 @@ import {
   updateOrderStateDocument,
 } from "repositories/OrderRepository";
 
-export const getOrderConfirmList = async (setOrderList) => {
+export const getAdminOrderConfirmList = async (setOrderList) => {
+  const orderConfirmList = await readOrderListDocument();
+  let orderConfirmArray = orderConfirmList.docs.map((doc) => ({
+    docId: doc.docId,
+    ...doc.data(),
+  }));
+  orderConfirmArray.forEach((element) => {
+    element.userDocRef.get().then((value) => {
+      element.userDocRef = value.data();
+    });
+  });
+  setOrderList(orderConfirmArray);
+};
+
+export const getNotAdminOrderConfirmList = async (userObject, setOrderList) => {
   const orderConfirmList = await readOrderListDocument();
   let orderConfirmArray = orderConfirmList.docs.map((doc) => ({
     docId: doc.docId,
