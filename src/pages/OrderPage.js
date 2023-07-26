@@ -76,7 +76,7 @@ const OrderPage = () => {
           <div className="OrderContainer-left">
             {isFileUploadButton ? (
               <>
-                <label htmlFor="fileuploadbutton" className="FileUploadButton">
+                <label for="fileuploadbutton" className="FileUploadButton">
                   파일 업로드
                 </label>
                 <input
@@ -101,15 +101,16 @@ const OrderPage = () => {
               </>
             ) : (
               <button
+                className="FileCancleButton"
                 onClick={(e) => {
                   setIsFileUploadButton(true);
                   setImageUrl("");
                 }}
               >
-                업로드 취소
+                취소
               </button>
             )}
-            <div style={{ height: "402px", width: "304px" }}>
+            <div style={{ height: "470px", width: "300px" }}>
               {isPdf
                 ? imageUrl !== "" &&
                   isFileUploadButton === false && (
@@ -142,8 +143,8 @@ const OrderPage = () => {
                 {category === "actual" && <h1>실사대형출력 주문예약</h1>}
                 {category === "photo" && <h1>사진인화 주문예약</h1>}
                 <fieldset>
-                  <label for="title">
-                    제목
+                  <span>
+                    <label for="title">제목</label>
                     <input
                       id="title"
                       name="page"
@@ -152,12 +153,12 @@ const OrderPage = () => {
                         onOrderFieldChange(e, setOrderTitle);
                       }}
                       type="text"
-                      placeholder="제목을 입력하세요"
+                      placeholder="제목을 입력하세요."
                       maxLength={100}
                     />
-                  </label>
-                  <label for="page">
-                    페이지
+                  </span>
+                  <span>
+                    <label for="page">페이지</label>
                     <select
                       id="page"
                       name="page"
@@ -166,14 +167,14 @@ const OrderPage = () => {
                       }}
                     >
                       {" "}
-                      <option>-----</option>
+                      <option></option>
                       <option value={0}>전체</option>
                       <option value={1}>짝수</option>
                       <option value={2}>홀수</option>
                     </select>
-                  </label>
-                  <label for="layout">
-                    레이아웃
+                  </span>
+                  <span>
+                    <label for="layout">레이아웃</label>
                     <select
                       id="layout"
                       name="layout"
@@ -181,14 +182,14 @@ const OrderPage = () => {
                         onOrderFieldChange(e, setOrderLayout);
                       }}
                     >
-                      <option>-----</option>
+                      <option></option>
                       <option>가로 방향</option>
                       <option>세로 방향</option>
                     </select>
-                  </label>
+                  </span>
                   {category !== "labeling" && (
-                    <label for="size">
-                      사이즈
+                    <span>
+                      <label for="size">사이즈</label>
                       <select
                         id="size"
                         name="size"
@@ -196,13 +197,13 @@ const OrderPage = () => {
                           onOrderFieldChange(e, setOrderSize);
                         }}
                       >
-                        <option>-----</option>
+                        <option></option>
                         <option>A2</option>
                         <option>A3</option>
                         <option>A4</option>
                         <option>A5</option>
                       </select>
-                    </label>
+                    </span>
                   )}
                   {category === "binding" && (
                     <span>
@@ -215,25 +216,23 @@ const OrderPage = () => {
                             onOrderFieldChange(e, setOrderBinding);
                           }}
                         >
-                          <option>-----</option>
+                          <option></option>
                           <option>B4</option>
                           <option>B2</option>
                         </select>
                       </label>
-                      <label for="coating">
-                        코팅
-                        <select
-                          id="coating"
-                          name="coating"
-                          onChange={async (e) => {
-                            onOrderFieldChange(e, setOrderCoating);
-                          }}
-                        >
-                          <option>-----</option>
-                          <option>코팅 있음</option>
-                          <option>코팅 없음</option>
-                        </select>
-                      </label>
+                      <label for="coating">코팅</label>
+                      <select
+                        id="coating"
+                        name="coating"
+                        onChange={async (e) => {
+                          onOrderFieldChange(e, setOrderCoating);
+                        }}
+                      >
+                        <option></option>
+                        <option>코팅 있음</option>
+                        <option>코팅 없음</option>
+                      </select>
                     </span>
                   )}
                 </fieldset>
@@ -243,22 +242,24 @@ const OrderPage = () => {
                     category === "actual") && (
                     <details>
                       <summary>설정 더보기</summary>
-                      <label for="paper">
-                        종이
-                        <select
-                          id="paper"
-                          name="paper"
-                          onChange={async (e) => {
-                            onOrderFieldChange(e, setOrderPaper);
-                          }}
-                        >
-                          <option>-----</option>
-                          <option>스노우지</option>
-                          <option>마시멜로우지</option>
-                        </select>
-                      </label>
-                      <label for="color">
-                        컬러
+                      <span>
+                        <label for="paper">
+                          종이
+                          <select
+                            id="paper"
+                            name="paper"
+                            onChange={async (e) => {
+                              onOrderFieldChange(e, setOrderPaper);
+                            }}
+                          >
+                            <option></option>
+                            <option>스노우지</option>
+                            <option>마시멜로우지</option>
+                          </select>
+                        </label>
+                      </span>
+                      <span>
+                        <label for="color">컬러</label>
                         <select
                           id="color"
                           name="color"
@@ -266,13 +267,11 @@ const OrderPage = () => {
                             onOrderFieldChange(e, setOrderColor);
                           }}
                         >
-                          <option>-----</option>
-                          <option>빨간색</option>
-                          <option>파란색</option>
-                          <option>아이보리색</option>
-                          <option>검은색</option>
+                          <option></option>
+                          <option>흑백</option>
+                          <option>컬러</option>
                         </select>
-                      </label>
+                      </span>
                     </details>
                   )}
                   {(category === "labeling" || category === "photo") && (
@@ -285,28 +284,26 @@ const OrderPage = () => {
                           onOrderFieldChange(e, setOrderColor);
                         }}
                       >
-                        <option>-----</option>
-                        <option>빨간색</option>
-                        <option>파란색</option>
-                        <option>아이보리색</option>
-                        <option>검은색</option>
+                        <option></option>
+                        <option>흑백</option>
+                        <option>컬러</option>
                       </select>
                     </label>
                   )}
-                  <span>
-                    <label for="moreInfo">
-                      추가사항
-                      <textarea
-                        id="moreInfo"
-                        name="moreInfo"
-                        onChange={async (e) => {
-                          onOrderFieldChange(e, setOrderMoreInfo);
-                        }}
-                        placeholder="추가요청 사항을 적어주세요!"
-                      ></textarea>
-                    </label>
-                  </span>
                 </fieldset>
+                <span className="moreInfoContainer">
+                  <label for="moreInfo">
+                    추가사항
+                    <textarea
+                      id="moreInfo"
+                      name="moreInfo"
+                      onChange={async (e) => {
+                        onOrderFieldChange(e, setOrderMoreInfo);
+                      }}
+                      placeholder="추가요청 사항을 적어주세요!"
+                    ></textarea>
+                  </label>
+                </span>
               </>
             )}
           </div>
