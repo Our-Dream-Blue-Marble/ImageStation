@@ -5,7 +5,7 @@ import { NoticeListRouteName, NoticeWriteRouteName } from "routes/RouteName";
 import { getNoticeList, getNoticeWrittenDate } from "functions/NoticeFunction";
 import "styles/NoticeListStyle.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
+import SwiperCore, { Navigation, Pagination } from "swiper";
 
 const NoticeListPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -15,11 +15,9 @@ const NoticeListPage = ({ isAdmin }) => {
   const limit = 3;
   const offset = (page - 1) * limit;
   const [isNoticeDeleted, setIsNoticeDeleted] = useState(location.state);
-
   useEffect(() => {
     getNoticeList(setNotice);
   }, []);
-
   useEffect(() => {
     if (isNoticeDeleted) {
       getNoticeList(setNotice).then((result) => {
@@ -29,8 +27,6 @@ const NoticeListPage = ({ isAdmin }) => {
       });
     }
   }, [isNoticeDeleted]);
-
-  SwiperCore.use([Navigation, Pagination]);
 
   return (
     <div className="noticeListLayout">
@@ -53,51 +49,34 @@ const NoticeListPage = ({ isAdmin }) => {
       </div>
 
       <div className="noticeBoxContainer">
-        <Swiper
-          spaceBetween={350}
-          slidesPerView={4}
-          slidesPerGroup={3}
-          navigation={true}
-          loopPreventsSliding={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Navigation, Pagination]}
-        >
-          {notice.map((value) => (
-            <SwiperSlide className="swiper-wrapper">
-              <div
-                key={value.id}
-                className="cardNotice"
-                onClick={() =>
-                  navigate(NoticeListRouteName + "/" + value.id, {
-                    state: { data: value },
-                  })
-                }
-              >
-                <div className="contentCard">
-                  <div className=" noticeListTitle">{value.title}</div>
-                  <div className=" noticeListDate">
-                    {getNoticeWrittenDate(value)}
-                  </div>
-                  <pre className="noticeListBody">{value.body}</pre>
-                </div>
+        {notice.slice(offset, offset + limit).map((value) => (
+          <div className="cardNotice" key={value.id}>
+            <div
+              className="contentCard"
+              onClick={() =>
+                navigate(NoticeListRouteName + "/" + value.id, {
+                  state: { data: value },
+                })
+              }
+            >
+              <div className=" noticeListTitle">{value.title}</div>
+              <div className=" noticeListDate">
+                {getNoticeWrittenDate(value)}
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              <pre className="noticeListBody">{value.body}</pre>
+            </div>
+          </div>
+        ))}
       </div>
-
-      {/* <footer>
+      <footer>
         <NoticePagination
           total={notice.length}
           notices={limit}
           page={page}
           setPage={setPage}
         />
-      </footer> */}
+      </footer>
     </div>
   );
 };
-
 export default NoticeListPage;
