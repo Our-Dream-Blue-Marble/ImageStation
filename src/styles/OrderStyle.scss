@@ -93,17 +93,14 @@
       overflow-y: scroll;
       .categorySelect {
         width: 272px;
-        height: 519px;
+        height: 500px;
         margin-left: 30px;
         margin-right: 28px;
 
         fieldset {
           border-color: $black50Color;
           padding: 0;
-          border-top: none;
-          border-left: none;
-          border-right: none;
-          border-bottom: solid 0.5px;
+          border: none;
           width: 290px;
         }
 
@@ -116,6 +113,11 @@
           float: right;
         }
 
+        input::placeholder {
+          padding-left: 10px;
+          @include captionFont($black50Color);
+        }
+
         select {
           height: 42px;
           width: 192px;
@@ -124,6 +126,14 @@
           padding: 10px 18px;
           border: none;
           float: right;
+        }
+        details {
+          border-top: solid 1px;
+          border-color: rgba(33, 36, 39, 0.5);
+          border-left: none;
+          border-right: none;
+          border-bottom: solid 1px;
+          border-color: rgba(33, 36, 39, 0.5);
         }
         summary {
           margin-top: 14px;
@@ -137,16 +147,17 @@
           resize: none;
           border: none;
           border-radius: 8px;
-
           box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.05);
           float: right;
         }
 
         textarea::placeholder {
+          padding-left: 10px;
           @include captionFont($black50Color);
         }
 
         span {
+          width: 290px;
           display: block;
           margin-top: 14px;
           margin-bottom: 14px;
