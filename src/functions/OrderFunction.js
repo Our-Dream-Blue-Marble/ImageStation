@@ -78,7 +78,7 @@ export const onOrderFieldChange = (event, setValue) => {
   }
 };
 
-export const onOrderAttachmentChage = (
+export const onOrderAttachmentChange = (
   event,
   setOrderAttachment,
   setOrderAttachmentName,
