@@ -80,7 +80,12 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
 
             <Route
               path={OrderConfirmListRouteName}
-              element={<OrderConfirmListPage />}
+              element={
+                <OrderConfirmListPage
+                  isAdmin={userObject?.role || false}
+                  userObject={userObject}
+                />
+              }
             />
 
             <Route
