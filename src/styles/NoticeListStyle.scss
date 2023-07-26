@@ -100,39 +100,6 @@
   background-image: url(../assets/BackgroundAsset.svg);
 }
 
-.swiper-wrapper {
-  width: 1412px;
-
-  .swiper-slide {
-    display: flex;
-  }
-
-  .swiper-slide-active {
-    width: 400px;
-  }
-  .swiper-slide-next {
-    width: 400px;
-  }
-}
-.swiper-button-prev::after {
-  color: $black100Color;
-  margin-top: 450px;
-}
-.swiper-button-next::after {
-  color: $black100Color;
-  margin-top: 450px;
-  margin-right: 200px;
-}
-.swiper-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 60px;
-  .swiper-pagination-bullet-active {
-    background: $black100Color;
-  }
-}
-
 .paginationBar {
   display: flex;
   flex-direction: row;
@@ -171,7 +138,7 @@
   }
 
   .paginationRtBtn {
-    margin-right: 6.54vw;
+    margin-right: 7vw;
     width: 2.3%;
     height: 3.9vh;
     border: none;
