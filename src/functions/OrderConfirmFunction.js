@@ -26,17 +26,24 @@ export const getNotAdminOrderConfirmList = async (userObject, setOrderList) => {
     .collection("myOrders")
     .get();
   const userMyOrderDocList = userMyOrderDocRef.docs.map((doc) => ({
-    docId: doc.Id,
+    docId: doc.id,
     ...doc.data(),
   }));
 
-  userMyOrderDocList.forEach((element) => {
-    element.orderDocRef.get().then((value) => {
-      element.orderDocRef = value.data();
-    });
+  const userMyOrderDocArray = await Promise.all(
+    userMyOrderDocList.map(async (doc) => {
+      const docData = await doc.orderDocRef.get();
+      return {
+        docId: doc.docId,
+        uid: doc.uid,
+        ...docData.data(),
+      };
+    })
+  );
+  userMyOrderDocArray.forEach((element) => {
+    element.userDocRef = null;
   });
-  console.log(userMyOrderDocList);
-  setOrderList(userMyOrderDocList);
+  setOrderList(userMyOrderDocArray);
 };
 
 export const getOrderSubmitDate = (orderConfirm) => {
