@@ -15,7 +15,7 @@ import "styles/OrderConfirmListStyle.scss";
 const OrderConfirmListPage = ({ isAdmin, userObject }) => {
   const navigate = useNavigate();
   const [orderConfirmList, setOrderConfirmList] = useState([]);
-  const paginationLimit = 2;
+  const paginationLimit = 4;
   const [paginationNowPage, setPaginationNowPage] = useState(1);
   const paginationOffset = (paginationNowPage - 1) * paginationLimit;
 
@@ -73,28 +73,83 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
         <button
           onClick={(e) => setPaginationNowPage(paginationNowPage - 1)}
           disabled={paginationNowPage === 1}
+          id="arrowLeftButton"
         >
           <ArrowLeftIconAsset />
         </button>
 
-        {Array(Math.ceil(orderConfirmList.length / paginationLimit))
-          .fill
-          // [],
-          // paginationNowPage === 1 ? 1 : paginationNowPage - 1,
-          // paginationNowPage ===
-          //   Math.ceil(OrderConfirmListPage.length / paginationLimit)
-          //   ? paginationNowPage
-          //   : paginationNowPage + 1
-          ()
-          .map((_, i) => (
-            <button
-              key={i + 1}
-              onClick={(e) => setPaginationNowPage(i + 1)}
-              aria-current={paginationNowPage === i + 1 && "nowPage"}
-            >
-              {i + 1}
-            </button>
-          ))}
+        <div className="paginationButton">
+          {Math.ceil(orderConfirmList.length / paginationLimit) <= 3 &&
+            Array(3)
+              .fill()
+              .map((_, i) => (
+                <button
+                  key={i + 1}
+                  onClick={(e) => setPaginationNowPage(i + 1)}
+                  aria-current={paginationNowPage === i + 1 && "nowPage"}
+                >
+                  {i + 1}
+                </button>
+              ))}
+          {Math.ceil(orderConfirmList.length / paginationLimit) > 3 &&
+            paginationNowPage === 1 &&
+            Array(3)
+              .fill()
+              .map((_, i) => (
+                <button
+                  key={i + 1}
+                  onClick={(e) => setPaginationNowPage(i + 1)}
+                  aria-current={paginationNowPage === i + 1 && "nowPage"}
+                >
+                  {i + 1}
+                </button>
+              ))}
+          {Math.ceil(orderConfirmList.length / paginationLimit) > 3 &&
+            paginationNowPage ===
+              Math.ceil(orderConfirmList.length / paginationLimit) &&
+            Array(3)
+              .fill()
+              .map((_, i) => (
+                <button
+                  key={paginationNowPage - 2 + i}
+                  onClick={(e) =>
+                    setPaginationNowPage(paginationNowPage - 2 + i)
+                  }
+                  aria-current={
+                    paginationNowPage === paginationNowPage - 2 + i && "nowPage"
+                  }
+                >
+                  {paginationNowPage - 2 + i}
+                </button>
+              ))}
+
+          {Math.ceil(orderConfirmList.length / paginationLimit) > 3 &&
+            paginationNowPage !== 1 &&
+            paginationNowPage !==
+              Math.ceil(orderConfirmList.length / paginationLimit) && (
+              <>
+                <button
+                  key={paginationNowPage - 1}
+                  onClick={(e) => setPaginationNowPage(paginationNowPage - 1)}
+                >
+                  {paginationNowPage - 1}
+                </button>
+                <button
+                  key={paginationNowPage}
+                  onClick={(e) => setPaginationNowPage(paginationNowPage)}
+                  aria-current="nowPage"
+                >
+                  {paginationNowPage}
+                </button>
+                <button
+                  key={paginationNowPage + 1}
+                  onClick={(e) => setPaginationNowPage(paginationNowPage + 1)}
+                >
+                  {paginationNowPage + 1}
+                </button>
+              </>
+            )}
+        </div>
 
         <button
           onClick={(e) => setPaginationNowPage(paginationNowPage + 1)}
@@ -102,6 +157,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
             paginationNowPage ===
             Math.ceil(orderConfirmList.length / paginationLimit)
           }
+          id="arrowRightButton"
         >
           <ArrowRightIconAsset />
         </button>
