@@ -36,9 +36,9 @@
     align-items: center;
     display: inline-flex;
 
-    input[type="file"] {
-      display: none;
-    }
+    // input[type="file"] {
+    //   display: none;
+    // }
 
     .FileUploadButton {
       @include body1Font($numberColor);
@@ -61,7 +61,7 @@
       height: 44px;
     }
 
-    .FileCancleButton {
+    .FileCancelButton {
       width: 50px;
       height: 50px;
       margin-top: 24px;

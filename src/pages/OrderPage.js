@@ -5,9 +5,9 @@ import {
   OrderConfirmListRouteName,
 } from "routes/RouteName";
 import {
+  onOrderAttachmentChange,
   onOrderFieldChange,
   onOrderSubmit,
-  onOrderAttachmentChange,
 } from "functions/OrderFunction";
 import "styles/OrderStyle.scss";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
@@ -75,11 +75,9 @@ const OrderPage = () => {
         <div className="OrderWholeContainer">
           <div className="OrderContainer-left">
             {isFileUploadButton ? (
-              <>
-                <label for="files" className="FileUploadButton">
-                  파일 업로드
-                </label>
+              <div>
                 <input
+                  className="FileUploadButton"
                   id="files"
                   type="file"
                   onChange={(e) => {
@@ -93,15 +91,10 @@ const OrderPage = () => {
                     );
                   }}
                 />
-                <label className="drag">
-                  드래그를 통해서도
-                  <br />
-                  파일 업로드 가능해요
-                </label>
-              </>
+              </div>
             ) : (
               <button
-                className="FileCancleButton"
+                className="FileCancelButton"
                 onClick={(e) => {
                   setIsFileUploadButton(true);
                   setImageUrl("");
