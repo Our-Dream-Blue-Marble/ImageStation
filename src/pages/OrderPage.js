@@ -6,8 +6,8 @@ import {
 } from "routes/RouteName";
 import {
   onOrderFieldChange,
-  onOrderAttachmentChage,
   onOrderSubmit,
+  onOrderAttachmentChange,
 } from "functions/OrderFunction";
 import "styles/OrderStyle.scss";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
@@ -80,7 +80,7 @@ const OrderPage = () => {
                 <input
                   type="file"
                   onChange={(e) => {
-                    onOrderAttachmentChage(
+                    onOrderAttachmentChange(
                       e,
                       setOrderAttachment,
                       setOrderAttachmentName,
