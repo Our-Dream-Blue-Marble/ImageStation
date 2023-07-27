@@ -76,8 +76,11 @@ const OrderPage = () => {
           <div className="OrderContainer-left">
             {isFileUploadButton ? (
               <>
-                <label className="FileUploadButton">파일 업로드</label>
+                <label for="files" className="FileUploadButton">
+                  파일 업로드
+                </label>
                 <input
+                  id="files"
                   type="file"
                   onChange={(e) => {
                     onOrderAttachmentChange(
@@ -223,7 +226,6 @@ const OrderPage = () => {
                               </select>
                             </label>
                           </span>
-
                           <span>
                             <label>
                               코팅
