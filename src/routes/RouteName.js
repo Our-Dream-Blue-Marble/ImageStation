@@ -21,3 +21,5 @@ export const OrderPageRouteName = `${process.env.PUBLIC_URL}/order/:type`;
 export const OrderConfirmListRouteName = `${process.env.PUBLIC_URL}/orderConfirm`;
 
 export const OrderConfirmViewRouteName = `${process.env.PUBLIC_URL}/orderConfirm/:id`;
+
+export const PaperInfoRouteName = `${process.env.PUBLIC_URL}/paperInfo`;

@@ -17,6 +17,7 @@ import {
   OrderPageRouteName,
   OrderConfirmListRouteName,
   OrderConfirmViewRouteName,
+  PaperInfoRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
@@ -27,6 +28,7 @@ import OrderPage from "pages/OrderPage";
 import OrderCategoryPage from "pages/OrderCategoryPage";
 import OrderConfirmListPage from "pages/OrderConfirmListPage";
 import OrderConfirmViewPage from "pages/OrderConfirmViewPage";
+import PaperInfoPage from "pages/PaperInfoPage";
 
 const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const homePagePosition = useRef(null);
@@ -50,7 +52,8 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition">
+                    className="noticeListPagePosition"
+                  >
                     <NoticeListPage isAdmin={userObject?.role || false} />
                   </div>
                 </div>
@@ -92,6 +95,11 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               path={OrderConfirmViewRouteName}
               element={<OrderConfirmViewPage />}
             />
+            <Route
+              path={OrderCategoryPageRouteName}
+              element={<OrderCategoryPage />}
+            />
+            <Route path={PaperInfoRouteName} element={<PaperInfoPage />} />
           </>
         ) : (
           <>
@@ -102,7 +110,8 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition">
+                    className="noticeListPagePosition"
+                  >
                     <NoticeListPage isAdmin={false} />
                   </div>
                 </div>
@@ -133,6 +142,12 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               path={UpdatePasswordPageRouteName}
               element={<UpdatePasswordPage />}
             />
+            <Route
+              path={OrderCategoryPageRouteName}
+              element={<OrderCategoryPage />}
+            />
+
+            <Route path={PaperInfoRouteName} element={<PaperInfoPage />} />
           </>
         )}
       </Routes>

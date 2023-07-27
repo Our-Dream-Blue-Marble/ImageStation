@@ -6,6 +6,7 @@ import {
   NoticeListRouteName,
   OrderCategoryPageRouteName,
   OrderConfirmListRouteName,
+  PaperInfoRouteName,
 } from "routes/RouteName";
 import { ReactComponent as LogoAsset } from "assets/LogoAsset.svg";
 import { ReactComponent as GlobalIconAsset } from "assets/icons/GlobalIconAsset.svg";
@@ -29,7 +30,12 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
           >
             주문예약
           </button>
-          <button className="centerButton">종이정보</button>
+          <button
+            className="centerButton"
+            onClick={() => navigate(PaperInfoRouteName)}
+          >
+            종이정보
+          </button>
           <button
             className="centerButton"
             onClick={() => navigate(NoticeListRouteName)}
