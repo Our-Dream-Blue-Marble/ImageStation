@@ -37,7 +37,6 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
         <hr id="headers_line" />
         {orderConfirmList.map((order, i) => (
           <>
-            {isAdmin ? {} : <></>}
             <tr
               key={order.docId}
               className="OrderConfirmView_Container"
@@ -45,7 +44,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                 navigate(`${OrderConfirmListRouteName}/${order.docId}`, {
                   state: { data: order },
                 })
-              }>
+              }
+            >
               <td id="order_attachemnt">
                 <embed src={order.attachment}></embed>
               </td>

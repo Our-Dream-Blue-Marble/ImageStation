@@ -12,6 +12,7 @@ import {
 import "styles/OrderStyle.scss";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
 import OrderFileCancel from "../assets/OrderFileCancelAsset.svg";
+import { useDropzone } from "react-dropzone";
 
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const OrderPage = () => {
   const [isPdf, setIsPdf] = useState(false);
   const location = useLocation();
   const category = location.state.data;
+  const {getRootProps, getInputProps} = useDropzone({onOrderAttachmentChange});
 
   useEffect(() => {
     if (orderTitle !== "" && imageUrl !== "") {
@@ -74,7 +76,7 @@ const OrderPage = () => {
         }}
       >
         <div className="OrderWholeContainer">
-          <div className="OrderContainer-left">
+          <div className="OrderContainer-left" {...getRootProps()}>
             {isFileUploadButton ? (
               <div>
                 <input
