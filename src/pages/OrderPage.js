@@ -133,7 +133,7 @@ const OrderPage = () => {
                   <div className="FileUploadExplanation">
                     <br />
                     드래그를 통해서도 <br />
-                    파일 업로드 가능해요
+                    파일 업로드가 가능해요
                   </div>
                 </div>
               ) : (
