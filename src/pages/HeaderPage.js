@@ -7,10 +7,12 @@ import {
   NoticeListRouteName,
   OrderCategoryPageRouteName,
   OrderConfirmListRouteName,
+  PaperInfoRouteName,
 } from "routes/RouteName";
 import { ReactComponent as LogoAsset } from "assets/LogoAsset.svg";
 import { ReactComponent as GlobalIconAsset } from "assets/icons/GlobalIconAsset.svg";
 import { ReactComponent as MyProfileIconAsset } from "assets/icons/MyProfileIconAsset.svg";
+import { ReactComponent as EditIconAsset } from "assets/icons/EditIconAsset.svg";
 import "styles/HeaderStyle.scss";
 
 const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
@@ -20,7 +22,36 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
 
   return (
     <>
-      {isMyProfile === true && <div></div>}
+      {isMyProfile === true && (
+        <div
+          id="myProfile-popUp-background"
+          onClick={(e) => setIsMyProfile(false)}
+        >
+          <div id="myProfile-popUp-container">
+            <div id="myProfile-popUp-contents">
+              <span id="user-name">
+                {userObject.name}
+                <button>
+                  <EditIconAsset id="editIconAsset" />
+                </button>
+              </span>
+              <span id="user-email">{userObject.email}</span>
+              <span id="user-phoneNumber">
+                {`${userObject.phoneNumber}`.substring(0, 3) +
+                  "-" +
+                  `${userObject.phoneNumber}`.substring(3, 7) +
+                  "-" +
+                  `${userObject.phoneNumber}`.substring(7)}
+              </span>
+              <hr />
+              <div id="myProfile-popUp-buttons">
+                <button id="left-button">이용약관</button>
+                <button id="right-button">회원탈퇴</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <header>
         <Link to={`${HomeRouteName}`} replace={true}>
           <LogoAsset width={223} height={46.9} id="logoAsset" />
@@ -33,7 +64,12 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
             >
               주문예약
             </button>
-            <button className="centerButton">종이정보</button>
+            <button
+              className="centerButton"
+              onClick={() => navigate(PaperInfoRouteName)}
+            >
+              종이정보
+            </button>
             <button
               className="centerButton"
               onClick={() => navigate(NoticeListRouteName)}
@@ -105,7 +141,10 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               <GlobalIconAsset width={23} height={23} id="globalIconAsset" />
             </button>
           )}
-          <button className="rightButton" onClick={() => setIsMyProfile(true)}>
+          <button
+            className="rightButton"
+            onClick={() => setIsMyProfile((prev) => !prev)}
+          >
             <MyProfileIconAsset id="myProfileIconAsset" />
           </button>
         </div>
