@@ -12,11 +12,13 @@
   align-items: center;
   align-content: center;
   justify-content: center;
+  z-index: 1;
 }
 
 .OrderWholeContainer {
   width: 58.4vw;
   height: 65.6vh;
+  margin-top: -11.3vh;
   border-radius: 10px;
   background-color: $white100Color;
   display: block;
@@ -227,5 +229,86 @@
   .OrderSaveBtn:hover {
     background-color: $hoverAndClickColor;
     transition: 0.5s;
+  }
+}
+.OrderConfirmPopUp {
+  display: flex;
+  width: 100%;
+  min-height: 91vh;
+  flex-shrink: 0;
+  position: fixed;
+  background-color: $white60Color;
+  backdrop-filter: blur(2px);
+  padding-top: 19.23vh;
+  padding-left: 35.98%;
+  z-index: 3;
+
+  .OrderConfirmPopUpContainer {
+    width: 424px;
+    height: 360px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: $white100Color;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+
+    .popUpBlueText {
+      @include heading2Font($primaryColor);
+      margin-top: 89px;
+      text-align: center;
+      width: 230px;
+      margin-left: 100px;
+    }
+    .popUpBlackText {
+      @include subHeading2Font($black75Color);
+      margin-top: 21px;
+      text-align: center;
+    }
+    .OrderConfirmPopUpButton {
+      display: flex;
+      width: 296.8px;
+      height: 55px;
+      justify-content: center;
+      align-items: center;
+      gap: 18.55px;
+      flex-shrink: 0;
+      margin-top: 72px;
+      margin-left: 64px;
+      .popUpHome {
+        @include subHeading2Font($secondaryColor);
+        display: flex;
+        width: 139.125px;
+        height: 55px;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        border: 1px solid $secondaryColor;
+        background: $white100Color;
+        cursor: pointer;
+      }
+      .popUpCancel:hover {
+        background: $black10Color;
+      }
+      .popUpOrderList {
+        @include subHeading2Font($white100Color);
+        display: flex;
+        width: 139.125px;
+        height: 55px;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        background: $primaryColor;
+        border: 1px solid $primaryColor;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .popUpOrderList:hover {
+        background: $hoverAndClickColor;
+      }
+    }
   }
 }
