@@ -1,0 +1,39 @@
+@import "ThemeStyles.scss";
+
+.PaperInfoLayout {
+  width: 100%;
+  min-height: 91vh;
+  padding-top: 2vh;
+  padding-bottom: 9vh;
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+
+  .paperHead {
+    .PaperTitle {
+      @include heading1Font($primaryColor);
+      width: 63px;
+      height: 43px;
+      margin-top: 163px;
+      margin-left: 213px;
+    }
+    .PaperExplanation {
+      @include heading3Font($black100Color);
+      width: 227px;
+      height: 44px;
+      margin-top: 55px;
+      margin-left: 213px;
+      line-height: 25px;
+    }
+  }
+
+  .PaperInfoContainer {
+    width: 790px;
+    height: 1052px;
+    margin-top: 163px;
+    margin-left: 182px;
+    border: 1px solid;
+    background-color: transparent;
+  }
+}
