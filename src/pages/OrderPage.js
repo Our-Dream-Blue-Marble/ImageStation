@@ -11,6 +11,7 @@ import {
 } from "functions/OrderFunction";
 import "styles/OrderStyle.scss";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
+import OrderFileCancel from "../assets/OrderFileCancelAsset.svg";
 
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -91,6 +92,11 @@ const OrderPage = () => {
                     );
                   }}
                 />
+                <div className="FileUploadExplanation">
+                  <br />
+                  드래그를 통해서도 <br />
+                  파일 업로드 가능해요
+                </div>
               </div>
             ) : (
               <button
@@ -100,7 +106,7 @@ const OrderPage = () => {
                   setImageUrl("");
                 }}
               >
-                취소
+                <img src={OrderFileCancel} />
               </button>
             )}
             <div style={{ height: "470px", width: "300px" }}>
