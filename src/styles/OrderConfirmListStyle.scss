@@ -138,7 +138,33 @@
     width: 75vw;
     padding-top: 10.2vh;
     padding-bottom: 11.8vh;
-    padding-left: 6.6vw;
-    padding-right: 6.6vw;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    button {
+      border: none;
+      background-color: transparent;
+    }
+
+    .paginationButton {
+      display: inline-flex;
+      justify-content: center;
+
+      button {
+        padding: 0px 16px;
+        @include body1Font($black75Color);
+      }
+
+      button[aria-current="nowPage"] {
+        @include subHeading1Font($black100Color);
+      }
+    }
+
+    #arrowLeftButton {
+    }
+
+    #arrowRightButton {
+    }
   }
 }
