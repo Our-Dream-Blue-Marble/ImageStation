@@ -50,7 +50,6 @@ export const onOrderSubmit = async (
     .catch((e) => {
       console.log(e);
     });
-  window.confirm("주문이 접수되었습니다!");
   return result;
 };
 
