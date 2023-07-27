@@ -1,5 +1,7 @@
-import { dbService } from "fbase";
+import { dbService, storageService } from "fbase";
 import MyOrderModel, { MyOrderModelConverter } from "models/MyOrderModel";
+import moment from "moment";
+import { useCallback } from "react";
 import {
   readOrderListDocument,
   updateOrderStateDocument,
@@ -69,4 +71,20 @@ export const onOrderConfirmStateSelect = async (
   await updateOrderStateDocument(order.docId, newOrderState);
   orderConfirmList[i].state = newOrderState;
   setOrderConfirmList([...orderConfirmList]);
+};
+
+export const getAttachmentDownLoad = (orderData) => {
+  var filename = orderData.attachmentName;
+  var fileLength = filename.length;
+  var lastDot = filename.lastIndexOf(".");
+  var type = filename.substring(lastDot + 1, fileLength);
+  let attachmentNameInStorage = orderData.docId + "." + type;
+  const orderTime = moment().format("YYYYMMDD");
+  storageService
+    .ref()
+    .child(`orders/${orderTime}/${attachmentNameInStorage}`)
+    .getDownloadURL()
+    .then((url) => {
+      return url;
+    });
 };

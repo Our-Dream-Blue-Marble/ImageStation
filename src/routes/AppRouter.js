@@ -90,7 +90,12 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
 
             <Route
               path={OrderConfirmViewRouteName}
-              element={<OrderConfirmViewPage />}
+              element={
+                <OrderConfirmViewPage
+                  isAdmin={userObject?.role || false}
+                  userObject={userObject}
+                />
+              }
             />
           </>
         ) : (
