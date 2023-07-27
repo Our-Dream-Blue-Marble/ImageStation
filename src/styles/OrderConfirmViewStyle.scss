@@ -118,6 +118,20 @@
       display: flex;
       @include body1Font($primaryColor);
       margin-bottom: 2.5vh;
+      text-decoration-line: none;
+    }
+
+    .categoryUserInfoLayout {
+      display: flex;
+      flex-direction: row;
+      .categoryKeyUserInfo {
+        width: 70px;
+        padding-right: 2.8vw;
+        @include subHeading2Font($black100Color);
+      }
+      .categoryValueUserInfo {
+        @include subHeading2Font($black100Color);
+      }
     }
   }
 }

@@ -58,6 +58,7 @@
             @include body1Font($primaryColor);
             display: flex;
             flex-direction: column;
+            text-decoration-line: none;
           }
         }
       }

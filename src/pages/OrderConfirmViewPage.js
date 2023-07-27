@@ -5,8 +5,9 @@ import "styles/OrderConfirmViewStyle.scss";
 import { Worker, Viewer } from "@react-pdf-viewer/core";
 
 import "@react-pdf-viewer/core/lib/styles/index.css";
+import { getDecryptedData } from "functions/UserFunction";
 
-const OrderConfirmViewPage = () => {
+const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
   const location = useLocation();
   const orderData = location.state.data;
 
@@ -41,13 +42,38 @@ const OrderConfirmViewPage = () => {
                 <span id="category">{orderData.category}</span>
                 <span id="docId">{orderData.docId}</span>
               </div>
-
               <hr />
-
-              <span className="categoryAttachment">
+              <a
+                className="categoryAttachment"
+                href={orderData.attachment}
+                download={orderData.attachmentName}
+                target="_blank"
+                rel="noopener noreferrer">
                 {orderData.attachmentName}
-              </span>
-
+              </a>
+              {isAdmin ? (
+                <div className="categoryUserInfoLayout">
+                  <span className="categoryKeyUserInfo">
+                    {getDecryptedData(
+                      orderData.userDocRef.uid,
+                      orderData.userDocRef.name
+                    )}
+                  </span>
+                  <span className="categoryValueUserInfo">
+                    {getDecryptedData(
+                      orderData.userDocRef.uid,
+                      orderData.userDocRef.phoneNumber
+                    )}
+                  </span>
+                </div>
+              ) : (
+                <div className="categoryUserInfoLayout">
+                  <span className="categoryKeyUserInfo">{userObject.name}</span>
+                  <span className="categoryValueUserInfo">
+                    {userObject.phoneNumber}
+                  </span>
+                </div>
+              )}
               <div className="categoryAllLayout">
                 <span className="categoryKeyText">제목</span>
                 <span className="categoryValueText">{orderData.title}</span>
