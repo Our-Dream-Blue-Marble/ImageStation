@@ -172,3 +172,14 @@ export const getNoticeWrittenDate = (noticeViewObj) => {
     ("0" + date.getDate()).slice(-2);
   return dateInString;
 };
+
+export const onSearchNoticeChange = (event, setValue) => {
+  const {
+    target: { name, value },
+  } = event;
+  if (name === "noticeSearch") {
+    setValue(value);
+  } else {
+    setValue(value);
+  }
+};
