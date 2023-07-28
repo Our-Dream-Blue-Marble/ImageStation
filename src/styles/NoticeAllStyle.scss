@@ -11,22 +11,145 @@
   display: flex;
   flex-direction: column;
 
-  .NoticeAllTitle {
-    @include heading2Font($primaryColor);
-    margin-top: 77px;
+  .NoticeAllHeadContainer {
+    width: 100%;
+    height: 22px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 70px;
     margin-bottom: 52px;
-    margin-left: 620px;
-    margin-right: 603px;
-    position: absolute;
+
+    .NoticeAllTitle {
+      @include heading2Font($primaryColor);
+      width: 365px;
+      margin-left: 560px;
+    }
+
+    .noticeWriteBtn {
+      display: flex;
+      width: 32px;
+      margin-right: 398px;
+      margin-left: 135px;
+      margin-top: -18px;
+      font-size: 48px;
+      color: $primaryColor;
+      background-color: inherit;
+      border: none;
+    }
   }
+
   .NoticeAllContainer {
-    width: 1312px;
+    width: 862px;
     height: 723px;
-    margin-top: 151px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 325px;
+    margin-right: 325px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px 0px $black25Color;
     background-color: $white60Color;
+
+    .noticeBoxContainer {
+      justify-content: start;
+      display: flex;
+      flex-direction: column;
+      margin-top: 92px;
+      cursor: pointer;
+
+      .eachNoticeContent {
+        display: flex;
+        width: 636px;
+        height: 60px;
+        margin: 0.7%;
+        margin-right: 2.6%;
+        gap: 0.7%;
+        flex-shrink: 0;
+        border-radius: 0.7%;
+        box-shadow: 0px 4px 10px 0px $black25Color;
+        background-color: transparent;
+
+        .noticeTitleAndBodyContainer {
+          float: left;
+          .noticeListTitle {
+            @include heading2Font($black100Color);
+            height: 25px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .noticeListBody {
+            @include body1Font($black75Color);
+            display: block;
+            height: 23vh;
+            white-space: pre-wrap;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
+        .noticeDateContainer {
+          float: right;
+          .noticeListDate {
+            @include body1Font($black75Color);
+            height: 22px;
+            margin-bottom: 24px;
+          }
+        }
+      }
+    }
   }
+}
+
+.paginationBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 3.4vh;
+  margin-top: 6.78vh;
+  margin-bottom: 9.6vh;
+
+  .paginationLtBtn {
+    margin-left: 6.6vw;
+    width: 2.3%;
+    height: 3.9vh;
+    border: none;
+    background-color: inherit;
+    transform: scaleX(-1);
+  }
+  .paginationBtn {
+    @include body1Font($black75Color);
+    padding-top: 0.56vh;
+    display: flex;
+    width: 2.05%;
+    height: 2.15vh;
+    border: none;
+    background-color: inherit;
+
+    &[disabled] {
+      cursor: revert;
+      transform: revert;
+    }
+
+    &[aria-current] {
+      font-weight: bold;
+      cursor: revert;
+      transform: revert;
+    }
+  }
+
+  .paginationRtBtn {
+    margin-right: 7vw;
+    width: 2.3%;
+    height: 3.9vh;
+    border: none;
+    background-color: inherit;
+  }
+}
+
+#centerPaginationNumBtns {
+  @include centerFormat();
+  display: flex;
+  width: 82.8vw;
+  align-items: flex-start;
+  gap: 1.06vw;
+  margin-top: 9vh;
+  margin-bottom: 10.2vh;
 }
