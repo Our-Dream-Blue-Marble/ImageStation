@@ -1,7 +1,6 @@
 import {
   getAdminOrderConfirmList,
   getNotAdminOrderConfirmList,
-  getOrderConfirmList,
   getOrderSubmitDate,
   onOrderConfirmStateSelect,
 } from "functions/OrderConfirmFunction";
@@ -25,7 +24,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
     } else {
       getNotAdminOrderConfirmList(userObject, setOrderConfirmList);
     }
-  }, []);
+  }, [isAdmin, userObject]);
 
   return (
     <div className="OrderConfirmListBody">
@@ -50,8 +49,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                   navigate(`${OrderConfirmListRouteName}/${order.docId}`, {
                     state: { data: order },
                   })
-                }
-              >
+                }>
                 <td id="order_attachemnt">
                   <embed src={order.attachment}></embed>
                 </td>
@@ -73,8 +71,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
         <button
           onClick={(e) => setPaginationNowPage(paginationNowPage - 1)}
           disabled={paginationNowPage === 1}
-          id="arrowLeftButton"
-        >
+          id="arrowLeftButton">
           <ArrowLeftIconAsset />
         </button>
 
@@ -86,8 +83,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                 <button
                   key={i + 1}
                   onClick={(e) => setPaginationNowPage(i + 1)}
-                  aria-current={paginationNowPage === i + 1 && "nowPage"}
-                >
+                  aria-current={paginationNowPage === i + 1 && "nowPage"}>
                   {i + 1}
                 </button>
               ))}
@@ -99,8 +95,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                 <button
                   key={i + 1}
                   onClick={(e) => setPaginationNowPage(i + 1)}
-                  aria-current={paginationNowPage === i + 1 && "nowPage"}
-                >
+                  aria-current={paginationNowPage === i + 1 && "nowPage"}>
                   {i + 1}
                 </button>
               ))}
@@ -117,8 +112,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                   }
                   aria-current={
                     paginationNowPage === paginationNowPage - 2 + i && "nowPage"
-                  }
-                >
+                  }>
                   {paginationNowPage - 2 + i}
                 </button>
               ))}
@@ -130,21 +124,18 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
               <>
                 <button
                   key={paginationNowPage - 1}
-                  onClick={(e) => setPaginationNowPage(paginationNowPage - 1)}
-                >
+                  onClick={(e) => setPaginationNowPage(paginationNowPage - 1)}>
                   {paginationNowPage - 1}
                 </button>
                 <button
                   key={paginationNowPage}
                   onClick={(e) => setPaginationNowPage(paginationNowPage)}
-                  aria-current="nowPage"
-                >
+                  aria-current="nowPage">
                   {paginationNowPage}
                 </button>
                 <button
                   key={paginationNowPage + 1}
-                  onClick={(e) => setPaginationNowPage(paginationNowPage + 1)}
-                >
+                  onClick={(e) => setPaginationNowPage(paginationNowPage + 1)}>
                   {paginationNowPage + 1}
                 </button>
               </>
@@ -157,8 +148,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
             paginationNowPage ===
             Math.ceil(orderConfirmList.length / paginationLimit)
           }
-          id="arrowRightButton"
-        >
+          id="arrowRightButton">
           <ArrowRightIconAsset />
         </button>
       </div>
