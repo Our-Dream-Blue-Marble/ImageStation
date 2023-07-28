@@ -41,17 +41,32 @@
     .FileUploadButton {
       @include body1Font($primaryColor);
       padding: 10px 14px;
+      position: relative;
+      z-index: 1;
     }
 
     .FileUploadButton::-webkit-file-upload-button {
       @include body1Font($numberColor);
-      width: 7.9vw;
-      height: 4.75vh;
-      margin-left: 12.56vw;
-      margin-right: 13.4vw;
+      width: 50vw;
+      height: 40.75vh;
+      // margin-left: 12.56vw;
+      // margin-right: 13.4vw;
       border-radius: 8px;
       border: 1px solid;
       background-color: transparent;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      color: transparent;
+    }
+
+    .fileLabel{
+
+      position: absolute;
+      border-radius: 8px;
+      border: 1px solid;
+      margin-left: 270px;
+      margin-top: 300px;
       cursor: pointer;
     }
 
@@ -61,6 +76,12 @@
       text-align: center;
       justify-content: center;
       margin-left: 11.24vw;
+      margin-top: 0px;
+      margin-bottom: 320px;
+      position: absolute;
+      z-index: 4;
+      width: 200px;
+      height: 50px;
     }
 
     .drag {
@@ -82,12 +103,25 @@
       border: none;
       background-color: transparent;
     }
+
+    .rpv-core__viewer{
+
+      width: 500px;
+      height: 500px;
+    }
+    .rpv-core__inner-container{
+      width: 340px;
+      height: 600px;
+      margin : 0;
+      padding: 0;
+    }
   }
 
   .OrderContainer-right {
     float: right;
     width: 23.74vw;
     height: 65.6vh;
+    background: $white60Color;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     box-sizing: border-box;
@@ -149,6 +183,7 @@
           border-color: rgba(33, 36, 39, 0.5);
         }
         summary {
+          
           margin-top: 1.58vh;
           margin-bottom: 1.58vh;
           height: 2.49vh;
@@ -182,6 +217,16 @@
           height: 11.2vh;
           display: inline-block;
           padding-bottom: 1.58vh;
+        }
+        .moreInfoContainerForEtc {
+          width: 19.18vw;
+          height: 26vh;
+          display: inline-block;
+          padding-bottom: 1.58vh;
+        }
+        textarea {
+          width: 12.7vw;
+          height: 26vh;
         }
       }
     }
