@@ -149,7 +149,7 @@ const OrderPage = () => {
                   <img src={OrderFileCancel} />
                 </button>
               )}
-              <div style={{ height: "470px", width: "300px", position: "inherit"}}>
+              <div style={{ height: "65.6vh", width: "55%", marginRight: "500px"}}>
                 {isPdf
                   ? imageUrl !== "" &&
                     isFileUploadButton === false && (
@@ -167,7 +167,7 @@ const OrderPage = () => {
                   : imageUrl !== "" &&
                     isFileUploadButton === false && <img src={imageUrl} />}
               </div>
-            </div>
+                    </div>
             <div className="OrderContainer-right">
               {category === "etc" ? (
                 <>
@@ -336,7 +336,6 @@ const OrderPage = () => {
                           </select>
                         </span>
                       )}
-
                       <span className="moreInfoContainer">
                         <label>
                           주문사항
