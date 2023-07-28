@@ -97,7 +97,10 @@ export const deleteAccount = async () => {
     await deleteUserDocument(authService.currentUser.uid)
       .then(async () => {
         await deleteUser(authService.currentUser)
-          .then(() => {})
+          .then(() => {
+            logOut();
+            window.confirm("삭제를 완료하였습니다.");
+          })
           .catch((e) => {
             console.log(e);
           });
@@ -105,7 +108,6 @@ export const deleteAccount = async () => {
       .catch((e) => {
         console.log(e);
       });
-    window.confirm("삭제를 완료하였습니다.");
   }
 };
 
