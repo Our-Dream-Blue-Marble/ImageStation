@@ -209,23 +209,24 @@ header {
 
       #user-phoneNumber {
         @include captionFont($black100Color);
-        padding-bottom: 40px;
-      }
-
-      hr {
-        height: 1px;
-        padding: 0;
-        margin: 0;
-        border: none;
-        background-color: $black50Color;
+        padding-bottom: 60px;
       }
 
       #myProfile-popUp-buttons {
         display: inline-flex;
         flex-direction: row;
         justify-content: center;
-        padding-top: 20px;
-        gap: 24px;
+        align-items: center;
+        height: 22px;
+
+        hr {
+          width: 1px;
+          height: 8px;
+          padding: 0;
+          margin: 0;
+          border: none;
+          background-color: $black50Color;
+        }
 
         #left-button {
           border: none;
