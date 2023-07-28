@@ -1,7 +1,6 @@
 import {
   getAdminOrderConfirmList,
   getNotAdminOrderConfirmList,
-  getOrderConfirmList,
   getOrderSubmitDate,
   onOrderConfirmStateSelect,
 } from "functions/OrderConfirmFunction";
