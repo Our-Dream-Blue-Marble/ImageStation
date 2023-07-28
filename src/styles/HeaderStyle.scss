@@ -1,10 +1,5 @@
 @import "styles/ThemeStyles.scss";
 
-@mixin centerFormat() {
-  justify-content: center;
-  align-items: center;
-}
-
 header {
   @include mobile {
     width: 100%;
@@ -123,33 +118,129 @@ header {
 #rightButtons {
   display: flex;
   width: 27vw;
+  height: 33px;
+  vertical-align: middle;
   align-items: flex-start;
-  gap: 3.2vw;
+  gap: 2.6vw;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .rightButton {
+  display: inline-flex;
+  @include centerFormat();
+  padding: 0;
   @include subHeading3Font($black75Color);
   background-color: transparent;
   border: none;
-  justify-content: center;
-  justify-items: center;
   cursor: pointer;
 }
 
 .rightButton:first-child {
-  width: 124px;
-  height: 23px;
+  width: 111px;
+  height: 33px;
+  justify-content: end;
 }
 
-.rightButton:last-child {
-  width: 70px;
-  height: 23px;
+.rightButton:nth-child(2) {
+  width: 23px;
+  height: 33px;
+}
+
+.rightButton:nth-child(3) {
+  width: 33px;
+  height: 33px;
 }
 
 #globalIconAsset {
   padding: none;
   margin: none;
-  vertical-align: text-bottom;
+}
+
+#myProfileIconAsset {
+  padding: none;
+  margin: none;
+}
+
+#myProfile-popUp-background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+
+  #myProfile-popUp-container {
+    width: 224px;
+    height: 230px;
+    margin-top: 70px;
+    margin-left: 80vw;
+    border-radius: 10px;
+    background-color: $white60Color;
+    box-shadow: 0px 4px 10px 0px $black25Color;
+
+    #myProfile-popUp-contents {
+      display: flex;
+      flex-direction: column;
+      padding: 25px;
+
+      #user-name {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        vertical-align: middle;
+        @include heading3Font($black100Color);
+        padding-bottom: 5px;
+
+        button {
+          width: 25px;
+          height: 25px;
+          padding: 0;
+          margin: 0;
+          border: none;
+          background-color: transparent;
+          cursor: pointer;
+        }
+      }
+
+      #user-email {
+        @include captionFont($black100Color);
+        padding-bottom: 25px;
+      }
+
+      #user-phoneNumber {
+        @include captionFont($black100Color);
+        padding-bottom: 40px;
+      }
+
+      hr {
+        height: 1px;
+        padding: 0;
+        margin: 0;
+        border: none;
+        background-color: $black50Color;
+      }
+
+      #myProfile-popUp-buttons {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-top: 20px;
+        gap: 24px;
+
+        #left-button {
+          border: none;
+          background-color: transparent;
+          @include captionFont($primaryColor);
+          cursor: pointer;
+        }
+
+        #right-button {
+          border: none;
+          background-color: transparent;
+          @include captionFont($errorColor);
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }
