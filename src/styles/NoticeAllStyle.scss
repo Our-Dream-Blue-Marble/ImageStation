@@ -1,0 +1,32 @@
+@import "ThemeStyles.scss";
+
+.NoticeAllLayout {
+  width: 100%;
+  min-height: 91vh;
+  padding-top: 2vh;
+  padding-bottom: 9vh;
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+
+  .NoticeAllTitle {
+    @include heading2Font($primaryColor);
+    margin-top: 77px;
+    margin-bottom: 52px;
+    margin-left: 620px;
+    margin-right: 603px;
+    position: absolute;
+  }
+  .NoticeAllContainer {
+    width: 1312px;
+    height: 723px;
+    margin-top: 151px;
+    margin-left: 100px;
+    margin-right: 100px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px 0px $black25Color;
+    background-color: $white60Color;
+  }
+}

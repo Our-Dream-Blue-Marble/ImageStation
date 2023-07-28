@@ -30,11 +30,21 @@
     @include heading1Font($primaryColor);
     @include centerItem();
   }
+
+  .noticeListAll {
+    display: flex;
+    width: 20vw;
+    height: 4.87vh;
+    border: none;
+    @include body2Font($black100Color);
+    @include centerItem();
+  }
+
   .noticeWriteBtn {
     @include centerItem();
     display: flex;
     position: absolute;
-    margin-left: 23vw;
+    margin-left: 2vw;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
