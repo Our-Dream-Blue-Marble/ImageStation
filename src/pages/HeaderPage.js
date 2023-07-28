@@ -43,9 +43,11 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                   "-" +
                   `${userObject.phoneNumber}`.substring(7)}
               </span>
-              <hr />
               <div id="myProfile-popUp-buttons">
                 <button id="left-button">이용약관</button>
+                <hr />
+                <button id="left-button">개인정보</button>
+                <hr />
                 <button id="right-button">회원탈퇴</button>
               </div>
             </div>
