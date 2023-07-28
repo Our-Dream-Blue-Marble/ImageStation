@@ -19,6 +19,7 @@ import {
   OrderConfirmViewRouteName,
   PaperInfoRouteName,
   NoticeAllRouteName,
+  UserLeaveRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
@@ -31,6 +32,7 @@ import OrderConfirmListPage from "pages/OrderConfirmListPage";
 import OrderConfirmViewPage from "pages/OrderConfirmViewPage";
 import PaperInfoPage from "pages/PaperInfoPage";
 import NoticeAllPage from "pages/NoticeAllPage";
+import UserLeavePage from "pages/UserLeavePage";
 
 const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const homePagePosition = useRef(null);
@@ -108,6 +110,7 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
             />
             <Route path={PaperInfoRouteName} element={<PaperInfoPage />} />
             <Route path={NoticeAllRouteName} element={<NoticeAllPage />} />
+            <Route path={UserLeaveRouteName} element={<UserLeavePage />} />
           </>
         ) : (
           <>
