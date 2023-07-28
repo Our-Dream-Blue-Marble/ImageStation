@@ -33,6 +33,7 @@ const OrderPage = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [isFileUploadButton, setIsFileUploadButton] = useState(true);
   const [isPdf, setIsPdf] = useState(false);
+  const [isZip, setIsZip] = useState(false);
   const location = useLocation();
   const category = location.state.data;
   const [clickedOrder, setClickedOrder] = useState(false);
@@ -130,7 +131,8 @@ const OrderPage = () => {
                         setOrderAttachmentName,
                         setImageUrl,
                         setIsFileUploadButton,
-                        setIsPdf
+                        setIsPdf,
+                        setIsZip
                       );
                     }}
                   />
@@ -152,22 +154,24 @@ const OrderPage = () => {
                 </button>
               )}
               <div>
-                {isPdf
-                  ? imageUrl !== "" &&
-                    isFileUploadButton === false && (
-                      <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-                        <div
-                          style={{
-                            border: "1px solid rgba(0, 0, 0, 0.3)",
-                            height: "100%",
-                          }}
-                        >
-                          <Viewer fileUrl={imageUrl} />
-                        </div>
-                      </Worker>
-                    )
-                  : imageUrl !== "" &&
-                    isFileUploadButton === false && <img src={imageUrl} />}
+                {isPdf && imageUrl !== "" && isFileUploadButton === false ? (
+                  <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                    <div
+                      style={{
+                        border: "1px solid rgba(0, 0, 0, 0.3)",
+                        height: "100%",
+                      }}
+                    >
+                      <Viewer fileUrl={imageUrl} />
+                    </div>
+                  </Worker>
+                ) : imageUrl !== "" &&
+                  isFileUploadButton === false &&
+                  !isZip ? (
+                  <img src={imageUrl} />
+                ) : isZip && isFileUploadButton === false ? (
+                  <div>{orderAttachmentName}</div>
+                ) : null}
               </div>
             </div>
             <div className="OrderContainer-right">

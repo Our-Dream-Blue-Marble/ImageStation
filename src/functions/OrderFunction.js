@@ -4,7 +4,6 @@ import moment from "moment";
 import "moment/locale/ko";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 
-
 export const onOrderSubmit = async (
   event,
   category,
@@ -84,7 +83,8 @@ export const onOrderAttachmentChange = (
   setOrderAttachmentName,
   setImageUrl,
   setIsFileUploadButton,
-  setIsPdf
+  setIsPdf,
+  setIsZip
 ) => {
   const {
     target: { files },
@@ -102,7 +102,9 @@ export const onOrderAttachmentChange = (
   orderFileReader.readAsDataURL(orderFile);
   setImageUrl(URL.createObjectURL(files[0]));
   setIsFileUploadButton(false);
+
   if (orderFileName.match(".pdf")) setIsPdf(true);
+  else if (orderFileName.match(".zip")) setIsZip(true);
   else if (
     orderFileName.match(".png") ||
     orderFileName.match(".jpg") ||
@@ -112,6 +114,7 @@ export const onOrderAttachmentChange = (
     orderFileName.match(".svg")
   ) {
     setIsPdf(false);
+    setIsZip(false);
   }
 };
 
