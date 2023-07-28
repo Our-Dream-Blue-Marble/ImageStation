@@ -116,7 +116,11 @@ const OrderPage = () => {
             <div className="OrderContainer-left">
               {isFileUploadButton ? (
                 <div>
+                  <label className="fileLabel" htmlFor="FileUpload">
+                    파일 선택
+                  </label>
                   <input
+                    id="FileUpload"
                     className="FileUploadButton"
                     type="file"
                     onChange={(e) => {
@@ -147,7 +151,7 @@ const OrderPage = () => {
                   <img src={OrderFileCancel} />
                 </button>
               )}
-              <div style={{ height: "470px", width: "300px" }}>
+              <div>
                 {isPdf
                   ? imageUrl !== "" &&
                     isFileUploadButton === false && (
