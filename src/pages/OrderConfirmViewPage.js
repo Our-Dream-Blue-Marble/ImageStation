@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
+import { useParams } from "react-router-dom";
 import "styles/OrderConfirmViewStyle.scss";
 
 import { Worker, Viewer } from "@react-pdf-viewer/core";
 
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import { getDecryptedData } from "functions/UserFunction";
+import { onAttachmentDownloadClick } from "functions/CommonFunction";
+import { readOrderDocument } from "repositories/OrderRepository";
 
 const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
   const location = useLocation();
-  const orderData = location.state.data;
+  const [orderData, setOrderData] = useState(null);
+  const { id } = useParams();
 
+  useEffect(() => {
+    if (orderData === null && id !== null) {
+      if (location.state === null) {
+        readOrderDocument(id).then((result) => {
+          result.userDocRef.get().then((value) => {
+            result.userDocRef = value.data();
+          });
+          setOrderData(result);
+        });
+      } else {
+        setOrderData(location.state.data);
+      }
+    }
+  }, [id, location.state, orderData]);
   return (
     <div className="OrderConfirmViewBody">
       {orderData === null ? (
@@ -43,14 +61,11 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
                 <span id="docId">{orderData.docId}</span>
               </div>
               <hr />
-              <a
+              <div
                 className="categoryAttachment"
-                href={orderData.attachment}
-                download={orderData.attachmentName}
-                target="_blank"
-                rel="noopener noreferrer">
+                onClick={() => onAttachmentDownloadClick(orderData)}>
                 {orderData.attachmentName}
-              </a>
+              </div>
               {isAdmin ? (
                 <div className="categoryUserInfoLayout">
                   <span className="categoryKeyUserInfo">

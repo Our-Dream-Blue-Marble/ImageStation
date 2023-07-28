@@ -8,6 +8,7 @@ import {
 import { readNoticeDocument } from "repositories/NoticeRepository";
 import { ReactComponent as DeleteAsset } from "assets/icons/NoticeDeleteIconAsset.svg";
 import "styles/NoticeViewStyle.scss";
+import { onAttachmentDownloadClick } from "functions/CommonFunction";
 
 const NoticeViewPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -83,14 +84,12 @@ const NoticeViewPage = ({ isAdmin }) => {
                     <>
                       <div>
                         {noticeViewObj.attachment ? (
-                          <a
+                          <div
                             className="noticeViewAttachmentText"
-                            href={noticeViewObj.attachment}>
+                            onClick={onAttachmentDownloadClick(noticeViewObj)}>
                             {noticeViewObj.attachmentName}
-                          </a>
-                        ) : (
-                          <>첨부파일 없음</>
-                        )}
+                          </div>
+                        ) : null}
                       </div>
                     </>
                   </div>
