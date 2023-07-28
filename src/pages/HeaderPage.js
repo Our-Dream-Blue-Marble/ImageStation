@@ -8,6 +8,7 @@ import {
   OrderCategoryPageRouteName,
   OrderConfirmListRouteName,
   PaperInfoRouteName,
+  UserLeaveRouteName,
 } from "routes/RouteName";
 import { ReactComponent as LogoAsset } from "assets/LogoAsset.svg";
 import { ReactComponent as GlobalIconAsset } from "assets/icons/GlobalIconAsset.svg";
@@ -48,7 +49,12 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                 <hr />
                 <button id="left-button">개인정보</button>
                 <hr />
-                <button id="right-button">회원탈퇴</button>
+                <button
+                  id="right-button"
+                  onClick={(e) => navigate(UserLeaveRouteName)}
+                >
+                  회원탈퇴
+                </button>
               </div>
             </div>
           </div>
