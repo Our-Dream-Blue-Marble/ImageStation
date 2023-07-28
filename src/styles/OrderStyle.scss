@@ -88,6 +88,7 @@
     float: right;
     width: 23.74vw;
     height: 65.6vh;
+    background: $white60Color;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     box-sizing: border-box;
@@ -182,6 +183,16 @@
           height: 11.2vh;
           display: inline-block;
           padding-bottom: 1.58vh;
+        }
+        .moreInfoContainerForEtc {
+          width: 19.18vw;
+          height: 26vh;
+          display: inline-block;
+          padding-bottom: 1.58vh;
+        }
+        textarea {
+          width: 12.7vw;
+          height: 26vh;
         }
       }
     }
