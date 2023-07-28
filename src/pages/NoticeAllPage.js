@@ -1,7 +1,11 @@
 import "styles/NoticeAllStyle.scss";
 import NoticePagination from "../widgets/NoticePagination";
 import React, { useState, useEffect } from "react";
-import { getNoticeList, getNoticeWrittenDate } from "functions/NoticeFunction";
+import {
+  getNoticeList,
+  getNoticeWrittenDate,
+  onSearchNoticeChange,
+} from "functions/NoticeFunction";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoticeListRouteName, NoticeWriteRouteName } from "routes/RouteName";
 
@@ -9,6 +13,8 @@ const NoticeAllPage = ({ isAdmin }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [notice, setNotice] = useState([]);
+  const [search, setSearch] = useState();
+  const [clickSearch, setClickSearch] = useState(false);
   const [page, setPage] = useState(1);
   const limit = 6;
   const offset = (page - 1) * limit;
@@ -40,8 +46,7 @@ const NoticeAllPage = ({ isAdmin }) => {
                 navigate(NoticeWriteRouteName, {
                   state: { data: notice[0] },
                 })
-              }
-            >
+              }>
               +
             </button>
           ) : null}
@@ -49,6 +54,18 @@ const NoticeAllPage = ({ isAdmin }) => {
       </div>
 
       <div className="NoticeAllContainer">
+        <div>
+          <input
+            name="noticeSearch"
+            type="text"
+            placeholder="검색"
+            onChange={(e) => {
+              onSearchNoticeChange(e, setSearch);
+            }}
+          />
+          <button>검색</button>
+        </div>
+
         <div className="noticeBoxContainer">
           {notice.slice(offset, offset + limit).map((value) => (
             <div
@@ -58,8 +75,7 @@ const NoticeAllPage = ({ isAdmin }) => {
                 navigate(NoticeListRouteName + "/" + value.id, {
                   state: { data: value },
                 })
-              }
-            >
+              }>
               <div className="noticeTitleAndBodyContainer">
                 <div className=" noticeListTitle">{value.title}</div>
                 <pre className="noticeListBody">{value.body}</pre>
