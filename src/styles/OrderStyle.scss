@@ -103,6 +103,18 @@
       border: none;
       background-color: transparent;
     }
+
+    .rpv-core__viewer{
+
+      width: 500px;
+      height: 500px;
+    }
+    .rpv-core__inner-container{
+      width: 340px;
+      height: 600px;
+      margin : 0;
+      padding: 0;
+    }
   }
 
   .OrderContainer-right {
