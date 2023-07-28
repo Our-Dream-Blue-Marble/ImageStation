@@ -2,20 +2,22 @@
 
 .OrderConfirmViewBody {
   height: 100%;
-  padding-top: 9.3vh;
-  padding-bottom: 4.2vh;
+  padding-top: 8.37vh;
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: cover;
+  flex-shrink: 0;
+  flex-direction: column;
 
   .AllLayout {
     display: flex;
     flex-direction: row;
+    padding-bottom: 7.01vh;
     @include centerFormat();
     .FileLayout {
       width: 32.7%;
-      height: 79.2vh;
+      height: 65.6vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -56,7 +58,7 @@
 
     .InfoLayout {
       width: 24.3%;
-      height: 79.2vh;
+      height: 65.6vh;
       display: flex;
       flex-direction: column;
 
@@ -69,69 +71,87 @@
       padding-right: 2.2vw;
       margin-top: 2.4vh;
       margin-bottom: 2.4vh;
+
+      display: flex;
+      flex-direction: column;
+    }
+    .orderConfirmViewHeader {
+      #categoryTitleLayout {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 3.39vh;
+
+        #category {
+          @include heading2Font($black100Color);
+          text-align: left;
+        }
+
+        #docId {
+          @include body1Font($black100Color);
+          text-align: right;
+        }
+      }
+      .categoryAttachment {
+        display: flex;
+        @include body1Font($primaryColor);
+        padding-bottom: 3.39vh;
+        text-decoration-line: none;
+      }
+
+      .categoryUserInfoLayout {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 2.15vh;
+        .categoryKeyUserInfo {
+          width: 70px;
+          padding-right: 2.8vw;
+          @include subHeading2Font($black100Color);
+        }
+        .categoryValueUserInfo {
+          @include subHeading2Font($black100Color);
+        }
+      }
+    }
+    .categoryAll {
+      height: 42.76vh;
       overflow-y: scroll;
+      .categoryAllLayout {
+        display: flex;
+        flex-direction: row;
+        padding-top: 1.24vh;
+        padding-bottom: 2.15vh;
+        .categoryKeyText {
+          width: 70px;
+          padding-right: 2.8vw;
+          @include body1Font($black75Color);
+        }
 
-      hr {
-        height: 1px;
-        padding: 0;
-        margin: 0;
-        margin-top: 1.9vh;
-        margin-bottom: 2.4vh;
-        border: none;
-        background-color: $black100Color;
+        .categoryValueText {
+          @include subHeading3Font($black100Color);
+        }
       }
     }
-
-    #categoryTitleLayout {
+  }
+  .navigateButtonSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 4.52vh;
+    .navigateButton {
+      @include heading2Font($white100Color);
+      background: $primaryColor;
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+      width: 210px;
+      height: 60px;
+      padding: 10px;
+      justify-content: center;
 
-      #category {
-        @include heading2Font($black100Color);
-        text-align: left;
-      }
-
-      #docId {
-        @include body1Font($black100Color);
-        text-align: right;
-      }
-    }
-
-    .categoryAllLayout {
-      display: flex;
-      flex-direction: row;
-      padding-top: 3.4vh;
-
-      .categoryKeyText {
-        width: 70px;
-        padding-right: 2.8vw;
-        @include body1Font($black75Color);
-      }
-
-      .categoryValueText {
-        @include subHeading3Font($black100Color);
-      }
-    }
-
-    .categoryAttachment {
-      display: flex;
-      @include body1Font($primaryColor);
-      margin-bottom: 2.5vh;
-      text-decoration-line: none;
-    }
-
-    .categoryUserInfoLayout {
-      display: flex;
-      flex-direction: row;
-      .categoryKeyUserInfo {
-        width: 70px;
-        padding-right: 2.8vw;
-        @include subHeading2Font($black100Color);
-      }
-      .categoryValueUserInfo {
-        @include subHeading2Font($black100Color);
-      }
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      border: 0;
+      border-radius: 8px;
     }
   }
 }
