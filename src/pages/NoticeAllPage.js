@@ -13,8 +13,8 @@ const NoticeAllPage = ({ isAdmin }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [notice, setNotice] = useState([]);
-  const [search, setSearch] = useState();
-  const [clickSearch, setClickSearch] = useState(false);
+  const [noticeSearched, setNoticeSearched] = useState([]);
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const limit = 6;
   const offset = (page - 1) * limit;
@@ -22,6 +22,7 @@ const NoticeAllPage = ({ isAdmin }) => {
 
   useEffect(() => {
     getNoticeList(setNotice);
+    getNoticeList(setNoticeSearched);
   }, []);
   useEffect(() => {
     if (isNoticeDeleted) {
@@ -46,7 +47,8 @@ const NoticeAllPage = ({ isAdmin }) => {
                 navigate(NoticeWriteRouteName, {
                   state: { data: notice[0] },
                 })
-              }>
+              }
+            >
               +
             </button>
           ) : null}
@@ -54,8 +56,14 @@ const NoticeAllPage = ({ isAdmin }) => {
       </div>
 
       <div className="NoticeAllContainer">
-        <div>
+        <form
+          className="searchContainer"
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <input
+            className="searchInput"
             name="noticeSearch"
             type="text"
             placeholder="검색"
@@ -63,31 +71,48 @@ const NoticeAllPage = ({ isAdmin }) => {
               onSearchNoticeChange(e, setSearch);
             }}
           />
-          <button>검색</button>
-        </div>
+          <button
+            className="searchBtn"
+            onClick={() => {
+              const filteredData = notice.filter(
+                (data) =>
+                  data.title.includes(search) || data.body.includes(search)
+              );
+              setNoticeSearched(filteredData);
+            }}
+          >
+            Q
+          </button>
+        </form>
+        <hr id="NoticeDevice_line" />
 
-        <div className="noticeBoxContainer">
-          {notice.slice(offset, offset + limit).map((value) => (
-            <div
-              className="eachNoticeContent"
-              key={value.id}
-              onClick={() =>
-                navigate(NoticeListRouteName + "/" + value.id, {
-                  state: { data: value },
-                })
-              }>
-              <div className="noticeTitleAndBodyContainer">
-                <div className=" noticeListTitle">{value.title}</div>
-                <pre className="noticeListBody">{value.body}</pre>
-              </div>
+        <div className="noticesContainer">
+          {noticeSearched.slice(offset, offset + limit).map((value) => (
+            <>
+              <div
+                className="eachNoticeContent"
+                key={value.id}
+                onClick={() =>
+                  navigate(NoticeListRouteName + "/" + value.id, {
+                    state: { data: value },
+                  })
+                }
+              >
+                <div className="noticeTitleAndBodyContainer">
+                  <div className=" noticeListTitle">{value.title}</div>
+                  <pre className="noticeListBody">{value.body}</pre>
+                </div>
 
-              <div className="noticeDateContainer">
-                <div className=" noticeListDate">
-                  {getNoticeWrittenDate(value)}
+                <div className="noticeDateContainer">
+                  <div className="noticeListDate">게시일시:</div>
+                  <div className="noticeListDate">
+                    {getNoticeWrittenDate(value)}
+                  </div>
                 </div>
               </div>
-            </div>
+            </>
           ))}
+          <hr id="OrderConfirmView_line" />
         </div>
       </div>
       <footer>

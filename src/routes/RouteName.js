@@ -24,6 +24,6 @@ export const OrderConfirmViewRouteName = `${process.env.PUBLIC_URL}/orderConfirm
 
 export const PaperInfoRouteName = `${process.env.PUBLIC_URL}/paperInfo`;
 
-export const NoticeAllRouteName = `${process.env.PUBLIC_URL}/allnotice`;
+export const NoticeAllRouteName = `${process.env.PUBLIC_URL}/notice/all`;
 
 export const UserLeaveRouteName = `${process.env.PUBLIC_URL}/userLeave`;
