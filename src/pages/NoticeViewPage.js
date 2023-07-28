@@ -86,7 +86,9 @@ const NoticeViewPage = ({ isAdmin }) => {
                         {noticeViewObj.attachment ? (
                           <div
                             className="noticeViewAttachmentText"
-                            onClick={onAttachmentDownloadClick(noticeViewObj)}>
+                            onClick={() =>
+                              onAttachmentDownloadClick(noticeViewObj)
+                            }>
                             {noticeViewObj.attachmentName}
                           </div>
                         ) : null}
