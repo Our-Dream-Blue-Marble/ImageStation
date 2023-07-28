@@ -4,7 +4,6 @@ import {
   HomeRouteName,
   OrderCategoryPageRouteName,
   OrderConfirmListRouteName,
-  OrderConfirmViewRouteName,
 } from "routes/RouteName";
 import {
   onOrderAttachmentChange,
@@ -14,17 +13,18 @@ import {
 import "styles/OrderStyle.scss";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
 import OrderFileCancel from "../assets/OrderFileCancelAsset.svg";
+import Select from "react-select";
 
 const OrderPage = () => {
   const navigate = useNavigate();
-  const [orderTitle, setOrderTitle] = useState("");
-  const [orderPage, setOrderPage] = useState("");
+  const [orderTitle, setOrderTitle] = useState("0");
+  const [orderPage, setOrderPage] = useState("0");
   const [orderLayout, setOrderLayout] = useState(false);
-  const [orderSize, setOrderSize] = useState("");
-  const [orderBinding, setOrderBinding] = useState("");
+  const [orderSize, setOrderSize] = useState("0");
+  const [orderBinding, setOrderBinding] = useState("0");
   const [orderCoating, setOrderCoating] = useState(false);
-  const [orderPaper, setOrderPaper] = useState("");
-  const [orderColor, setOrderColor] = useState("");
+  const [orderPaper, setOrderPaper] = useState("0");
+  const [orderColor, setOrderColor] = useState(false);
   const [orderMoreInfo, setOrderMoreInfo] = useState("");
   const [orderAttachment, setOrderAttachment] = useState("");
   const [orderAttachmentName, setOrderAttachmentName] = useState("");
@@ -34,7 +34,7 @@ const OrderPage = () => {
   const [isFileUploadButton, setIsFileUploadButton] = useState(true);
   const [isPdf, setIsPdf] = useState(false);
   const [isZip, setIsZip] = useState(false);
-  const location = useLocation();
+  const location = useLocation("");
   const category = location.state.data;
   const [clickedOrder, setClickedOrder] = useState(false);
   const [orderUploadSuccess, setOrderUploadSuccess] = useState(false);
@@ -190,7 +190,7 @@ const OrderPage = () => {
                       <span>
                         <label>제목</label>
                         <input
-                          name="page"
+                          name="title"
                           title={orderTitle}
                           onChange={async (e) => {
                             onOrderFieldChange(e, setOrderTitle);
@@ -203,15 +203,15 @@ const OrderPage = () => {
                       <span>
                         <label>페이지</label>
                         <select
+                          defaultValue={"0"}
                           name="page"
                           onChange={async (e) => {
                             onOrderFieldChange(e, setOrderPage);
                           }}
                         >
-                          <option></option>
-                          <option value={0}>전체</option>
-                          <option value={1}>짝수</option>
-                          <option value={2}>홀수</option>
+                          <option value={"0"}>전체</option>
+                          <option value={"1"}>짝수</option>
+                          <option value={"2"}>홀수</option>
                         </select>
                       </span>
                       {(category === "normal" ||
@@ -220,33 +220,32 @@ const OrderPage = () => {
                         <span>
                           <label>레이아웃</label>
                           <select
+                            defaultValue={false}
                             name="layout"
                             onChange={async (e) => {
                               onOrderFieldChange(e, setOrderLayout);
                             }}
                           >
-                            <option></option>
-                            <option>가로 방향</option>
-                            <option>세로 방향</option>
+                            <option value={false}>세로 방향</option>
+                            <option value={true}>가로 방향</option>
                           </select>
                         </span>
                       )}
-
                       {category !== "labeling" ||
                         (category !== "etc" && (
                           <span>
                             <label>사이즈</label>
                             <select
+                              defaultValue={"0"}
                               name="size"
                               onChange={async (e) => {
                                 onOrderFieldChange(e, setOrderSize);
                               }}
                             >
-                              <option></option>
-                              <option>A2</option>
-                              <option>A3</option>
-                              <option>A4</option>
-                              <option>A5</option>
+                              <option value={"0"}>A2</option>
+                              <option value={"1"}>A3</option>
+                              <option value={"2"}>A4</option>
+                              <option value={"3"}>A5</option>
                             </select>
                           </span>
                         ))}
@@ -256,14 +255,14 @@ const OrderPage = () => {
                             <label>
                               제본방식
                               <select
+                                defaultValue={"0"}
                                 name="binding"
                                 onChange={async (e) => {
                                   onOrderFieldChange(e, setOrderBinding);
                                 }}
                               >
-                                <option></option>
-                                <option>B4</option>
-                                <option>B2</option>
+                                <option value={"0"}>B4</option>
+                                <option value={"1"}>B2</option>
                               </select>
                             </label>
                           </span>
@@ -272,14 +271,14 @@ const OrderPage = () => {
                             <label>
                               코팅
                               <select
+                                defaultValue={false}
                                 name="coating"
                                 onChange={async (e) => {
                                   onOrderFieldChange(e, setOrderCoating);
                                 }}
                               >
-                                <option></option>
-                                <option>코팅 있음</option>
-                                <option>코팅 없음</option>
+                                <option value={false}>코팅 없음</option>
+                                <option value={true}>코팅 있음</option>
                               </select>
                             </label>
                           </span>
@@ -296,28 +295,29 @@ const OrderPage = () => {
                             <label>
                               종이
                               <select
+                                defaultValue={"0"}
                                 name="paper"
                                 onChange={async (e) => {
                                   onOrderFieldChange(e, setOrderPaper);
                                 }}
                               >
-                                <option></option>
-                                <option>스노우지</option>
-                                <option>마시멜로우지</option>
+                                <option value={"0"}>일반용지</option>
+                                <option value={"1"}>스노우지</option>
+                                <option value={"2"}>마시멜로우지</option>
                               </select>
                             </label>
                           </span>
                           <span>
                             <label>컬러</label>
                             <select
+                              defaultValue={false}
                               name="color"
                               onChange={async (e) => {
                                 onOrderFieldChange(e, setOrderColor);
                               }}
                             >
-                              <option></option>
-                              <option>흑백</option>
-                              <option>컬러</option>
+                              <option value={false}>흑백</option>
+                              <option value={true}>컬러</option>
                             </select>
                           </span>
                         </details>
@@ -329,14 +329,14 @@ const OrderPage = () => {
                       <span>
                         <label>컬러</label>
                         <select
-                          name="layout"
+                          defaultValue={false}
+                          name="color"
                           onChange={async (e) => {
-                            onOrderFieldChange(e, setOrderLayout);
+                            onOrderFieldChange(e, setOrderColor);
                           }}
                         >
-                          <option></option>
-                          <option>컬러</option>
-                          <option>흑백</option>
+                          <option value={false}>흑백</option>
+                          <option value={true}>컬러</option>
                         </select>
                       </span>
                     )}
