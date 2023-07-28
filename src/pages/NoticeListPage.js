@@ -11,7 +11,7 @@ import "styles/NoticeListStyle.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
 
-const NoticeListPage = ({ isAdmin }) => {
+const NoticeListPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [notice, setNotice] = useState([]);
@@ -38,26 +38,11 @@ const NoticeListPage = ({ isAdmin }) => {
         <div className="noticeListHead">이미지스테이션의 소식을 전해드려요</div>
         <div
           className="noticeListAll"
-          onClick={() => navigate(NoticeAllRouteName)}
+          onClick={() => navigate(NoticeAllRouteName, { state: false })}
         >
           모든 공지
         </div>
-        <div>
-          {isAdmin ? (
-            <button
-              className="noticeWriteBtn"
-              onClick={() =>
-                navigate(NoticeWriteRouteName, {
-                  state: { data: notice[0] },
-                })
-              }
-            >
-              +
-            </button>
-          ) : null}
-        </div>
       </div>
-
       <div className="noticeBoxContainer">
         {notice.slice(offset, offset + limit).map((value) => (
           <div className="cardNotice" key={value.id}>
@@ -78,14 +63,6 @@ const NoticeListPage = ({ isAdmin }) => {
           </div>
         ))}
       </div>
-      <footer>
-        <NoticePagination
-          total={notice.length}
-          notices={limit}
-          page={page}
-          setPage={setPage}
-        />
-      </footer>
     </div>
   );
 };

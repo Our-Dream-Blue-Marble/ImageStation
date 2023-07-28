@@ -109,7 +109,10 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               element={<OrderCategoryPage />}
             />
             <Route path={PaperInfoRouteName} element={<PaperInfoPage />} />
-            <Route path={NoticeAllRouteName} element={<NoticeAllPage />} />
+            <Route
+              path={NoticeAllRouteName}
+              element={<NoticeAllPage isAdmin={userObject?.role || false} />}
+            />
             <Route path={UserLeaveRouteName} element={<UserLeavePage />} />
           </>
         ) : (
@@ -128,10 +131,7 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                 </div>
               }
             />
-            <Route
-              path={NoticeListRouteName}
-              element={<NoticeListPage isAdmin={false} />}
-            />
+            <Route path={NoticeListRouteName} element={<NoticeListPage />} />
             <Route
               path={NoticeViewRouteName}
               element={<NoticeViewPage isAdmin={false} />}
@@ -159,7 +159,10 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
             />
 
             <Route path={PaperInfoRouteName} element={<PaperInfoPage />} />
-            <Route path={NoticeAllRouteName} element={<NoticeAllPage />} />
+            <Route
+              path={NoticeAllRouteName}
+              element={<NoticeAllPage isAdmin={false} />}
+            />
           </>
         )}
       </Routes>
