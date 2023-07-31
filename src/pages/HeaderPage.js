@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { logOut } from "functions/UserFunction";
 import {
@@ -20,6 +20,14 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isMyProfile, setIsMyProfile] = useState(false);
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const updateScroll = () => {
+    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", updateScroll);
+  });
 
   return (
     <>
@@ -60,7 +68,9 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
           </div>
         </div>
       )}
-      <header>
+      <header
+        className={scrollPosition < 100 ? "original_header" : "change_header"}
+      >
         <Link to={`${HomeRouteName}`} replace={true}>
           <LogoAsset width={223} height={46.9} id="logoAsset" />
         </Link>
