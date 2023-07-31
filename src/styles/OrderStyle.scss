@@ -123,7 +123,6 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     box-sizing: border-box;
-    overflow: hidden;
 
     .categoryHeader {
       width: 18vw;
@@ -135,7 +134,10 @@
       @include heading2Font($black100Color);
     }
     .categorySelectBodyContainer {
-      overflow-y: scroll;
+      width: 23.74vw;
+      height: 50.6vh;
+      overflow: auto;
+
       .categorySelect {
         width: 18vw;
         height: 56.56vh;
@@ -151,15 +153,20 @@
 
         input[type="text"] {
           height: 4.75vh;
-          width: 12.7vw;
+          width: 12vw;
           border-radius: 8px;
           border: none;
           box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.05);
           float: right;
+          padding-left: 0.66vw;
+        }
+
+        input[type="text"]:focus {
+          outline: none;
         }
 
         input::placeholder {
-          padding-left: 0.66vw;
+          padding-left: 0.16vw;
           @include captionFont($black50Color);
         }
 
@@ -187,8 +194,8 @@
         }
 
         textarea {
-          height: 11.2vh;
-          width: 12.7vw;
+          height: 8.2vh;
+          width: 11.7vw;
           resize: none;
           border: none;
           border-radius: 8px;
@@ -211,9 +218,9 @@
 
         .moreInfoContainer {
           width: 19.18vw;
-          height: 11.2vh;
+          height: 26.2vh;
           display: inline-block;
-          padding-bottom: 1.58vh;
+          padding-bottom: 10px;
         }
         .moreInfoContainerForEtc {
           width: 19.18vw;
