@@ -42,7 +42,8 @@ const NoticeAllPage = ({ isAdmin }) => {
                 navigate(NoticeWriteRouteName, {
                   state: { data: notice[0] },
                 })
-              }>
+              }
+            >
               +
             </button>
           ) : null}
@@ -50,11 +51,8 @@ const NoticeAllPage = ({ isAdmin }) => {
       </div>
 
       <div className="NoticeAllContainer">
-        <form
-          className="searchContainer"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}>
+        <div className="searchContainer">
+          <div className="searchIcon" />
           <input
             className="searchInput"
             name="noticeSearch"
@@ -69,10 +67,10 @@ const NoticeAllPage = ({ isAdmin }) => {
               setNoticeSearched(filteredData);
             }}
           />
-        </form>
-        <hr id="NoticeDevice_line" />
+        </div>
 
         <div className="noticesContainer">
+          <hr id="NoticeDevice_line" />
           {noticeSearched.slice(offset, offset + limit).map((value) => (
             <>
               <div
@@ -82,7 +80,8 @@ const NoticeAllPage = ({ isAdmin }) => {
                   navigate(NoticeListRouteName + "/" + value.id, {
                     state: { data: value },
                   })
-                }>
+                }
+              >
                 <div className="noticeTitleAndBodyContainer">
                   <div className=" noticeListTitle">{value.title}</div>
                   <pre className="noticeListBody">{value.body}</pre>
@@ -95,9 +94,9 @@ const NoticeAllPage = ({ isAdmin }) => {
                   </div>
                 </div>
               </div>
+              <hr id="NoticeDevice_line" />
             </>
           ))}
-          <hr id="OrderConfirmView_line" />
         </div>
       </div>
       <footer>
