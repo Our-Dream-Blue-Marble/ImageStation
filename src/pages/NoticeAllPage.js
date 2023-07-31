@@ -1,11 +1,7 @@
 import "styles/NoticeAllStyle.scss";
 import NoticePagination from "../widgets/NoticePagination";
 import React, { useState, useEffect } from "react";
-import {
-  getNoticeList,
-  getNoticeWrittenDate,
-  onSearchNoticeChange,
-} from "functions/NoticeFunction";
+import { getNoticeList, getNoticeWrittenDate } from "functions/NoticeFunction";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoticeListRouteName, NoticeWriteRouteName } from "routes/RouteName";
 
@@ -14,7 +10,6 @@ const NoticeAllPage = ({ isAdmin }) => {
   const navigate = useNavigate();
   const [notice, setNotice] = useState([]);
   const [noticeSearched, setNoticeSearched] = useState([]);
-  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const limit = 6;
   const offset = (page - 1) * limit;
@@ -47,8 +42,7 @@ const NoticeAllPage = ({ isAdmin }) => {
                 navigate(NoticeWriteRouteName, {
                   state: { data: notice[0] },
                 })
-              }
-            >
+              }>
               +
             </button>
           ) : null}
@@ -60,29 +54,21 @@ const NoticeAllPage = ({ isAdmin }) => {
           className="searchContainer"
           onSubmit={(e) => {
             e.preventDefault();
-          }}
-        >
+          }}>
           <input
             className="searchInput"
             name="noticeSearch"
             type="text"
             placeholder="검색"
             onChange={(e) => {
-              onSearchNoticeChange(e, setSearch);
-            }}
-          />
-          <button
-            className="searchBtn"
-            onClick={() => {
               const filteredData = notice.filter(
                 (data) =>
-                  data.title.includes(search) || data.body.includes(search)
+                  data.title.includes(e.target.value) ||
+                  data.body.includes(e.target.value)
               );
               setNoticeSearched(filteredData);
             }}
-          >
-            Q
-          </button>
+          />
         </form>
         <hr id="NoticeDevice_line" />
 
@@ -96,8 +82,7 @@ const NoticeAllPage = ({ isAdmin }) => {
                   navigate(NoticeListRouteName + "/" + value.id, {
                     state: { data: value },
                   })
-                }
-              >
+                }>
                 <div className="noticeTitleAndBodyContainer">
                   <div className=" noticeListTitle">{value.title}</div>
                   <pre className="noticeListBody">{value.body}</pre>
