@@ -26,7 +26,8 @@ export const createNewNoticeDocument = async (
         dateupdated,
         view,
         attachment,
-        attachmentName
+        attachmentName,
+        false
       )
     )
     .then(() => {
@@ -73,7 +74,8 @@ export const updateNoticeDocument = async (
   date,
   view,
   attachment,
-  attachmentName
+  attachmentName,
+  noticePin
 ) => {
   const noticeDocumentRef = await dbService.collection("notices").doc(id);
   await noticeDocumentRef
@@ -88,7 +90,8 @@ export const updateNoticeDocument = async (
         Date.now(),
         view,
         attachment,
-        attachmentName
+        attachmentName,
+        noticePin
       ).toData()
     )
     .then(() => {
@@ -117,6 +120,19 @@ export const updateNoticeBodyDocument = async (id, newBody) => {
   const noticeDocumentRef = await dbService.collection("notices").doc(id);
   await noticeDocumentRef
     .update({ body: newBody })
+    .then(() => {
+      return true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return false;
+};
+
+export const updateNoticePinDocument = async (id, newNoticePin) => {
+  const noticeDocumentRef = await dbService.collection("notices").doc(id);
+  await noticeDocumentRef
+    .update({ noticePin: newNoticePin })
     .then(() => {
       return true;
     })
