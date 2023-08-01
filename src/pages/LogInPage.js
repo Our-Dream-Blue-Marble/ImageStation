@@ -9,6 +9,7 @@ import {
   SignInRouteName,
   UpdatePasswordPageRouteName,
 } from "routes/RouteName";
+import { ReactComponent as CheckboxIconAsset } from "assets/icons/CheckboxIconAsset.svg";
 import "styles/LogInStyle.scss";
 
 const LogInPage = () => {
@@ -72,9 +73,10 @@ const LogInPage = () => {
               value={userPassword}
               onChange={(e) => onUserEmailOrPasswordChange(e, setUserPassword)}
             />
-            <div className="SaveIdContainer">
-              <input type="checkbox" />
-              <label>아이디 저장</label>
+            <div className="saveId-checkbox">
+              <input id="checkbox" type="checkbox" />
+              <label for="checkbox"></label>
+              <span id="label">아이디저장</span>
             </div>
             <input
               className="SubmitButton"
