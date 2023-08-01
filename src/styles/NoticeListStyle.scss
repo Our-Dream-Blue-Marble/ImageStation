@@ -82,21 +82,20 @@
       border-radius: 10px;
       box-shadow: 0px 4px 10px 0px $black25Color;
       background-color: #e8edfb80;
+      cursor: pointer;
 
       .contentCard {
-        margin-top: 50px;
+        margin-top: 25px;
         margin-bottom: 90px;
-        margin-right: 15%;
-        margin-left: 13%;
+        margin-left: 50px;
         width: 20.37vw;
         height: 32.8vh;
-        cursor: pointer;
 
         .noticeListTitle {
           @include heading2Font($black100Color);
           width: 160px;
-          height: 23px;
-          margin-bottom: 24px;
+          height: 28px;
+          margin-bottom: 20px;
           overflow: hidden;
           text-overflow: ellipsis;
         }
