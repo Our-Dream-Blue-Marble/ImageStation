@@ -88,7 +88,8 @@ export const onUpdatedNoticeSubmit = async (
   view,
   attachment,
   attachmentName,
-  isNewAttachmentUploaded
+  isNewAttachmentUploaded,
+  noticePin
 ) => {
   event.preventDefault();
   let attachmentUrl = attachment;
@@ -108,7 +109,8 @@ export const onUpdatedNoticeSubmit = async (
     date,
     view,
     attachmentUrl,
-    attachmentName
+    attachmentName,
+    noticePin
   )
     .then(() => {
       result = true;
