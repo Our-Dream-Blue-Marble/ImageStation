@@ -8,8 +8,8 @@ const NoticeListPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [notice, setNotice] = useState([]);
-  const [page, setPage] = useState(1);
-  const limit = 3;
+  const page = 1;
+  const limit = 4;
   const offset = (page - 1) * limit;
   const [isNoticeDeleted, setIsNoticeDeleted] = useState(location.state);
   useEffect(() => {
@@ -28,10 +28,12 @@ const NoticeListPage = () => {
   return (
     <div className="noticeListLayout">
       <div className="noticeHead">
-        <div className="noticeListHead">이미지스테이션의 소식을 전해드려요</div>
+        <div className="noticeListHead">공지사항</div>
+        <div>이미지스테이션의 소식을 전해드려요</div>
         <div
           className="noticeListAll"
-          onClick={() => navigate(NoticeAllRouteName, { state: false })}>
+          onClick={() => navigate(NoticeAllRouteName, { state: false })}
+        >
           모든 공지
         </div>
       </div>
@@ -44,12 +46,12 @@ const NoticeListPage = () => {
                 navigate(NoticeListRouteName + "/" + value.id, {
                   state: { data: value },
                 })
-              }>
+              }
+            >
               <div className=" noticeListTitle">{value.title}</div>
               <div className=" noticeListDate">
                 {getNoticeWrittenDate(value)}
               </div>
-              <pre className="noticeListBody">{value.body}</pre>
             </div>
           </div>
         ))}

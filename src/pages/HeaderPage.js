@@ -4,6 +4,7 @@ import { logOut } from "functions/UserFunction";
 import {
   HomeRouteName,
   logInRouteName,
+  NoticeAllRouteName,
   NoticeListRouteName,
   OrderCategoryPageRouteName,
   OrderConfirmListRouteName,
@@ -90,7 +91,7 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
             </button>
             <button
               className="centerButton"
-              onClick={() => navigate(NoticeListRouteName)}
+              onClick={() => navigate(NoticeAllRouteName)}
             >
               공지사항
             </button>
