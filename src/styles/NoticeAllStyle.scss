@@ -93,6 +93,13 @@
       cursor: pointer;
       @include centerFormat();
 
+      .noticePinCheckbox {
+        display: flex;
+        width: 636px;
+        justify-content: start;
+        position: relative;
+      }
+
       .eachNoticeContent {
         display: inline;
         width: 636px;
@@ -103,6 +110,7 @@
         margin-bottom: 28px;
         flex-direction: row;
         border: none;
+        z-index: 2;
 
         .noticeTitleAndBodyContainer {
           float: left;
@@ -119,7 +127,7 @@
           .noticeListBody {
             @include captionFont($black75Color);
             display: block;
-            height: 23vh;
+            height: 23px;
             white-space: pre-wrap;
             word-break: break-all;
             text-overflow: ellipsis;
