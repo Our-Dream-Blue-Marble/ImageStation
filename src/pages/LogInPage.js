@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   onUserEmailAndPasswordSubmit,
   onUserEmailOrPasswordChange,
 } from "functions/SignInFunction";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   HomeRouteName,
   SignInRouteName,
@@ -15,6 +15,7 @@ const LogInPage = () => {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [isNewUser, setIsNewUser] = useState(false);
   const [isRouteConfirm, setIsRouteConfirm] = useState(false);
 
@@ -22,10 +23,18 @@ const LogInPage = () => {
     if (isNewUser && isRouteConfirm) {
       navigate(SignInRouteName);
     }
-  });
+  }, [isNewUser, isRouteConfirm, navigate]);
+
+  useEffect(() => {
+    if ((userEmail !== "") & (userPassword !== "")) {
+      setIsPossibleSubmit(true);
+    } else {
+      setIsPossibleSubmit(false);
+    }
+  }, [userEmail, userPassword]);
 
   return (
-    <div className="LoginBody">
+    <div className="login-body">
       <div className="LoginContainer">
         <div className="Contents">
           <span>로그인</span>
@@ -67,7 +76,16 @@ const LogInPage = () => {
               <input type="checkbox" />
               <label>아이디 저장</label>
             </div>
-            <input className="SubmitButton" type="submit" value={"로그인"} />
+            <input
+              className="SubmitButton"
+              type="submit"
+              style={
+                isPossibleSubmit
+                  ? { background: `rgba(90, 145, 255, 1)` }
+                  : { background: `rgba(90, 145, 255, 0.50)` }
+              }
+              value={"로그인"}
+            />
           </form>
           <div className="UpdateAndSigninButtonsContainer">
             <button

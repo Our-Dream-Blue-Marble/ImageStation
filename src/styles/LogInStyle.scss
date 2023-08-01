@@ -1,8 +1,8 @@
 @import "styles/ThemeStyles.scss";
 
-.LoginBody {
+.login-body {
   display: flex;
-  justify-content: center;
+  @include centerFormat();
   height: 100%;
   padding-top: 13vh;
   padding-bottom: 13vh;

@@ -165,7 +165,7 @@ const SignInPage = () => {
             style={
               isPossibleSubmit
                 ? { background: `rgba(90, 145, 255, 1)` }
-                : { background: `rgba(33, 36, 39, 0.5)` }
+                : { background: `rgba(90, 145, 255, 0.50)` }
             }
             value={"가입하기"}
           />
