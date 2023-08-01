@@ -115,7 +115,7 @@ const OrderPage = () => {
           <div className="OrderWholeContainer">
             <div className="OrderContainer-left">
               {isFileUploadButton ? (
-                <div>
+                <div style={{ width: "300px", height: "500px" }}>
                   <label className="fileLabel" htmlFor="FileUpload">
                     파일 선택
                   </label>
@@ -152,17 +152,10 @@ const OrderPage = () => {
                   <img src={OrderFileCancel} />
                 </button>
               )}
-              <div>
+              <div className="pdfFileContainer">
                 {isPdf && imageUrl !== "" && isFileUploadButton === false ? (
                   <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-                    <div
-                      style={{
-                        border: "1px solid rgba(0, 0, 0, 0.3)",
-                        height: "100%",
-                      }}
-                    >
-                      <Viewer fileUrl={imageUrl} />
-                    </div>
+                    <Viewer fileUrl={imageUrl} />
                   </Worker>
                 ) : imageUrl !== "" &&
                   isFileUploadButton === false &&
@@ -185,143 +178,141 @@ const OrderPage = () => {
                 </div>
                 <div className="categorySelectBodyContainer">
                   <div className="categorySelect">
-                    <fieldset>
+                    <span>
+                      <label>제목</label>
+                      <input
+                        name="title"
+                        title={orderTitle}
+                        onChange={async (e) => {
+                          onOrderFieldChange(e, setOrderTitle);
+                        }}
+                        type="text"
+                        placeholder="제목을 입력하세요."
+                        maxLength={100}
+                      />
+                    </span>
+                    <span>
+                      <label>페이지</label>
+                      <select
+                        defaultValue={"0"}
+                        name="page"
+                        onChange={async (e) => {
+                          onOrderFieldChange(e, setOrderPage);
+                        }}
+                      >
+                        <option value={"0"}>전체</option>
+                        <option value={"1"}>짝수</option>
+                        <option value={"2"}>홀수</option>
+                      </select>
+                    </span>
+                    {(category === "normal" ||
+                      category === "binding" ||
+                      category === "actual") && (
                       <span>
-                        <label>제목</label>
-                        <input
-                          name="title"
-                          title={orderTitle}
-                          onChange={async (e) => {
-                            onOrderFieldChange(e, setOrderTitle);
-                          }}
-                          type="text"
-                          placeholder="제목을 입력하세요."
-                          maxLength={100}
-                        />
-                      </span>
-                      <span>
-                        <label>페이지</label>
+                        <label>레이아웃</label>
                         <select
-                          defaultValue={"0"}
-                          name="page"
+                          defaultValue={false}
+                          name="layout"
                           onChange={async (e) => {
-                            onOrderFieldChange(e, setOrderPage);
+                            onOrderFieldChange(e, setOrderLayout);
                           }}
                         >
-                          <option value={"0"}>전체</option>
-                          <option value={"1"}>짝수</option>
-                          <option value={"2"}>홀수</option>
+                          <option value={false}>세로 방향</option>
+                          <option value={true}>가로 방향</option>
                         </select>
                       </span>
-                      {(category === "normal" ||
-                        category === "binding" ||
-                        category === "actual") && (
+                    )}
+                    {category !== "labeling" ||
+                      (category !== "etc" && (
                         <span>
-                          <label>레이아웃</label>
+                          <label>사이즈</label>
                           <select
-                            defaultValue={false}
-                            name="layout"
+                            defaultValue={"0"}
+                            name="size"
                             onChange={async (e) => {
-                              onOrderFieldChange(e, setOrderLayout);
+                              onOrderFieldChange(e, setOrderSize);
                             }}
                           >
-                            <option value={false}>세로 방향</option>
-                            <option value={true}>가로 방향</option>
+                            <option value={"0"}>A2</option>
+                            <option value={"1"}>A3</option>
+                            <option value={"2"}>A4</option>
+                            <option value={"3"}>A5</option>
                           </select>
                         </span>
-                      )}
-                      {category !== "labeling" ||
-                        (category !== "etc" && (
-                          <span>
-                            <label>사이즈</label>
+                      ))}
+                    {category === "binding" && (
+                      <>
+                        <span>
+                          <label>
+                            제본방식
                             <select
                               defaultValue={"0"}
-                              name="size"
+                              name="binding"
                               onChange={async (e) => {
-                                onOrderFieldChange(e, setOrderSize);
+                                onOrderFieldChange(e, setOrderBinding);
                               }}
                             >
-                              <option value={"0"}>A2</option>
-                              <option value={"1"}>A3</option>
-                              <option value={"2"}>A4</option>
-                              <option value={"3"}>A5</option>
+                              <option value={"0"}>B4</option>
+                              <option value={"1"}>B2</option>
                             </select>
-                          </span>
-                        ))}
-                      {category === "binding" && (
-                        <>
-                          <span>
-                            <label>
-                              제본방식
-                              <select
-                                defaultValue={"0"}
-                                name="binding"
-                                onChange={async (e) => {
-                                  onOrderFieldChange(e, setOrderBinding);
-                                }}
-                              >
-                                <option value={"0"}>B4</option>
-                                <option value={"1"}>B2</option>
-                              </select>
-                            </label>
-                          </span>
+                          </label>
+                        </span>
 
-                          <span>
-                            <label>
-                              코팅
-                              <select
-                                defaultValue={false}
-                                name="coating"
-                                onChange={async (e) => {
-                                  onOrderFieldChange(e, setOrderCoating);
-                                }}
-                              >
-                                <option value={false}>코팅 없음</option>
-                                <option value={true}>코팅 있음</option>
-                              </select>
-                            </label>
-                          </span>
-                        </>
-                      )}
-                    </fieldset>
-                    <fieldset>
-                      {(category === "normal" ||
-                        category === "binding" ||
-                        category === "actual") && (
-                        <details>
-                          <summary>설정 더보기</summary>
-                          <span>
-                            <label>
-                              종이
-                              <select
-                                defaultValue={"0"}
-                                name="paper"
-                                onChange={async (e) => {
-                                  onOrderFieldChange(e, setOrderPaper);
-                                }}
-                              >
-                                <option value={"0"}>일반용지</option>
-                                <option value={"1"}>스노우지</option>
-                                <option value={"2"}>마시멜로우지</option>
-                              </select>
-                            </label>
-                          </span>
-                          <span>
-                            <label>컬러</label>
+                        <span>
+                          <label>
+                            코팅
                             <select
                               defaultValue={false}
-                              name="color"
+                              name="coating"
                               onChange={async (e) => {
-                                onOrderFieldChange(e, setOrderColor);
+                                onOrderFieldChange(e, setOrderCoating);
                               }}
                             >
-                              <option value={false}>흑백</option>
-                              <option value={true}>컬러</option>
+                              <option value={false}>코팅 없음</option>
+                              <option value={true}>코팅 있음</option>
                             </select>
-                          </span>
-                        </details>
-                      )}
-                    </fieldset>
+                          </label>
+                        </span>
+                      </>
+                    )}
+
+                    {(category === "normal" ||
+                      category === "binding" ||
+                      category === "actual") && (
+                        <details>
+                        <summary></summary>
+                        <span>
+                          <label>
+                            종이
+                            <select
+                              defaultValue={"0"}
+                              name="paper"
+                              onChange={async (e) => {
+                                onOrderFieldChange(e, setOrderPaper);
+                              }}
+                            >
+                              <option value={"0"}>일반용지</option>
+                              <option value={"1"}>스노우지</option>
+                              <option value={"2"}>마시멜로우지</option>
+                            </select>
+                          </label>
+                        </span>
+                        <span>
+                          <label>컬러</label>
+                          <select
+                            defaultValue={false}
+                            name="color"
+                            onChange={async (e) => {
+                              onOrderFieldChange(e, setOrderColor);
+                            }}
+                          >
+                            <option value={false}>흑백</option>
+                            <option value={true}>컬러</option>
+                          </select>
+                        </span>
+                      </details>
+                    )}
+
                     {(category === "labeling" ||
                       category === "photo" ||
                       category === "etc") && (
