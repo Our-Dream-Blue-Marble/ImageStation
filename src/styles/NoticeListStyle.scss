@@ -1,6 +1,4 @@
 @import "ThemeStyles.scss";
-@import "swiper/swiper-bundle.min.css";
-@import "swiper/swiper.min.css";
 
 @mixin centerItem() {
   align-items: center;
@@ -10,84 +8,77 @@
   width: 100%;
   height: 91vh;
   background: $white100Color;
-}
-.centered {
-  @include centerItem();
-}
-.noticeHead {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  margin-top: 10vh;
-  margin-bottom: 9.3vh;
 
-  .noticeListHead {
-    display: flex;
-    margin-left: 33%;
-    width: 34vw;
-    height: 4.87vh;
-    border: none;
-    @include heading1Font($primaryColor);
-    @include centerItem();
+  .noticeHead {
+    .noticeListHead {
+      display: flex;
+      margin-left: 213px;
+      margin-top: 152px;
+      width: 34vw;
+      height: 4.87vh;
+      border: none;
+      @include heading1Font($primaryColor);
+      @include centerItem();
+    }
+
+    .noticeListAll {
+      display: flex;
+      width: 100px;
+      height: 4.87vh;
+      border: 1px solid;
+      @include body2Font($black100Color);
+      @include centerItem();
+    }
   }
 
-  .noticeListAll {
+  .noticeBoxContainer {
+    justify-content: start;
+    width: 86.7%;
+    height: 47.5vh;
+    margin-left: 6.6%;
+    margin-right: 6.6%;
     display: flex;
-    width: 100px;
-    height: 4.87vh;
-    border: 1px solid;
-    @include body2Font($black100Color);
-    @include centerItem();
-  }
-}
-
-.noticeBoxContainer {
-  justify-content: start;
-  width: 86.7%;
-  height: 47.5vh;
-  margin-left: 6.6%;
-  margin-right: 6.6%;
-  display: flex;
-  overflow: hidden;
-  .cardNotice {
-    display: flex;
-    width: 400px;
-    height: 45.2vh;
-    margin: 0.7%;
-    margin-right: 2.6%;
-    gap: 0.7%;
-    flex-shrink: 0;
-    border-radius: 0.7%;
-    box-shadow: 0px 4px 10px 0px $black25Color;
-    background-color: #e8edfb80;
-    .contentCard {
-      margin-top: 5.2vh;
-      margin-bottom: 5.2vh;
-      margin-right: 15%;
-      margin-left: 13%;
-      width: 20.37vw;
-      height: 32.8vh;
-      cursor: pointer;
-      .noticeListTitle {
-        @include heading2Font($black100Color);
-        height: 25px;
-        margin-bottom: 24px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .noticeListDate {
-        @include body1Font($black75Color);
-        height: 22px;
-        margin-bottom: 24px;
-      }
-      .noticeListBody {
-        @include body1Font($black75Color);
-        display: block;
-        height: 23vh;
-        white-space: pre-wrap;
-        word-break: break-all;
-        text-overflow: ellipsis;
-        overflow: hidden;
+    overflow: hidden;
+    .cardNotice {
+      display: flex;
+      width: 260px;
+      height: 260px;
+      margin: 0.7%;
+      margin-right: 2.6%;
+      gap: 0.7%;
+      flex-shrink: 0;
+      border-radius: 0.7%;
+      box-shadow: 0px 4px 10px 0px $black25Color;
+      background-color: #e8edfb80;
+      .contentCard {
+        margin-top: 95px;
+        margin-bottom: 90px;
+        margin-right: 15%;
+        margin-left: 13%;
+        width: 20.37vw;
+        height: 32.8vh;
+        cursor: pointer;
+        .noticeListTitle {
+          @include heading2Font($black100Color);
+          height: 25px;
+          margin-bottom: 24px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .noticeListDate {
+          @include body1Font($black75Color);
+          height: 22px;
+          margin-bottom: 24px;
+        }
+        .noticeListBody {
+          @include body1Font($black75Color);
+          display: block;
+          height: 23vh;
+          white-space: pre-wrap;
+          word-break: break-all;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
       }
     }
   }
