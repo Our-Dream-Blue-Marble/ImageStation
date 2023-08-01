@@ -12,7 +12,10 @@
   flex-direction: row;
 
   .noticeHead {
+    width: 314px;
     margin-left: 213px;
+    margin-right: 249px;
+
     .noticeListHead {
       margin-top: 152px;
       margin-bottom: 32px;
@@ -38,6 +41,7 @@
       background: $white100Color;
       border: 1px solid var(--number, #353c49);
       border-radius: 8px;
+      cursor: pointer;
 
       .noticeListAll {
         display: flex;
@@ -63,9 +67,8 @@
   .noticeBoxContainer {
     width: 570px;
     height: 570px;
-    margin-right: 176px;
     margin-top: 152px;
-
+    margin-bottom: 90px;
     display: grid;
     grid-template-columns: 260px 260px;
     grid-template-rows: 260px 260px;
@@ -76,13 +79,10 @@
       display: flex;
       width: 260px;
       height: 260px;
-      margin: 0.7%;
-      margin-right: 2.6%;
-      gap: 0.7%;
-      flex-shrink: 0;
-      border-radius: 0.7%;
+      border-radius: 10px;
       box-shadow: 0px 4px 10px 0px $black25Color;
       background-color: #e8edfb80;
+
       .contentCard {
         margin-top: 50px;
         margin-bottom: 90px;
@@ -91,11 +91,14 @@
         width: 20.37vw;
         height: 32.8vh;
         cursor: pointer;
+
         .noticeListTitle {
           @include heading2Font($black100Color);
+          width: 160px;
           height: 23px;
           margin-bottom: 24px;
           overflow: hidden;
+          text-overflow: ellipsis;
         }
         .noticeListDate {
           @include body1Font($black75Color);
@@ -117,4 +120,22 @@
 }
 .cardNotice:hover {
   background-image: url(../assets/BackgroundAsset.svg);
+  transform: translateY(-25px);
+  transition: all 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+.fadeInAnimation {
+  position: relative;
+  animation: fadeIn 2s ease-in-out;
 }
