@@ -29,12 +29,16 @@ const NoticeListPage = () => {
     <div className="noticeListLayout">
       <div className="noticeHead">
         <div className="noticeListHead">공지사항</div>
-        <div>이미지스테이션의 소식을 전해드려요</div>
-        <div
-          className="noticeListAll"
-          onClick={() => navigate(NoticeAllRouteName, { state: false })}
-        >
-          모든 공지
+        <div className="noticeListExp">이미지스테이션의 소식을 전해드려요</div>
+
+        <div className="AllBtnContainer">
+          <div
+            className="noticeListAll"
+            onClick={() => navigate(NoticeAllRouteName, { state: false })}
+          >
+            더보기
+          </div>
+          <div className="noticeAllArrow"></div>
         </div>
       </div>
       <div className="noticeBoxContainer">
