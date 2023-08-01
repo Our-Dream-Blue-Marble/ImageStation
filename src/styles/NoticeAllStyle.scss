@@ -91,32 +91,33 @@
       flex-direction: column;
       margin-top: 28px;
       cursor: pointer;
-      @include centerFormat();
 
       .noticePinCheckbox {
+        width: 24px;
+        height: 60px;
         display: flex;
-        width: 636px;
-        justify-content: start;
-        position: relative;
+        flex-shrink: 0;
+        margin-left: -40px;
+        align-items: center;
       }
 
       .eachNoticeContent {
-        display: inline;
+        display: flex;
         width: 636px;
         height: 60px;
         margin-top: 28px;
-        margin-left: 113px;
-        margin-right: 113px;
+        margin-left: 14px;
         margin-bottom: 28px;
         flex-direction: row;
         border: none;
-        z-index: 2;
+        width: 636px;
 
         .noticeTitleAndBodyContainer {
           float: left;
           width: 411px;
           height: 60px;
           margin-bottom: 28px;
+
           .noticeListTitle {
             @include body1Font($black100Color);
             height: 25px;
@@ -128,15 +129,17 @@
             @include captionFont($black75Color);
             display: block;
             height: 23px;
-            white-space: pre-wrap;
+
             word-break: break-all;
             text-overflow: ellipsis;
             overflow: hidden;
           }
         }
         .noticeDateContainer {
+          align-items: flex-end;
           float: right;
           margin-bottom: 28px;
+          margin-left: 150px;
           .noticeListDate {
             @include captionFont($black75Color);
             height: 22px;
