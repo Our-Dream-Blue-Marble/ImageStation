@@ -42,8 +42,7 @@ const NoticeAllPage = ({ isAdmin }) => {
                 navigate(NoticeWriteRouteName, {
                   state: { data: notice[0] },
                 })
-              }
-            >
+              }>
               +
             </button>
           ) : null}
@@ -73,6 +72,17 @@ const NoticeAllPage = ({ isAdmin }) => {
           <hr id="NoticeDevice_line" />
           {noticeSearched.slice(offset, offset + limit).map((value) => (
             <>
+              {isAdmin ? (
+                <div className="noticePinCheckbox">
+                  <input
+                    type="checkbox"
+                    value="pin"
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                    }}
+                  />
+                </div>
+              ) : null}
               <div
                 className="eachNoticeContent"
                 key={value.id}
@@ -80,8 +90,7 @@ const NoticeAllPage = ({ isAdmin }) => {
                   navigate(NoticeListRouteName + "/" + value.id, {
                     state: { data: value },
                   })
-                }
-              >
+                }>
                 <div className="noticeTitleAndBodyContainer">
                   <div className=" noticeListTitle">{value.title}</div>
                   <pre className="noticeListBody">{value.body}</pre>
