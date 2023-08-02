@@ -1,12 +1,5 @@
 @import "ThemeStyles.scss";
 
-@mixin CardForm() {
-  border-radius: 10px;
-  background: var(--white-60, rgba(255, 255, 255, 0.6));
-  box-shadow: 0px 4px 10px 0px $black25Color;
-  cursor: pointer;
-}
-
 .frontCardText {
   margin: 42px;
   @include heading2Font($black100Color);
@@ -20,7 +13,6 @@
 }
 
 .OrderCategoryPageLayout {
-  @include centerFormat();
   width: 100%;
   min-height: 79.7vh;
   padding-top: 2vh;
@@ -29,46 +21,55 @@
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+
   .cardLayout {
+    margin-left: 373px;
+    margin-top: 174px;
     display: grid;
+    margin-top: 100px;
     grid-template-columns: 15.675vw 15.675vw 15.675vw;
     grid-template-rows: 26.81vh 26.81vh;
     grid-column-gap: 1.85vw;
     grid-row-gap: 3.16vh;
     backface-visibility: hidden;
 
-    .flip {
-      perspective: 800px;
-    }
-    .card {
+    .categoryCard {
       position: relative;
       width: 100%;
       height: 100%;
-      transition: 0.6s;
-      transform-style: preserve-3d;
       cursor: pointer;
-    }
-
-    .front,
-    .back {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      backface-visibility: hidden;
-    }
-    .front {
-      @include CardForm();
-    }
-    .back {
-      background: var(--white-60, rgba(255, 255, 255, 0.6));
-      background-image: url(../assets/BackgroundAsset.svg);
-      box-shadow: 0px 4px 10px 0px $black25Color;
       border-radius: 10px;
-      transform: rotateY(180deg);
-    }
-  }
+      background: var(--white-60, $white60Color);
+      box-shadow: 0px 4px 10px 0px $black25Color;
 
-  .flip:hover .card {
-    transform: rotateY(180deg);
+      .categoryTitle {
+        @include centerFormat();
+        height: 22px;
+        margin-top: 47px;
+        text-align: center;
+        @include heading2Font($black100Color);
+      }
+    }
+
+    .afterHoverBox {
+      display: none;
+      @include centerFormat();
+
+      .explain {
+        width: 172px;
+        height: 130px;
+        margin-top: 20px;
+        text-align: center;
+        @include body1Font($black75Color);
+      }
+    }
+
+    .categoryCard:hover {
+      background-image: url(../assets/BackgroundAsset.svg);
+    }
+
+    .categoryCard:hover .afterHoverBox {
+      display: flex;
+    }
   }
 }
