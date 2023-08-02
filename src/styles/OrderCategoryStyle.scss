@@ -21,13 +21,14 @@
 
 .OrderCategoryPageLayout {
   @include centerFormat();
-  display: flex;
-  width: 100vw;
-  height: 91vh;
-  background-image: url(../assets/BackgroundAsset.svg);
+  width: 100%;
+  min-height: 79.7vh;
+  padding-top: 2vh;
+  padding-bottom: 9vh;
+  background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
-  background-position: left top;
   background-size: cover;
+  display: flex;
   .cardLayout {
     display: grid;
     grid-template-columns: 15.675vw 15.675vw 15.675vw;
@@ -43,7 +44,7 @@
       position: relative;
       width: 100%;
       height: 100%;
-      transition: 0.8s;
+      transition: 0.6s;
       transform-style: preserve-3d;
       cursor: pointer;
     }
