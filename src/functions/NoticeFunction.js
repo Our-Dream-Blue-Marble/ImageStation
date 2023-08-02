@@ -76,6 +76,7 @@ export const getNoticeList = async (setNotice) => {
     id: doc.id,
     ...doc.data(),
   }));
+  noticeArray.sort((a, b) => b.noticePin - a.noticePin);
   setNotice(noticeArray);
 };
 
@@ -208,13 +209,25 @@ export const onPinnedNoticeDataClick = async (
   setNotice,
   setNoticeSearched
 ) => {
+  let pinCount = 0;
   await updateNoticePinDocument(noticeId, pinStatus);
   const updatedNoticeArray = noticeDataArray.map((notice) => {
     if (notice.id === noticeId) {
       return { ...notice, noticePin: pinStatus };
     }
+    if (notice.noticePin) {
+      pinCount++;
+    }
     return notice;
   });
-  setNotice(updatedNoticeArray);
-  setNoticeSearched(updatedNoticeArray);
+  let noticeArray = [...updatedNoticeArray];
+  if (pinStatus || pinCount > 0) {
+    noticeArray.sort((a, b) => b.id - a.id);
+    noticeArray.sort((a, b) => b.noticePin - a.noticePin);
+  } else {
+    noticeArray.sort((a, b) => b.id - a.id);
+  }
+
+  setNotice(noticeArray);
+  setNoticeSearched(noticeArray);
 };
