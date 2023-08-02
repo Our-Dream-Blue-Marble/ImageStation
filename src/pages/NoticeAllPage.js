@@ -3,13 +3,13 @@ import NoticePagination from "../widgets/NoticePagination";
 import React, { useState, useEffect } from "react";
 import {
   getNoticeList,
-  getNoticeWrittenDate,
   getNoticeWrittenFullDate,
 } from "functions/NoticeFunction";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoticeListRouteName, NoticeWriteRouteName } from "routes/RouteName";
 import { ReactComponent as NoticeEmptyPinAsset } from "assets/icons/NoticeEmptyPinIconAsset.svg";
 import { ReactComponent as NoticeFilledPinAsset } from "assets/icons/NoticeFilledPinIconAsset.svg";
+import { ReactComponent as NoticePinAsset } from "assets/icons/NoticePinCheckIconAsset.svg";
 import { updateNoticePinDocument } from "repositories/NoticeRepository";
 
 const NoticeAllPage = ({ isAdmin }) => {
@@ -108,10 +108,10 @@ const NoticeAllPage = ({ isAdmin }) => {
                   ) : (
                     <>
                       {value.noticePin ? (
-                        <NoticeEmptyPinAsset />
-                      ) : (
-                        <NoticeFilledPinAsset />
-                      )}
+                        <div className="noticePinCheckbox">
+                          <NoticePinAsset width={12} height={12} />
+                        </div>
+                      ) : null}
                     </>
                   )}
 
