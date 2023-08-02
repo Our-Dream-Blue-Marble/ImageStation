@@ -4,13 +4,13 @@ import React, { useState, useEffect } from "react";
 import {
   getNoticeList,
   getNoticeWrittenFullDate,
+  onPinnedNoticeDataClick,
 } from "functions/NoticeFunction";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoticeListRouteName, NoticeWriteRouteName } from "routes/RouteName";
 import { ReactComponent as NoticeEmptyPinAsset } from "assets/icons/NoticeEmptyPinIconAsset.svg";
 import { ReactComponent as NoticeFilledPinAsset } from "assets/icons/NoticeFilledPinIconAsset.svg";
 import { ReactComponent as NoticePinAsset } from "assets/icons/NoticePinCheckIconAsset.svg";
-import { updateNoticePinDocument } from "repositories/NoticeRepository";
 
 const NoticeAllPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -86,16 +86,28 @@ const NoticeAllPage = ({ isAdmin }) => {
                       {value.noticePin ? (
                         <div
                           className="noticePinCheckbox"
-                          onClick={() => {
-                            updateNoticePinDocument(value.id, false);
+                          onClick={async () => {
+                            await onPinnedNoticeDataClick(
+                              value.id,
+                              false,
+                              notice,
+                              setNotice,
+                              setNoticeSearched
+                            );
                           }}>
                           <NoticeFilledPinAsset width={24} height={24} />
                         </div>
                       ) : (
                         <div
                           className="noticePinCheckbox"
-                          onClick={() => {
-                            updateNoticePinDocument(value.id, true);
+                          onClick={async () => {
+                            await onPinnedNoticeDataClick(
+                              value.id,
+                              true,
+                              notice,
+                              setNotice,
+                              setNoticeSearched
+                            );
                           }}>
                           <NoticeEmptyPinAsset
                             width={24}
@@ -114,15 +126,6 @@ const NoticeAllPage = ({ isAdmin }) => {
                       ) : null}
                     </>
                   )}
-
-                  {/* <input
-                    type="checkbox"
-                    onChange={() => {
-                      value.noticePin = !value.noticePin;
-                      updateNoticePinDocument(value.id, value.noticePin);
-                    }}
-                    checked={value.noticePin}
-                  /> */}
                 </div>
                 <div
                   onClick={() =>

@@ -1,10 +1,11 @@
-import { storageService } from "fbase";
+import { dbService, storageService } from "fbase";
 
 import {
   createNewNoticeDocument,
   deleteNoticeDocument,
   readNoticeListDocument,
   updateNoticeDocument,
+  updateNoticePinDocument,
 } from "repositories/NoticeRepository";
 
 export const onAdminWriteNewNoticeSubmit = async (
@@ -198,4 +199,22 @@ export const getNoticeWrittenFullDate = (noticeViewObj) => {
     ":" +
     ("0" + date.getMinutes()).slice(-2);
   return dateInString;
+};
+
+export const onPinnedNoticeDataClick = async (
+  noticeId,
+  pinStatus,
+  noticeDataArray,
+  setNotice,
+  setNoticeSearched
+) => {
+  await updateNoticePinDocument(noticeId, pinStatus);
+  const updatedNoticeArray = noticeDataArray.map((notice) => {
+    if (notice.id === noticeId) {
+      return { ...notice, noticePin: pinStatus };
+    }
+    return notice;
+  });
+  setNotice(updatedNoticeArray);
+  setNoticeSearched(updatedNoticeArray);
 };
