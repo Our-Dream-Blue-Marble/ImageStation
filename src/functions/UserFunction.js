@@ -68,11 +68,14 @@ export const logIn = async (
         });
     })
     .catch((e) => {
+      console.log(e);
       if (`${e.message}`.includes("user-not-found")) {
         setIsNewUser(true);
         setIsRouteConfirm(
           window.confirm("회원가입 화면으로 이동하시겠습니까?")
         );
+      } else if (`${e.message}`.includes("wrong-password")) {
+        setIsRouteConfirm(window.confirm("비밀번호를 다시 확인해주십시오"));
       }
     });
   return result;
@@ -80,6 +83,19 @@ export const logIn = async (
 
 export const logOut = () => {
   authService.signOut();
+};
+
+export const setUserIdInLocal = (userEmail) => {
+  window.localStorage.setItem("USER_ID_VALUE", userEmail);
+};
+
+export const getUserIdInLocal = (setUserEmail) => {
+  const data = window.localStorage.getItem("USER_ID_VALUE");
+  if (data !== null) setUserEmail(data);
+};
+
+export const deleteUserIdInLocal = () => {
+  window.localStorage.clear();
 };
 
 export const setUserModel = async (setUserObject) => {

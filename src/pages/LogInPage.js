@@ -10,15 +10,25 @@ import {
   UpdatePasswordPageRouteName,
 } from "routes/RouteName";
 import "styles/LogInStyle.scss";
+import {
+  deleteUserIdInLocal,
+  getUserIdInLocal,
+  setUserIdInLocal,
+} from "functions/UserFunction";
 
 const LogInPage = () => {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [isSaveUserId, setIsSaveUserId] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [isNewUser, setIsNewUser] = useState(false);
   const [isRouteConfirm, setIsRouteConfirm] = useState(false);
+
+  useEffect(() => {
+    getUserIdInLocal(setUserEmail);
+  }, []);
 
   useEffect(() => {
     if (isNewUser && isRouteConfirm) {
@@ -48,6 +58,11 @@ const LogInPage = () => {
         <div className="Contents">
           <form
             onSubmit={async (e) => {
+              if (isSaveUserId) {
+                setUserIdInLocal(userEmail);
+              } else {
+                deleteUserIdInLocal();
+              }
               await onUserEmailAndPasswordSubmit(
                 e,
                 userEmail,
@@ -81,7 +96,15 @@ const LogInPage = () => {
               onChange={(e) => onUserEmailOrPasswordChange(e, setUserPassword)}
             />
             <div className="saveId-checkbox">
-              <input id="checkbox" type="checkbox" />
+              <input
+                id="checkbox"
+                name="checkbox"
+                type="checkbox"
+                value={isSaveUserId}
+                onChange={(e) =>
+                  onUserEmailOrPasswordChange(e, setIsSaveUserId)
+                }
+              />
               <label for="checkbox"></label>
               <span id="label">아이디저장</span>
             </div>
