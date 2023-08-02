@@ -14,7 +14,7 @@
 }
 
 .LoginContainer {
-  height: 615px;
+  height: 526px;
   width: 35.7vw;
   background-color: $white60Color;
   border-radius: 10px;
@@ -99,37 +99,30 @@
       }
     }
 
-    .SubmitButton {
+    #submit-button {
       width: 24.6vw;
       height: 60px;
       border-radius: 8px;
       border: none;
-      background: $primaryColor;
+      background-color: $primaryColor;
       @include heading2Font($white100Color);
       cursor: pointer;
     }
 
-    .SubmitButton:hover {
-      background-color: $hoverAndClickColor;
-      transition: 0.5s;
-    }
-
     .UpdateAndSigninButtonsContainer {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: 19px;
-      padding-top: 49.22px;
-      gap: 1.9vw;
+      display: flex;
+      flex-direction: column;
+      padding-top: 28px;
+      gap: 8px;
     }
 
     .UpdateAndSigninButtons {
-      border: none;
-      background-color: transparent;
-      border-color: $primaryColor;
-      text-decoration-line: underline;
-      @include subHeading3Font($primaryColor);
+      @include body1Font($black50Color);
       cursor: pointer;
+
+      span {
+        @include body1Font($primaryColor);
+      }
     }
   }
 }

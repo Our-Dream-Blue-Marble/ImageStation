@@ -9,13 +9,13 @@ import {
   SignInRouteName,
   UpdatePasswordPageRouteName,
 } from "routes/RouteName";
-import { ReactComponent as CheckboxIconAsset } from "assets/icons/CheckboxIconAsset.svg";
 import "styles/LogInStyle.scss";
 
 const LogInPage = () => {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [isHover, setIsHover] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [isNewUser, setIsNewUser] = useState(false);
   const [isRouteConfirm, setIsRouteConfirm] = useState(false);
@@ -34,11 +34,18 @@ const LogInPage = () => {
     }
   }, [userEmail, userPassword]);
 
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
+
   return (
     <div className="login-body">
       <div className="LoginContainer">
         <div className="Contents">
-          <span>로그인</span>
           <form
             onSubmit={async (e) => {
               await onUserEmailAndPasswordSubmit(
@@ -79,29 +86,35 @@ const LogInPage = () => {
               <span id="label">아이디저장</span>
             </div>
             <input
-              className="SubmitButton"
+              id="submit-button"
               type="submit"
               style={
                 isPossibleSubmit
-                  ? { background: `rgba(90, 145, 255, 1)` }
+                  ? isHover
+                    ? { background: `rgba(77, 125, 220, 1)` }
+                    : { background: `rgba(90, 145, 255, 1)` }
+                  : isHover
+                  ? { background: `rgba(77, 125, 220, 1)` }
                   : { background: `rgba(90, 145, 255, 0.50)` }
               }
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
               value={"로그인"}
             />
           </form>
           <div className="UpdateAndSigninButtonsContainer">
-            <button
+            <div
               className="UpdateAndSigninButtons"
               onClick={() => navigate(UpdatePasswordPageRouteName)}
             >
-              비밀번호 찾기
-            </button>
-            <button
+              비밀번호 잊으셨나요? <span>비밀번호 찾기</span>
+            </div>
+            <div
               className="UpdateAndSigninButtons"
               onClick={() => navigate(SignInRouteName)}
             >
-              회원가입
-            </button>
+              처음이신가요? <span>회원가입</span>
+            </div>
           </div>
         </div>
       </div>
