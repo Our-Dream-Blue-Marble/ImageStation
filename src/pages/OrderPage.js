@@ -116,13 +116,11 @@ const OrderPage = () => {
             <div className="OrderContainer-left">
               {isFileUploadButton ? (
                 <div style={{ width: "300px", height: "500px" }}>
-                  <label className="fileLabel" htmlFor="FileUpload">
-                    파일 선택
-                  </label>
+                  <label htmlFor="fileLabel">Choose File</label>
                   <input
                     id="FileUpload"
-                    className="FileUploadButton"
                     type="file"
+                    className="FileUploadButton"
                     onChange={(e) => {
                       onOrderAttachmentChange(
                         e,
@@ -147,6 +145,8 @@ const OrderPage = () => {
                   onClick={(e) => {
                     setIsFileUploadButton(true);
                     setImageUrl("");
+                    setIsPdf(false);
+                    setIsZip(false);
                   }}
                 >
                   <img src={OrderFileCancel} />
@@ -155,12 +155,12 @@ const OrderPage = () => {
               <div className="pdfFileContainer">
                 {isPdf && imageUrl !== "" && isFileUploadButton === false ? (
                   <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-                    <Viewer fileUrl={imageUrl} />
+                    <Viewer id="image-display" fileUrl={imageUrl} />
                   </Worker>
                 ) : imageUrl !== "" &&
                   isFileUploadButton === false &&
                   !isZip ? (
-                  <img src={imageUrl} />
+                  <img className="imgFileContainer" src={imageUrl} />
                 ) : isZip && isFileUploadButton === false ? (
                   <div>{orderAttachmentName}</div>
                 ) : null}
@@ -279,8 +279,8 @@ const OrderPage = () => {
                     {(category === "normal" ||
                       category === "binding" ||
                       category === "actual") && (
-                        <details>
-                        <summary></summary>
+                      <details>
+                        <summary>설정 더보기</summary>
                         <span>
                           <label>
                             종이
