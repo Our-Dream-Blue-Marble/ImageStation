@@ -56,15 +56,16 @@ const NoticeListPage = () => {
       >
         {notice.slice(0, 4).map((value) => (
           <div className="fadeInAnimation">
-            <div className="cardNotice" key={value.id}>
-              <div
-                className="contentCard"
-                onClick={() =>
-                  navigate(NoticeListRouteName + "/" + value.id, {
-                    state: { data: value },
-                  })
-                }
-              >
+            <div
+              className="cardNotice"
+              key={value.id}
+              onClick={() =>
+                navigate(NoticeListRouteName + "/" + value.id, {
+                  state: { data: value },
+                })
+              }
+            >
+              <div className="contentCard">
                 <pre className=" noticeListTitle">{value.title}</pre>
                 <div className=" noticeListDate">
                   {getNoticeWrittenDate(value)}
