@@ -97,6 +97,7 @@
         @include body1Font($primaryColor);
         padding-bottom: 3.39vh;
         text-decoration-line: none;
+        cursor: pointer;
       }
 
       .categoryUserInfoLayout {
