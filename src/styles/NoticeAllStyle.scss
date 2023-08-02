@@ -106,7 +106,6 @@
         width: 636px;
         height: 60px;
         margin-top: 28px;
-        margin-left: 14px;
         margin-bottom: 28px;
         flex-direction: row;
         border: none;
@@ -139,7 +138,7 @@
           align-items: flex-end;
           float: right;
           margin-bottom: 28px;
-          margin-left: 150px;
+          margin-left: 80px;
           .noticeListDate {
             @include captionFont($black75Color);
             height: 22px;

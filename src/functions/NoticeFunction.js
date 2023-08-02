@@ -1,10 +1,11 @@
-import { storageService } from "fbase";
+import { dbService, storageService } from "fbase";
 
 import {
   createNewNoticeDocument,
   deleteNoticeDocument,
   readNoticeListDocument,
   updateNoticeDocument,
+  updateNoticePinDocument,
 } from "repositories/NoticeRepository";
 
 export const onAdminWriteNewNoticeSubmit = async (
@@ -75,6 +76,7 @@ export const getNoticeList = async (setNotice) => {
     id: doc.id,
     ...doc.data(),
   }));
+  noticeArray.sort((a, b) => b.noticePin - a.noticePin);
   setNotice(noticeArray);
 };
 
@@ -173,4 +175,59 @@ export const getNoticeWrittenDate = (noticeViewObj) => {
     "." +
     ("0" + date.getDate()).slice(-2);
   return dateInString;
+};
+export const getNoticeWrittenFullDate = (noticeViewObj) => {
+  var noticeWrittenDate = noticeViewObj.date;
+  var date = new Date(noticeWrittenDate);
+  let timeSection;
+  let hour = parseInt(("0" + date.getHours()).slice(-2));
+  if (hour > 12) {
+    timeSection = "오후";
+    hour = hour - 12;
+  } else {
+    timeSection = "오전";
+  }
+  const dateInString =
+    date.getFullYear().toString() +
+    "년 " +
+    ("0" + (date.getMonth() + 1)).slice(-2) +
+    "월 " +
+    ("0" + date.getDate()).slice(-2) +
+    "일 " +
+    timeSection +
+    " " +
+    hour +
+    ":" +
+    ("0" + date.getMinutes()).slice(-2);
+  return dateInString;
+};
+
+export const onPinnedNoticeDataClick = async (
+  noticeId,
+  pinStatus,
+  noticeDataArray,
+  setNotice,
+  setNoticeSearched
+) => {
+  let pinCount = 0;
+  await updateNoticePinDocument(noticeId, pinStatus);
+  const updatedNoticeArray = noticeDataArray.map((notice) => {
+    if (notice.id === noticeId) {
+      return { ...notice, noticePin: pinStatus };
+    }
+    if (notice.noticePin) {
+      pinCount++;
+    }
+    return notice;
+  });
+  let noticeArray = [...updatedNoticeArray];
+  if (pinStatus || pinCount > 0) {
+    noticeArray.sort((a, b) => b.id - a.id);
+    noticeArray.sort((a, b) => b.noticePin - a.noticePin);
+  } else {
+    noticeArray.sort((a, b) => b.id - a.id);
+  }
+
+  setNotice(noticeArray);
+  setNoticeSearched(noticeArray);
 };
