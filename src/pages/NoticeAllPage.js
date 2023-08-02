@@ -1,7 +1,11 @@
 import "styles/NoticeAllStyle.scss";
 import NoticePagination from "../widgets/NoticePagination";
 import React, { useState, useEffect } from "react";
-import { getNoticeList, getNoticeWrittenDate } from "functions/NoticeFunction";
+import {
+  getNoticeList,
+  getNoticeWrittenDate,
+  getNoticeWrittenFullDate,
+} from "functions/NoticeFunction";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoticeListRouteName, NoticeWriteRouteName } from "routes/RouteName";
 import { ReactComponent as NoticeEmptyPinAsset } from "assets/icons/NoticeEmptyPinIconAsset.svg";
@@ -134,7 +138,7 @@ const NoticeAllPage = ({ isAdmin }) => {
                   <div className="noticeDateContainer">
                     <div className="noticeListDate">게시일시:</div>
                     <div className="noticeListDate">
-                      {getNoticeWrittenDate(value)}
+                      {getNoticeWrittenFullDate(value)}
                     </div>
                   </div>
                 </div>

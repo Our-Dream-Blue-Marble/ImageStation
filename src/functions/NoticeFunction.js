@@ -174,3 +174,28 @@ export const getNoticeWrittenDate = (noticeViewObj) => {
     ("0" + date.getDate()).slice(-2);
   return dateInString;
 };
+export const getNoticeWrittenFullDate = (noticeViewObj) => {
+  var noticeWrittenDate = noticeViewObj.date;
+  var date = new Date(noticeWrittenDate);
+  let timeSection;
+  let hour = parseInt(("0" + date.getHours()).slice(-2));
+  if (hour > 12) {
+    timeSection = "오후";
+    hour = hour - 12;
+  } else {
+    timeSection = "오전";
+  }
+  const dateInString =
+    date.getFullYear().toString() +
+    "년 " +
+    ("0" + (date.getMonth() + 1)).slice(-2) +
+    "월 " +
+    ("0" + date.getDate()).slice(-2) +
+    "일 " +
+    timeSection +
+    " " +
+    hour +
+    ":" +
+    ("0" + date.getMinutes()).slice(-2);
+  return dateInString;
+};
