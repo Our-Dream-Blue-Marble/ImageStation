@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import AppRouter from "routes/AppRouter";
 import { BrowserRouter } from "react-router-dom";
 import { readUserDocument } from "repositories/UserRepository";
+import ScrollToTop from "ScrollToTop";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       {isLoading ? (
         "Looading..."
       ) : (
