@@ -47,7 +47,8 @@ const AdminNoticeUpdatePage = () => {
                   currentNoticeObj.view,
                   noticeUpdatedAttachment,
                   noticeUpdatedAttachmentName,
-                  isNewAttachmentUploaded
+                  isNewAttachmentUploaded,
+                  currentNoticeObj.noticePin
                 ).then((result) => {
                   if (result) {
                     navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`, {

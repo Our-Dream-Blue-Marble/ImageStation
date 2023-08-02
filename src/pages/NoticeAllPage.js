@@ -4,6 +4,9 @@ import React, { useState, useEffect } from "react";
 import { getNoticeList, getNoticeWrittenDate } from "functions/NoticeFunction";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoticeListRouteName, NoticeWriteRouteName } from "routes/RouteName";
+import { ReactComponent as NoticeEmptyPinAsset } from "assets/icons/NoticeEmptyPinIconAsset.svg";
+import { ReactComponent as NoticeFilledPinAsset } from "assets/icons/NoticeFilledPinIconAsset.svg";
+import { updateNoticePinDocument } from "repositories/NoticeRepository";
 
 const NoticeAllPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -70,36 +73,69 @@ const NoticeAllPage = ({ isAdmin }) => {
 
         <div className="noticesContainer">
           <hr id="NoticeDevice_line" />
-          {noticeSearched.slice(offset, offset + limit).map((value) => (
+          {noticeSearched.slice(offset, offset + limit).map((value, i) => (
             <>
-              {isAdmin ? (
-                <div className="noticePinCheckbox">
-                  <input
-                    type="checkbox"
-                    value="pin"
-                    onChange={(e) => {
-                      console.log(e.target.value);
-                    }}
-                  />
-                </div>
-              ) : null}
-              <div
-                className="eachNoticeContent"
-                key={value.id}
-                onClick={() =>
-                  navigate(NoticeListRouteName + "/" + value.id, {
-                    state: { data: value },
-                  })
-                }>
-                <div className="noticeTitleAndBodyContainer">
-                  <div className=" noticeListTitle">{value.title}</div>
-                  <pre className="noticeListBody">{value.body}</pre>
-                </div>
+              <div className="eachNoticeContent" key={value.id}>
+                <div>
+                  {isAdmin ? (
+                    <>
+                      {value.noticePin ? (
+                        <div
+                          className="noticePinCheckbox"
+                          onClick={() => {
+                            updateNoticePinDocument(value.id, false);
+                          }}>
+                          <NoticeFilledPinAsset width={24} height={24} />
+                        </div>
+                      ) : (
+                        <div
+                          className="noticePinCheckbox"
+                          onClick={() => {
+                            updateNoticePinDocument(value.id, true);
+                          }}>
+                          <NoticeEmptyPinAsset
+                            width={24}
+                            height={24}
+                            color="blue"
+                          />
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {value.noticePin ? (
+                        <NoticeEmptyPinAsset />
+                      ) : (
+                        <NoticeFilledPinAsset />
+                      )}
+                    </>
+                  )}
 
-                <div className="noticeDateContainer">
-                  <div className="noticeListDate">게시일시:</div>
-                  <div className="noticeListDate">
-                    {getNoticeWrittenDate(value)}
+                  {/* <input
+                    type="checkbox"
+                    onChange={() => {
+                      value.noticePin = !value.noticePin;
+                      updateNoticePinDocument(value.id, value.noticePin);
+                    }}
+                    checked={value.noticePin}
+                  /> */}
+                </div>
+                <div
+                  onClick={() =>
+                    navigate(NoticeListRouteName + "/" + value.id, {
+                      state: { data: value },
+                    })
+                  }>
+                  <div className="noticeTitleAndBodyContainer">
+                    <div className=" noticeListTitle">{value.title}</div>
+                    <pre className="noticeListBody">{value.body}</pre>
+                  </div>
+
+                  <div className="noticeDateContainer">
+                    <div className="noticeListDate">게시일시:</div>
+                    <div className="noticeListDate">
+                      {getNoticeWrittenDate(value)}
+                    </div>
                   </div>
                 </div>
               </div>

@@ -8,7 +8,8 @@ class NoticeModel {
     dateupdated,
     view,
     attachment,
-    attachmentName
+    attachmentName,
+    noticePin
   ) {
     this.id = id;
     this.title = title;
@@ -19,6 +20,7 @@ class NoticeModel {
     this.view = view;
     this.attachment = attachment;
     this.attachmentName = attachmentName;
+    this.noticePin = noticePin;
   }
   toData() {
     return {
@@ -31,6 +33,7 @@ class NoticeModel {
       view: this.view,
       attachment: this.attachment,
       attachmentName: this.attachmentName,
+      noticePin: this.noticePin,
     };
   }
 }
@@ -47,6 +50,7 @@ export const NoticeModelConverter = {
       view: data.view,
       attachment: data.attachment,
       attachmentName: data.attachmentName,
+      noticePin: data.noticePin,
     };
   },
   fromFirestore: function (snapshot, options) {
