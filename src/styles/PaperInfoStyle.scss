@@ -29,11 +29,74 @@
   }
 
   .PaperInfoContainer {
-    width: 790px;
-    height: 1052px;
+    width: 780px;
+    height: 1048px;
     margin-top: 163px;
     margin-left: 182px;
-    border: 1px solid;
     background-color: transparent;
+
+    display: grid;
+    grid-template-columns: 370px 370px;
+    grid-template-rows: 232px 232px 232px 232px;
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+    backface-visibility: hidden;
+
+    .paperCard {
+      background-image: url("../assets/PaperAsset.svg");
+      box-shadow: 0px 4px 10px 0px $black25Color;
+      border-radius: 10px;
+      padding: 50px 40px 50px 50px;
+      align-items: flex-start;
+      cursor: pointer;
+
+      .contentBox {
+        width: 95px;
+        height: 68px;
+        display: flex;
+        flex-direction: row;
+
+        .beforeHoverContentBox {
+          margin-right: 18px;
+          .title {
+            width: 104px;
+            @include heading2Font($black100Color);
+            margin-bottom: 24px;
+          }
+
+          .maxSize {
+            width: 60px;
+            @include captionFont($black75Color);
+          }
+        }
+      }
+
+      .afterHoverContentBox {
+        display: none;
+        width: 172px;
+        height: 92px;
+
+        .paperWeight {
+          width: 140px;
+          margin-bottom: 24px;
+          @include body1Font($black100Color);
+        }
+
+        .paperExplain {
+          width: 142px;
+          height: 50px;
+          @include body1Font($black75Color);
+        }
+      }
+    }
+
+    .paperCard:hover {
+      background: $white60Color;
+    }
+
+    .paperCard:hover .afterHoverContentBox {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
