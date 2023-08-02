@@ -1,36 +1,68 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   onUserEmailAndPasswordSubmit,
   onUserEmailOrPasswordChange,
 } from "functions/SignInFunction";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   HomeRouteName,
   SignInRouteName,
   UpdatePasswordPageRouteName,
 } from "routes/RouteName";
 import "styles/LogInStyle.scss";
+import {
+  deleteUserIdInLocal,
+  getUserIdInLocal,
+  setUserIdInLocal,
+} from "functions/UserFunction";
 
 const LogInPage = () => {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [isSaveUserId, setIsSaveUserId] = useState(false);
+  const [isHover, setIsHover] = useState(false);
+  const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [isNewUser, setIsNewUser] = useState(false);
   const [isRouteConfirm, setIsRouteConfirm] = useState(false);
+
+  useEffect(() => {
+    getUserIdInLocal(setUserEmail);
+  }, []);
 
   useEffect(() => {
     if (isNewUser && isRouteConfirm) {
       navigate(SignInRouteName);
     }
-  });
+  }, [isNewUser, isRouteConfirm, navigate]);
+
+  useEffect(() => {
+    if ((userEmail !== "") & (userPassword !== "")) {
+      setIsPossibleSubmit(true);
+    } else {
+      setIsPossibleSubmit(false);
+    }
+  }, [userEmail, userPassword]);
+
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
 
   return (
-    <div className="LoginBody">
+    <div className="login-body">
       <div className="LoginContainer">
         <div className="Contents">
-          <span>로그인</span>
           <form
             onSubmit={async (e) => {
+              if (isSaveUserId) {
+                setUserIdInLocal(userEmail);
+              } else {
+                deleteUserIdInLocal();
+              }
               await onUserEmailAndPasswordSubmit(
                 e,
                 userEmail,
@@ -63,25 +95,49 @@ const LogInPage = () => {
               value={userPassword}
               onChange={(e) => onUserEmailOrPasswordChange(e, setUserPassword)}
             />
-            <div className="SaveIdContainer">
-              <input type="checkbox" />
-              <label>아이디 저장</label>
+            <div className="saveId-checkbox">
+              <input
+                id="checkbox"
+                name="checkbox"
+                type="checkbox"
+                value={isSaveUserId}
+                onChange={(e) =>
+                  onUserEmailOrPasswordChange(e, setIsSaveUserId)
+                }
+              />
+              <label for="checkbox"></label>
+              <span id="label">아이디저장</span>
             </div>
-            <input className="SubmitButton" type="submit" value={"로그인"} />
+            <input
+              id="submit-button"
+              type="submit"
+              style={
+                isPossibleSubmit
+                  ? isHover
+                    ? { background: `rgba(77, 125, 220, 1)` }
+                    : { background: `rgba(90, 145, 255, 1)` }
+                  : isHover
+                  ? { background: `rgba(77, 125, 220, 1)` }
+                  : { background: `rgba(90, 145, 255, 0.50)` }
+              }
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              value={"로그인"}
+            />
           </form>
           <div className="UpdateAndSigninButtonsContainer">
-            <button
+            <div
               className="UpdateAndSigninButtons"
               onClick={() => navigate(UpdatePasswordPageRouteName)}
             >
-              비밀번호 찾기
-            </button>
-            <button
+              비밀번호 잊으셨나요? <span>비밀번호 찾기</span>
+            </div>
+            <div
               className="UpdateAndSigninButtons"
               onClick={() => navigate(SignInRouteName)}
             >
-              회원가입
-            </button>
+              처음이신가요? <span>회원가입</span>
+            </div>
           </div>
         </div>
       </div>

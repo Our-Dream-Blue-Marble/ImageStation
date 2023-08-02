@@ -18,6 +18,8 @@ export const onUserEmailOrPasswordChange = (event, setValue) => {
     setValue((prev) => !prev);
   } else if (name === "isAgreeUsingInfo") {
     setValue((prev) => !prev);
+  } else if (name === "checkbox") {
+    setValue((prev) => !prev);
   }
 };
 
