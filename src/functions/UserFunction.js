@@ -1,4 +1,4 @@
-import { authService } from "fbase";
+import { authService, dbService } from "fbase";
 import {
   createUserWithEmailAndPassword,
   deleteUser,
@@ -152,4 +152,32 @@ export const getDecryptedData = (uid, userData) => {
   const bytes = CryptoJS.AES.decrypt(userData, privateKey);
   const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
   return decryptedData;
+};
+
+export const getUserOrderRemain = async (uid) => {
+  const userMyOrderDocRef = await dbService
+    .collection("users")
+    .doc(uid)
+    .collection("myOrders")
+    .get();
+  const userMyOrderDocList = userMyOrderDocRef.docs.map((doc) => ({
+    docId: doc.id,
+    ...doc.data(),
+  }));
+
+  const userMyOrderDocArray = await Promise.all(
+    userMyOrderDocList.map(async (doc) => {
+      const docData = await doc.orderDocRef.get();
+      return {
+        docId: doc.docId,
+        uid: doc.uid,
+        ...docData.data(),
+      };
+    })
+  );
+  const remainUserOrder = userMyOrderDocArray.filter(
+    (order) => order.state !== 0
+  );
+  console.log(1);
+  return remainUserOrder.length;
 };
