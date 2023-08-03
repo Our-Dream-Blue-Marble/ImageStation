@@ -116,7 +116,7 @@ const OrderPage = () => {
             <div className="OrderContainer-left">
               {isFileUploadButton ? (
                 <div style={{ width: "300px", height: "500px" }}>
-                  <label htmlFor="fileLabel">Choose File</label>
+                  <label htmlFor="fileLabel" />
                   <input
                     id="FileUpload"
                     type="file"
@@ -133,10 +133,16 @@ const OrderPage = () => {
                       );
                     }}
                   />
-                  <div className="FileUploadExplanation">
-                    <br />
-                    드래그를 통해서도 <br />
-                    파일 업로드가 가능해요
+                  <div className="FileChooseContainer">
+                    <div className="FileUploadBtnContainer">
+                      <div className="FileChoose">파일선택</div>
+                      <div className="FileAsset" />
+                    </div>
+                    <div className="FileUploadExplanation">
+                      <br />
+                      드래그를 통해서도 <br />
+                      파일 업로드가 가능해요
+                    </div>
                   </div>
                 </div>
               ) : (
