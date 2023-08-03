@@ -40,85 +40,85 @@
     justify-content: center;
     align-items: center;
     display: inline-flex;
-  }
 
-  .FileCancelButton {
-    position: relative;
-    width: 3.3vw;
-    height: 5.65vh;
-    margin-top: 4.5vh;
-    margin-bottom: 61.3vh;
-    padding-right: 31vw;
-    border: none;
-    background-color: transparent;
-  }
+    .FileCancelButton {
+      position: relative;
+      width: 3.3vw;
+      height: 5.65vh;
+      margin-top: 4.5vh;
+      margin-bottom: 61.3vh;
+      padding-right: 31vw;
+      border: none;
+      background-color: transparent;
+    }
 
-  .FileUploadButton {
-    margin-left: -6.5vw;
-    margin-top: 30px;
-    width: 34.6vw;
-    height: 65.6vh;
-  }
+    .FileUploadButton {
+      color: transparent;
+    }
 
-  .FileUploadButton::-webkit-file-upload-button {
-    @include body1Font($numberColor);
-    width: 34.6vw;
-    height: 65.6vh;
-    border: none;
-    background-color: transparent;
-    position: relative;
-    z-index: 2;
-    color: transparent;
-    cursor: pointer;
-  }
+    .FileUploadButton::-webkit-file-upload-button {
+      @include body1Font($numberColor);
+      width: 34.6vw;
+      height: 65.6vh;
+      border: none;
+      background-color: transparent;
+      position: absolute;
+      z-index: 2;
+      cursor: pointer;
+      color: transparent;
+      margin-left: -6.6vw;
+      margin-top: -3.4vh;
+    }
 
-  .fileLabel {
-    position: absolute;
-    border-radius: 8px;
-    border: 1px solid;
-    margin-left: 17.86vw;
-    margin-top: 33.9vh;
-    cursor: pointer;
-  }
-
-  .FileChooseContainer {
-    display: flex;
-    flex-direction: column;
-    margin-left: 4.5vw;
-    margin-top: -33.9vh;
-
-    .FileUploadBtnContainer {
-      display: flex;
-      width: 7vw;
-      height: 5.3vh;
-      flex-direction: row;
+    .fileLabel {
+      position: absolute;
       border-radius: 8px;
       border: 1px solid;
-      margin-left: 2.9vw;
-      margin-bottom: 3.05vh;
-
-      .FileChoose {
-        @include body1Font($black100Color);
-        margin-left: 0.9vw;
-        margin-top: 1.13vh;
-      }
-      .FileAsset {
-        margin-left: 0.66vw;
-        margin-top: 1.13vh;
-        width: 1.38vw;
-        height: 3vh;
-        background-image: url("../assets/FileUploadAsset.svg");
-        background-repeat: no-repeat;
-      }
+      margin-left: 17.86vw;
+      margin-top: 33.9vh;
+      cursor: pointer;
     }
-    .FileUploadExplanation {
-      @include body1Font($black50Color);
+
+    .FileChooseContainer {
       display: flex;
-      text-align: center;
-      justify-content: center;
-      width: 13.22vw;
-      height: 5.65vh;
-      margin-top: -2.62vh;
+      flex-direction: column;
+      margin-left: 4.5vw;
+      margin-top: 33.9vh;
+
+      .FileUploadBtnContainer {
+        display: flex;
+        width: 7.3vw;
+        height: 5.3vh;
+        flex-direction: row;
+        border-radius: 8px;
+        border: 1px solid;
+        margin-left: 2.9vw;
+        margin-bottom: 3.05vh;
+
+        .FileChoose {
+          @include body1Font($black100Color);
+          margin-left: 0.9vw;
+          margin-top: 1.13vh;
+        }
+        .FileAsset {
+          margin-left: 0.66vw;
+          margin-top: 1.13vh;
+          width: 1.38vw;
+          height: 3vh;
+          background-image: url("../assets/FileUploadAsset.svg");
+          background-repeat: no-repeat;
+          background-size: 1.38vw 3vh;
+        }
+      }
+      .FileUploadExplanation {
+        @include body1Font($black50Color);
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        width: 13.22vw;
+        height: 5.65vh;
+        margin-top: -2.62vh;
+      }
     }
   }
 
