@@ -1,5 +1,5 @@
 @import "ThemeStyles.scss";
-.popUpWidgets {
+.PopUpWithTwoButtonsWidgets {
   display: flex;
   width: 100%;
   min-height: 91vh;
@@ -9,7 +9,7 @@
   padding-top: 19.23vh;
   padding-left: 35.98%;
 
-  .popUpContainerWidgets {
+  .PopUpWithTwoButtonsContainerWidgets {
     width: 424px;
     height: 360px;
     flex-shrink: 0;
@@ -17,7 +17,7 @@
     background: $white100Color;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
 
-    .popUpHeaderTextWidgets {
+    .popUpWithTwoButtonsHeaderTextWidgets {
       @include heading2Font($errorColor);
       margin-top: 72px;
       text-align: center;
@@ -25,13 +25,13 @@
       height: 44px;
       margin-left: 120px;
     }
-    .popUpBodyTextWidgets {
+    .popUpWithTwoButtonsBodyTextWidgets {
       @include subHeading2Font($black75Color);
       margin-top: 21px;
       text-align: center;
       height: 38px;
     }
-    .popUpButtonWidgets {
+    .popUpWithTwoButtonsButtonWidgets {
       display: flex;
       width: 296.8px;
       height: 55px;
@@ -41,7 +41,7 @@
       flex-shrink: 0;
       margin-top: 77px;
       margin-left: 64px;
-      .popUpLeftButtonWidgets {
+      .popUpWithTwoButtonsLeftButtonWidgets {
         @include subHeading2Font($secondaryColor);
         display: flex;
         width: 139.125px;
@@ -57,10 +57,10 @@
         box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
         cursor: pointer;
       }
-      .popUpLeftButtonWidgets:hover {
+      .popUpWithTwoButtonsLeftButtonWidgets:hover {
         background: $black10Color;
       }
-      .popUpRightButtonWidgets {
+      .popUpWithTwoButtonsRightButtonWidgets {
         @include subHeading2Font($white100Color);
         display: flex;
         width: 139.125px;
@@ -75,7 +75,7 @@
         box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
         cursor: pointer;
       }
-      .popUpRightButtonWidgets:hover {
+      .popUpWithTwoButtonsRightButtonWidgets:hover {
         background: rgb(139, 58, 58);
       }
     }
