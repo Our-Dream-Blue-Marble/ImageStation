@@ -52,6 +52,15 @@ $hoverAndClickColor: rgba(77, 125, 220, 1);
   letter-spacing: 0%;
 }
 
+@mixin heading4Font($color) {
+  color: $color;
+  font-family: "Pretendard Variable";
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0%;
+}
+
 @mixin subHeading1Font($color) {
   color: $color;
   font-family: "Pretendard Variable";
