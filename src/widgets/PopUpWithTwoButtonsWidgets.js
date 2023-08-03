@@ -6,6 +6,8 @@ const PopUpWithTwoButtonsWidgets = ({
   leftButtonText,
   rightButtonText,
   themeColor,
+  leffButtonFunction,
+  rightButtonFunction,
 }) => {
   return (
     <div className="popUpWithTwoButtonsWidgets">
@@ -17,12 +19,15 @@ const PopUpWithTwoButtonsWidgets = ({
         </div>
         <div className="popUpWithTwoButtonsBodyTextWidgets">{bodyText}</div>
         <div className="popUpWithTwoButtonsButtonWidgets">
-          <button className="popUpWithTwoButtonsLeftButtonWidgets">
+          <button
+            className="popUpWithTwoButtonsLeftButtonWidgets"
+            onClick={leffButtonFunction}>
             {leftButtonText}
           </button>
           <button
             className="popUpWithTwoButtonsRightButtonWidgets"
-            style={{ backgroundColor: themeColor }}>
+            style={{ backgroundColor: themeColor }}
+            onClick={rightButtonFunction}>
             {rightButtonText}
           </button>
         </div>
