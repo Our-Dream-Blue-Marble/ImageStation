@@ -56,8 +56,7 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition"
-                  >
+                    className="noticeListPagePosition">
                     <NoticeListPage isAdmin={userObject?.role || false} />
                   </div>
                 </div>
@@ -113,7 +112,10 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               path={NoticeAllRouteName}
               element={<NoticeAllPage isAdmin={userObject?.role || false} />}
             />
-            <Route path={UserLeaveRouteName} element={<UserLeavePage />} />
+            <Route
+              path={UserLeaveRouteName}
+              element={<UserLeavePage userObject={userObject} />}
+            />
           </>
         ) : (
           <>
@@ -124,8 +126,7 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition"
-                  >
+                    className="noticeListPagePosition">
                     <NoticeListPage isAdmin={false} />
                   </div>
                 </div>
