@@ -70,7 +70,7 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
         </div>
       )}
       <header
-        className={scrollPosition < 100 ? "original_header" : "change_header"}
+        className={scrollPosition < 10 ? "original_header" : "change_header"}
       >
         <Link to={`${HomeRouteName}`} replace={true}>
           <LogoAsset width={223} height={46.9} id="logoAsset" />

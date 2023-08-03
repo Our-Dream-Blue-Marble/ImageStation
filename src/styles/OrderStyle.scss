@@ -6,7 +6,7 @@
 
 .OrderLayout {
   width: 100%;
-  min-height: 91vh;
+  min-height: 81.2vh;
   padding-top: 2vh;
   padding-bottom: 9vh;
   background-image: url("../assets/BackgroundAsset.svg");
@@ -21,7 +21,6 @@
 .OrderWholeContainer {
   width: 58.4vw;
   height: 65.6vh;
-  margin-top: -11.3vh;
   border-radius: 10px;
   background-color: $white60Color;
   display: block;
@@ -82,7 +81,7 @@
     .FileChooseContainer {
       display: flex;
       flex-direction: column;
-      margin-left: 4.5vw;
+      margin-left: 3.7vw;
       margin-top: 33.9vh;
 
       .FileUploadBtnContainer {
@@ -253,7 +252,7 @@
           height: 4.75vh;
           width: 12.7vw;
           border-radius: 8px;
-          box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 2px 2px 1px $black5Color;
           padding: 10px 18px;
           border: none;
           margin-top: -10px;
@@ -268,11 +267,11 @@
         }
         details {
           border-top: solid 1px;
-          border-color: rgba(33, 36, 39, 0.5);
+          border-color: $black50Color;
           border-left: none;
           border-right: none;
           border-bottom: solid 1px;
-          border-color: rgba(33, 36, 39, 0.5);
+          border-color: $black50Color;
           width: 33.5vh;
         }
 
