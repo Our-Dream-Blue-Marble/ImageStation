@@ -54,7 +54,8 @@
   }
 
   .FileUploadButton {
-    margin-left: -7.34vw;
+    margin-left: -6.5vw;
+    margin-top: 30px;
     width: 34.6vw;
     height: 65.6vh;
   }
@@ -63,13 +64,12 @@
     @include body1Font($numberColor);
     width: 34.6vw;
     height: 65.6vh;
-    border-radius: 8px;
-    border: 1px solid;
+    border: none;
     background-color: transparent;
-    cursor: pointer;
     position: relative;
     z-index: 2;
     color: transparent;
+    cursor: pointer;
   }
 
   .fileLabel {
@@ -84,7 +84,7 @@
   .FileChooseContainer {
     display: flex;
     flex-direction: column;
-    margin-left: 3.3vw;
+    margin-left: 4.5vw;
     margin-top: -33.9vh;
 
     .FileUploadBtnContainer {
@@ -108,6 +108,7 @@
         width: 1.38vw;
         height: 3vh;
         background-image: url("../assets/FileUploadAsset.svg");
+        background-repeat: no-repeat;
       }
     }
     .FileUploadExplanation {
@@ -233,9 +234,10 @@
           width: 12vw;
           border-radius: 8px;
           border: none;
-          box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 2px 2px 1px $black5Color;
           float: right;
           padding-left: 0.66vw;
+          margin-top: -10px;
         }
 
         input[type="text"]:focus {
@@ -254,6 +256,7 @@
           box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.05);
           padding: 10px 18px;
           border: none;
+          margin-top: -10px;
           float: right;
           appearance: none;
           -webkit-appearance: none;
@@ -288,7 +291,7 @@
         summary::after {
           content: url("../assets/arrow-down.svg");
           height: 0;
-          padding-right: 0.65vw;
+          padding-right: 0.9vw;
           position: absolute;
           top: calc(21% - 1px);
           right: 0;
@@ -297,7 +300,7 @@
 
         summary::after {
           transform: rotate(0deg);
-          padding-left: 0.65vw;
+          padding-left: 0.9vw;
           transform-origin: 50% 50%;
           height: 1.8vh;
           transition: 300ms;
@@ -313,7 +316,7 @@
           resize: none;
           border: none;
           border-radius: 8px;
-          box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 2px 2px 1px $black5Color;
           float: right;
           padding: 10px 15px;
         }
@@ -414,7 +417,7 @@
     flex-shrink: 0;
     border-radius: 10px;
     background: $white100Color;
-    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 10px 0px $black25Color;
 
     .popUpBlueText {
       @include heading2Font($primaryColor);
