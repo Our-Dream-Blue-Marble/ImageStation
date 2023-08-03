@@ -231,3 +231,8 @@ export const onPinnedNoticeDataClick = async (
   setNotice(noticeArray);
   setNoticeSearched(noticeArray);
 };
+
+export const getNumOfPinnedNotices = (notice) => {
+  const countNotice = notice.filter((data) => data.noticePin);
+  return countNotice.length;
+};
