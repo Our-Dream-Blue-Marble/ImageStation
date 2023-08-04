@@ -248,8 +248,7 @@
           @include captionFont($black50Color);
         }
 
-        .select_label{
-
+        .select_label {
           @include body1Font($black100Color);
         }
 
@@ -382,8 +381,10 @@
     border: 1px solid;
     cursor: pointer;
   }
+
   .OrderCancelBtn:hover {
     background-color: $black25Color;
+    border: 0px;
     transition: 0.5s;
   }
 
@@ -398,10 +399,11 @@
     @include heading2Font($white100Color);
     cursor: pointer;
   }
-  .OrderSaveBtn:hover {
-    background-color: $hoverAndClickColor;
-    transition: 0.5s;
-  }
+
+  // .OrderSaveBtn:hover {
+  //   background-color: $hoverAndClickColor;
+  //   transition: 0.5s;
+  // }
 }
 .OrderConfirmPopUp {
   display: flex;

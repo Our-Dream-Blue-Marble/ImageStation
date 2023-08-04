@@ -380,6 +380,7 @@ const OrderPage = () => {
                 취소
               </button>
               <input
+                id="OrderSaveBtn"
                 className="OrderSaveBtn"
                 type={isPossibleSubmit ? "submit" : "button"}
                 style={
