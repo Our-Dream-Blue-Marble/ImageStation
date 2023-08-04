@@ -17,7 +17,7 @@
     @include centerFormat();
     width: 35.7vw;
     height: 680px;
-    background-color: $white100Color;
+    background-color: $white60Color;
     border-radius: 10px;
     box-shadow: 0px 4px 10px 0px $black25Color;
     form {
@@ -42,6 +42,7 @@
         border-right: none;
         border-bottom: 1px solid $black50Color;
         @include body1Font($black100Color);
+        background-color: transparent;
       }
 
       input::placeholder {
@@ -58,28 +59,69 @@
       }
 
       label {
+        display: flex;
         @include captionFont($black50Color);
       }
 
-      input[type="checkbox"] {
-        display: inline;
-        vertical-align: middle;
-        width: 22px;
-        height: 22px;
+      .password-input {
+        display: inline-flex;
+        input {
+          width: 22.6vw;
+          border: none;
+        }
+
+        .password-asset {
+          display: flex;
+          justify-content: center;
+          height: 32px;
+          cursor: pointer;
+        }
+      }
+
+      .password-hr {
+        display: flex;
         margin: 0;
-        margin-right: 12px;
+        padding: 0;
+        height: 0.5px;
+        background: $black50Color;
+        border: none;
       }
 
       .CheckBoxLabel {
-        display: inline;
+        display: inline-flex;
         vertical-align: middle;
-        width: 17vw;
+        width: 240px;
         height: 22px;
         @include body1Font($black50Color);
-      }
 
-      #PersonalInfoCheckBox {
-        padding-bottom: 16px;
+        input[type="checkbox"] + label {
+          display: inline-flex;
+          vertical-align: middle;
+          width: 20px;
+          height: 20px;
+          margin: 0;
+          margin-right: 12px;
+          border: 1px solid $black50Color;
+          cursor: pointer;
+        }
+
+        input[type="checkbox"]:checked + label {
+          display: inline-flex;
+          vertical-align: middle;
+          width: 20px;
+          height: 20px;
+          margin: 0;
+          margin-right: 12px;
+          border: 1px solid $black50Color;
+          background-image: url("../assets/icons/CheckboxIconAsset.svg");
+          background-repeat: no-repeat;
+          background-position: center;
+          cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+          display: none;
+        }
       }
 
       #SubmitButton {

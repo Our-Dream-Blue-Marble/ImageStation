@@ -7,16 +7,18 @@ const PopUpWithOneButtonsWidgets = ({
   onClickFuncButton,
 }) => {
   return (
-    <div className="popUpWithOneButtonsWidgets ">
+    <div className="popUpWithOneButtonsWidgets">
       <div className="popUpWithOneButtonsContainerWidgets">
         <div
           className="popUpWithOneButtonsHeaderTextWidgets"
-          style={{ color: themeColor }}>
+          style={{ color: themeColor }}
+        >
           {headerText}
         </div>
         <button
           className="popUpWithOneButtonsBtnWidgets"
-          onClick={onClickFuncButton}>
+          onClick={onClickFuncButton}
+        >
           {buttonText}
         </button>
       </div>
