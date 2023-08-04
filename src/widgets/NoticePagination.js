@@ -1,7 +1,5 @@
-import styled from "styled-components";
 import "styles/NoticeListStyle.scss";
 import ArrowImage from "../assets/ArrowAsset.svg";
-import { useState } from "react";
 
 function Pagination({ total, notices, page, setPage }) {
   const numPages = Math.ceil(total / notices);

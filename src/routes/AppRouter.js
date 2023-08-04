@@ -54,11 +54,11 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               element={
                 <div ref={homePagePosition} className="homePagePosition">
                   <HomePage elementRef={noticeListPagePosition} />
-                  <div
+                  {/* <div
                     ref={noticeListPagePosition}
                     className="noticeListPagePosition">
                     <NoticeListPage isAdmin={userObject?.role || false} />
-                  </div>
+                  </div> */}
                 </div>
               }
             />
@@ -126,7 +126,8 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                   <HomePage elementRef={noticeListPagePosition} />
                   <div
                     ref={noticeListPagePosition}
-                    className="noticeListPagePosition">
+                    className="noticeListPagePosition"
+                  >
                     <NoticeListPage isAdmin={false} />
                   </div>
                 </div>
