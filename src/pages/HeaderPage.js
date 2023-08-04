@@ -5,7 +5,6 @@ import {
   HomeRouteName,
   logInRouteName,
   NoticeAllRouteName,
-  NoticeListRouteName,
   OrderCategoryPageRouteName,
   OrderConfirmListRouteName,
   PaperInfoRouteName,

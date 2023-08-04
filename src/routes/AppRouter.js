@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import SignInPage from "pages/SignInPage";
@@ -35,9 +34,6 @@ import NoticeAllPage from "pages/NoticeAllPage";
 import UserLeavePage from "pages/UserLeavePage";
 
 const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
-  const homePagePosition = useRef(null);
-  const noticeListPagePosition = useRef(null);
-
   return (
     <>
       <HeaderPage
@@ -49,14 +45,7 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
       <Routes>
         {isLoggedIn ? (
           <>
-            <Route
-              path={HomeRouteName}
-              element={
-                <div ref={homePagePosition} className="homePagePosition">
-                  <HomePage elementRef={noticeListPagePosition} />
-                </div>
-              }
-            />
+            <Route path={HomeRouteName} element={<HomePage />} />
             <Route
               path={NoticeListRouteName}
               element={<NoticeListPage isAdmin={userObject?.role || false} />}
@@ -114,20 +103,7 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
           </>
         ) : (
           <>
-            <Route
-              path={HomeRouteName}
-              element={
-                <div ref={homePagePosition} className="homePagePosition">
-                  <HomePage elementRef={noticeListPagePosition} />
-                  <div
-                    ref={noticeListPagePosition}
-                    className="noticeListPagePosition"
-                  >
-                    <NoticeListPage isAdmin={false} />
-                  </div>
-                </div>
-              }
-            />
+            <Route path={HomeRouteName} element={<HomePage />} />
             <Route path={NoticeListRouteName} element={<NoticeListPage />} />
             <Route
               path={NoticeViewRouteName}
