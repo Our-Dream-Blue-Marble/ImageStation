@@ -248,6 +248,11 @@
           @include captionFont($black50Color);
         }
 
+        .select_label{
+
+          @include body1Font($black100Color);
+        }
+
         select {
           height: 4.75vh;
           width: 12.7vw;

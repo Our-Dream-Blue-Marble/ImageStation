@@ -16,7 +16,7 @@ import OrderFileCancel from "../assets/OrderFileCancelAsset.svg";
 
 const OrderPage = () => {
   const navigate = useNavigate();
-  const [orderTitle, setOrderTitle] = useState("0");
+  const [orderTitle, setOrderTitle] = useState("");
   const [orderPage, setOrderPage] = useState("0");
   const [orderLayout, setOrderLayout] = useState(false);
   const [orderSize, setOrderSize] = useState("0");
@@ -48,7 +48,7 @@ const OrderPage = () => {
 
   return (
     <>
-      {clickedOrder ? (
+      {clickedOrder && isPossibleSubmit ? (
         <div className="OrderConfirmPopUp">
           <div className="OrderConfirmPopUpContainer">
             <div className="popUpBlueText">주문이 접수 되었습니다!</div>
@@ -185,7 +185,7 @@ const OrderPage = () => {
                 <div className="categorySelectBodyContainer">
                   <div className="categorySelect">
                     <span>
-                      <label>제목</label>
+                      <label className="select_label">제목</label>
                       <input
                         name="title"
                         title={orderTitle}
@@ -198,7 +198,7 @@ const OrderPage = () => {
                       />
                     </span>
                     <span>
-                      <label>페이지</label>
+                      <label className="select_label">페이지</label>
                       <select
                         defaultValue={"0"}
                         name="page"
@@ -215,7 +215,7 @@ const OrderPage = () => {
                       category === "binding" ||
                       category === "actual") && (
                       <span>
-                        <label>레이아웃</label>
+                        <label className="select_label">레이아웃</label>
                         <select
                           defaultValue={false}
                           name="layout"
@@ -231,7 +231,7 @@ const OrderPage = () => {
                     {category !== "labeling" ||
                       (category !== "etc" && (
                         <span>
-                          <label>사이즈</label>
+                          <label className="select_label">사이즈</label>
                           <select
                             defaultValue={"0"}
                             name="size"
@@ -249,7 +249,7 @@ const OrderPage = () => {
                     {category === "binding" && (
                       <>
                         <span>
-                          <label>
+                          <label className="select_label">
                             제본방식
                             <select
                               defaultValue={"0"}
@@ -286,9 +286,9 @@ const OrderPage = () => {
                       category === "binding" ||
                       category === "actual") && (
                       <details>
-                        <summary>설정 더보기</summary>
+                        <summary className="select_label">설정 더보기</summary>
                         <span>
-                          <label>
+                          <label className="select_label">
                             종이
                             <select
                               defaultValue={"0"}
@@ -304,7 +304,7 @@ const OrderPage = () => {
                           </label>
                         </span>
                         <span>
-                          <label>컬러</label>
+                          <label className="select_label">컬러</label>
                           <select
                             defaultValue={false}
                             name="color"
@@ -323,7 +323,7 @@ const OrderPage = () => {
                       category === "photo" ||
                       category === "etc") && (
                       <span>
-                        <label>컬러</label>
+                        <label className="select_label">컬러</label>
                         <select
                           defaultValue={false}
                           name="color"
@@ -338,7 +338,7 @@ const OrderPage = () => {
                     )}
                     {category !== "etc" && (
                       <span className="moreInfoContainer">
-                        <label>
+                        <label className="select_label">
                           주문사항
                           <textarea
                             name="moreInfo"
@@ -352,7 +352,7 @@ const OrderPage = () => {
                     )}
                     {category === "etc" && (
                       <span className="moreInfoContainerForEtc">
-                        <label>
+                        <label className="select_label">
                           주문사항
                           <textarea
                             name="moreInfo"
