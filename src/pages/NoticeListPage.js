@@ -10,7 +10,6 @@ const NoticeListPage = () => {
   const [notice, setNotice] = useState([]);
   const page = 1;
   const limit = 4;
-  const offset = (page - 1) * limit;
   const [isNoticeDeleted, setIsNoticeDeleted] = useState(location.state);
   useEffect(() => {
     getNoticeList(setNotice);
@@ -24,14 +23,6 @@ const NoticeListPage = () => {
       });
     }
   }, [isNoticeDeleted]);
-
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const updateScroll = () => {
-    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", updateScroll);
-  });
 
   return (
     <div className="noticeListLayout">
@@ -49,11 +40,7 @@ const NoticeListPage = () => {
           <div className="noticeAllArrow"></div>
         </div>
       </div>
-      <div
-        className={
-          scrollPosition < 100 ? "fadeInAnimation" : "noticeBoxContainer"
-        }
-      >
+      <div className="noticeBoxContainer">
         {notice.slice(0, 4).map((value) => (
           <div className="fadeInAnimation">
             <div
