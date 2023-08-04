@@ -2,8 +2,17 @@ import { scrollToSection } from "functions/AppFunction";
 import { ReactComponent as HomeDownIconAsset } from "assets/icons/HomeDownIconAsset.svg";
 import "styles/HomeStyle.scss";
 import NoticeListPage from "./NoticeListPage";
+import { useEffect, useState } from "react";
 
 const HomePage = ({ elementRef }) => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const updateScroll = () => {
+    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", updateScroll);
+  });
+
   return (
     <div className="HomeLayout">
       <div className="HomeStyle">
@@ -17,7 +26,7 @@ const HomePage = ({ elementRef }) => {
         </button>
       </div>
       <div className="NoticeLayout">
-        <NoticeListPage />
+        {scrollPosition > 200 ? <NoticeListPage /> : null}
       </div>
       <div className="footer" />
     </div>

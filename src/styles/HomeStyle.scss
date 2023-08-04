@@ -2,13 +2,15 @@
 
 .HomeLayout {
   width: 100%;
-  height: 1860px;
+  height: 210vh;
+  display: flex;
+  flex-direction: column;
 
   .HomeStyle {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 804px;
+    height: 81vh;
     background-image: url("../assets/BackgroundAsset.svg");
     background-repeat: no-repeat;
     background-position: left top;
@@ -16,40 +18,42 @@
     text-align: center;
 
     .Title {
-      height: 65px;
-      padding-top: 272px;
+      height: 7.35vh;
+      padding-top: 30.76vh;
       @include displayFont($black100Color);
     }
     .SubTitle {
-      height: 22px;
+      height: 2.48vh;
       padding-top: 1.7vh;
       @include body2Font($black100Color);
     }
 
     .ButtonText {
-      height: 22px;
+      height: 2.48vh;
       @include body2Font($black100Color);
       padding-top: 26vh;
     }
     .ButtonIcon {
       width: 34px;
-      height: 48px;
+      height: 5.43vh;
       padding-top: 1.6vh;
       background-color: transparent;
       border: none;
       cursor: pointer;
-      margin-left: 739px;
+      margin-left: 48.87vw;
     }
   }
 
   .NoticeLayout {
     width: 100%;
-    height: 871px;
+    height: 98.53vh;
+    margin-bottom: 0;
   }
 
   .footer {
+    //margin-top: 70px;
     width: 100%;
     height: 186px;
-    background-color: rgba(246, 249, 253, 1);
+    background-color: $footerColor;
   }
 }
