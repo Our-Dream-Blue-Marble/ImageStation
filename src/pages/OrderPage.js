@@ -13,6 +13,7 @@ import {
 import "styles/OrderStyle.scss";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
 import OrderFileCancel from "../assets/OrderFileCancelAsset.svg";
+import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
 
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -33,10 +34,11 @@ const OrderPage = () => {
   const [isFileUploadButton, setIsFileUploadButton] = useState(true);
   const [isPdf, setIsPdf] = useState(false);
   const [isZip, setIsZip] = useState(false);
-  const location = useLocation("");
-  const category = location.state.data;
+  const [isHover, setIsHover] = useState(false);
   const [clickedOrder, setClickedOrder] = useState(false);
   const [orderUploadSuccess, setOrderUploadSuccess] = useState(false);
+  const location = useLocation("");
+  const category = location.state.data;
 
   useEffect(() => {
     if (orderTitle !== "" && imageUrl !== "") {
@@ -45,6 +47,14 @@ const OrderPage = () => {
       setIsPossibleSubmit(false);
     }
   }, [orderTitle, imageUrl]);
+
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
 
   return (
     <>
@@ -383,11 +393,11 @@ const OrderPage = () => {
                 id="OrderSaveBtn"
                 className="OrderSaveBtn"
                 type={isPossibleSubmit ? "submit" : "button"}
-                style={
-                  isPossibleSubmit
-                    ? { background: `rgba(90, 145, 255, 1)` }
-                    : { background: `rgba(33, 36, 39, 0.5)` }
-                }
+                style={{
+                  background: buttonHoverStyle(isPossibleSubmit, isHover),
+                }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
                 value={"주문"}
                 onClick={(e) => {
                   setIsSubmitButton(true);

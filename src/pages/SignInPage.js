@@ -9,6 +9,7 @@ import { ReactComponent as PasswordLockIconAsset } from "assets/icons/PasswordLo
 import "styles/ThemeStyles.scss";
 import "styles/SignInStyle.scss";
 import PopUpWithOneButtonsWidgets from "widgets/PopUpWithOneButtonWidgets";
+import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -263,15 +264,9 @@ const SignInPage = () => {
             <input
               id="SubmitButton"
               type={isPossibleSubmit ? "submit" : "button"}
-              style={
-                isPossibleSubmit
-                  ? isHover
-                    ? { background: `rgba(77, 125, 220, 1)` }
-                    : { background: `rgba(90, 145, 255, 1)` }
-                  : isHover
-                  ? { background: `rgba(77, 125, 220, 1)` }
-                  : { background: `rgba(90, 145, 255, 0.50)` }
-              }
+              style={{
+                background: buttonHoverStyle(isPossibleSubmit, isHover),
+              }}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               onClick={() => handleClickSubmitButton()}
