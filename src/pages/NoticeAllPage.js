@@ -63,7 +63,8 @@ const NoticeAllPage = ({ isAdmin }) => {
                   navigate(NoticeWriteRouteName, {
                     state: { data: notice[0] },
                   })
-                }>
+                }
+              >
                 +
               </button>
             ) : null}
@@ -108,7 +109,8 @@ const NoticeAllPage = ({ isAdmin }) => {
                                 setNotice,
                                 setNoticeSearched
                               );
-                            }}>
+                            }}
+                          >
                             <NoticeFilledPinAsset width={24} height={24} />
                           </div>
                         ) : (
@@ -126,7 +128,8 @@ const NoticeAllPage = ({ isAdmin }) => {
                                   setNoticeSearched
                                 );
                               }
-                            }}>
+                            }}
+                          >
                             <NoticeEmptyPinAsset
                               width={24}
                               height={24}
@@ -150,7 +153,8 @@ const NoticeAllPage = ({ isAdmin }) => {
                       navigate(NoticeListRouteName + "/" + value.id, {
                         state: { data: value },
                       })
-                    }>
+                    }
+                  >
                     <div className="noticeTitleAndBodyContainer">
                       <div className=" noticeListTitle">{value.title}</div>
                       <pre className="noticeListBody">{value.body}</pre>
@@ -158,7 +162,7 @@ const NoticeAllPage = ({ isAdmin }) => {
 
                     <div className="noticeDateContainer">
                       <div className="noticeListDate">게시일시:</div>
-                      <div className="noticeListDate">
+                      <div className="noticeListDateTime">
                         {getNoticeWrittenFullDate(value)}
                       </div>
                     </div>
