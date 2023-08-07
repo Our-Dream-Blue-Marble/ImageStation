@@ -5,10 +5,9 @@
   min-height: 91vh;
   flex-shrink: 0;
   position: fixed;
-  padding-top: 19.23vh;
-  padding-left: 35.98%;
   background: $white20Color;
   backdrop-filter: blur(2px);
+  @include centerFormat();
 
   .popUpWithOneButtonsContainerWidgets {
     display: flex;
@@ -22,12 +21,18 @@
     box-shadow: 0px 4px 10px 0px $black25Color;
 
     .popUpWithOneButtonsHeaderTextWidgets {
-      @include heading4Font($primaryColor);
+      @include heading4Font($errorColor);
       width: 240px;
       text-align: center;
       word-break: break-all;
+      margin-top: 88px;
+      padding-bottom: 24px;
     }
-
+    .popUpWithOneButtonsBodyTextWidgets {
+      @include body2Font($black75Color);
+      width: 160px;
+      margin-bottom: 74px;
+    }
     .popUpWithOneButtonsBtnWidgets {
       width: 139.125px;
       height: 55px;

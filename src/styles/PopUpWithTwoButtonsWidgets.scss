@@ -6,8 +6,7 @@
   flex-shrink: 0;
   position: fixed;
   backdrop-filter: blur(2px);
-  padding-top: 19.23vh;
-  padding-left: 35.98%;
+  @include centerFormat();
 
   .PopUpWithTwoButtonsContainerWidgets {
     width: 424px;
@@ -21,12 +20,12 @@
       @include heading2Font($errorColor);
       margin-top: 72px;
       text-align: center;
-      width: 185px;
+      width: 247px;
       height: 44px;
-      margin-left: 120px;
+      margin-left: 89px;
     }
     .popUpWithTwoButtonsBodyTextWidgets {
-      @include subHeading2Font($black75Color);
+      @include body2Font($black75Color);
       margin-top: 21px;
       text-align: center;
       height: 38px;

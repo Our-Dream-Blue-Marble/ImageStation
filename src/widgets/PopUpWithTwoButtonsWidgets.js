@@ -10,8 +10,8 @@ const PopUpWithTwoButtonsWidgets = ({
   rightButtonFunction,
 }) => {
   return (
-    <div className="popUpWithTwoButtonsWidgets">
-      <div className="popUpWithTwoButtonsContainerWidgets">
+    <div className="PopUpWithTwoButtonsWidgets">
+      <div className="PopUpWithTwoButtonsContainerWidgets">
         <div
           className="popUpWithTwoButtonsHeaderTextWidgets"
           style={{ color: themeColor }}>

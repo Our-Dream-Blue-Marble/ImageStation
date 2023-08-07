@@ -2,6 +2,7 @@ import "styles/PopUpWithOneButtonsWidgets.scss";
 
 const PopUpWithOneButtonsWidgets = ({
   headerText,
+  bodyText,
   buttonText,
   themeColor,
   onClickFuncButton,
@@ -11,14 +12,13 @@ const PopUpWithOneButtonsWidgets = ({
       <div className="popUpWithOneButtonsContainerWidgets">
         <div
           className="popUpWithOneButtonsHeaderTextWidgets"
-          style={{ color: themeColor }}
-        >
+          style={{ color: themeColor }}>
           {headerText}
         </div>
+        <div className="popUpWithOneButtonsBodyTextWidgets">{bodyText}</div>
         <button
           className="popUpWithOneButtonsBtnWidgets"
-          onClick={onClickFuncButton}
-        >
+          onClick={onClickFuncButton}>
           {buttonText}
         </button>
       </div>
