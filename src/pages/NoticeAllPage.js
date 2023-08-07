@@ -42,9 +42,10 @@ const NoticeAllPage = ({ isAdmin }) => {
     <>
       {isMaxPinClicked ? (
         <PopUpWithOneButtonsWidgets
-          headerText={"최대 4개까지 게시물을 고정할 수 있습니다. "}
+          headerText={"죄송합니다!"}
+          bodyText={"최대 4개까지\n게시물을 고정할 수 있습니다. "}
           buttonText={"돌아가기"}
-          themeColor={"#5A91FF"}
+          themeColor={"#DD5257"}
           onClickFuncButton={() => setIsMaxPinClicked(false)}
         />
       ) : (
@@ -63,8 +64,7 @@ const NoticeAllPage = ({ isAdmin }) => {
                   navigate(NoticeWriteRouteName, {
                     state: { data: notice[0] },
                   })
-                }
-              >
+                }>
                 +
               </button>
             ) : null}
@@ -109,8 +109,7 @@ const NoticeAllPage = ({ isAdmin }) => {
                                 setNotice,
                                 setNoticeSearched
                               );
-                            }}
-                          >
+                            }}>
                             <NoticeFilledPinAsset width={24} height={24} />
                           </div>
                         ) : (
@@ -128,8 +127,7 @@ const NoticeAllPage = ({ isAdmin }) => {
                                   setNoticeSearched
                                 );
                               }
-                            }}
-                          >
+                            }}>
                             <NoticeEmptyPinAsset
                               width={24}
                               height={24}
@@ -153,8 +151,7 @@ const NoticeAllPage = ({ isAdmin }) => {
                       navigate(NoticeListRouteName + "/" + value.id, {
                         state: { data: value },
                       })
-                    }
-                  >
+                    }>
                     <div className="noticeTitleAndBodyContainer">
                       <div className=" noticeListTitle">{value.title}</div>
                       <pre className="noticeListBody">{value.body}</pre>

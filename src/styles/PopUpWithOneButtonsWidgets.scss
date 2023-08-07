@@ -24,14 +24,12 @@
       @include heading4Font($errorColor);
       width: 240px;
       text-align: center;
-      word-break: break-all;
-      margin-top: 88px;
-      padding-bottom: 24px;
     }
     .popUpWithOneButtonsBodyTextWidgets {
       @include body2Font($black75Color);
-      width: 160px;
-      margin-bottom: 74px;
+      text-align: center;
+      white-space: pre-wrap;
+      width: 182px;
     }
     .popUpWithOneButtonsBtnWidgets {
       width: 139.125px;
