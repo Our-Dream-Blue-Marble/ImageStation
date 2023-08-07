@@ -41,7 +41,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
             <div className="AllLayout">
               <div className="FileLayout">
                 {orderData.attachmentName.match(/(.*?)\.(pdf)$/) && (
-                  <div>
+                  <div className="pdfFileContainer">
                     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
                       <Viewer
                         fileUrl={orderData.attachment}
