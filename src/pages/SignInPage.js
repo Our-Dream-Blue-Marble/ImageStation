@@ -18,6 +18,8 @@ const SignInPage = () => {
   const [userPasswordConfirm, setUserPasswordConfirm] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowPasswordConfirm, setIsShowPasswordConfirm] = useState(false);
+  const [isFocusPassword, setIsFocusPassword] = useState(false);
+  const [isFocusPasswordConfirm, setIsFocusPasswordConfirm] = useState(false);
   const passwordRef = useRef(null);
   const passwordConfirmRef = useRef(null);
   const [userName, setUserName] = useState("");
@@ -174,6 +176,8 @@ const SignInPage = () => {
                   onChange={(e) =>
                     onUserEmailOrPasswordChange(e, setUserPassword)
                   }
+                  onFocus={() => setIsFocusPassword(true)}
+                  onBlur={() => setIsFocusPassword(false)}
                   ref={passwordRef}
                 />
                 <PasswordLockIconAsset
@@ -187,7 +191,12 @@ const SignInPage = () => {
                   }
                 />
               </div>
-              <hr className="password-hr" />
+              <hr
+                className="password-hr"
+                style={
+                  isFocusPassword ? { background: "rgba(33, 36, 39, 1)" } : {}
+                }
+              />
               <label>* 영문자, 숫자 포함 8자 이상</label>
             </div>
             <div className="InputWithoutLabel">
@@ -201,6 +210,8 @@ const SignInPage = () => {
                   onChange={(e) =>
                     onUserEmailOrPasswordChange(e, setUserPasswordConfirm)
                   }
+                  onFocus={() => setIsFocusPasswordConfirm(true)}
+                  onBlur={() => setIsFocusPasswordConfirm(false)}
                   ref={passwordConfirmRef}
                 />
                 <PasswordLockIconAsset
@@ -214,7 +225,14 @@ const SignInPage = () => {
                   }
                 />
               </div>
-              <hr className="password-hr" />
+              <hr
+                className="password-hr"
+                style={
+                  isFocusPasswordConfirm
+                    ? { background: "rgba(33, 36, 39, 1)" }
+                    : {}
+                }
+              />
             </div>
 
             <div className="InputWithoutLabel">
