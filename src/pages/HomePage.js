@@ -1,5 +1,6 @@
 import { scrollToSection } from "functions/AppFunction";
 import { ReactComponent as HomeDownIconAsset } from "assets/icons/HomeDownIconAsset.svg";
+import { ReactComponent as HomePaperAsset } from "assets/HomeDownIconAsset.svg";
 import "styles/HomeStyle.scss";
 import NoticeListPage from "./NoticeListPage";
 import { useEffect, useState } from "react";
