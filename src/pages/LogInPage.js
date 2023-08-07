@@ -16,6 +16,8 @@ import {
   setUserIdInLocal,
 } from "functions/UserFunction";
 
+import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
+
 const LogInPage = () => {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
@@ -111,15 +113,9 @@ const LogInPage = () => {
             <input
               id="submit-button"
               type="submit"
-              style={
-                isPossibleSubmit
-                  ? isHover
-                    ? { background: `rgba(77, 125, 220, 1)` }
-                    : { background: `rgba(90, 145, 255, 1)` }
-                  : isHover
-                  ? { background: `rgba(77, 125, 220, 1)` }
-                  : { background: `rgba(90, 145, 255, 0.50)` }
-              }
+              style={{
+                background: buttonHoverStyle(isPossibleSubmit, isHover),
+              }}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               value={"로그인"}
