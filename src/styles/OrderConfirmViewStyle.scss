@@ -10,6 +10,21 @@
   flex-shrink: 0;
   flex-direction: column;
 
+  .pageNumberContainer {
+    width: 4vw;
+    height: 3vh;
+    text-align: center;
+    border: none;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    margin-left: 48vw;
+    margin-top: 2.6vh;
+    background: $black10Color;
+    color: $white100Color;
+  }
+
   .AllLayout {
     display: flex;
     flex-direction: row;
@@ -70,9 +85,7 @@
       }
 
       .rpv-core__inner-pages.rpv-core__inner-pages--vertical {
-        
         padding-right: 80px;
-        
       }
 
       .rpv-core__inner-pages.rpv-core__inner-pages--vertical::-webkit-scrollbar {

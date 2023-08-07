@@ -15,6 +15,10 @@ import { Viewer, Worker } from "@react-pdf-viewer/core";
 import OrderFileCancel from "../assets/OrderFileCancelAsset.svg";
 import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
 
+import { pageNavigationPlugin } from "@react-pdf-viewer/page-navigation";
+import { RenderCurrentPageLabelProps } from "@react-pdf-viewer/page-navigation";
+import "@react-pdf-viewer/page-navigation/lib/styles/index.css";
+
 const OrderPage = () => {
   const navigate = useNavigate();
   const [orderTitle, setOrderTitle] = useState("");
@@ -39,6 +43,9 @@ const OrderPage = () => {
   const [orderUploadSuccess, setOrderUploadSuccess] = useState(false);
   const location = useLocation("");
   const category = location.state.data;
+
+  const pageNavigationPluginInstance = pageNavigationPlugin();
+  const { CurrentPageLabel } = pageNavigationPluginInstance;
 
   useEffect(() => {
     if (orderTitle !== "" && imageUrl !== "") {
@@ -124,6 +131,13 @@ const OrderPage = () => {
         >
           <div className="OrderWholeContainer">
             <div className="OrderContainer-left">
+              <CurrentPageLabel>
+                {(props: RenderCurrentPageLabelProps) => (
+                  <div className="pageNumberContainer">{`${
+                    props.currentPage + 1
+                  } / ${props.numberOfPages}`}</div>
+                )}
+              </CurrentPageLabel>
               {isFileUploadButton ? (
                 <div style={{ width: "300px", height: "500px" }}>
                   <label htmlFor="fileLabel" />
@@ -171,7 +185,11 @@ const OrderPage = () => {
               <div className="pdfFileContainer">
                 {isPdf && imageUrl !== "" && isFileUploadButton === false ? (
                   <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-                    <Viewer id="image-display" fileUrl={imageUrl} />
+                    <Viewer
+                      id="image-display"
+                      fileUrl={imageUrl}
+                      plugins={[pageNavigationPluginInstance]}
+                    />
                   </Worker>
                 ) : imageUrl !== "" &&
                   isFileUploadButton === false &&

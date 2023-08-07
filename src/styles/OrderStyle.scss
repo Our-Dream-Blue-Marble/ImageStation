@@ -40,6 +40,21 @@
     align-items: center;
     display: inline-flex;
 
+    .pageNumberContainer {
+      width: 4vw;
+      height: 3vh;
+      text-align: center;
+      border: none;
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      margin-left: 27vw;
+      margin-bottom: 58vh;
+      background: $black10Color;
+      color: $white100Color;
+    }
+
     .FileCancelButton {
       position: relative;
       width: 3.3vw;
@@ -136,10 +151,8 @@
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
-    text-align: center;
     position: absolute;
     background-color: $white100Color;
-
   }
 
   .pdfFileContainer {
@@ -149,10 +162,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     position: absolute;
   }
-  
+
   .rpv-core__viewer {
     width: 350px;
     height: 446px;
