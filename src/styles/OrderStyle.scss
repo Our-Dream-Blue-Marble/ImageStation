@@ -139,6 +139,7 @@
     text-align: center;
     position: absolute;
     background-color: $white100Color;
+
   }
 
   .pdfFileContainer {
@@ -151,16 +152,19 @@
     text-align: center;
     position: absolute;
   }
+  
   .rpv-core__viewer {
     width: 350px;
     height: 446px;
   }
+
   .rpv-core__inner-page-container {
     width: 350px;
     height: 10px;
     position: relative;
     background-color: transparent;
   }
+
   .rpv-core__inner-page {
     width: 360px;
     height: 500px;
@@ -399,11 +403,6 @@
     @include heading2Font($white100Color);
     cursor: pointer;
   }
-
-  // .OrderSaveBtn:hover {
-  //   background-color: $hoverAndClickColor;
-  //   transition: 0.5s;
-  // }
 }
 .OrderConfirmPopUp {
   display: flex;
