@@ -55,4 +55,43 @@
     height: 30vh;
     background-color: $footerColor;
   }
+
+  .paperFalling {
+    width: 200px;
+    height: 200px;
+    margin-top: 50px;
+    margin-left: 500px;
+    animation: fall 4s ease-in 2s infinite;
+    position: absolute;
+    animation-delay: 1.25s !important;
+  }
+}
+
+@keyframes fall {
+  0% {
+    margin-top: 50px;
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+    margin-left: 300px;
+  }
+  100% {
+    margin-top: 400px;
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0% {
+    left: 0.5%;
+  }
+
+  50% {
+    left: -0.5%;
+  }
+
+  100% {
+    left: 0.5%;
+  }
 }
