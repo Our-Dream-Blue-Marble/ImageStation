@@ -2,7 +2,7 @@
 
 .HomeLayout {
   width: 100%;
-  height: 210vh;
+  height: 200vh;
   display: flex;
   flex-direction: column;
 
@@ -19,7 +19,7 @@
 
     .Title {
       height: 7.35vh;
-      padding-top: 30.76vh;
+      padding-top: 27.76vh;
       @include displayFont($black100Color);
     }
     .SubTitle {
@@ -31,7 +31,7 @@
     .ButtonText {
       height: 2.48vh;
       @include body2Font($black100Color);
-      padding-top: 26vh;
+      padding-top: 23vh;
     }
     .ButtonIcon {
       width: 34px;
@@ -51,9 +51,47 @@
   }
 
   .footer {
-    //margin-top: 70px;
     width: 100%;
-    height: 186px;
+    height: 30vh;
     background-color: $footerColor;
+  }
+
+  .paperFalling {
+    width: 200px;
+    height: 200px;
+    margin-top: 50px;
+    margin-left: 500px;
+    animation: fall 4s ease-in 2s infinite;
+    position: absolute;
+    animation-delay: 1.25s !important;
+  }
+}
+
+@keyframes fall {
+  0% {
+    margin-top: 50px;
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+    margin-left: 300px;
+  }
+  100% {
+    margin-top: 400px;
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0% {
+    left: 0.5%;
+  }
+
+  50% {
+    left: -0.5%;
+  }
+
+  100% {
+    left: 0.5%;
   }
 }

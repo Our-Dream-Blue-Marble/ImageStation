@@ -178,6 +178,5 @@ export const getUserOrderRemain = async (uid) => {
   const remainUserOrder = userMyOrderDocArray.filter(
     (order) => order.state !== 0
   );
-  console.log(1);
   return remainUserOrder.length;
 };
