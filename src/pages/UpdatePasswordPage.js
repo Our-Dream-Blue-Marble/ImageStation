@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   onEmailChange,
   onUpdatePasswordSubmitWithEmail,
@@ -6,10 +6,32 @@ import {
 import "styles/UpdatePasswordStyle.scss";
 import { useNavigate } from "react-router-dom";
 import { logInRouteName, SignInRouteName } from "routes/RouteName";
+import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
 
 const UpdatePasswordPage = () => {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
+  const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
+  const [isHover, setIsHover] = useState(false);
+
+  const emailRegEx1 = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@handong.ac.kr$/i;
+  const emailRegEx2 = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@handong.edu$/i;
+
+  useEffect(() => {
+    if (emailRegEx1.test(userEmail) || emailRegEx2.test(userEmail)) {
+      setIsPossibleSubmit(true);
+    } else {
+      setIsPossibleSubmit(false);
+    }
+  }, [userEmail]);
+
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
 
   return (
     <div className="updatePassword-background">
@@ -32,8 +54,13 @@ const UpdatePasswordPage = () => {
           />
           <input
             type="submit"
-            value="비밀번호 재설정"
+            style={{
+              background: buttonHoverStyle(isPossibleSubmit, isHover),
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             onClick={(e) => onUpdatePasswordSubmitWithEmail(e, userEmail)}
+            value="비밀번호 재설정"
           />
           <div className="otherPage-routing-buttons">
             <div
