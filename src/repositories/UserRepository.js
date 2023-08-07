@@ -41,9 +41,17 @@ export const createNewUserDocument = async (
 };
 
 export const deleteUserDocument = async (uid) => {
-  await dbService
-    .collection("users")
-    .doc(uid)
+  const userDataCollection = await dbService.collection("users").doc(uid);
+
+  const userMyOrderDataCollection = userDataCollection.collection("myOrders");
+
+  const myOrdersSanpshot = await userMyOrderDataCollection.get();
+  if (!myOrdersSanpshot.empty) {
+    myOrdersSanpshot.docs.forEach((doc) => {
+      userMyOrderDataCollection.doc(String(doc.data().docId)).delete();
+    });
+  }
+  userDataCollection
     .delete()
     .then(() => {
       return true;
