@@ -12,6 +12,7 @@ import { NoticeListRouteName, NoticeWriteRouteName } from "routes/RouteName";
 import { ReactComponent as NoticeEmptyPinAsset } from "assets/icons/NoticeEmptyPinIconAsset.svg";
 import { ReactComponent as NoticeFilledPinAsset } from "assets/icons/NoticeFilledPinIconAsset.svg";
 import { ReactComponent as NoticePinAsset } from "assets/icons/NoticePinCheckIconAsset.svg";
+import { ReactComponent as SearchAsset } from "assets/SearchAsset.svg";
 import PopUpWithOneButtonsWidgets from "widgets/PopUpWithOneButtonWidgets";
 
 const NoticeAllPage = ({ isAdmin }) => {
@@ -64,7 +65,8 @@ const NoticeAllPage = ({ isAdmin }) => {
                   navigate(NoticeWriteRouteName, {
                     state: { data: notice[0] },
                   })
-                }>
+                }
+              >
                 +
               </button>
             ) : null}
@@ -73,7 +75,9 @@ const NoticeAllPage = ({ isAdmin }) => {
 
         <div className="NoticeAllContainer">
           <div className="searchContainer">
-            <div className="searchIcon" />
+            <div className="searchIcon">
+              <SearchAsset />
+            </div>
             <input
               className="searchInput"
               name="noticeSearch"
@@ -109,7 +113,8 @@ const NoticeAllPage = ({ isAdmin }) => {
                                 setNotice,
                                 setNoticeSearched
                               );
-                            }}>
+                            }}
+                          >
                             <NoticeFilledPinAsset width={24} height={24} />
                           </div>
                         ) : (
@@ -127,7 +132,8 @@ const NoticeAllPage = ({ isAdmin }) => {
                                   setNoticeSearched
                                 );
                               }
-                            }}>
+                            }}
+                          >
                             <NoticeEmptyPinAsset
                               width={24}
                               height={24}
@@ -151,7 +157,8 @@ const NoticeAllPage = ({ isAdmin }) => {
                       navigate(NoticeListRouteName + "/" + value.id, {
                         state: { data: value },
                       })
-                    }>
+                    }
+                  >
                     <div className="noticeTitleAndBodyContainer">
                       <div className=" noticeListTitle">{value.title}</div>
                       <pre className="noticeListBody">{value.body}</pre>

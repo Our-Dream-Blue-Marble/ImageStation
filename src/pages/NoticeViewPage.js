@@ -115,7 +115,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                       className="noticeViewNavigateList"
                       onClick={() => navigate(-1)}
                     >
-                      홈으로
+                      목록으로
                     </button>
                     <button
                       className="adminNoticeUpdateButton"

@@ -73,11 +73,10 @@
         color: $black50Color;
       }
       .searchIcon {
-        width: 1.12vw;
         height: 2.4vh;
         margin-top: 1.35vh;
         margin-left: 1.2vw;
-        background-image: url("../assets/SearchAsset.svg");
+        background-color: transparent;
       }
     }
 
@@ -102,6 +101,7 @@
         .noticePinCheckbox {
           display: flex;
           flex-shrink: 0;
+          margin-top: 1.5vh;
           margin-left: -2.64vw;
           align-items: center;
         }
