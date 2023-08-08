@@ -11,12 +11,15 @@ import {
   onOrderSubmit,
 } from "functions/OrderFunction";
 import "styles/OrderStyle.scss";
+import "styles/PopUpPaperInfoStyle.scss";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
 import OrderFileCancel from "../assets/OrderFileCancelAsset.svg";
+import QuestionMark from "../assets/QuestionMark.svg";
 import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
-
-import { pageNavigationPlugin } from "@react-pdf-viewer/page-navigation";
-import { RenderCurrentPageLabelProps } from "@react-pdf-viewer/page-navigation";
+import {
+  pageNavigationPlugin,
+  RenderCurrentPageLabelProps,
+} from "@react-pdf-viewer/page-navigation";
 import "@react-pdf-viewer/page-navigation/lib/styles/index.css";
 
 const OrderPage = () => {
@@ -41,9 +44,9 @@ const OrderPage = () => {
   const [isHover, setIsHover] = useState(false);
   const [clickedOrder, setClickedOrder] = useState(false);
   const [orderUploadSuccess, setOrderUploadSuccess] = useState(false);
+  const [isPaperInfoPopUp, setIsPaperInfoPopUp] = useState(false);
   const location = useLocation("");
   const category = location.state.data;
-
   const pageNavigationPluginInstance = pageNavigationPlugin();
   const { CurrentPageLabel } = pageNavigationPluginInstance;
 
@@ -61,6 +64,10 @@ const OrderPage = () => {
 
   const handleMouseLeave = () => {
     setIsHover(false);
+  };
+
+  const getPaperInfoPopUp = () => {
+    setIsPaperInfoPopUp(!isPaperInfoPopUp);
   };
 
   return (
@@ -99,6 +106,20 @@ const OrderPage = () => {
           </div>
         </div>
       ) : null}
+
+      {isPaperInfoPopUp ? (
+        <div className="PopUpPaperInfoWholeContainer">
+          <div className="PaperInfoContainer">
+            <div className="buttonContainer">
+              <h3>무슨 종이를 쓸지 고민이 되나요?</h3>
+              <button className="closedButton" onClick={getPaperInfoPopUp}>
+                돌아가기
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       <div className="OrderLayout">
         <form
           onSubmit={async (e) => {
@@ -329,6 +350,15 @@ const OrderPage = () => {
                               <option value={"1"}>스노우지</option>
                               <option value={"2"}>마시멜로우지</option>
                             </select>
+                            <label htmlFor="QusetionMarkButton" className="QusetionMarkLabel">
+                              <img src={QuestionMark} />
+                            </label>
+                            <button
+                              id="QusetionMarkButton"
+                              className="QusetionMarkButton"
+                              type="button"
+                              onClick={getPaperInfoPopUp}
+                            />
                           </label>
                         </span>
                         <span>
