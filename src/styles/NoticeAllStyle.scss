@@ -3,14 +3,12 @@
 .NoticeAllLayout {
   width: 100%;
   min-height: 91vh;
-  padding-top: 2vh;
-  padding-bottom: 9vh;
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;
-  @include centerFormat();
+  // @include centerFormat();
 
   .NoticeAllHeadContainer {
     width: 100%;
