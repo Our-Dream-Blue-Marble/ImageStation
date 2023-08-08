@@ -40,17 +40,25 @@ export const createNewUserDocument = async (
   return false;
 };
 
-export const deleteUserDocument = async (uid) => {
-  const userDataCollection = await dbService.collection("users").doc(uid);
-
-  const userMyOrderDataCollection = userDataCollection.collection("myOrders");
+export const deleteUserMyOrdersDocument = async (uid) => {
+  const userMyOrderDataCollection = await dbService
+    .collection("users")
+    .doc(uid)
+    .collection("myOrders");
+  const ordersDataCollection = await dbService.collection("orders");
 
   const myOrdersSanpshot = await userMyOrderDataCollection.get();
   if (!myOrdersSanpshot.empty) {
     myOrdersSanpshot.docs.forEach((doc) => {
-      userMyOrderDataCollection.doc(String(doc.data().docId)).delete();
+      let docId = doc.data().docId;
+      userMyOrderDataCollection.doc(String(docId)).delete();
+      ordersDataCollection.doc(String(docId)).delete();
     });
   }
+};
+export const deleteUserDocument = async (uid) => {
+  deleteUserMyOrdersDocument(uid);
+  const userDataCollection = await dbService.collection("users").doc(uid);
   userDataCollection
     .delete()
     .then(() => {
