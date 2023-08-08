@@ -1,15 +1,23 @@
 @import "ThemeStyles.scss";
 
 .NoticeAllLayout {
-  width: 100%;
-  min-height: 91vh;
-  background-image: url("../assets/BackgroundAsset.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  // @include centerFormat();
-
+  @include desktop {
+    //width: 100%;
+    min-height: 91vh;
+    background-image: url("../assets/BackgroundAsset.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+  }
+  @include tablet {
+    min-height: 91vh;
+    background-image: url("../assets/BackgroundAsset.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+  }
   .NoticeAllHeadContainer {
     width: 100%;
     height: 2.48vh;
@@ -107,8 +115,8 @@
         }
 
         .noticeTitleAndBodyContainer {
-          width: 134px;
-          height: 54px;
+          width: 6vw;
+          height: 6.1vh;
           float: left;
           margin-right: 4.3vw;
           width: 27.18vw;
@@ -178,6 +186,7 @@
     border: none;
     background-color: inherit;
     transform: scaleX(-1);
+    cursor: pointer;
   }
   .paginationBtn {
     @include body1Font($black75Color);
@@ -187,15 +196,11 @@
     height: 2.15vh;
     border: none;
     background-color: inherit;
-
-    &[disabled] {
-      cursor: revert;
-      transform: revert;
-    }
+    cursor: pointer;
 
     &[aria-current] {
       font-weight: bold;
-      cursor: revert;
+      cursor: pointer;
       transform: revert;
     }
   }
@@ -206,6 +211,7 @@
     height: 3.9vh;
     border: none;
     background-color: inherit;
+    cursor: pointer;
   }
 }
 
