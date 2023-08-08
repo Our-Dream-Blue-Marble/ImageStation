@@ -17,10 +17,10 @@
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
 
     .popUpWithTwoButtonsHeaderTextWidgets {
-      @include heading2Font($errorColor);
+      @include heading2Font($primaryColor);
       margin-top: 72px;
       text-align: center;
-      width: 247px;
+      width: 267px;
       height: 44px;
       margin-left: 89px;
     }
@@ -62,6 +62,7 @@
       }
       .popUpWithTwoButtonsRightButtonWidgets {
         @include subHeading2Font($white100Color);
+        background: $primaryColor;
         display: flex;
         width: 139.125px;
         height: 55px;
@@ -76,7 +77,7 @@
         cursor: pointer;
       }
       .popUpWithTwoButtonsRightButtonWidgets:hover {
-        background: rgb(139, 58, 58);
+        background: rgb(172, 172, 172);
       }
     }
   }
