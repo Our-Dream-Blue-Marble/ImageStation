@@ -3,7 +3,7 @@ import UserLeaveText from "assets/UserLeaveText.txt";
 import "styles/UserLeaveStyle.scss";
 import { deleteAccount, getUserOrderRemain } from "functions/UserFunction";
 import PopUpWithOneButtonsWidgets from "widgets/PopUpWithOneButtonWidgets";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PopUpWithGifWidgets from "widgets/PopUpWithGifWidgets";
 import PopUpWithTwoButtonsWidgets from "widgets/PopUpWithTwoButtonsWidgets";
 import { HomeRouteName, UserLeaveRouteName } from "routes/RouteName";
