@@ -2,15 +2,18 @@ import { useEffect, useState } from "react";
 import UserLeaveText from "assets/UserLeaveText.txt";
 import "styles/UserLeaveStyle.scss";
 import { deleteAccount, getUserOrderRemain } from "functions/UserFunction";
-import { authService } from "fbase";
 import PopUpWithOneButtonsWidgets from "widgets/PopUpWithOneButtonWidgets";
 import { useNavigate } from "react-router-dom";
-import { OrderConfirmListRouteName } from "routes/RouteName";
+import PopUpWithGifWidgets from "widgets/PopUpWithGifWidgets";
+import PopUpWithTwoButtonsWidgets from "widgets/PopUpWithTwoButtonsWidgets";
+import { HomeRouteName, UserLeaveRouteName } from "routes/RouteName";
 
 const UserLeavePage = ({ userObject }) => {
   const [userLeaveText, setUserLeaveText] = useState();
   const navigate = useNavigate();
   const [isDeleteAccountClicked, setIsDeleteAccountClicked] = useState(false);
+  const [deleteAccountConfirmed, setDeleteAccountConfirmed] = useState(false);
+
   useEffect(() => {
     fetch(UserLeaveText)
       .then((result) => result.text())
@@ -19,16 +22,51 @@ const UserLeavePage = ({ userObject }) => {
 
   return (
     <>
-      {isDeleteAccountClicked ? (
-        <PopUpWithOneButtonsWidgets
-          headerText={
-            "회원탈퇴가 불가합니다! 주문예약이 진행 중인 상태에서 회원탈퇴가 어렵습니다."
-          }
-          buttonText={"돌아가기"}
-          themeColor={"#5A91FF"}
-          onClickFuncButton={() => setIsDeleteAccountClicked(false)}
-        />
-      ) : null}
+      <>
+        {!userObject && (
+          <PopUpWithOneButtonsWidgets
+            headerText={"탈퇴되었습니다."}
+            bodyText={"그동안 이미지스테이션을\n이용해주셔서 감사합니다."}
+            buttonText={"홈"}
+            themeColor={"#DD5257"}
+            onClickFuncButton={() => {
+              navigate(HomeRouteName, { replace: true });
+            }}
+          />
+        )}
+      </>
+      <>
+        {isDeleteAccountClicked && (
+          <PopUpWithGifWidgets
+            headingText={"회원탈퇴가 불가합니다!"}
+            bodyText={" 주문예약이 진행 중인 상태에서 회원탈퇴가 어렵습니다."}
+            buttonText={"돌아가기"}
+            buttonFunction={() => {
+              setIsDeleteAccountClicked(false);
+            }}
+          />
+        )}
+      </>
+      <>
+        {deleteAccountConfirmed && (
+          <PopUpWithTwoButtonsWidgets
+            headerText={"정말로 탈퇴하시겠습니까?"}
+            bodyText={"삭제를 하면\n복구가 불가능합니다!"}
+            leftButtonText={"취소"}
+            rightButtonText={"탈퇴"}
+            themeColor={"#DD5257"}
+            leffButtonFunction={() => {
+              setDeleteAccountConfirmed(false);
+            }}
+            rightButtonFunction={async () => {
+              await deleteAccount().then((result) => {
+                window.location.replace(UserLeaveRouteName);
+              });
+            }}
+          />
+        )}
+      </>
+
       {userLeaveText === null ? (
         "Loading"
       ) : (
@@ -41,7 +79,7 @@ const UserLeavePage = ({ userObject }) => {
                 id="button"
                 onClick={async (e) => {
                   if ((await getUserOrderRemain(userObject.uid)) === 0) {
-                    deleteAccount();
+                    setDeleteAccountConfirmed(true);
                   } else {
                     setIsDeleteAccountClicked(true);
                   }

@@ -11,11 +11,18 @@ import { onAttachmentDownloadClick } from "functions/CommonFunction";
 import { readOrderDocument } from "repositories/OrderRepository";
 import { OrderConfirmListRouteName } from "routes/RouteName";
 
+import { pageNavigationPlugin } from "@react-pdf-viewer/page-navigation";
+import { RenderCurrentPageLabelProps } from "@react-pdf-viewer/page-navigation";
+import "@react-pdf-viewer/page-navigation/lib/styles/index.css";
+
 const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [orderData, setOrderData] = useState(null);
   const { id } = useParams();
+
+  const pageNavigationPluginInstance = pageNavigationPlugin();
+  const { CurrentPageLabel } = pageNavigationPluginInstance;
 
   useEffect(() => {
     if (orderData === null && id !== null) {
@@ -34,6 +41,13 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
   return (
     <div className="orderConfirmLayout">
       <div className="OrderConfirmViewBody">
+        <CurrentPageLabel>
+          {(props: RenderCurrentPageLabelProps) => (
+            <div className="pageNumberContainer">{`${props.currentPage + 1} / ${
+              props.numberOfPages
+            }`}</div>
+          )}
+        </CurrentPageLabel>
         {orderData === null ? (
           <>Loading</>
         ) : (
@@ -49,6 +63,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
                           Authorization: "firebasestorage.googleapis.com",
                         }}
                         withCredentials={false}
+                        plugins={[pageNavigationPluginInstance]}
                       />
                     </Worker>
                   </div>

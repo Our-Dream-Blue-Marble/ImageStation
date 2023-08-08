@@ -1,36 +1,42 @@
 @import "ThemeStyles.scss";
 
 .NoticeAllLayout {
-  width: 100%;
-  min-height: 91vh;
-  padding-top: 2vh;
-  padding-bottom: 9vh;
-  background-image: url("../assets/BackgroundAsset.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-
+  @include desktop {
+    //width: 100%;
+    min-height: 91vh;
+    background-image: url("../assets/BackgroundAsset.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+  }
+  @include tablet {
+    min-height: 91vh;
+    background-image: url("../assets/BackgroundAsset.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+  }
   .NoticeAllHeadContainer {
     width: 100%;
-    height: 22px;
+    height: 2.48vh;
     display: flex;
     flex-direction: row;
-    margin-top: 70px;
-    margin-bottom: 52px;
+    margin-top: 7.9vh;
+    margin-bottom: 5.9vh;
 
     .NoticeAllTitle {
       @include heading2Font($primaryColor);
-      width: 365px;
-      margin-left: 560px;
+      width: 27vw;
+      margin-left: 34vw;
     }
 
     .noticeWriteBtn {
       display: flex;
-      width: 32px;
-      margin-right: 398px;
-      margin-left: 135px;
-      margin-top: -18px;
+      width: 2.11vw;
+      margin-left: 8.9vw;
+      margin-top: -2.03vh;
       font-size: 48px;
       color: $primaryColor;
       background-color: inherit;
@@ -39,10 +45,10 @@
   }
 
   .NoticeAllContainer {
-    width: 862px;
-    height: 887px;
-    margin-left: 325px;
-    margin-right: 325px;
+    width: 57vw;
+    height: 100vh;
+    margin-left: 21.5vw;
+    margin-right: 21.5vw;
     border-radius: 10px;
     box-shadow: 0px 4px 10px 0px $black25Color;
     background-color: $white60Color;
@@ -50,19 +56,19 @@
     .searchContainer {
       display: flex;
       flex-direction: row;
-      width: 192px;
-      height: 42px;
-      margin-left: 597px;
-      margin-bottom: 24px;
-      margin-top: 26px;
+      width: 12.7vw;
+      height: 4.75vh;
+      margin-left: 39.48vw;
+      margin-bottom: 2.7vh;
+      margin-top: 2.9vh;
       border-radius: 8px;
       background: $white100Color;
       box-shadow: 0px 2px 2px 1px $black5Color;
 
       .searchInput {
-        width: 111px;
-        height: 22px;
-        margin-left: 18px;
+        width: 7.3vw;
+        height: 2.5vh;
+        margin-left: 1.2vw;
         margin-top: 10px;
         display: flex;
         justify-content: center;
@@ -75,11 +81,10 @@
         color: $black50Color;
       }
       .searchIcon {
-        width: 17px;
-        height: 17px;
-        margin-top: 12px;
-        margin-left: 18px;
-        background-image: url("../assets/SearchAsset.svg");
+        height: 2.4vh;
+        margin-top: 1.35vh;
+        margin-left: 1.2vw;
+        background-color: transparent;
       }
     }
 
@@ -89,71 +94,76 @@
       display: flex;
       align-items: center;
       flex-direction: column;
-      margin-top: 28px;
+      margin-top: 3.17vh;
       cursor: pointer;
-
-      .noticePinCheckbox {
-        width: 24px;
-        height: 60px;
-        display: flex;
-        flex-shrink: 0;
-        margin-left: -40px;
-        align-items: center;
-      }
 
       .eachNoticeContent {
         display: flex;
-        width: 636px;
-        height: 60px;
-        margin-top: 28px;
-        margin-bottom: 28px;
         flex-direction: row;
+        width: 42vw;
+        height: 6.78vh;
+        margin-top: 3.16vh;
+        margin-bottom: 3.16vh;
         border: none;
-        width: 636px;
+
+        .noticePinCheckbox {
+          display: flex;
+          flex-shrink: 0;
+          margin-top: 1.5vh;
+          margin-left: -2.64vw;
+          align-items: center;
+        }
 
         .noticeTitleAndBodyContainer {
+          width: 6vw;
+          height: 6.1vh;
           float: left;
-          width: 411px;
-          height: 60px;
-          margin-bottom: 28px;
+          margin-right: 4.3vw;
+          width: 27.18vw;
+          height: 6.78vh;
 
           .noticeListTitle {
             @include body1Font($black100Color);
-            height: 25px;
+            height: 2.8vh;
             margin-bottom: 12px;
             overflow: hidden;
+            word-break: break-all;
             text-overflow: ellipsis;
           }
           .noticeListBody {
             @include captionFont($black75Color);
-            display: block;
-            height: 23px;
-
+            height: 2.6vh;
             word-break: break-all;
             text-overflow: ellipsis;
             overflow: hidden;
+            margin: 0;
+            padding: 0;
           }
         }
         .noticeDateContainer {
-          align-items: flex-end;
+          display: flex;
           float: right;
-          margin-bottom: 28px;
-          margin-left: 80px;
+          flex-direction: column;
+          text-align: right;
+
           .noticeListDate {
             @include captionFont($black75Color);
-            height: 22px;
-            margin-bottom: 10px;
+            height: 2.5vh;
+            margin-bottom: 1.13vh;
+          }
+          .noticeListDateTime {
+            @include captionFont($black75Color);
+            height: 2.5vh;
           }
         }
       }
 
       #NoticeDevice_line {
-        width: 716px;
-        height: 0.5px;
-        margin-left: 100px;
+        width: 47.35vw;
+        height: 0.05vh;
+        margin-left: 6.6vw;
         padding: 0;
         margin: 0;
-        text-align: center;
         border: none;
         background-color: $black50Color;
       }
@@ -176,6 +186,7 @@
     border: none;
     background-color: inherit;
     transform: scaleX(-1);
+    cursor: pointer;
   }
   .paginationBtn {
     @include body1Font($black75Color);
@@ -185,15 +196,11 @@
     height: 2.15vh;
     border: none;
     background-color: inherit;
-
-    &[disabled] {
-      cursor: revert;
-      transform: revert;
-    }
+    cursor: pointer;
 
     &[aria-current] {
       font-weight: bold;
-      cursor: revert;
+      cursor: pointer;
       transform: revert;
     }
   }
@@ -204,6 +211,7 @@
     height: 3.9vh;
     border: none;
     background-color: inherit;
+    cursor: pointer;
   }
 }
 

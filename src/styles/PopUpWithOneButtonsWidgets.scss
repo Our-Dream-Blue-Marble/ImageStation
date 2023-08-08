@@ -5,10 +5,9 @@
   min-height: 91vh;
   flex-shrink: 0;
   position: fixed;
-  padding-top: 19.23vh;
-  padding-left: 35.98%;
   background: $white20Color;
   backdrop-filter: blur(2px);
+  @include centerFormat();
 
   .popUpWithOneButtonsContainerWidgets {
     display: flex;
@@ -25,9 +24,13 @@
       @include heading4Font($primaryColor);
       width: 240px;
       text-align: center;
-      word-break: break-all;
     }
-
+    .popUpWithOneButtonsBodyTextWidgets {
+      @include body2Font($black75Color);
+      text-align: center;
+      white-space: pre-wrap;
+      width: 190px;
+    }
     .popUpWithOneButtonsBtnWidgets {
       width: 139.125px;
       height: 55px;
