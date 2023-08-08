@@ -12,8 +12,6 @@ import {
   updateUserLogInDateDocument,
 } from "repositories/UserRepository";
 import CryptoJS from "crypto-js";
-import PopUpWithTwoButtonsWidgets from "widgets/PopUpWithTwoButtonsWidgets";
-import PopUpWithOneButtonsWidgets from "widgets/PopUpWithOneButtonWidgets";
 
 export const signIn = async (
   setIsNewUser,
