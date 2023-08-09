@@ -16,31 +16,55 @@
       width: 63px;
       height: 43px;
       margin-top: 163px;
-      margin-left: 213px;
+      margin-left: 14.08vw;
     }
     .PaperExplanation {
       @include heading3Font($black100Color);
       width: 227px;
       height: 44px;
       margin-top: 55px;
-      margin-left: 213px;
+      margin-left: 14.08vw;
       line-height: 25px;
     }
   }
 
   .PaperInfoContainer {
-    width: 780px;
-    height: 1048px;
     margin-top: 163px;
-    margin-left: 182px;
+    margin-left: 12vw;
     background-color: transparent;
 
-    display: grid;
-    grid-template-columns: 370px 370px;
-    grid-template-rows: 232px 232px 232px 232px;
-    grid-column-gap: 40px;
-    grid-row-gap: 40px;
-    backface-visibility: hidden;
+    @include desktop {
+      width: 780px;
+      height: 1048px;
+      display: grid;
+      grid-template-columns: 370px 370px;
+      grid-template-rows: 232px 232px 232px 232px;
+      grid-column-gap: 40px;
+      grid-row-gap: 40px;
+      backface-visibility: hidden;
+    }
+
+    @include tablet {
+      width: 440px;
+      height: 860px;
+      display: grid;
+      grid-template-columns: 200px 200px;
+      grid-template-rows: 200px 200x 200px 200px;
+      grid-column-gap: 20px;
+      grid-row-gap: 20px;
+      backface-visibility: hidden;
+    }
+
+    @include mobile {
+      width: 120px;
+      height: 460px;
+      display: grid;
+      grid-template-columns: 50px;
+      grid-template-rows: 50px 50px 50px 50px 50px 50px 50px;
+      grid-column-gap: 20px;
+      grid-row-gap: 20px;
+      backface-visibility: hidden;
+    }
 
     .paperCard {
       background-image: url("../assets/PaperAsset.svg");
