@@ -6,6 +6,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { HomeRouteName, logInRouteName } from "routes/RouteName";
 import { ReactComponent as PasswordLockIconAsset } from "assets/icons/PasswordLockIconAsset.svg";
+import { ReactComponent as ArrowRightSmallIconAsset } from "assets/icons/ArrowRightSmallIconAsset.svg";
 import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
 import "styles/ThemeStyles.scss";
 import "styles/SignInStyle.scss";
@@ -230,7 +231,8 @@ const SignInPage = () => {
             <hr
               className="password-hr"
               style={
-                errorContent[2] === false && isPossibleSubmit
+                (errorContent[1] === false || errorContent[2] === false) &&
+                isPossibleSubmit
                   ? { background: "rgba(221, 82, 87, 1)" }
                   : isFocusPasswordConfirm
                   ? { background: "rgba(33, 36, 39, 1)" }
@@ -242,45 +244,55 @@ const SignInPage = () => {
           <div className="InputWithoutLabel">
             <input
               name="userPhoneNumber"
-              type="tel"
-              placeholder="(선택)전화번호"
+              type="text"
+              placeholder="전화번호"
               value={userPhoneNumber}
               onChange={(e) =>
                 onUserEmailOrPasswordChange(e, setUserPhoneNumber)
               }
             />
-            <label>* "-" 제외 11자리 입력</label>
+            <label>* 필수 아님</label>
           </div>
 
-          <div class="CheckBoxLabel" style={{ paddingBottom: "16px" }}>
-            <input
-              type="checkbox"
-              id="isAgreePersonalInfo"
-              name="isAgreePersonalInfo"
-              value={isAgreePersonalInfo}
-              required
-              onChange={(e) =>
-                onUserEmailOrPasswordChange(e, setIsAgreePersonalInfo)
-              }
-            />
-            <label for="isAgreePersonalInfo" name="isAgreePersonalInfo"></label>
-            개인정보 처리방침에 동의합니다.
+          <div className="checkbox-asset">
+            <div className="checkbox-label" style={{ paddingBottom: "16px" }}>
+              <input
+                type="checkbox"
+                id="isAgreePersonalInfo"
+                name="isAgreePersonalInfo"
+                value={isAgreePersonalInfo}
+                required
+                onChange={(e) =>
+                  onUserEmailOrPasswordChange(e, setIsAgreePersonalInfo)
+                }
+              />
+              <label
+                for="isAgreePersonalInfo"
+                name="isAgreePersonalInfo"
+              ></label>
+              개인정보 처리방침에 동의합니다.
+            </div>
+            <ArrowRightSmallIconAsset className="asset" />
           </div>
 
-          <div class="CheckBoxLabel">
-            <input
-              type="checkbox"
-              id="isAgreeUsingInfo"
-              name="isAgreeUsingInfo"
-              value={isAgreeUsingInfo}
-              required
-              onChange={(e) =>
-                onUserEmailOrPasswordChange(e, setIsAgreeUsingInfo)
-              }
-            />
-            <label for="isAgreeUsingInfo" name="isAgreeUsingInfo"></label>
-            이용약관에 동의합니다.
+          <div className="checkbox-asset">
+            <div className="checkbox-label">
+              <input
+                type="checkbox"
+                id="isAgreeUsingInfo"
+                name="isAgreeUsingInfo"
+                value={isAgreeUsingInfo}
+                required
+                onChange={(e) =>
+                  onUserEmailOrPasswordChange(e, setIsAgreeUsingInfo)
+                }
+              />
+              <label for="isAgreeUsingInfo" name="isAgreeUsingInfo"></label>
+              이용약관에 동의합니다.
+            </div>
+            <ArrowRightSmallIconAsset className="asset" />
           </div>
+
           <input
             id="SubmitButton"
             type={isPossibleSubmit ? "submit" : "button"}
