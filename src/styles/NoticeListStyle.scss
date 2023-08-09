@@ -1,9 +1,5 @@
 @import "ThemeStyles.scss";
 
-@mixin centerItem() {
-  align-items: center;
-  justify-content: center;
-}
 .noticeListLayout {
   width: 100%;
   height: 98.53vh;
@@ -23,7 +19,7 @@
       height: 4.87vh;
       border: none;
       @include heading1Font($primaryColor);
-      @include centerItem();
+      @include centerFormat();
     }
     .noticeListExp {
       margin-bottom: 4.75vh;
@@ -31,7 +27,7 @@
       height: 2.49vh;
       border: none;
       @include heading3Font($black100Color);
-      @include centerItem();
+      @include centerFormat();
     }
     .AllBtnContainer {
       display: flex;
@@ -50,7 +46,7 @@
         margin-top: 1.13vh;
         margin-left: 1.58vh;
         @include body2Font($black100Color);
-        @include centerItem();
+        @include centerFormat();
       }
 
       .noticeAllArrow {
@@ -79,8 +75,8 @@
       display: flex;
       height: 29.4vh;
       border-radius: 10px;
-      box-shadow: 0px 4px 10px 0px $black25Color;
-      background-color: #e8edfb80;
+      box-shadow: $box-shadow;
+      background-color: $grayBlueColor;
       cursor: pointer;
 
       .contentCard {

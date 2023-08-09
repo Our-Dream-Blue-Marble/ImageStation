@@ -1,5 +1,13 @@
 @import "styles/ThemeStyles.scss";
 
+@mixin orderFormat {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
 .OrderConfirmListBody {
   height: 100%;
   display: flex;
@@ -24,7 +32,7 @@
     padding-left: 6.6vw;
     padding-right: 6.6vw;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px 0px $black25Color;
+    box-shadow: $box-shadow;
     background-color: $white60Color;
 
     .headers {
@@ -91,35 +99,19 @@
       }
 
       #order_date {
-        width: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
+        @include orderFormat();
       }
 
       #order_num {
-        width: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
+        @include orderFormat();
       }
 
       #order_money {
-        width: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
+        @include orderFormat();
       }
 
       #order_state {
-        width: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
+        @include orderFormat();
       }
     }
 
