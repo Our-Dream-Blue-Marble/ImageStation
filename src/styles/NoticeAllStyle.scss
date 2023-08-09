@@ -1,24 +1,15 @@
 @import "ThemeStyles.scss";
 
 .NoticeAllLayout {
-  @include desktop {
-    //width: 100%;
-    min-height: 91vh;
-    background-image: url("../assets/BackgroundAsset.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    @include centerFormat();
-  }
-  @include tablet {
-    min-height: 91vh;
-    background-image: url("../assets/BackgroundAsset.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-  }
+  width: 100%;
+  min-height: 91vh;
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  @include centerFormat();
+
   .NoticeAllHeadContainer {
     width: 100%;
     height: 2.48vh;
