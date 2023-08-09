@@ -1,8 +1,8 @@
+import { useEffect, useRef, useState } from "react";
 import {
   onNewUserEmailAndPasswordSubmit,
   onUserEmailOrPasswordChange,
 } from "functions/SignInFunction";
-import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HomeRouteName, logInRouteName } from "routes/RouteName";
 import { ReactComponent as PasswordLockIconAsset } from "assets/icons/PasswordLockIconAsset.svg";
