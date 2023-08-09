@@ -16,24 +16,26 @@ const HomePage = ({ elementRef }) => {
 
   return (
     <div className="HomeLayout">
-      <div className="HomeStyle">
-        {/* <HomePaperAsset className="paperFalling" /> */}
-        <div className="Title">이미지스테이션을 온라인 예약으로</div>
-        <div className="SubTitle">
-          몇번의 클릭으로 어느 곳에서 쉽고 빠른 프린팅 경험을 제공합니다.
+      <div className="HomeBackground">
+        <div className="HomeStyle">
+          {/* <HomePaperAsset className="paperFalling" /> */}
+          <div className="Title">이미지스테이션을 온라인 예약으로</div>
+          <div className="SubTitle">
+            몇번의 클릭으로 어느 곳에서 쉽고 빠른 프린팅 경험을 제공합니다.
+          </div>
+          <div className="ButtonText">이미지스테이션의 소식을 듣고 싶나요?</div>
+          <button
+            className="ButtonIcon"
+            onClick={() => {
+              window.scrollTo({
+                top: 550,
+                //behavior: "smooth",
+              });
+            }}
+          >
+            <HomeDownIconAsset />
+          </button>
         </div>
-        <div className="ButtonText">이미지스테이션의 소식을 듣고 싶나요?</div>
-        <button
-          className="ButtonIcon"
-          onClick={() => {
-            window.scrollTo({
-              top: 550,
-              //behavior: "smooth",
-            });
-          }}
-        >
-          <HomeDownIconAsset />
-        </button>
       </div>
       <div className="NoticeLayout">
         {scrollPosition > 200 ? <NoticeListPage /> : null}
