@@ -21,10 +21,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+  @include centerFormat();
 
   .cardLayout {
-    margin-left: 373px;
-    margin-top: 174px;
     display: grid;
     margin-top: 100px;
     grid-template-columns: 15.675vw 15.675vw 15.675vw;
@@ -32,6 +31,13 @@
     grid-column-gap: 1.85vw;
     grid-row-gap: 3.16vh;
     backface-visibility: hidden;
+
+    @include mobile {
+      grid-template-columns: 120px 120px 120px;
+      grid-template-rows: 120px 120px;
+      grid-column-gap: 1.85vw;
+      grid-row-gap: 3.16vh;
+    }
 
     .categoryCard {
       position: relative;
