@@ -13,6 +13,7 @@
     height: 81vh;
     background-image: url("../assets/BackgroundAsset.svg");
     background-repeat: no-repeat;
+    background-size: cover;
     background-position: left top;
     justify-content: start;
     text-align: center;
@@ -34,13 +35,11 @@
       padding-top: 23vh;
     }
     .ButtonIcon {
-      width: 34px;
       height: 5.43vh;
       padding-top: 1.6vh;
       background-color: transparent;
       border: none;
       cursor: pointer;
-      margin-left: 48.87vw;
     }
   }
 

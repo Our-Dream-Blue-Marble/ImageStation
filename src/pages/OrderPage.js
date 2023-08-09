@@ -159,10 +159,10 @@ const OrderPage = () => {
           <div className="OrderWholeContainer">
             <div className="OrderContainer-left">
               <CurrentPageLabel>
-                {(props: RenderCurrentPageLabelProps) => (
+                {(RenderCurrentPageLabelProps) => (
                   <div className="pageNumberContainer">{`${
-                    props.currentPage + 1
-                  } / ${props.numberOfPages}`}</div>
+                    RenderCurrentPageLabelProps.currentPage + 1
+                  } / ${RenderCurrentPageLabelProps.numberOfPages}`}</div>
                 )}
               </CurrentPageLabel>
               {isFileUploadButton ? (

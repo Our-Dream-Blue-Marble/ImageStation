@@ -6,8 +6,7 @@
   flex-shrink: 0;
   position: fixed;
   backdrop-filter: blur(2px);
-  padding-top: 19.23vh;
-  padding-left: 35.98%;
+  @include centerFormat();
 
   .PopUpWithTwoButtonsContainerWidgets {
     width: 424px;
@@ -15,20 +14,21 @@
     flex-shrink: 0;
     border-radius: 10px;
     background: $white100Color;
-    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: $box-shadow;
 
     .popUpWithTwoButtonsHeaderTextWidgets {
-      @include heading2Font($errorColor);
+      @include heading2Font($primaryColor);
       margin-top: 72px;
       text-align: center;
-      width: 185px;
+      width: 267px;
       height: 44px;
-      margin-left: 120px;
+      margin-left: 89px;
     }
     .popUpWithTwoButtonsBodyTextWidgets {
-      @include subHeading2Font($black75Color);
+      @include body2Font($black75Color);
       margin-top: 21px;
       text-align: center;
+      white-space: pre-wrap;
       height: 38px;
     }
     .popUpWithTwoButtonsButtonWidgets {
@@ -54,14 +54,15 @@
         border-radius: 8px;
         border: 1px solid $secondaryColor;
         background: $white100Color;
-        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: $box-shadow;
         cursor: pointer;
       }
       .popUpWithTwoButtonsLeftButtonWidgets:hover {
-        background: $black10Color;
+        background: $hoverAndClickColorWhite;
       }
       .popUpWithTwoButtonsRightButtonWidgets {
         @include subHeading2Font($white100Color);
+        background: $primaryColor;
         display: flex;
         width: 139.125px;
         height: 55px;
@@ -72,11 +73,11 @@
         flex-shrink: 0;
         border: none;
         border-radius: 8px;
-        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: $box-shadow;
         cursor: pointer;
       }
       .popUpWithTwoButtonsRightButtonWidgets:hover {
-        background: rgb(139, 58, 58);
+        background: $hoverPopupColor;
       }
     }
   }

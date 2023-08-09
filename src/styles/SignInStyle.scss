@@ -19,10 +19,22 @@
     height: 680px;
     background-color: $white60Color;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px 0px $black25Color;
+    box-shadow: $box-shadow;
     form {
       display: flex;
       flex-direction: column;
+
+      input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px transparent inset;
+        -webkit-text-fill-color: $black100Color;
+      }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        transition: background-color 5000s ease-in-out 0s;
+      }
+
       .InputWithLabel {
         height: 54px;
         padding-bottom: 24px;
@@ -41,8 +53,8 @@
         border-left: none;
         border-right: none;
         border-bottom: 1px solid $black50Color;
-        @include body1Font($black100Color);
         background-color: transparent;
+        @include body1Font($black100Color);
       }
 
       input::placeholder {
@@ -52,6 +64,7 @@
 
       input:focus {
         outline: none;
+        border-bottom: 1px solid $black100Color;
       }
 
       input:focus::placeholder {
@@ -87,40 +100,55 @@
         border: none;
       }
 
-      .CheckBoxLabel {
+      .checkbox-asset {
         display: inline-flex;
-        vertical-align: middle;
-        width: 240px;
-        height: 22px;
-        @include body1Font($black50Color);
+        justify-content: space-between;
 
-        input[type="checkbox"] + label {
-          display: inline-flex;
-          vertical-align: middle;
-          width: 20px;
-          height: 20px;
-          margin: 0;
-          margin-right: 12px;
-          border: 1px solid $black50Color;
+        .asset {
           cursor: pointer;
         }
 
-        input[type="checkbox"]:checked + label {
+        .checkbox-label {
           display: inline-flex;
           vertical-align: middle;
-          width: 20px;
-          height: 20px;
-          margin: 0;
-          margin-right: 12px;
-          border: 1px solid $black50Color;
-          background-image: url("../assets/icons/CheckboxIconAsset.svg");
-          background-repeat: no-repeat;
-          background-position: center;
-          cursor: pointer;
-        }
+          width: 240px;
+          height: 22px;
+          @include body1Font($black50Color);
 
-        input[type="checkbox"] {
-          display: none;
+          input[type="checkbox"] + label {
+            display: inline-flex;
+            vertical-align: middle;
+            width: 20px;
+            height: 20px;
+            margin: 0;
+            margin-right: 12px;
+            border-radius: 2px;
+            border: 1px solid $black50Color;
+            background-image: url("../assets/icons/CheckboxIconAsset.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+          }
+
+          input[type="checkbox"]:checked + label {
+            display: inline-flex;
+            vertical-align: middle;
+            width: 20px;
+            height: 20px;
+            margin: 0;
+            margin-right: 12px;
+            border-radius: 2px;
+            border: 1px solid $primaryColor;
+            background-color: $primaryColor;
+            background-image: url("../assets/icons/CheckFillboxIconAsset.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+          }
+
+          input[type="checkbox"] {
+            display: none;
+          }
         }
       }
 

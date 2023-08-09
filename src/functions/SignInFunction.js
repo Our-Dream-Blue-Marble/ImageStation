@@ -1,7 +1,7 @@
 import { logIn, signIn } from "./UserFunction";
 
 export const onUserEmailOrPasswordChange = (event, setValue) => {
-  const {
+  let {
     target: { name, value },
   } = event;
   if (name === "userEmail") {
@@ -13,6 +13,7 @@ export const onUserEmailOrPasswordChange = (event, setValue) => {
   } else if (name === "userName") {
     setValue(value);
   } else if (name === "userPhoneNumber") {
+    value = value.replace(/[^0-9]/g, "");
     setValue(value);
   } else if (name === "isAgreePersonalInfo") {
     setValue((prev) => !prev);
