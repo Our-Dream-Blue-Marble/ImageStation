@@ -14,7 +14,7 @@
     flex-shrink: 0;
     border-radius: 10px;
     background: $white100Color;
-    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: $box-shadow;
 
     .popUpWithTwoButtonsHeaderTextWidgets {
       @include heading2Font($primaryColor);
@@ -54,11 +54,11 @@
         border-radius: 8px;
         border: 1px solid $secondaryColor;
         background: $white100Color;
-        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: $box-shadow;
         cursor: pointer;
       }
       .popUpWithTwoButtonsLeftButtonWidgets:hover {
-        background: $black10Color;
+        background: $hoverAndClickColorWhite;
       }
       .popUpWithTwoButtonsRightButtonWidgets {
         @include subHeading2Font($white100Color);
@@ -73,11 +73,11 @@
         flex-shrink: 0;
         border: none;
         border-radius: 8px;
-        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: $box-shadow;
         cursor: pointer;
       }
       .popUpWithTwoButtonsRightButtonWidgets:hover {
-        background: rgb(172, 172, 172);
+        background: $hoverPopupColor;
       }
     }
   }

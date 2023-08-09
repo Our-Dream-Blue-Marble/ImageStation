@@ -4,6 +4,8 @@ $primaryColor: rgba(90, 145, 255, 1);
 $primaryVariantColor: rgba(97, 165, 226, 1);
 $secondaryColor: rgba(15, 43, 84, 1);
 $gradiantColor: linear-gradient(144deg, #0f2b54 0%, #5a91ff 100%, #61a5e2 100%);
+$transparentColor: rgba(0, 0, 0, 0);
+$popupBackgroundColor: rgba(0, 0, 0, 0.5);
 $black100Color: rgba(33, 36, 39, 1);
 $black75Color: rgba(33, 36, 39, 0.75);
 $black50Color: rgba(33, 36, 39, 0.5);
@@ -13,10 +15,15 @@ $black5Color: rgba(33, 36, 39, 0.05);
 $white60Color: rgba(255, 255, 255, 0.6);
 $white20Color: rgba(255, 255, 255, 0.2);
 $white100Color: rgba(255, 255, 255, 1);
+$grayBlueColor: rgba(246, 249, 253, 1);
 $errorColor: rgba(221, 82, 87, 1);
 $numberColor: rgba(53, 60, 73, 1);
 $hoverAndClickColor: rgba(77, 125, 220, 1);
+$hoverAndClickColorWhite: rgba(33, 36, 39, 0.1);
+$hoverErrorColor: rgb(139, 58, 58);
+$hoverPopupColor: rgb(172, 172, 172);
 $footerColor: rgba(246, 249, 253, 1);
+$box-shadow: 0px 4px 10px 0px rgba(33, 36, 39, 0.25);
 
 @mixin displayFont($color) {
   color: $color;
