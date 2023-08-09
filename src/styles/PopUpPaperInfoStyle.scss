@@ -1,75 +1,95 @@
 @import "ThemeStyles.scss";
 
-.PopUpPaperInfoWholeContainer {
+.PopUpBackGround {
+  display: fixed;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
   position: fixed;
-  width: 30vw;
-  height: 80vh;
-  background: $white100Color;
-  text-align: center;
-  z-index: 9999;
-  border-radius: 10px;
-  backdrop-filter: blur(5px);
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-top: 5vh;
-  margin-left: 33vw;
+  background: $white20Color;
+  backdrop-filter: blur(2px);
+  z-index: 999;
+  @include centerFormat();
 
-  .PaperInfoPopUptitle {
-    @include heading2Font($primaryColor);
+  .PopUpPaperInfoWholeContainer {
+    position: absolute;
+    width: 35vw;
+    height: 80vh;
+    background: $white100Color;
+    text-align: center;
+    z-index: 9999;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: fixed;
+    overflow: hidden;
     margin-top: 5vh;
-  }
+    margin-left: 33vw;
 
-  .PaperInfoContainer {
-    height: 30vw;
-    overflow: scroll;
-    overflow-x: hidden;
-
-    .EachInfoContainer {
-      width: 35vh;
-      height: 8vw;
-      margin-top: 2vh;
-      border: 1px solid;
-      margin-left: 5.5vw;
-      
-    }
-
-    .PaperInfo1 {
-      @include heading3Font($black100Color);
-      float: left;
-      word-spacing: 10vh;
-      display: inline-block;
-    }
-
-    .PaperInfo2 {
-
-      float: left;
-      display: block;
+    .PaperInfoPopUptitle {
+      @include heading2Font($primaryColor);
       margin-top: 5vh;
     }
-    .sizeInfo {
-      @include captionFont($gray75Color);
-      width: 0.3vw;
-      height: 0.2vh;
-      margin-right: 3vw;
-    }
-    .detailInfo {
-      @include body1Font($black75Color);
-      text-align: left;
+
+    .PaperInfoContainer {
+      height: 30vw;
+      margin-left: 2.5vw;
+      overflow: scroll;
+      overflow-x: hidden;
+
+      .EachInfoContainer {
+        width: 35vh;
+        height: 8vw;
+        margin-top: 2vh;
+        border: 1px solid;
+        margin-left: 5.5vw;
+        display: fixed;
+      }
+
+      .PaperInfo1 {
+        @include heading3Font($black100Color);
+
+        float: left;
+        word-spacing: 10vh;
+      }
+
+      .PaperInfo2 {
+        display: flex;
+        margin-top: 5vh;
+      }
+
+      .sizeInfo {
+        @include captionFont($gray75Color);
+        display: inline-block;
+        text-align: left;
+        width: 5vw;
+        height: 2vh;
+        word-spacing: 10vh;
+      }
+      .detailInfo {
+        @include body1Font($black75Color);
+        margin-top: 0px;
+        margin-left: 50px;
+        text-align: left;
+      }
     }
   }
 
   .PaperInfoContainer::-webkit-scrollbar {
+    width: 0.5vw;
     background: transparent;
   }
+
   .PaperInfoContainer::-webkit-scrollbar-track {
     background: transparent;
   }
+
   .PaperInfoContainer::-webkit-scrollbar-thumb {
-    width: 8px;
-    background: gray;
-    border-radius: $black25Color;
+    background: $black25Color;
+    border-radius: 10px;
+    height: 0.3vh;
   }
 
   footer {
