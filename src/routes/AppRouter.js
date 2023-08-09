@@ -136,6 +136,10 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               path={NoticeAllRouteName}
               element={<NoticeAllPage isAdmin={false} />}
             />
+            <Route
+              path={UserLeaveRouteName}
+              element={<UserLeavePage userObject={userObject} />}
+            />
           </>
         )}
       </Routes>

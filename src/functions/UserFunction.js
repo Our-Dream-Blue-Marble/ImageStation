@@ -10,6 +10,7 @@ import {
   deleteUserDocument,
   readUserDocument,
   updateUserLogInDateDocument,
+  updateUserNamePhoneNumberDocument,
 } from "repositories/UserRepository";
 import CryptoJS from "crypto-js";
 
@@ -43,6 +44,7 @@ export const signIn = async (
         });
     })
     .catch((e) => {
+      console.log(e);
       if (`${e.message}`.includes("email-already-in-use")) {
         setIsNewUser(false);
       }
@@ -105,26 +107,23 @@ export const setUserModel = async (setUserObject) => {
 };
 
 export const deleteAccount = async () => {
-  const IsConfirmDeleteAcocunt =
-    window.confirm("해당 계정을 삭제하시겠습니까?");
-
-  if (!IsConfirmDeleteAcocunt) return;
-  else {
-    await deleteUserDocument(authService.currentUser.uid)
-      .then(async () => {
-        await deleteUser(authService.currentUser)
-          .then(() => {
-            logOut();
-            window.confirm("삭제를 완료하였습니다.");
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }
+  let result = true;
+  await deleteUserDocument(authService.currentUser.uid)
+    .then(async () => {
+      await deleteUser(authService.currentUser)
+        .then(() => {
+          logOut();
+        })
+        .catch((e) => {
+          console.log(e);
+          result = false;
+        });
+    })
+    .catch((e) => {
+      console.log(e);
+      result = false;
+    });
+  return result;
 };
 
 export const updatePassword = async () => {
@@ -179,4 +178,19 @@ export const getUserOrderRemain = async (uid) => {
     (order) => order.state !== 0
   );
   return remainUserOrder.length;
+};
+
+export const onUpdateUserDataSubmit = async (uid, name, phoneNumber) => {
+  await updateUserNamePhoneNumberDocument(uid, name, phoneNumber);
+};
+
+export const onUpdateUserDataChange = (event, setValue) => {
+  const {
+    target: { name, value },
+  } = event;
+  if (name === "userNameUpdate") {
+    setValue(value);
+  } else if (name === "userPhoneNumberUpdate") {
+    setValue(value);
+  }
 };
