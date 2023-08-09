@@ -43,6 +43,7 @@ export const signIn = async (
         });
     })
     .catch((e) => {
+      console.log(e);
       if (`${e.message}`.includes("email-already-in-use")) {
         setIsNewUser(false);
       }

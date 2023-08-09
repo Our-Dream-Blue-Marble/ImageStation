@@ -52,6 +52,7 @@
 
       input:focus {
         outline: none;
+        border-bottom: 1px solid $black100Color;
       }
 
       input:focus::placeholder {
@@ -101,7 +102,11 @@
           height: 20px;
           margin: 0;
           margin-right: 12px;
+          border-radius: 2px;
           border: 1px solid $black50Color;
+          background-image: url("../assets/icons/CheckboxIconAsset.svg");
+          background-repeat: no-repeat;
+          background-position: center;
           cursor: pointer;
         }
 
@@ -112,8 +117,10 @@
           height: 20px;
           margin: 0;
           margin-right: 12px;
-          border: 1px solid $black50Color;
-          background-image: url("../assets/icons/CheckboxIconAsset.svg");
+          border-radius: 2px;
+          border: 1px solid $primaryColor;
+          background-color: $primaryColor;
+          background-image: url("../assets/icons/CheckFillboxIconAsset.svg");
           background-repeat: no-repeat;
           background-position: center;
           cursor: pointer;
