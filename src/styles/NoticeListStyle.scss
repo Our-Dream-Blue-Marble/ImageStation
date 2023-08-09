@@ -15,16 +15,16 @@
     .noticeListHead {
       margin-top: 18vh;
       margin-bottom: 3.62vh;
-      width: 34vw;
-      height: 4.87vh;
+      width: 125px;
+      height: 43px;
       border: none;
       @include heading1Font($primaryColor);
       @include centerFormat();
     }
     .noticeListExp {
       margin-bottom: 4.75vh;
-      width: 34vw;
-      height: 2.49vh;
+      width: 314px;
+      height: 22px;
       border: none;
       @include heading3Font($black100Color);
       @include centerFormat();
@@ -32,8 +32,8 @@
     .AllBtnContainer {
       display: flex;
       flex-direction: row;
-      width: 8.33vw;
-      height: 5.32vh;
+      width: 126px;
+      height: 47px;
       background: $white100Color;
       border: 1px solid var(--number, #353c49);
       border-radius: 8px;
@@ -41,22 +41,26 @@
 
       .noticeListAll {
         display: flex;
-        width: 4.03vw;
-        height: 3.05vh;
-        margin-top: 1.13vh;
+        width: 61px;
+        height: 27px;
+        margin-top: 10px;
         margin-left: 1.58vh;
         @include body2Font($black100Color);
         @include centerFormat();
       }
 
       .noticeAllArrow {
-        display: flex;
-        width: 1.78vw;
-        height: 3.05vh;
-        margin-top: 1.13vh;
+        // display: flex;
+        width: 27px;
+        height: 27px;
+        margin-top: 10px;
         margin-left: 1.13vh;
         background-image: url(../assets/NoticeArrowAsset.svg);
+        @include centerFormat();
       }
+    }
+    .AllBtnContainer:hover {
+      background-color: $hoverAndClickColorWhite;
     }
   }
 
