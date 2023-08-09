@@ -10,6 +10,7 @@ import {
   deleteUserDocument,
   readUserDocument,
   updateUserLogInDateDocument,
+  updateUserNamePhoneNumberDocument,
 } from "repositories/UserRepository";
 import CryptoJS from "crypto-js";
 
@@ -177,4 +178,19 @@ export const getUserOrderRemain = async (uid) => {
     (order) => order.state !== 0
   );
   return remainUserOrder.length;
+};
+
+export const onUpdateUserDataSubmit = async (uid, name, phoneNumber) => {
+  await updateUserNamePhoneNumberDocument(uid, name, phoneNumber);
+};
+
+export const onUpdateUserDataChange = (event, setValue) => {
+  const {
+    target: { name, value },
+  } = event;
+  if (name === "userNameUpdate") {
+    setValue(value);
+  } else if (name === "userPhoneNumberUpdate") {
+    setValue(value);
+  }
 };
