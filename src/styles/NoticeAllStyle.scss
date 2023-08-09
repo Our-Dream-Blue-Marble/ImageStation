@@ -26,18 +26,17 @@
     flex-direction: row;
     margin-top: 7.9vh;
     margin-bottom: 5.9vh;
+    @include centerFormat();
 
     .NoticeAllTitle {
       @include heading2Font($primaryColor);
       width: 365px;
-      margin-left: 34vw;
     }
 
     .noticeWriteBtn {
       display: flex;
-      width: 2.11vw;
+      width: 32px;
       margin-left: 8.9vw;
-      margin-top: -2.03vh;
       font-size: 48px;
       color: $primaryColor;
       background-color: inherit;
@@ -52,10 +51,12 @@
 
     @include tablet {
       width: 600px;
+      margin-left: 150px;
     }
 
     @include mobile {
       width: 400px;
+      margin-left: 100px;
     }
 
     height: 100vh;
@@ -109,9 +110,19 @@
       cursor: pointer;
 
       .eachNoticeContent {
+        @include desktop {
+          width: 636px;
+        }
+
+        @include tablet {
+          width: 400px;
+        }
+
+        @include mobile {
+          width: 200px;
+        }
         display: flex;
         flex-direction: row;
-        width: 42vw;
         height: 6.78vh;
         margin-top: 3.16vh;
         margin-bottom: 3.16vh;
@@ -153,7 +164,6 @@
         }
         .noticeDateContainer {
           display: flex;
-          float: right;
           flex-direction: column;
           text-align: right;
 
