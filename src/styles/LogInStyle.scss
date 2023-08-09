@@ -18,7 +18,7 @@
   width: 35.7vw;
   background-color: $white60Color;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px 0px $black25Color;
+  box-shadow: $box-shadow;
   flex-direction: column;
   .Contents {
     display: flex;
