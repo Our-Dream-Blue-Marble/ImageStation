@@ -19,7 +19,7 @@
     height: 680px;
     background-color: $white60Color;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px 0px $black25Color;
+    box-shadow: $box-shadow;
     form {
       display: flex;
       flex-direction: column;
@@ -53,8 +53,8 @@
         border-left: none;
         border-right: none;
         border-bottom: 1px solid $black50Color;
-        @include body1Font($black100Color);
         background-color: transparent;
+        @include body1Font($black100Color);
       }
 
       input::placeholder {
