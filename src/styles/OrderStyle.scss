@@ -1,7 +1,7 @@
 @import "ThemeStyles.scss";
 
 :root {
-  --rpv-core__page-layer-box-shadow: 0px 0px 0px 0 rgba(0, 0, 0, 0);
+  --rpv-core__page-layer-box-shadow: 0px 0px 0px 0 $transparentColor;
 }
 
 .OrderLayout {
@@ -249,7 +249,7 @@
           width: 12vw;
           border-radius: 8px;
           border: none;
-          box-shadow: 0px 2px 2px 1px $black5Color;
+          box-shadow: $orderBoxShadow;
           float: right;
           padding-left: 0.66vw;
           margin-top: -10px;
@@ -272,7 +272,7 @@
           height: 4.75vh;
           width: 12.7vw;
           border-radius: 8px;
-          box-shadow: 0px 2px 2px 1px $black5Color;
+          box-shadow: $orderBoxShadow;
           padding: 10px 18px;
           border: none;
           margin-top: -10px;
@@ -335,7 +335,7 @@
           resize: none;
           border: none;
           border-radius: 8px;
-          box-shadow: 0px 2px 2px 1px $black5Color;
+          box-shadow: $orderBoxShadow;
           float: right;
           padding: 10px 15px;
         }
@@ -434,7 +434,7 @@
     flex-shrink: 0;
     border-radius: 10px;
     background: $white100Color;
-    box-shadow: 0px 4px 10px 0px $black25Color;
+    box-shadow: $box-shadow;
 
     .popUpBlueText {
       @include heading2Font($primaryColor);
@@ -474,7 +474,7 @@
         cursor: pointer;
       }
       .popUpCancel:hover {
-        background: $black10Color;
+        background: $hoverAndClickColorWhite;
       }
       .popUpOrderList {
         @include subHeading2Font($white100Color);
