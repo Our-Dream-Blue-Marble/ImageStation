@@ -2,20 +2,83 @@
 
 .PopUpPaperInfoWholeContainer {
   position: fixed;
-  width: 50vh;
-  height: 50vw;
-  height: 300px;
-  background: $popupBackgroundColor;
+  width: 30vw;
+  height: 80vh;
+  background: $white100Color;
   text-align: center;
   z-index: 9999;
   border-radius: 10px;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(5px);
   align-items: center;
   text-align: center;
   justify-content: center;
-  overflow: scroll;
+  overflow: hidden;
+  margin-top: 5vh;
+  margin-left: 33vw;
 
-  .buttonContainer {
+  .PaperInfoPopUptitle {
+    @include heading2Font($primaryColor);
+    margin-top: 5vh;
+  }
+
+  .PaperInfoContainer {
+    height: 30vw;
+    overflow: scroll;
+    overflow-x: hidden;
+
+    .EachInfoContainer {
+      width: 35vh;
+      height: 8vw;
+      margin-top: 2vh;
+      border: 1px solid;
+      margin-left: 5.5vw;
+      
+    }
+
+    .PaperInfo1 {
+      @include heading3Font($black100Color);
+      float: left;
+      word-spacing: 10vh;
+      display: inline-block;
+    }
+
+    .PaperInfo2 {
+
+      float: left;
+      display: block;
+      margin-top: 5vh;
+    }
+    .sizeInfo {
+      @include captionFont($gray75Color);
+      width: 0.3vw;
+      height: 0.2vh;
+      margin-right: 3vw;
+    }
+    .detailInfo {
+      @include body1Font($black75Color);
+      text-align: left;
+    }
+  }
+
+  .PaperInfoContainer::-webkit-scrollbar {
+    background: transparent;
+  }
+  .PaperInfoContainer::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .PaperInfoContainer::-webkit-scrollbar-thumb {
+    width: 8px;
+    background: gray;
+    border-radius: $black25Color;
+  }
+
+  footer {
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
     .closedButton {
       border-radius: 8px;
       padding: 10px;
@@ -24,6 +87,8 @@
       width: 7vw;
       height: 5.5vh;
       border: 1px solid;
+      background-color: transparent;
+      @include subHeading2Font($black100Color);
     }
   }
 }
