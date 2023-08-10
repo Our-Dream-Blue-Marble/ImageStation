@@ -28,13 +28,17 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const [updateIconClicked, setUpdateIconClicked] = useState(false);
   const [updateUserDataSave, setUpdateUserDataSave] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [newUserName, setNewUserName] = useState(userObject.name);
-  const [newUserPhoneNumber, setNewUserPhoneNumber] = useState(
-    userObject.phoneNumber
-  );
+  const [newUserName, setNewUserName] = useState();
+  const [newUserPhoneNumber, setNewUserPhoneNumber] = useState();
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
   };
+  useEffect(() => {
+    if (userObject) {
+      setNewUserName(userObject.name);
+      setNewUserPhoneNumber(userObject.phoneNumber);
+    }
+  }, [userObject]);
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);
   });
