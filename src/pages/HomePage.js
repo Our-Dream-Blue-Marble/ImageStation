@@ -22,23 +22,17 @@ const HomePage = ({ elementRef }) => {
 
   return (
     <>
-      {isTermClicked && (
-        <PopUpAgreeInfoWidget
-          isAgreePopUp={false}
-          onClickButtonFuction={(e) => {
-            setIsTermClicked(false);
-          }}
-        />
-      )}
-      {isPersonalInfoClicked && (
+      {(isTermClicked || isPersonalInfoClicked) && (
         <PopUpAgreeInfoWidget
           isAgreePopUp={false}
           isShowPersonalInfo={true}
           onClickButtonFuction={(e) => {
+            setIsTermClicked(false);
             setIsPersonalInfoClicked(false);
           }}
         />
       )}
+
       <div className="HomeLayout">
         <div className="HomeStyle">
           <div className="HomeBackground">

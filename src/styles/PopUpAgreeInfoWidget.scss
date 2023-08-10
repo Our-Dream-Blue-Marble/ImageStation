@@ -8,6 +8,7 @@
   background: $white20Color;
   backdrop-filter: blur(2px);
   @include centerFormat();
+  z-index: 99;
 }
 
 #info-popUp-background {
