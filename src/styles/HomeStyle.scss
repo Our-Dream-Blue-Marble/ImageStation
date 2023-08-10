@@ -2,13 +2,13 @@
 
 .HomeLayout {
   width: 100%;
-  height: 1873px;
+  height: 207.8vh;
   display: flex;
   flex-direction: column;
 
   .HomeBackground {
     width: 100%;
-    height: 816px;
+    height: 92.3vh;
     //background-color: $white100Color;
     z-index: 1;
     display: flex;
@@ -16,7 +16,7 @@
 
     .HomeStyle {
       width: 100%;
-      height: 600px;
+      height: 82.46vh;
       background-image: url("../assets/BackgroundAsset.svg");
       background-repeat: no-repeat;
       background-size: cover;
@@ -55,52 +55,17 @@
 
   .NoticeLayout {
     width: 100%;
-    height: 871px;
+    height: 98.5vh;
     margin-bottom: 0;
   }
 
-  .footer {
+  footer {
     width: 100%;
     height: 186px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
     background-color: $footerColor;
-  }
-
-  .paperFalling {
-    width: 200px;
-    height: 200px;
-    margin-top: 50px;
-    margin-left: 500px;
-    animation: fall 4s ease-in 2s infinite;
-    position: absolute;
-    animation-delay: 1.25s !important;
-  }
-}
-
-@keyframes fall {
-  0% {
-    margin-top: 50px;
-    opacity: 1;
-  }
-  60% {
-    opacity: 1;
-    margin-left: 300px;
-  }
-  100% {
-    margin-top: 400px;
-    opacity: 0;
-  }
-}
-
-@keyframes float {
-  0% {
-    left: 0.5%;
-  }
-
-  50% {
-    left: -0.5%;
-  }
-
-  100% {
-    left: 0.5%;
   }
 }
