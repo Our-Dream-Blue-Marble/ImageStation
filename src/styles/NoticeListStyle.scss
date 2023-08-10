@@ -6,12 +6,12 @@
   background: $white100Color;
   display: flex;
   flex-direction: row;
-  z-index: 0;
-
+  position: relative;
   .noticeHead {
     width: 20.77vw;
     margin-left: 14.08vw;
     margin-right: 16.47vw;
+    z-index: 1;
 
     .noticeListHead {
       margin-top: 18vh;
@@ -74,7 +74,6 @@
     grid-template-rows: 29.41vh 29.41vh;
     grid-column-gap: 2.65vw;
     grid-row-gap: 4.52vh;
-    z-index: 0;
 
     .cardNotice {
       display: flex;
@@ -137,5 +136,5 @@
 .fadeInAnimation {
   position: relative;
   animation: fadeIn 1s ease-in-out;
-  z-index: 0;
+  z-index: 1;
 }
