@@ -2,7 +2,7 @@
 
 .noticeListLayout {
   width: 100%;
-  height: 98.53vh;
+  height: 98.5vh;
   background: $white100Color;
   display: flex;
   flex-direction: row;
@@ -13,7 +13,7 @@
     margin-right: 16.47vw;
 
     .noticeListHead {
-      margin-top: 18vh;
+      margin-top: 15vh;
       margin-bottom: 3.62vh;
       width: 125px;
       height: 43px;
@@ -67,7 +67,7 @@
   .noticeBoxContainer {
     width: 37.7vw;
     height: 64.48vh;
-    margin-top: 18vh;
+    margin-top: 15vh;
     margin-bottom: 22.62vh;
     display: grid;
     grid-template-columns: 17.2vw 17.2vw;

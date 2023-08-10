@@ -2,95 +2,69 @@
 
 .HomeLayout {
   width: 100%;
-  height: 200vh;
+  height: 207.8vh;
   display: flex;
   flex-direction: column;
 
-  .HomeStyle {
+  .HomeBackground {
+    width: 100%;
+    height: 92.3vh;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 81vh;
-    background-image: url("../assets/BackgroundAsset.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: left top;
-    justify-content: start;
-    text-align: center;
 
-    .Title {
-      height: 7.35vh;
-      padding-top: 27.76vh;
-      @include displayFont($black100Color);
-    }
-    .SubTitle {
-      height: 2.48vh;
-      padding-top: 1.7vh;
-      @include body2Font($black100Color);
-    }
+    .HomeStyle {
+      width: 100%;
+      height: 82.46vh;
+      background-image: url("../assets/BackgroundAsset.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: left top;
+      justify-content: start;
+      text-align: center;
+      z-index: 2;
+      margin: 0;
+      padding: 0;
 
-    .ButtonText {
-      height: 2.48vh;
-      @include body2Font($black100Color);
-      padding-top: 23vh;
-    }
-    .ButtonIcon {
-      height: 5.43vh;
-      padding-top: 1.6vh;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
+      .Title {
+        height: 7.35vh;
+        padding-top: 27.76vh;
+        @include displayFont($black100Color);
+      }
+      .SubTitle {
+        height: 2.48vh;
+        padding-top: 1.7vh;
+        @include body2Font($black100Color);
+      }
+
+      .ButtonText {
+        height: 2.48vh;
+        @include body2Font($black100Color);
+        padding-top: 23vh;
+      }
+      .ButtonIcon {
+        height: 5.43vh;
+        padding-top: 1.6vh;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
     }
   }
 
   .NoticeLayout {
     width: 100%;
-    height: 98.53vh;
+    height: 98.5vh;
     margin-bottom: 0;
   }
 
-  .footer {
+  footer {
     width: 100%;
-    height: 30vh;
+    height: 186px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
     background-color: $footerColor;
-  }
-
-  .paperFalling {
-    width: 200px;
-    height: 200px;
-    margin-top: 50px;
-    margin-left: 500px;
-    animation: fall 4s ease-in 2s infinite;
-    position: absolute;
-    animation-delay: 1.25s !important;
-  }
-}
-
-@keyframes fall {
-  0% {
-    margin-top: 50px;
-    opacity: 1;
-  }
-  60% {
-    opacity: 1;
-    margin-left: 300px;
-  }
-  100% {
-    margin-top: 400px;
-    opacity: 0;
-  }
-}
-
-@keyframes float {
-  0% {
-    left: 0.5%;
-  }
-
-  50% {
-    left: -0.5%;
-  }
-
-  100% {
-    left: 0.5%;
   }
 }

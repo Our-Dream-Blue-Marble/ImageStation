@@ -6,8 +6,8 @@
     height: 69px;
   }
   @include tablet {
-    height: 80px;
-    width: 69px;
+    width: 100%;
+    height: 69px;
   }
   @include desktop {
     width: 100%;
@@ -25,7 +25,7 @@
 }
 
 .change_header {
-  z-index: 1;
+  z-index: 5;
   @include mobile {
     width: 100%;
     height: 69px;
