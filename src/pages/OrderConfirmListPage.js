@@ -1,9 +1,9 @@
 import {
   getAdminOrderConfirmList,
   getNotAdminOrderConfirmList,
-  getOrderStateColor,
   getOrderStateWords,
   getOrderSubmitDate,
+  onEditOrderDataSaveClick,
   onOrderConfirmStateSelect,
 } from "functions/OrderConfirmFunction";
 import React, { useEffect, useState } from "react";
@@ -22,6 +22,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
   const [paginationNowPage, setPaginationNowPage] = useState(1);
   const paginationOffset = (paginationNowPage - 1) * paginationLimit;
   const [isEditClicked, setIsEditClicked] = useState([]);
+  const [newCompleteDate, setNewCompleteDate] = useState([]);
+  const [newTotalMoney, setNewTotalMoney] = useState([]);
   useEffect(() => {
     if (isAdmin) {
       getAdminOrderConfirmList(setOrderConfirmList);
@@ -39,7 +41,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
           <th className="header_text">주문정보</th>
           <th className="header_text">주문일자</th>
           <th className="header_text">수령가능 날짜</th>
-          <th className="header_text">총 금액(수량)</th>
+          <th className="header_text">예상금액</th>
           <th className="header_text">주문 상태</th>
         </div>
         <hr id="headers_line" />
@@ -57,7 +59,17 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                     setIsEditClicked(newIsEditClicked);
                   }}>
                   {isEditClicked[i] ? (
-                    <OrderInfoEditDoneIcon />
+                    <OrderInfoEditDoneIcon
+                      onClick={() => {
+                        console.log(1);
+                        onEditOrderDataSaveClick(
+                          order.docId,
+                          newCompleteDate[i],
+                          newTotalMoney[i],
+                          setOrderConfirmList
+                        );
+                      }}
+                    />
                   ) : (
                     <OrderInfoEditIcon />
                   )}
@@ -84,30 +96,67 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                     <span id="info_order_num">{order.docId}</span>
                   </td>
                   <td id="order_date">{getOrderSubmitDate(order)}</td>
-                  {order.completeTime === 0 ? (
-                    <>
-                      <td id="order_collect_date">미정</td>
-                    </>
+                  {isEditClicked[i] ? (
+                    <td id="order_collect_date">
+                      <input
+                        id="order_complete_date_input"
+                        type="date"
+                        value={newCompleteDate[i]}
+                        onChange={(event) => {
+                          const newDates = [...newCompleteDate];
+                          newDates[i] = event.target.value;
+                          setNewCompleteDate(newDates);
+                        }}
+                      />
+                    </td>
                   ) : (
                     <>
-                      <td id="order_collect_date">{order.completeTime}</td>
+                      {order.completeTime === "0" ? (
+                        <>
+                          <td id="order_collect_date">미정</td>
+                        </>
+                      ) : (
+                        <>
+                          <td id="order_collect_date">{order.completeTime}</td>
+                        </>
+                      )}
                     </>
                   )}
-                  {order.totalMoney === 0 ? (
-                    <td id="order_money">미정</td>
+                  {isEditClicked[i] ? (
+                    <td id="order_money">
+                      <input
+                        id="order_total_money_input"
+                        type="text"
+                        placeholder="예상 금액(수량)"
+                        value={newTotalMoney[i]}
+                        onChange={(event) => {
+                          const newMoney = [...newTotalMoney];
+                          newMoney[i] = event.target.value;
+                          setNewTotalMoney(newMoney);
+                        }}
+                      />
+                    </td>
                   ) : (
-                    <td id="order_money">{order.totalMoney}</td>
+                    <>
+                      {order.totalMoney === "0" ? (
+                        <td id="order_money">미정</td>
+                      ) : (
+                        <td id="order_money">{order.totalMoney}</td>
+                      )}
+                    </>
                   )}
+
                   {isEditClicked[i] ? (
                     <td
                       id="order_state"
                       style={
-                        order.state === 0
+                        order.state === "0"
                           ? { color: "#5A91FF" }
                           : { color: "#727375" }
                       }>
                       {" "}
                       <select
+                        id="order_state_select"
                         value={order.state}
                         onChange={(e) =>
                           onOrderConfirmStateSelect(
@@ -118,16 +167,16 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                             i
                           )
                         }>
-                        <option value={0}>완료</option>
-                        <option value={1}>주문</option>
-                        <option value={2}>접수</option>
+                        <option value={"0"}>완료</option>
+                        <option value={"1"}>접수중</option>
+                        <option value={"2"}>준비중</option>
                       </select>
                     </td>
                   ) : (
                     <td
                       id="order_state"
                       style={
-                        order.state === 0
+                        order.state === "0"
                           ? { color: "#5A91FF" }
                           : { color: "#727375" }
                       }>
@@ -146,6 +195,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
           onClick={(e) => {
             setPaginationNowPage(paginationNowPage - 1);
             setIsEditClicked([]);
+            setNewCompleteDate([]);
+            setNewTotalMoney([]);
           }}
           disabled={paginationNowPage === 1}
           id="arrowLeftButton">
@@ -162,6 +213,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                   onClick={(e) => {
                     setPaginationNowPage(i + 1);
                     setIsEditClicked([]);
+                    setNewCompleteDate([]);
+                    setNewTotalMoney([]);
                   }}
                   aria-current={paginationNowPage === i + 1 && "nowPage"}>
                   {i + 1}
@@ -190,6 +243,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                   onClick={(e) => {
                     setPaginationNowPage(paginationNowPage - 2 + i);
                     setIsEditClicked([]);
+                    setNewCompleteDate([]);
+                    setNewTotalMoney([]);
                   }}
                   aria-current={
                     paginationNowPage === paginationNowPage - 2 + i && "nowPage"
@@ -208,6 +263,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                   onClick={(e) => {
                     setPaginationNowPage(paginationNowPage - 1);
                     setIsEditClicked([]);
+                    setNewCompleteDate([]);
+                    setNewTotalMoney([]);
                   }}>
                   {paginationNowPage - 1}
                 </button>
@@ -222,6 +279,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                   onClick={(e) => {
                     setPaginationNowPage(paginationNowPage + 1);
                     setIsEditClicked([]);
+                    setNewCompleteDate([]);
+                    setNewTotalMoney([]);
                   }}>
                   {paginationNowPage + 1}
                 </button>
@@ -233,6 +292,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
           onClick={(e) => {
             setPaginationNowPage(paginationNowPage + 1);
             setIsEditClicked([]);
+            setNewCompleteDate([]);
+            setNewTotalMoney([]);
           }}
           disabled={
             paginationNowPage ===

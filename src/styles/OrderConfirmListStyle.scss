@@ -130,8 +130,25 @@
     #orderConfirmEditIcon {
       display: flex;
       margin-top: 5.1vh;
-      margin-left: 60%;
+      margin-left: 60vw;
       position: absolute;
+    }
+    #order_state_select {
+      display: flex;
+      @include body1Font($black50Color);
+      width: 65%;
+      margin-left: 27%;
+      background: none;
+      border: none;
+    }
+    #order_complete_date_input {
+      @include body1Font($black50Color);
+    }
+    #order_total_money_input {
+      @include body1Font($black100Color);
+      background: none;
+      border: none;
+      text-align: center;
     }
   }
 

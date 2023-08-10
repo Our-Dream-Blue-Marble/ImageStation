@@ -104,9 +104,9 @@ OrderModel.propTypes = {
   moreInfo: PropTypes.string,
   attachment: PropTypes.string.isRequired,
   attachmentName: PropTypes.string.isRequired,
-  state: PropTypes.number,
-  totalMoney: PropTypes.number,
-  completeTime: PropTypes.number,
+  state: PropTypes.string,
+  totalMoney: PropTypes.string,
+  completeTime: PropTypes.string,
 };
 
 export default OrderModel;
