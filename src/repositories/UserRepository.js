@@ -205,3 +205,26 @@ export const updateUserLogInDateDocument = async (uid, newLogInDate) => {
     });
   return false;
 };
+
+export const updateUserNamePhoneNumberDocument = async (
+  uid,
+  newName,
+  newPhoneNumber
+) => {
+  const userDocumentRef = await dbService.collection("users").doc(uid);
+  const encryptNewName = getEncryptedData(uid, newName);
+  const encryptNewPhoneNumber = getEncryptedData(uid, newPhoneNumber);
+  let result = false;
+  await userDocumentRef
+    .update({
+      name: encryptNewName,
+      phoneNumber: encryptNewPhoneNumber,
+    })
+    .then(() => {
+      result = true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return result;
+};

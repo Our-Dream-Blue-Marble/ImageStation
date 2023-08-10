@@ -109,13 +109,19 @@ const OrderPage = () => {
 
       {isPaperInfoPopUp ? (
         <div className="PopUpPaperInfoWholeContainer">
+          <p className="PaperInfoPopUptitle">무슨 종이를 쓸지 고민이 되나요?</p>
           <div className="PaperInfoContainer">
-            <div className="buttonContainer">
-              <h3>무슨 종이를 쓸지 고민이 되나요?</h3>
+            <div className="EachInfoContainer">
+              <label className="PaperInfo1">몽블랑 220g/m^2</label>
+              <label calssName="PaperInfo2"><span calssName="sizeInfo">최대크기A3</span><span className="detailInfo">높은 백색도로 종이가 화사한 특징</span></label>
+            </div>
+            <div className="EachInfoContainer"></div>
+            <div className="EachInfoContainer"></div>
+            <footer>
               <button className="closedButton" onClick={getPaperInfoPopUp}>
                 돌아가기
               </button>
-            </div>
+            </footer>
           </div>
         </div>
       ) : null}
@@ -350,7 +356,10 @@ const OrderPage = () => {
                               <option value={"1"}>스노우지</option>
                               <option value={"2"}>마시멜로우지</option>
                             </select>
-                            <label htmlFor="QusetionMarkButton" className="QusetionMarkLabel">
+                            <label
+                              htmlFor="QusetionMarkButton"
+                              className="QusetionMarkLabel"
+                            >
                               <img src={QuestionMark} />
                             </label>
                             <button

@@ -1,30 +1,18 @@
 @import "ThemeStyles.scss";
 
-.frontCardText {
-  margin: 42px;
-  @include heading2Font($black100Color);
-  text-align: center;
-}
-
-.backCardText {
-  margin: 42px;
-  @include body1Font($black100Color);
-  text-align: center;
-}
-
 .OrderCategoryPageLayout {
   width: 100%;
-  min-height: 79.7vh;
+  min-height: 81.5vh;
   padding-top: 2vh;
   padding-bottom: 9vh;
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+  @include centerFormat();
 
   .cardLayout {
-    margin-left: 373px;
-    margin-top: 174px;
+    margin-top: 19.68vh;
     display: grid;
     margin-top: 100px;
     grid-template-columns: 15.675vw 15.675vw 15.675vw;
@@ -32,6 +20,13 @@
     grid-column-gap: 1.85vw;
     grid-row-gap: 3.16vh;
     backface-visibility: hidden;
+
+    @include mobile {
+      grid-template-columns: 120px 120px 120px;
+      grid-template-rows: 120px 120px;
+      grid-column-gap: 1.85vw;
+      grid-row-gap: 3.16vh;
+    }
 
     .categoryCard {
       position: relative;

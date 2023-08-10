@@ -15,7 +15,7 @@ const HomePage = ({ elementRef }) => {
     window.addEventListener("scroll", updateScroll);
   });
 
-  return (
+   return (
     <div className="HomeLayout">
       <div className="HomeStyle">
         <div className="Title">이미지스테이션을 온라인 예약으로</div>
