@@ -31,6 +31,7 @@
     .PaperInfoPopUptitle {
       @include heading2Font($primaryColor);
       margin-top: 5vh;
+      margin-bottom: 5vh;
     }
 
     .PaperInfoContainer {
@@ -42,17 +43,31 @@
       .EachInfoContainer {
         width: 35vh;
         height: 8vw;
-        margin-top: 2vh;
-        border: 1px solid;
         margin-left: 5.5vw;
         display: fixed;
       }
 
       .PaperInfo1 {
         @include heading3Font($black100Color);
-
+        display: flex;
+        flex-direction: row;
         float: left;
-        word-spacing: 10vh;
+        text-align: left;
+        width: 100%;
+        height: 3vh;
+
+        justify-content: left;
+
+        p {
+          margin-top: 0px;
+          width: 6.5vw;
+          float: left;
+        }
+
+        .Thickness {
+          margin-top: 0px;
+          width: 10vw;
+        }
       }
 
       .PaperInfo2 {
@@ -62,17 +77,33 @@
 
       .sizeInfo {
         @include captionFont($gray75Color);
-        display: inline-block;
+
+        display: flex;
         text-align: left;
-        width: 5vw;
-        height: 2vh;
-        word-spacing: 10vh;
+        float: left;
+        width: 6vw;
+        height: 1.5vh;
+        margin-right: 0px;
+        padding-top: 0.5vh;
       }
       .detailInfo {
         @include body1Font($black75Color);
-        margin-top: 0px;
-        margin-left: 50px;
+
+        margin-top: 1vh;
+        margin-left: 6.6vw;
         text-align: left;
+        width: 12.7vw;
+        height: 9.5vh;
+        padding: 0;
+
+        .detailInfoHeader {
+          line-height: 1; /* Adjust this value as needed */
+          margin-top: 0px;
+          margin-bottom: 0px;
+          height: 3vh;
+          text-align: left;
+          top: 0;
+        }
       }
     }
   }
@@ -94,7 +125,7 @@
 
   footer {
     width: 100%;
-    height: 100px;
+    height: 70px;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -107,7 +138,7 @@
       width: 7vw;
       height: 5.5vh;
       border: 1px solid;
-      background-color: transparent;
+      background-color: $white100Color;
       @include subHeading2Font($black100Color);
     }
   }
