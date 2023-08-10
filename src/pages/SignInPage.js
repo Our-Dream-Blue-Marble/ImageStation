@@ -10,6 +10,8 @@ import { ReactComponent as ArrowRightSmallIconAsset } from "assets/icons/ArrowRi
 import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
 import "styles/ThemeStyles.scss";
 import "styles/SignInStyle.scss";
+import "styles/PopUpAgreeInfoWidget.scss";
+import PopUpAgreeInfoWidget from "widgets/PopUpAgreeInfoWidget";
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -28,6 +30,8 @@ const SignInPage = () => {
   const [isAgreeUsingInfo, setIsAgreeUsingInfo] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [errorContent, setErrorContent] = useState([false, false, false]);
+  const [isShowPersonalInfo, setIsShowPersonalInfo] = useState(false);
+  const [isShowUsingInfo, setIsShowUsingInfo] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [isNewUser, setIsNewUser] = useState(true);
 
@@ -93,219 +97,242 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="SignIn">
-      <div className="SignInContainer">
-        <form
-          method="POST"
-          onSubmit={async (e) => {
-            e.preventDefault();
-            if (!errorContent.toString().includes("false")) {
-              onNewUserEmailAndPasswordSubmit(
-                e,
-                userEmail,
-                userPassword,
-                userPasswordConfirm,
-                userName,
-                userPhoneNumber,
-                isNewUser,
-                setIsNewUser
-              )
-                .then((result) => {
-                  if (result) {
-                    navigate(HomeRouteName);
-                  }
-                })
-                .catch((e) => {
-                  console.log(e);
-                });
-            } else {
-            }
+    <>
+      {(isShowPersonalInfo || isShowUsingInfo) && (
+        <PopUpAgreeInfoWidget
+          isAgreePopUp={true}
+          onClickBackgroundFuction={(e) => {
+            setIsShowPersonalInfo(false);
+            setIsShowUsingInfo(false);
+            console.log("back");
           }}
-        >
-          <div className="InputWithoutLabel">
-            <input
-              name="userName"
-              type="text"
-              placeholder="이름"
-              required
-              value={userName}
-              onChange={(e) => onUserEmailOrPasswordChange(e, setUserName)}
-            />
-          </div>
-          <div className="InputWithLabel">
-            <input
-              name="userEmail"
-              type="email"
-              placeholder="학교 이메일"
-              required
-              value={userEmail}
-              style={
-                errorContent[0] === false && isPossibleSubmit
-                  ? { borderBottom: "1px solid rgba(221, 82, 87, 1)" }
-                  : {}
+          isShowPersonalInfo={isShowPersonalInfo}
+          onClickButtonFuction={(e) => {
+            setIsAgreePersonalInfo(true);
+            console.log(isAgreePersonalInfo);
+          }}
+        />
+      )}
+      <div className="SignIn">
+        <div className="SignInContainer">
+          <form
+            method="POST"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              if (!errorContent.toString().includes("false")) {
+                onNewUserEmailAndPasswordSubmit(
+                  e,
+                  userEmail,
+                  userPassword,
+                  userPasswordConfirm,
+                  userName,
+                  userPhoneNumber,
+                  isNewUser,
+                  setIsNewUser
+                )
+                  .then((result) => {
+                    if (result) {
+                      navigate(HomeRouteName);
+                    }
+                  })
+                  .catch((e) => {
+                    console.log(e);
+                  });
+              } else {
               }
-              onChange={(e) => onUserEmailOrPasswordChange(e, setUserEmail)}
-            />
-            <label
-              style={
-                errorContent[0] === false && isPossibleSubmit
-                  ? { color: "rgba(221, 82, 87, 1)" }
-                  : {}
-              }
-            >
-              * handong.ac.kr 아니면 handong.edu
-            </label>
-          </div>
-          <div className="InputWithLabel">
-            <div className="password-input">
+            }}
+          >
+            <div className="InputWithoutLabel">
               <input
-                name="userPassword"
-                type="password"
-                placeholder="비밀번호"
+                name="userName"
+                type="text"
+                placeholder="이름"
                 required
-                value={userPassword}
-                onChange={(e) =>
-                  onUserEmailOrPasswordChange(e, setUserPassword)
-                }
-                onFocus={() => setIsFocusPassword(true)}
-                onBlur={() => setIsFocusPassword(false)}
-                ref={passwordRef}
-              />
-              <PasswordLockIconAsset
-                className="password-asset"
-                onClick={() =>
-                  handleShowPasswordChecked(
-                    passwordRef,
-                    setIsShowPassword,
-                    isShowPassword
-                  )
-                }
+                value={userName}
+                onChange={(e) => onUserEmailOrPasswordChange(e, setUserName)}
               />
             </div>
-            <hr
-              className="password-hr"
-              style={
-                errorContent[1] === false && isPossibleSubmit
-                  ? { background: "rgba(221, 82, 87, 1)" }
-                  : isFocusPassword
-                  ? { background: "rgba(33, 36, 39, 1)" }
-                  : {}
-              }
-            />
-            <label
-              style={
-                errorContent[1] === false && isPossibleSubmit
-                  ? { color: "rgba(221, 82, 87, 1)" }
-                  : {}
-              }
-            >
-              * 영문자, 숫자 포함 8자 이상
-            </label>
-          </div>
-          <div className="InputWithoutLabel">
-            <div className="password-input">
+            <div className="InputWithLabel">
               <input
-                name="userPasswordConfirm"
-                type="password"
-                placeholder="비밀번호 재입력"
+                name="userEmail"
+                type="email"
+                placeholder="학교 이메일"
                 required
-                value={userPasswordConfirm}
-                onChange={(e) =>
-                  onUserEmailOrPasswordChange(e, setUserPasswordConfirm)
+                value={userEmail}
+                style={
+                  errorContent[0] === false && isPossibleSubmit
+                    ? { borderBottom: "1px solid rgba(221, 82, 87, 1)" }
+                    : {}
                 }
-                onFocus={() => setIsFocusPasswordConfirm(true)}
-                onBlur={() => setIsFocusPasswordConfirm(false)}
-                ref={passwordConfirmRef}
+                onChange={(e) => onUserEmailOrPasswordChange(e, setUserEmail)}
               />
-              <PasswordLockIconAsset
-                className="password-asset"
-                onClick={() =>
-                  handleShowPasswordChecked(
-                    passwordConfirmRef,
-                    setIsShowPasswordConfirm,
-                    isShowPasswordConfirm
-                  )
+              <label
+                style={
+                  errorContent[0] === false && isPossibleSubmit
+                    ? { color: "rgba(221, 82, 87, 1)" }
+                    : {}
                 }
-              />
+              >
+                * handong.ac.kr 아니면 handong.edu
+              </label>
             </div>
-            <hr
-              className="password-hr"
-              style={
-                (errorContent[1] === false || errorContent[2] === false) &&
-                isPossibleSubmit
-                  ? { background: "rgba(221, 82, 87, 1)" }
-                  : isFocusPasswordConfirm
-                  ? { background: "rgba(33, 36, 39, 1)" }
-                  : {}
-              }
-            />
-          </div>
-
-          <div className="InputWithoutLabel">
-            <input
-              name="userPhoneNumber"
-              type="text"
-              placeholder="전화번호"
-              value={userPhoneNumber}
-              onChange={(e) =>
-                onUserEmailOrPasswordChange(e, setUserPhoneNumber)
-              }
-            />
-            <label>* 필수 아님</label>
-          </div>
-
-          <div className="checkbox-asset">
-            <div className="checkbox-label" style={{ paddingBottom: "16px" }}>
-              <input
-                type="checkbox"
-                id="isAgreePersonalInfo"
-                name="isAgreePersonalInfo"
-                value={isAgreePersonalInfo}
-                required
-                onChange={(e) =>
-                  onUserEmailOrPasswordChange(e, setIsAgreePersonalInfo)
+            <div className="InputWithLabel">
+              <div className="password-input">
+                <input
+                  name="userPassword"
+                  type="password"
+                  placeholder="비밀번호"
+                  required
+                  value={userPassword}
+                  onChange={(e) =>
+                    onUserEmailOrPasswordChange(e, setUserPassword)
+                  }
+                  onFocus={() => setIsFocusPassword(true)}
+                  onBlur={() => setIsFocusPassword(false)}
+                  ref={passwordRef}
+                />
+                <PasswordLockIconAsset
+                  className="password-asset"
+                  onClick={() =>
+                    handleShowPasswordChecked(
+                      passwordRef,
+                      setIsShowPassword,
+                      isShowPassword
+                    )
+                  }
+                />
+              </div>
+              <hr
+                className="password-hr"
+                style={
+                  errorContent[1] === false && isPossibleSubmit
+                    ? { background: "rgba(221, 82, 87, 1)" }
+                    : isFocusPassword
+                    ? { background: "rgba(33, 36, 39, 1)" }
+                    : {}
                 }
               />
               <label
-                for="isAgreePersonalInfo"
-                name="isAgreePersonalInfo"
-              ></label>
-              개인정보 처리방침에 동의합니다.
+                style={
+                  errorContent[1] === false && isPossibleSubmit
+                    ? { color: "rgba(221, 82, 87, 1)" }
+                    : {}
+                }
+              >
+                * 영문자, 숫자 포함 8자 이상
+              </label>
             </div>
-            <ArrowRightSmallIconAsset className="asset" />
-          </div>
-
-          <div className="checkbox-asset">
-            <div className="checkbox-label">
-              <input
-                type="checkbox"
-                id="isAgreeUsingInfo"
-                name="isAgreeUsingInfo"
-                value={isAgreeUsingInfo}
-                required
-                onChange={(e) =>
-                  onUserEmailOrPasswordChange(e, setIsAgreeUsingInfo)
+            <div className="InputWithoutLabel">
+              <div className="password-input">
+                <input
+                  name="userPasswordConfirm"
+                  type="password"
+                  placeholder="비밀번호 재입력"
+                  required
+                  value={userPasswordConfirm}
+                  onChange={(e) =>
+                    onUserEmailOrPasswordChange(e, setUserPasswordConfirm)
+                  }
+                  onFocus={() => setIsFocusPasswordConfirm(true)}
+                  onBlur={() => setIsFocusPasswordConfirm(false)}
+                  ref={passwordConfirmRef}
+                />
+                <PasswordLockIconAsset
+                  className="password-asset"
+                  onClick={() =>
+                    handleShowPasswordChecked(
+                      passwordConfirmRef,
+                      setIsShowPasswordConfirm,
+                      isShowPasswordConfirm
+                    )
+                  }
+                />
+              </div>
+              <hr
+                className="password-hr"
+                style={
+                  (errorContent[1] === false || errorContent[2] === false) &&
+                  isPossibleSubmit
+                    ? { background: "rgba(221, 82, 87, 1)" }
+                    : isFocusPasswordConfirm
+                    ? { background: "rgba(33, 36, 39, 1)" }
+                    : {}
                 }
               />
-              <label for="isAgreeUsingInfo" name="isAgreeUsingInfo"></label>
-              이용약관에 동의합니다.
             </div>
-            <ArrowRightSmallIconAsset className="asset" />
-          </div>
 
-          <input
-            id="SubmitButton"
-            type={isPossibleSubmit ? "submit" : "button"}
-            style={{
-              background: buttonHoverStyle(isPossibleSubmit, isHover),
-            }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            value={"회원가입"}
-          />
-        </form>
+            <div className="InputWithoutLabel">
+              <input
+                name="userPhoneNumber"
+                type="text"
+                placeholder="전화번호"
+                value={userPhoneNumber}
+                onChange={(e) =>
+                  onUserEmailOrPasswordChange(e, setUserPhoneNumber)
+                }
+              />
+              <label>* 필수 아님</label>
+            </div>
+
+            <div className="checkbox-asset">
+              <div className="checkbox-label" style={{ paddingBottom: "16px" }}>
+                <input
+                  type="checkbox"
+                  id="isAgreePersonalInfo"
+                  name="isAgreePersonalInfo"
+                  value={isAgreePersonalInfo}
+                  required
+                  onChange={(e) =>
+                    onUserEmailOrPasswordChange(e, setIsAgreePersonalInfo)
+                  }
+                />
+                <label
+                  for="isAgreePersonalInfo"
+                  name="isAgreePersonalInfo"
+                ></label>
+                개인정보 처리방침에 동의합니다.
+              </div>
+              <ArrowRightSmallIconAsset
+                className="asset"
+                onClick={(e) => setIsShowPersonalInfo(true)}
+              />
+            </div>
+
+            <div className="checkbox-asset">
+              <div className="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="isAgreeUsingInfo"
+                  name="isAgreeUsingInfo"
+                  value={isAgreeUsingInfo}
+                  required
+                  onChange={(e) =>
+                    onUserEmailOrPasswordChange(e, setIsAgreeUsingInfo)
+                  }
+                />
+                <label for="isAgreeUsingInfo" name="isAgreeUsingInfo"></label>
+                이용약관에 동의합니다.
+              </div>
+              <ArrowRightSmallIconAsset
+                className="asset"
+                onClick={(e) => setIsShowUsingInfo(true)}
+              />
+            </div>
+
+            <input
+              id="SubmitButton"
+              type={isPossibleSubmit ? "submit" : "button"}
+              style={{
+                background: buttonHoverStyle(isPossibleSubmit, isHover),
+              }}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              value={"회원가입"}
+            />
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
