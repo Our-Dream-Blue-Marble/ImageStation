@@ -104,12 +104,10 @@ const SignInPage = () => {
           onClickBackgroundFuction={(e) => {
             setIsShowPersonalInfo(false);
             setIsShowUsingInfo(false);
-            console.log("back");
           }}
           isShowPersonalInfo={isShowPersonalInfo}
           onClickButtonFuction={(e) => {
             setIsAgreePersonalInfo(true);
-            console.log(isAgreePersonalInfo);
           }}
         />
       )}
