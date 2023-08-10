@@ -7,20 +7,24 @@
   flex-direction: column;
 
   .HomeStyle {
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    height: 81vh;
-    background-image: url("../assets/BackgroundAsset.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: left top;
-    justify-content: start;
-    text-align: center;
+    height: 92vh;
+    .HomeBackground {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 82.46vh;
+      background-image: url("../assets/BackgroundAsset.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: left top;
+      justify-content: start;
+      text-align: center;
+    }
 
     .Title {
       height: 7.35vh;
-      padding-top: 27.76vh;
+      padding-top: 30.76vh;
       @include displayFont($black100Color);
     }
     .SubTitle {
@@ -46,25 +50,24 @@
   .NoticeLayout {
     width: 100%;
     height: 98.53vh;
-    margin-bottom: 0;
   }
 
   footer {
     width: 100%;
-    height: 30vh;
+    height: 31vh;
     background-color: $footerColor;
 
     .contentContainer {
-      margin-left: 100px;
-      margin-top: 51px;
-      margin-bottom: 48px;
+      margin-left: 6.6vw;
+      margin-top: 5.77vh;
+      margin-bottom: 5.43vh;
       display: flex;
       flex-direction: column;
       @include captionFont($black75Color);
 
       #footerAsset {
-        margin-left: -40px;
-        margin-bottom: 20px;
+        margin-left: -2.64vw;
+        margin-bottom: 2.26vh;
       }
 
       .address {
@@ -74,17 +77,17 @@
       #numbers {
         display: flex;
         flex-direction: row;
-        gap: 34px;
+        gap: 2.25vw;
         margin-top: 1px;
       }
 
       .email {
-        margin-bottom: 31px;
+        margin-bottom: 3.5vh;
       }
 
       #FooterLine {
-        width: 1312px;
-        height: 0.5px;
+        width: 86.77vw;
+        height: 0.056vh;
         padding: 0;
         margin: 0;
         border: none;
@@ -93,20 +96,21 @@
       }
 
       .policiesContainer {
-        width: 1312px;
+        width: 86.77vw;
         display: flex;
         flex-direction: row;
-        gap: 10px;
+        gap: 0.66vw;
 
         .policies {
-          margin-left: 999px;
+          margin-left: 66vw;
           display: flex;
           flex-direction: row;
-          gap: 10px;
+          gap: 0.66vw;
+          cursor: pointer;
         }
 
         .footerAsset {
-          margin-top: 6px;
+          margin-top: 0.7vh;
         }
       }
     }

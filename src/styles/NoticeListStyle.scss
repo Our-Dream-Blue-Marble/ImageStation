@@ -6,6 +6,7 @@
   background: $white100Color;
   display: flex;
   flex-direction: row;
+  z-index: 0;
 
   .noticeHead {
     width: 20.77vw;
@@ -13,7 +14,7 @@
     margin-right: 16.47vw;
 
     .noticeListHead {
-      margin-top: 15vh;
+      margin-top: 18vh;
       margin-bottom: 3.62vh;
       width: 125px;
       height: 43px;
@@ -50,7 +51,6 @@
       }
 
       .noticeAllArrow {
-        // display: flex;
         width: 27px;
         height: 27px;
         margin-top: 10px;
@@ -67,13 +67,14 @@
   .noticeBoxContainer {
     width: 37.7vw;
     height: 64.48vh;
-    margin-top: 15vh;
+    margin-top: 18vh;
     margin-bottom: 22.62vh;
     display: grid;
     grid-template-columns: 17.2vw 17.2vw;
     grid-template-rows: 29.41vh 29.41vh;
     grid-column-gap: 2.65vw;
     grid-row-gap: 4.52vh;
+    z-index: 0;
 
     .cardNotice {
       display: flex;
@@ -136,4 +137,5 @@
 .fadeInAnimation {
   position: relative;
   animation: fadeIn 1s ease-in-out;
+  z-index: 0;
 }
