@@ -40,9 +40,9 @@ export const createNewOrderDocument = async (
         moreInfo,
         attachment,
         attachmentName,
-        1,
-        0,
-        0
+        "1",
+        "0",
+        "0"
       )
     )
     .then(async () => {
@@ -104,4 +104,24 @@ export const updateOrderStateDocument = async (docId, newState) => {
       console.log(e);
     });
   return false;
+};
+
+export const updateOrderDataDocument = async (
+  docId,
+  newDate,
+  newTotalMoney
+) => {
+  const orderDocumentRef = await dbService
+    .collection("orders")
+    .doc(String(docId));
+  let retult = false;
+  await orderDocumentRef
+    .update({ completeTime: newDate, totalMoney: newTotalMoney })
+    .then(() => {
+      retult = true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return retult;
 };

@@ -1,6 +1,7 @@
 import { dbService } from "fbase";
 import {
   readOrderListDocument,
+  updateOrderDataDocument,
   updateOrderStateDocument,
 } from "repositories/OrderRepository";
 
@@ -68,4 +69,24 @@ export const onOrderConfirmStateSelect = async (
   await updateOrderStateDocument(order.docId, newOrderState);
   orderConfirmList[i].state = newOrderState;
   setOrderConfirmList([...orderConfirmList]);
+};
+
+export const getOrderStateWords = (orderState) => {
+  if (orderState === "0") {
+    return "완료";
+  } else if (orderState === "1") {
+    return "접수중";
+  } else if (orderState === "2") {
+    return "준비중";
+  }
+};
+
+export const onEditOrderDataSaveClick = async (
+  docId,
+  newDate,
+  newTotalMoney,
+  setOrderConfirmList
+) => {
+  await updateOrderDataDocument(docId, newDate, newTotalMoney);
+  getAdminOrderConfirmList(setOrderConfirmList);
 };
