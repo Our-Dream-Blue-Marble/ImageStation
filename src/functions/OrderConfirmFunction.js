@@ -87,6 +87,13 @@ export const onEditOrderDataSaveClick = async (
   newTotalMoney,
   setOrderConfirmList
 ) => {
-  await updateOrderDataDocument(docId, newDate, newTotalMoney);
+  if (newDate && newTotalMoney) {
+    await updateOrderDataDocument(docId, newDate, newTotalMoney);
+  } else if (newDate) {
+    await updateOrderDataDocument(docId, newDate, "0");
+  } else if (newTotalMoney) {
+    await updateOrderDataDocument(docId, "0", newTotalMoney);
+  }
+
   getAdminOrderConfirmList(setOrderConfirmList);
 };
