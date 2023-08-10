@@ -61,7 +61,6 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                   {isEditClicked[i] ? (
                     <OrderInfoEditDoneIcon
                       onClick={() => {
-                        console.log(1);
                         onEditOrderDataSaveClick(
                           order.docId,
                           newCompleteDate[i],
