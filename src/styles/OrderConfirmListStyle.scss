@@ -92,9 +92,11 @@
         #info_category {
           @include body2Font($black50Color);
         }
-
-        #info_paper {
-          @include body2Font($black50Color);
+        #info_title {
+          @include body1Font($black100Color);
+        }
+        #info_order_num {
+          @include body1Font($black50Color);
         }
       }
 
@@ -102,7 +104,7 @@
         @include orderFormat();
       }
 
-      #order_num {
+      #order_collect_date {
         @include orderFormat();
       }
 
@@ -123,6 +125,13 @@
       text-align: center;
       border: none;
       background-color: $black50Color;
+    }
+
+    #orderConfirmEditIcon {
+      display: flex;
+      margin-top: 5.1vh;
+      margin-left: 60%;
+      position: absolute;
     }
   }
 
