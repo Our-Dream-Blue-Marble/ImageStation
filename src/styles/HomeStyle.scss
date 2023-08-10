@@ -2,69 +2,113 @@
 
 .HomeLayout {
   width: 100%;
-  height: 207.8vh;
+  height: 200vh;
   display: flex;
   flex-direction: column;
 
-  .HomeBackground {
-    width: 100%;
-    height: 92.3vh;
-    z-index: 1;
+  .HomeStyle {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 81vh;
+    background-image: url("../assets/BackgroundAsset.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left top;
+    justify-content: start;
+    text-align: center;
 
-    .HomeStyle {
-      width: 100%;
-      height: 82.46vh;
-      background-image: url("../assets/BackgroundAsset.svg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: left top;
-      justify-content: start;
-      text-align: center;
-      z-index: 2;
-      margin: 0;
-      padding: 0;
+    .Title {
+      height: 7.35vh;
+      padding-top: 27.76vh;
+      @include displayFont($black100Color);
+    }
+    .SubTitle {
+      height: 2.48vh;
+      padding-top: 1.7vh;
+      @include body2Font($black100Color);
+    }
 
-      .Title {
-        height: 7.35vh;
-        padding-top: 27.76vh;
-        @include displayFont($black100Color);
-      }
-      .SubTitle {
-        height: 2.48vh;
-        padding-top: 1.7vh;
-        @include body2Font($black100Color);
-      }
-
-      .ButtonText {
-        height: 2.48vh;
-        @include body2Font($black100Color);
-        padding-top: 23vh;
-      }
-      .ButtonIcon {
-        height: 5.43vh;
-        padding-top: 1.6vh;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-      }
+    .ButtonText {
+      height: 2.48vh;
+      @include body2Font($black100Color);
+      padding-top: 23vh;
+    }
+    .ButtonIcon {
+      height: 5.43vh;
+      padding-top: 1.6vh;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
     }
   }
 
   .NoticeLayout {
     width: 100%;
-    height: 98.5vh;
+    height: 98.53vh;
     margin-bottom: 0;
   }
 
   footer {
     width: 100%;
-    height: 186px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin: 0;
+    height: 30vh;
     background-color: $footerColor;
+
+    .contentContainer {
+      margin-left: 100px;
+      margin-top: 51px;
+      margin-bottom: 48px;
+      display: flex;
+      flex-direction: column;
+      @include captionFont($black75Color);
+
+      #footerAsset {
+        margin-left: -40px;
+        margin-bottom: 20px;
+      }
+
+      .address {
+        width: 264px;
+      }
+
+      #numbers {
+        display: flex;
+        flex-direction: row;
+        gap: 34px;
+        margin-top: 1px;
+      }
+
+      .email {
+        margin-bottom: 31px;
+      }
+
+      #FooterLine {
+        width: 1312px;
+        height: 0.5px;
+        padding: 0;
+        margin: 0;
+        border: none;
+        background-color: $black50Color;
+        margin-bottom: 11px;
+      }
+
+      .policiesContainer {
+        width: 1312px;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        .policies {
+          margin-left: 999px;
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+        }
+
+        .footerAsset {
+          margin-top: 6px;
+        }
+      }
+    }
   }
 }
