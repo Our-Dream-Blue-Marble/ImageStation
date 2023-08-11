@@ -19,6 +19,8 @@ import {
   PaperInfoRouteName,
   NoticeAllRouteName,
   UserLeaveRouteName,
+  EmailAuthenticationRouteName,
+  EmailCompletedRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
@@ -32,6 +34,8 @@ import OrderConfirmViewPage from "pages/OrderConfirmViewPage";
 import PaperInfoPage from "pages/PaperInfoPage";
 import NoticeAllPage from "pages/NoticeAllPage";
 import UserLeavePage from "pages/UserLeavePage";
+import EmailAuthenticationPage from "pages/EmailAuthenticationPage";
+import EmailCompletedPage from "pages/EmailCompletedPage";
 
 const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   return (
@@ -46,6 +50,14 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
         {isLoggedIn ? (
           <>
             <Route path={HomeRouteName} element={<HomePage />} />
+            <Route
+              path={EmailAuthenticationRouteName}
+              element={<EmailAuthenticationPage />}
+            />
+            <Route
+              path={EmailCompletedRouteName}
+              element={<EmailCompletedPage />}
+            />
             <Route
               path={NoticeListRouteName}
               element={<NoticeListPage isAdmin={userObject?.role || false} />}
