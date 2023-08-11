@@ -2,6 +2,8 @@ import {
   convertDateWithDots,
   getAdminOrderConfirmList,
   getNotAdminOrderConfirmList,
+  getOrderDataPageWords,
+  getOrderDataSizeWords,
   getOrderStateWords,
   getOrderSubmitDate,
   onEditOrderDataSaveClick,
@@ -66,7 +68,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                   </td>
                   <td id="order_info">
                     <span id="info_category">
-                      {order.category}/{order.size}
+                      {order.category}/{getOrderDataSizeWords(order.size)}
                     </span>
                     <span id="info_title">{order.title}</span>
                     <span id="info_order_num">{order.docId}</span>
