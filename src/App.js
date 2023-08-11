@@ -8,6 +8,7 @@ import ScrollToTop from "ScrollToTop";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isEmailVerified, setIsEmailVerified] = useState(null);
   const [isKorean, setIsKorean] = useState(true);
   const [userObject, setUserObject] = useState(null);
 
@@ -17,10 +18,16 @@ function App() {
         setIsLoggedIn(true);
         readUserDocument(authService.currentUser.uid).then((result) => {
           setUserObject(result);
+          if (result.emailAuthenticationDate !== "") {
+            setIsEmailVerified(true);
+            console.log("a");
+          }
           setIsLoading(false);
         });
       } else {
         setIsLoggedIn(false);
+        setIsEmailVerified(false);
+        console.log("b");
         setIsLoading(false);
       }
     });
@@ -29,12 +36,13 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      {isLoading ? (
+      {isLoading && isEmailVerified === null ? (
         "Looading..."
       ) : (
         <div className="App">
           <AppRouter
             isLoggedIn={isLoggedIn}
+            isEmailVerified={isEmailVerified}
             isKorean={isKorean}
             setIsKorean={setIsKorean}
             userObject={userObject}

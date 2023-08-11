@@ -213,12 +213,12 @@ export const updateUserLogInDateDocument = async (uid, newLogInDate) => {
 
 export const updateUserEmailAuthenticationDateDocument = async (
   uid,
-  newEmailAuthentication
+  newEmailAuthenticationDate
 ) => {
   const userDocumentRef = await dbService.collection("users").doc(uid);
   await userDocumentRef
     .update({
-      emailAuthentication: newEmailAuthentication,
+      emailAuthenticationDate: newEmailAuthenticationDate,
     })
     .then(() => {
       return true;

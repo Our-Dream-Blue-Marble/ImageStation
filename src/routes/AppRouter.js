@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import SignInPage from "pages/SignInPage";
 import NoticeListPage from "pages/NoticeListPage";
@@ -36,8 +36,23 @@ import NoticeAllPage from "pages/NoticeAllPage";
 import UserLeavePage from "pages/UserLeavePage";
 import EmailAuthenticationPage from "pages/EmailAuthenticationPage";
 import EmailCompletedPage from "pages/EmailCompletedPage";
+import { useEffect } from "react";
 
-const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
+const AppRouter = ({
+  isLoggedIn,
+  isEmailVerified,
+  isKorean,
+  setIsKorean,
+  userObject,
+}) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn && !isEmailVerified) {
+      navigate(EmailAuthenticationRouteName);
+    }
+  }, [isLoggedIn, isEmailVerified, navigate]);
+
   return (
     <>
       <HeaderPage
