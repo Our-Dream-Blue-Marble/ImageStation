@@ -11,7 +11,8 @@ export const createNewUserDocument = async (
   role,
   isReceiveMail,
   signInDate,
-  logInDate
+  logInDate,
+  emailAuthenticationDate
 ) => {
   const encryptUserName = getEncryptedData(uid, name);
   const encryptPhoneNumber = getEncryptedData(uid, phoneNumber);
@@ -28,7 +29,8 @@ export const createNewUserDocument = async (
         role,
         isReceiveMail,
         signInDate,
-        logInDate
+        logInDate,
+        emailAuthenticationDate
       )
     )
     .then(() => {
@@ -56,6 +58,7 @@ export const deleteUserMyOrdersDocument = async (uid) => {
     });
   }
 };
+
 export const deleteUserDocument = async (uid) => {
   deleteUserMyOrdersDocument(uid);
   const userDataCollection = await dbService.collection("users").doc(uid);
@@ -98,7 +101,8 @@ export const updateUserDocument = async (
   role,
   isReceiveMail,
   signInDate,
-  logInDate
+  logInDate,
+  emailAuthenticationDate
 ) => {
   const userDocumentRef = await dbService.collection("users").doc(uid);
   const encryptUserName = getEncryptedData(uid, name);
@@ -114,7 +118,8 @@ export const updateUserDocument = async (
         role,
         isReceiveMail,
         signInDate,
-        logInDate
+        logInDate,
+        emailAuthenticationDate
       ).toData()
     )
     .then(() => {
@@ -196,6 +201,24 @@ export const updateUserLogInDateDocument = async (uid, newLogInDate) => {
   await userDocumentRef
     .update({
       logInDate: newLogInDate,
+    })
+    .then(() => {
+      return true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return false;
+};
+
+export const updateUserEmailAuthenticationDateDocument = async (
+  uid,
+  newEmailAuthentication
+) => {
+  const userDocumentRef = await dbService.collection("users").doc(uid);
+  await userDocumentRef
+    .update({
+      emailAuthentication: newEmailAuthentication,
     })
     .then(() => {
       return true;

@@ -8,7 +8,7 @@ class UserModel {
     isReceiveMail,
     signInDate,
     logInDate,
-    emailAuthentication
+    emailAuthenticationDate
   ) {
     this.uid = uid;
     this.email = email;
@@ -18,7 +18,7 @@ class UserModel {
     this.isReceiveMail = isReceiveMail;
     this.signInDate = signInDate;
     this.logInDate = logInDate;
-    this.emailAuthentication = emailAuthentication;
+    this.emailAuthenticationDate = emailAuthenticationDate;
   }
   toData() {
     return {
@@ -30,7 +30,7 @@ class UserModel {
       isReceiveMail: this.isReceiveMail,
       signInDate: this.signInDate,
       logInDate: this.logInDate,
-      emailAuthentication: this.emailAuthentication,
+      emailAuthenticationDate: this.emailAuthenticationDate,
     };
   }
 }
@@ -46,7 +46,7 @@ export const UserModelConveter = {
       isReceiveMail: data.isReceiveMail,
       signInDate: data.signInDate,
       logInDate: data.logInDate,
-      emailAuthentication: data.emailAuthentication,
+      emailAuthenticationDate: data.emailAuthenticationDate,
     };
   },
   fromFirestore: function (snapshot, options) {
