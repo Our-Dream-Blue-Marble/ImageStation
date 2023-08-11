@@ -37,43 +37,19 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
       <span id="OrderConfirmList_title">주문했던 내역을 확인해보세요!</span>
       <table className="OrderConfirmListContainer">
         <div className="headers">
-          <th style={{ width: "50px" }}></th>
+          <th style={{ width: "25px" }}></th>
           <th className="header_text">주문정보</th>
           <th className="header_text">주문일자</th>
           <th className="header_text">수령가능 날짜</th>
-          <th className="header_text">예상금액</th>
+          <th className="header_text">예상금액 (수량)</th>
           <th className="header_text">주문 상태</th>
+          {isAdmin ? <th className="edit_icon "> </th> : null}
         </div>
         <hr id="headers_line" />
         {orderConfirmList
           .slice(paginationOffset, paginationOffset + paginationLimit)
           .map((order, i) => (
             <>
-              {isAdmin ? (
-                <div
-                  key={order.docId}
-                  id="orderConfirmEditIcon"
-                  onClick={() => {
-                    const newIsEditClicked = [...isEditClicked];
-                    newIsEditClicked[i] = !newIsEditClicked[i];
-                    setIsEditClicked(newIsEditClicked);
-                  }}>
-                  {isEditClicked[i] ? (
-                    <OrderInfoEditDoneIcon
-                      onClick={() => {
-                        onEditOrderDataSaveClick(
-                          order.docId,
-                          newCompleteDate[i],
-                          newTotalMoney[i],
-                          setOrderConfirmList
-                        );
-                      }}
-                    />
-                  ) : (
-                    <OrderInfoEditIcon />
-                  )}
-                </div>
-              ) : null}
               <tr
                 className="OrderConfirmView_Container"
                 onClick={() => {
@@ -182,6 +158,33 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                       {getOrderStateWords(order.state)}
                     </td>
                   )}
+                  {isAdmin ? (
+                    <td
+                      key="orderEdit"
+                      id="order_edit"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const newIsEditClicked = [...isEditClicked];
+                        newIsEditClicked[i] = !newIsEditClicked[i];
+                        setIsEditClicked(newIsEditClicked);
+                      }}>
+                      {isEditClicked[i] ? (
+                        <OrderInfoEditDoneIcon
+                          id="order_icon"
+                          onClick={() => {
+                            onEditOrderDataSaveClick(
+                              order.docId,
+                              newCompleteDate[i],
+                              newTotalMoney[i],
+                              setOrderConfirmList
+                            );
+                          }}
+                        />
+                      ) : (
+                        <OrderInfoEditIcon id="order_icon" />
+                      )}
+                    </td>
+                  ) : null}
                 </>
               </tr>
 
