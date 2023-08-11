@@ -14,6 +14,15 @@ import { OrderConfirmListRouteName } from "routes/RouteName";
 import { pageNavigationPlugin } from "@react-pdf-viewer/page-navigation";
 import { RenderCurrentPageLabelProps } from "@react-pdf-viewer/page-navigation";
 import "@react-pdf-viewer/page-navigation/lib/styles/index.css";
+import {
+  convertDateWithDots,
+  getOrderDataBindingMethodWords,
+  getOrderDataLayoutWords,
+  getOrderDataPageWords,
+  getOrderDataPaperWords,
+  getOrderDataSizeWords,
+  getOrderStateWords,
+} from "functions/OrderConfirmFunction";
 
 const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
   const location = useLocation();
@@ -83,8 +92,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
 
                     <div
                       className="categoryAttachment"
-                      onClick={() => onAttachmentDownloadClick(orderData)}
-                    >
+                      onClick={() => onAttachmentDownloadClick(orderData)}>
                       {orderData.attachmentName}
                     </div>
                     {isAdmin ? (
@@ -124,77 +132,95 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
                     <div className="categoryAllLayout">
                       <span className="categoryKeyText">페이지</span>
                       <span className="categoryValueText">
-                        {orderData.page}
+                        {getOrderDataPageWords(orderData.page)}
                       </span>
                     </div>
 
                     <div className="categoryAllLayout">
                       <span className="categoryKeyText">레이아웃</span>
                       <span className="categoryValueText">
-                        {orderData.layout}
+                        {getOrderDataLayoutWords(orderData.layout)}
                       </span>
                     </div>
 
                     <div className="categoryAllLayout">
                       <span className="categoryKeyText">사이즈</span>
                       <span className="categoryValueText">
-                        {orderData.size}
+                        {getOrderDataSizeWords(orderData.size)}
                       </span>
                     </div>
 
-                    <div className="categoryAllLayout">
-                      <span className="categoryKeyText">제본방식</span>
-                      <span className="categoryValueText">
-                        {orderData.bindingMethod}
-                      </span>
-                    </div>
+                    {orderData.bindingMethod === "" ? null : (
+                      <div className="categoryAllLayout">
+                        <span className="categoryKeyText">제본방식</span>
+                        <span className="categoryValueText">
+                          {getOrderDataBindingMethodWords(
+                            orderData.bindingMethod
+                          )}
+                        </span>
+                      </div>
+                    )}
 
-                    <div className="categoryAllLayout">
-                      <span className="categoryKeyText">코팅여부</span>
-                      <span className="categoryValueText">
-                        {orderData.coating}
-                      </span>
-                    </div>
+                    {orderData.coating ? (
+                      <div className="categoryAllLayout">
+                        <span className="categoryKeyText">코팅여부</span>
+                        <span className="categoryValueText">코팅 있음</span>
+                      </div>
+                    ) : null}
 
-                    <div className="categoryAllLayout">
-                      <span className="categoryKeyText">종이</span>
-                      <span className="categoryValueText">
-                        {orderData.paper}
-                      </span>
-                    </div>
+                    {orderData.paper === "" ? null : (
+                      <div className="categoryAllLayout">
+                        <span className="categoryKeyText">종이</span>
+                        <span className="categoryValueText">
+                          {getOrderDataPaperWords(orderData.paper)}
+                        </span>
+                      </div>
+                    )}
 
                     <div className="categoryAllLayout">
                       <span className="categoryKeyText">컬러</span>
                       <span className="categoryValueText">
-                        {orderData.color}
+                        {orderData.color ? "컬러" : "흑백"}
                       </span>
                     </div>
 
                     <div className="categoryAllLayout">
                       <span className="categoryKeyText">문의사항</span>
                       <span className="categoryValueText">
-                        {orderData.moreInfo}
+                        {orderData.moreInfo === "" ? (
+                          "입력 사항 없음"
+                        ) : (
+                          <>{orderData.moreInfo}</>
+                        )}
                       </span>
                     </div>
 
                     <div className="categoryAllLayout">
                       <span className="categoryKeyText">주문상태</span>
                       <span className="categoryValueText">
-                        {orderData.state}
+                        {getOrderStateWords(orderData.state)}
                       </span>
                     </div>
 
                     <div className="categoryAllLayout">
                       <span className="categoryKeyText">예상가격</span>
                       <span className="categoryValueText">
-                        {orderData.totalMoney}
+                        {orderData.totalMoney === "0" ? (
+                          "미정"
+                        ) : (
+                          <>{orderData.totalMoney}</>
+                        )}
                       </span>
                     </div>
 
                     <div className="categoryAllLayout">
                       <span className="categoryKeyText">예상수령일</span>
                       <span className="categoryValueText">
-                        {orderData.completeTime}
+                        {orderData.completeTime === "0" ? (
+                          "미정"
+                        ) : (
+                          <>{convertDateWithDots(orderData.completeTime)}</>
+                        )}
                       </span>
                     </div>
                   </div>
@@ -204,8 +230,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
             <div className="navigateButtonSection">
               <button
                 className="navigateButton"
-                onClick={() => navigate(OrderConfirmListRouteName)}
-              >
+                onClick={() => navigate(OrderConfirmListRouteName)}>
                 돌아가기
               </button>
             </div>
