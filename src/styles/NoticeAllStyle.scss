@@ -12,11 +12,12 @@
   overflow-x: hidden;
 
   .NoticeAllHeadContainer {
-    width: 100%;
+    width: 862px;
     height: 2.48vh;
     display: flex;
     flex-direction: row;
     margin-top: 7.9vh;
+    margin-left: 167px;
     margin-bottom: 5.9vh;
     @include centerFormat();
 
@@ -28,7 +29,7 @@
     .noticeWriteBtn {
       display: flex;
       width: 32px;
-      margin-left: 8.9vw;
+      margin-left: 135px;
       font-size: 48px;
       color: $primaryColor;
       background-color: inherit;
@@ -61,7 +62,7 @@
       flex-direction: row;
       width: 192px;
       height: 42px;
-      margin-left: 39.48vw;
+      margin-left: 69.26%;
       margin-bottom: 2.7vh;
       margin-top: 2.9vh;
       border-radius: 8px;
@@ -122,19 +123,16 @@
 
         .noticePinCheckbox {
           display: flex;
+          height: 60px;
           flex-shrink: 0;
-          margin-top: 1.5vh;
-          margin-left: -2.64vw;
+          margin-left: -30px;
           align-items: center;
+          margin-right: 10px;
         }
 
         .noticeTitleAndBodyContainer {
-          width: 6vw;
-          height: 6.1vh;
           float: left;
-          margin-right: 4.3vw;
-          width: 27.18vw;
-          height: 6.78vh;
+          margin-right: 12.7%;
 
           .noticeListTitle {
             @include body1Font($black100Color);
@@ -146,6 +144,7 @@
           }
           .noticeListBody {
             @include captionFont($black75Color);
+            width: 411px;
             height: 2.6vh;
             word-break: break-all;
             text-overflow: ellipsis;
@@ -163,16 +162,18 @@
             @include captionFont($black75Color);
             height: 2.5vh;
             margin-bottom: 1.13vh;
+            width: 150px;
           }
           .noticeListDateTime {
             @include captionFont($black75Color);
             height: 2.5vh;
+            width: 150px;
           }
         }
       }
 
       #NoticeDevice_line {
-        width: 47.35vw;
+        width: 83.1%;
         height: 0.05vh;
         margin-left: 6.6vw;
         padding: 0;
