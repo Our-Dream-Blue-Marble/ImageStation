@@ -97,3 +97,67 @@ export const onEditOrderDataSaveClick = async (
 
   getAdminOrderConfirmList(setOrderConfirmList);
 };
+
+export const getOrderDataPageWords = (pageValue) => {
+  if (pageValue === "0") {
+    return "전체";
+  } else if (pageValue === "1") {
+    return "짝수";
+  } else if (pageValue === "2") {
+    return "홀수";
+  }
+};
+
+export const getOrderDataLayoutWords = (layout) => {
+  if (layout) {
+    return "가로 방향";
+  } else {
+    return "세로 방향";
+  }
+};
+
+export const getOrderDataSizeWords = (pageSize) => {
+  if (pageSize === "0") {
+    return "A2";
+  } else if (pageSize === "1") {
+    return "A3";
+  } else if (pageSize === "2") {
+    return "A4";
+  } else if (pageSize === "3") {
+    return "A5";
+  }
+};
+
+export const getOrderDataBindingMethodWords = (bindingMethod) => {
+  if (bindingMethod === "0") {
+    return "B4";
+  } else if (bindingMethod === "1") {
+    return "B2";
+  }
+};
+
+export const getOrderDataPaperWords = (paper) => {
+  if (paper === "0") {
+    return "일반용지";
+  } else if (paper === "1") {
+    return <>몽블랑 220g/m{"\xB2"}</>;
+  } else if (paper === "2") {
+    return <>랑데부 210g/m{"\xB2"}</>;
+  } else if (paper === "3") {
+    return <>스노우지 120g/m{"\xB2"}</>;
+  } else if (paper === "4") {
+    return <> 스노우지 200g/m{"\xB2"}</>;
+  } else if (paper === "5") {
+    return <>마시멜로우지 209g/m{"\xB2"}</>;
+  } else if (paper === "6") {
+    return <>아트지 220g/m{"\xB2"}</>;
+  } else if (paper === "7") {
+    return <>모조지 220g/m{"\xB2"}</>;
+  } else if (paper === "8") {
+    return <>색지 220g/m{"\xB2"}</>;
+  }
+};
+
+export const convertDateWithDots = (date) => {
+  return date.replaceAll("-", ".");
+};

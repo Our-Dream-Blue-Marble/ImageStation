@@ -1,4 +1,5 @@
 import {
+  convertDateWithDots,
   getAdminOrderConfirmList,
   getNotAdminOrderConfirmList,
   getOrderStateWords,
@@ -92,7 +93,9 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                         </>
                       ) : (
                         <>
-                          <td id="order_collect_date">{order.completeTime}</td>
+                          <td id="order_collect_date">
+                            {convertDateWithDots(order.completeTime)}
+                          </td>
                         </>
                       )}
                     </>

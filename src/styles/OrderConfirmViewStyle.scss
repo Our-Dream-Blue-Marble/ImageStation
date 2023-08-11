@@ -195,6 +195,7 @@
         }
 
         .categoryValueText {
+          width: 171px;
           @include subHeading3Font($black100Color);
         }
       }
