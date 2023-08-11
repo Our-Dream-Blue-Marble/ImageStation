@@ -52,6 +52,12 @@
         position: absolute;
       }
 
+      .imageFileLayout {
+        width: 30vw;
+        height: 50vh;
+        border-radius: 0px;
+      }
+
       .rpv-core__viewer {
         width: 350px;
         height: 446px;
@@ -134,7 +140,7 @@
 
     .categoryAllContent {
       margin-left: 2.6vw;
-      padding-right: 2.2vw;
+      padding-right: 1.5vw;
       margin-top: 2.4vh;
       margin-bottom: 2.4vh;
 
@@ -183,6 +189,7 @@
     .categoryAll {
       height: 42.76vh;
       overflow-y: scroll;
+
       .categoryAllLayout {
         display: flex;
         flex-direction: row;
@@ -199,6 +206,19 @@
           @include subHeading3Font($black100Color);
         }
       }
+    }
+    .categoryAll::-webkit-scrollbar {
+      width: 8px;
+      background-color: transparent;
+    }
+
+    .categoryAll::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    .categoryAll::-webkit-scrollbar-thumb {
+      background-color: $black25Color;
+      border-radius: 10px;
     }
   }
   .navigateButtonSection {
