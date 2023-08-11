@@ -18,10 +18,7 @@ import QuestionMark from "../assets/QuestionMark.svg";
 import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
 import { PopUpPaperInfo } from "widgets/PopUpPaperInfo";
 
-import {
-  pageNavigationPlugin,
-  RenderCurrentPageLabelProps,
-} from "@react-pdf-viewer/page-navigation";
+import { pageNavigationPlugin } from "@react-pdf-viewer/page-navigation";
 import "@react-pdf-viewer/page-navigation/lib/styles/index.css";
 
 const OrderPage = () => {
@@ -30,10 +27,10 @@ const OrderPage = () => {
   const [orderPage, setOrderPage] = useState("0");
   const [orderLayout, setOrderLayout] = useState(false);
   const [orderSize, setOrderSize] = useState("0");
-  const [orderBinding, setOrderBinding] = useState("0");
+  const [orderBinding, setOrderBinding] = useState("");
   const [orderCoating, setOrderCoating] = useState(false);
-  const [orderPaper, setOrderPaper] = useState("0");
-  const [orderColor, setOrderColor] = useState(false);
+  const [orderPaper, setOrderPaper] = useState("");
+  const [orderColor, setOrderColor] = useState(true);
   const [orderMoreInfo, setOrderMoreInfo] = useState("");
   const [orderAttachment, setOrderAttachment] = useState("");
   const [orderAttachmentName, setOrderAttachmentName] = useState("");
@@ -45,7 +42,6 @@ const OrderPage = () => {
   const [isZip, setIsZip] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [clickedOrder, setClickedOrder] = useState(false);
-  const [orderUploadSuccess, setOrderUploadSuccess] = useState(false);
   const [isPaperInfoPopUp, setIsPaperInfoPopUp] = useState(false);
   const location = useLocation("");
   const category = location.state.data;
@@ -129,11 +125,7 @@ const OrderPage = () => {
                   orderMoreInfo,
                   orderAttachment,
                   orderAttachmentName
-                ).then((result) => {
-                  if (result) {
-                    setOrderUploadSuccess(true);
-                  }
-                });
+                ).then(() => {});
             } else {
               navigate(OrderCategoryPageRouteName);
             }
@@ -266,24 +258,23 @@ const OrderPage = () => {
                         </select>
                       </span>
                     )}
-                    {category !== "labeling" ||
-                      (category !== "etc" && (
-                        <span>
-                          <label className="select_label">사이즈</label>
-                          <select
-                            defaultValue={"0"}
-                            name="size"
-                            onChange={async (e) => {
-                              onOrderFieldChange(e, setOrderSize);
-                            }}
-                          >
-                            <option value={"0"}>A2</option>
-                            <option value={"1"}>A3</option>
-                            <option value={"2"}>A4</option>
-                            <option value={"3"}>A5</option>
-                          </select>
-                        </span>
-                      ))}
+                    {(category !== "labeling" || category !== "etc") && (
+                      <span>
+                        <label className="select_label">사이즈</label>
+                        <select
+                          defaultValue={"0"}
+                          name="size"
+                          onChange={async (e) => {
+                            onOrderFieldChange(e, setOrderSize);
+                          }}
+                        >
+                          <option value={"0"}>A2</option>
+                          <option value={"1"}>A3</option>
+                          <option value={"2"}>A4</option>
+                          <option value={"3"}>A5</option>
+                        </select>
+                      </span>
+                    )}
                     {category === "binding" && (
                       <>
                         <span>
@@ -336,8 +327,20 @@ const OrderPage = () => {
                               }}
                             >
                               <option value={"0"}>일반용지</option>
-                              <option value={"1"}>스노우지</option>
-                              <option value={"2"}>마시멜로우지</option>
+                              <option value={"1"}>몽블랑 220g/m{"\xB2"}</option>
+                              <option value={"2"}>랑데부 210g/m{"\xB2"}</option>
+                              <option value={"3"}>
+                                스노우지 120g/m{"\xB2"}
+                              </option>
+                              <option value={"4"}>
+                                스노우지 200g/m{"\xB2"}
+                              </option>
+                              <option value={"5"}>
+                                마시멜로우지 209g/m{"\xB2"}
+                              </option>
+                              <option value={"6"}>아트지 220g/m{"\xB2"}</option>
+                              <option value={"7"}>모조지 220g/m{"\xB2"}</option>
+                              <option value={"8"}>색지 220g/m{"\xB2"}</option>
                             </select>
                             <button
                               id="QusetionMarkButton"
@@ -365,8 +368,8 @@ const OrderPage = () => {
                               onOrderFieldChange(e, setOrderColor);
                             }}
                           >
-                            <option value={false}>흑백</option>
                             <option value={true}>컬러</option>
+                            <option value={false}>흑백</option>
                           </select>
                         </span>
                       </details>
