@@ -253,6 +253,7 @@
           float: right;
           padding-left: 0.66vw;
           margin-top: -10px;
+          font-family: "Pretendard Variable";
         }
 
         input[type="text"]:focus {
@@ -344,6 +345,8 @@
           box-shadow: $orderBoxShadow;
           float: right;
           padding: 10px 15px;
+          font-family: "Pretendard Variable";
+          line-height: 22px;
         }
 
         textarea::placeholder {
