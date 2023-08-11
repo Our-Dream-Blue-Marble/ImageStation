@@ -223,7 +223,7 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     box-sizing: border-box;
-
+    padding-right: 40px;
     .categoryHeader {
       width: 18vw;
       height: 2.49vh;
@@ -234,7 +234,7 @@
       @include heading2Font($black100Color);
     }
     .categorySelectBodyContainer {
-      width: 23.74vw;
+      width: 23.34vw;
       height: 50.6vh;
       overflow: auto;
       overflow-x: hidden;
@@ -381,7 +381,7 @@
 
     .categorySelectBodyContainer::-webkit-scrollbar {
       background: transparent;
-      width: 10px;
+      width: 8px;
     }
 
     .categorySelectBodyContainer::-webkit-scrollbar-track {

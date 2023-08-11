@@ -80,7 +80,13 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
 
                 {orderData.attachmentName.match(
                   /(.*?)\.(jpg|jpeg|png|gif|bmp|svg)$/
-                ) && <img src={orderData.attachment} alt="attachment" />}
+                ) && (
+                  <img
+                    src={orderData.attachment}
+                    alt="attachment"
+                    className="imageFileLayout"
+                  />
+                )}
               </div>
               <div className="InfoLayout">
                 <div className="categoryAllContent">
@@ -92,7 +98,8 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
 
                     <div
                       className="categoryAttachment"
-                      onClick={() => onAttachmentDownloadClick(orderData)}>
+                      onClick={() => onAttachmentDownloadClick(orderData)}
+                    >
                       {orderData.attachmentName}
                     </div>
                     {isAdmin ? (
@@ -230,7 +237,8 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
             <div className="navigateButtonSection">
               <button
                 className="navigateButton"
-                onClick={() => navigate(OrderConfirmListRouteName)}>
+                onClick={() => navigate(OrderConfirmListRouteName)}
+              >
                 돌아가기
               </button>
             </div>
