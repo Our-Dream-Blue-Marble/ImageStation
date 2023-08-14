@@ -13,7 +13,7 @@ import {
 import "styles/OrderStyle.scss";
 import "styles/PopUpPaperInfoStyle.scss";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
-import OrderFileCancel from "../assets/OrderFileCancelAsset.svg";
+import { ReactComponent as OrderFileCancel } from "../assets/OrderFileCancelAsset.svg";
 import QuestionMark from "../assets/QuestionMark.svg";
 import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
 import { PopUpPaperInfo } from "widgets/PopUpPaperInfo";
@@ -182,7 +182,7 @@ const OrderPage = () => {
                       setIsPdf(false);
                       setIsZip(false);
                     }}>
-                    <img src={OrderFileCancel} />
+                    <OrderFileCancel />
                   </button>
                 )}
                 <div className="pdfFileContainer">
