@@ -4,23 +4,25 @@
   --rpv-core__page-layer-box-shadow: 0px 0px 0px 0 $transparentColor;
 }
 
-.OrderLayout {
+.OrderPageBackground {
   width: 100%;
-  min-height: 81.2vh;
-  padding-top: 2vh;
-  padding-bottom: 9vh;
+  min-height: 884px;
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
+  .OrderLayout {
+    width: 100%;
+    min-height: 81.2vh;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
 }
 
 .OrderWholeContainer {
-  width: 58.4vw;
-  height: 65.6vh;
+  width: 883px;
+  height: 580px;
   border-radius: 10px;
   background-color: $white60Color;
   display: block;
@@ -30,8 +32,8 @@
 
   .OrderContainer-left {
     float: left;
-    height: 65.6vh;
-    width: 59%;
+    height: 580px;
+    width: 524px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: $black25Color;
@@ -39,29 +41,29 @@
     justify-content: center;
     align-items: center;
     display: inline-flex;
+    overflow-y: auto;
 
     .pageNumberContainer {
-      width: 4vw;
-      height: 3vh;
-      text-align: center;
+      @include subHeading3Font($white100Color);
+      width: 62px;
+      height: 25px;
+      @include centerFormat();
       border: none;
       border-radius: 16px;
       display: flex;
-      justify-content: center;
-      position: absolute;
-      margin-left: 27vw;
+      position: sticky;
+      margin-left: 430px;
       margin-bottom: 58vh;
       background: $black10Color;
-      color: $white100Color;
+      top: 202px;
     }
 
     .FileCancelButton {
-      position: relative;
-      width: 3.3vw;
-      height: 5.65vh;
-      margin-top: 4.5vh;
-      margin-bottom: 61.3vh;
-      padding-right: 31vw;
+      position: absolute;
+      margin-top: 24px;
+      margin-left: 24px;
+      margin-bottom: 542px;
+      padding-right: 486px;
       border: none;
       background-color: transparent;
     }
@@ -72,16 +74,17 @@
 
     .FileUploadButton::-webkit-file-upload-button {
       @include body1Font($numberColor);
-      width: 34.6vw;
-      height: 65.6vh;
+      width: 524px;
+      height: 580px;
       border: none;
       background-color: transparent;
       position: absolute;
       z-index: 2;
+
       cursor: pointer;
       color: transparent;
-      margin-left: -6.6vw;
-      margin-top: -3.4vh;
+      margin-left: -112px;
+      margin-top: -42px;
     }
 
     .fileLabel {
@@ -92,46 +95,45 @@
       margin-top: 33.9vh;
       cursor: pointer;
     }
-
+    overflow: hidden;
     .FileChooseContainer {
       display: flex;
+      width: 524px;
+      height: 580px;
       flex-direction: column;
-      margin-left: 3.7vw;
-      margin-top: 33.9vh;
+      @include centerFormat();
+      margin-left: -112px;
+      margin-top: -42px;
 
       .FileUploadBtnContainer {
         display: flex;
-        width: 7.3vw;
-        height: 5.3vh;
+        width: 120px;
+        height: 42px;
         flex-direction: row;
         border-radius: 8px;
         border: 1px solid;
-        margin-left: 2.9vw;
-        margin-bottom: 3.05vh;
+        @include centerFormat();
+        margin-bottom: 27px;
 
         .FileChoose {
           @include body1Font($black100Color);
-          margin-left: 0.9vw;
-          margin-top: 1.13vh;
+          margin-left: 14px;
+          margin-right: 10px;
         }
         .FileAsset {
-          margin-left: 0.66vw;
-          margin-top: 1.13vh;
-          width: 1.38vw;
-          height: 3vh;
+          @include centerFormat();
+          display: flex;
+          width: 22px;
+          height: 25px;
           background-image: url("../assets/FileUploadAsset.svg");
           background-repeat: no-repeat;
-          background-size: 1.38vw 3vh;
         }
       }
       .FileUploadExplanation {
-        @include body1Font($black50Color);
-        display: flex;
+        @include body2Font($black50Color);
+
         text-align: center;
         justify-content: center;
-        width: 13.22vw;
-        height: 5.65vh;
-        margin-top: -2.62vh;
       }
     }
   }
@@ -171,14 +173,14 @@
   }
 
   .rpv-core__inner-page-container {
-    width: 350px;
+    width: 340px;
     height: 10px;
     position: relative;
     background-color: transparent;
   }
 
   .rpv-core__inner-page {
-    width: 360px;
+    width: 300px;
     height: 500px;
     padding: none;
     margin: none;
@@ -197,7 +199,7 @@
   .rpv-core__inner-pages.rpv-core__inner-pages--vertical {
     overflow-x: hidden;
     align-items: center;
-    width: 453px;
+    width: 429px;
     margin-left: 27px;
   }
 
@@ -217,16 +219,17 @@
 
   .OrderContainer-right {
     float: right;
-    width: 23.74vw;
-    height: 65.6vh;
+    width: 359px;
+    height: 580px;
     background: $white60Color;
+
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     box-sizing: border-box;
     padding-right: 40px;
     .categoryHeader {
-      width: 18vw;
-      height: 2.49vh;
+      width: 301px;
+      height: 22px;
       margin-left: 2vw;
       margin-top: 3.4vh;
       margin-right: 1.85vw;
@@ -234,9 +237,8 @@
       @include heading2Font($black100Color);
     }
     .categorySelectBodyContainer {
-      width: 23.34vw;
-      height: 50.6vh;
-      overflow: auto;
+      width: 355px;
+      height: 450px;
       overflow-x: hidden;
       .categorySelect {
         width: 18vw;
@@ -245,14 +247,19 @@
         margin-right: 1.85vw;
 
         input[type="text"] {
-          height: 4.75vh;
-          width: 12vw;
+          width: 156px;
+          height: 22px;
+          display: flex;
+          padding: 10px 18px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
           border-radius: 8px;
           border: none;
           box-shadow: $orderBoxShadow;
           float: right;
-          padding-left: 0.66vw;
           margin-top: -10px;
+          font-family: "Pretendard Variable";
         }
 
         input[type="text"]:focus {
@@ -270,8 +277,8 @@
         }
 
         select {
-          height: 4.75vh;
-          width: 12.7vw;
+          height: 42px;
+          width: 192px;
           border-radius: 8px;
           box-shadow: $orderBoxShadow;
           padding: 10px 18px;
@@ -280,7 +287,10 @@
           float: right;
           appearance: none;
           -webkit-appearance: none;
-          background: url("../assets/arrow-down.svg") no-repeat 95%;
+          background-color: $white100Color;
+          background-image: url("../assets/arrow-down.svg");
+          background-repeat: no-repeat;
+          background-position: 95% center;
         }
 
         select::-ms-expand {
@@ -298,13 +308,13 @@
           border-right: none;
           border-bottom: solid 1px;
           border-color: $black50Color;
-          width: 33.5vh;
+          width: 290px;
         }
 
         summary {
-          margin-top: 2vh;
-          margin-bottom: 2vh;
-          height: 2.49vh;
+          margin-top: 14px;
+          margin-bottom: 14px;
+          height: auto;
           position: relative;
           cursor: pointer;
         }
@@ -336,14 +346,23 @@
         }
 
         textarea {
-          width: 10.8vw;
-          height: 26vh;
+          display: flex;
+          width: 156px;
+          height: 99px;
+          overflow-y: hidden;
+          padding: 10px 18px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
           resize: none;
           border: none;
           border-radius: 8px;
           box-shadow: $orderBoxShadow;
           float: right;
           padding: 10px 15px;
+          font-family: "Pretendard Variable";
+          line-height: 22px;
+          margin-bottom: 3px;
         }
 
         textarea::placeholder {
@@ -356,8 +375,8 @@
         }
 
         span {
-          width: 19.18vw;
-          height: 4.75vh;
+          width: 290px;
+          height: 42px;
           display: block;
           margin-top: 1.56vh;
           margin-bottom: 1.56vh;
@@ -365,16 +384,14 @@
         }
 
         .moreInfoContainer {
-          width: 19.18vw;
-          height: 26.2vh;
+          width: 290px;
           display: inline-block;
           padding-bottom: 10px;
         }
         .moreInfoContainerForEtc {
-          width: 19.18vw;
-          height: 26vh;
+          width: 290px;
+
           display: inline-block;
-          padding-bottom: 1.58vh;
         }
       }
     }
@@ -408,16 +425,18 @@
   }
 }
 
-#buttons {
-  display: inline;
-  gap: 1.3vw;
-
+.buttons {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  padding-top: 62px;
+  @include centerFormat();
   .OrderCancelBtn {
     @include heading2Font($black100Color);
-    width: 13.8vw;
-    height: 6.78vh;
-    margin-top: 2.26vh;
-    margin-left: 14vw;
+    width: 210px;
+    height: 60px;
+    padding: 10px;
+    margin-right: 20px;
     background-color: transparent;
     border-radius: 8px;
     border: 1px solid;
@@ -431,10 +450,9 @@
   }
 
   .OrderSaveBtn {
-    width: 13.8vw;
-    height: 6.78vh;
-    margin-top: 4.5vh;
-    margin-left: 1.3vw;
+    width: 210px;
+    height: 60px;
+    padding: 10px;
     background-color: $primaryColor;
     border: none;
     border-radius: 8px;

@@ -234,18 +234,9 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
         </div>
         <div id="rightButtons">
           {isLoggedIn ? (
-            <>
-              <button className="rightButton" onClick={() => logOut()}>
-                로그아웃
-              </button>
-
-              <button
-                className="rightButton"
-                onClick={() => setIsMyProfile((prev) => !prev)}
-              >
-                <MyProfileIconAsset id="myProfileIconAsset" />
-              </button>
-            </>
+            <button className="rightButton" onClick={() => logOut()}>
+              로그아웃
+            </button>
           ) : (
             <button
               className="rightButton"
@@ -261,6 +252,15 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
           ) : (
             <button className="rightButton" onClick={() => setIsKorean(true)}>
               <GlobalIconAsset width={23} height={23} id="globalIconAsset" />
+            </button>
+          )}
+
+          {isLoggedIn && (
+            <button
+              className="rightButton"
+              onClick={() => setIsMyProfile((prev) => !prev)}
+            >
+              <MyProfileIconAsset id="myProfileIconAsset" />
             </button>
           )}
         </div>
