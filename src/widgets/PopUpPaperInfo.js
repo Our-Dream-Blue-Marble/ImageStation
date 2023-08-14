@@ -13,9 +13,7 @@ export function PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp) {
               <div className="EachInfoContainer">
                 <label className="PaperInfo1">
                   <p>몽블랑</p>
-                  <p className="Thickness">
-                    220g/m<sup>2</sup>
-                  </p>
+                  <p className="Thickness">220g/m{"\xB2"}</p>
                 </label>
                 <div className="sizeInfo">최대크기A3</div>
                 <div className="detailInfo">
@@ -25,9 +23,7 @@ export function PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp) {
               <div className="EachInfoContainer">
                 <label className="PaperInfo1">
                   <p>랑데부</p>
-                  <p className="Thickness">
-                    210g/m<sup>2</sup>
-                  </p>
+                  <p className="Thickness">210g/m{"\xB2"}</p>
                 </label>
                 <div className="sizeInfo">최대크기A3</div>
                 <div className="detailInfo">
@@ -38,7 +34,7 @@ export function PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp) {
                 <label className="PaperInfo1">
                   <p>스노우지</p>
                   <p className="Thickness">
-                    200g/m<sup>2</sup>&nbsp;&nbsp;120g/m<sup>2</sup>
+                    200g/m{"\xB2"}&nbsp;&nbsp;120g/m{"\xB2"}
                   </p>
                 </label>
                 <div className="sizeInfo">최대크기A3</div>
@@ -49,9 +45,7 @@ export function PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp) {
               <div className="EachInfoContainer">
                 <label className="PaperInfo1">
                   <p>마쉬멜로우</p>
-                  <p className="Thickness">
-                    209g/m<sup>2</sup>
-                  </p>
+                  <p className="Thickness">209g/m{"\xB2"}</p>
                 </label>
                 <div className="sizeInfo">최대크기A3</div>
                 <div className="detailInfo">
@@ -61,9 +55,7 @@ export function PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp) {
               <div className="EachInfoContainer">
                 <label className="PaperInfo1">
                   <p>아트지</p>
-                  <p className="Thickness">
-                    220g/m<sup>2</sup>
-                  </p>
+                  <p className="Thickness">220g/m{"\xB2"}</p>
                 </label>
                 <div className="sizeInfo">최대크기A3</div>
                 <div className="detailInfo">
@@ -73,9 +65,7 @@ export function PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp) {
               <div className="EachInfoContainer">
                 <label className="PaperInfo1">
                   <p>모조지</p>
-                  <p className="Thickness">
-                    220g/m<sup>2</sup>
-                  </p>
+                  <p className="Thickness">220g/m{"\xB2"}</p>
                 </label>
                 <div className="sizeInfo">최대크기A3</div>
                 <div className="detailInfo">
@@ -85,9 +75,7 @@ export function PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp) {
               <div className="EachInfoContainer">
                 <label className="PaperInfo1">
                   <p>색지</p>
-                  <p className="Thickness">
-                    220g/m<sup>2</sup>
-                  </p>
+                  <p className="Thickness">220g/m{"\xB2"}</p>
                 </label>
                 <div className="sizeInfo">최대크기A4</div>
                 <div className="detailInfo">
