@@ -6,7 +6,7 @@
 
 .OrderPageBackground {
   width: 100%;
-  height: 92vh;
+  min-height: 884px;
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -60,11 +60,10 @@
 
     .FileCancelButton {
       position: absolute;
-      width: 3.3vw;
-      height: 5.65vh;
-      margin-top: 4.5vh;
-      margin-bottom: 61.3vh;
-      padding-right: 31vw;
+      margin-top: 24px;
+      margin-left: 24px;
+      margin-bottom: 542px;
+      padding-right: 486px;
       border: none;
       background-color: transparent;
     }
@@ -240,7 +239,6 @@
     .categorySelectBodyContainer {
       width: 355px;
       height: 450px;
-      overflow: auto;
       overflow-x: hidden;
       .categorySelect {
         width: 18vw;
@@ -310,13 +308,13 @@
           border-right: none;
           border-bottom: solid 1px;
           border-color: $black50Color;
-          width: 33.5vh;
+          width: 290px;
         }
 
         summary {
-          margin-top: 2vh;
-          margin-bottom: 2vh;
-          height: 2.49vh;
+          margin-top: 14px;
+          margin-bottom: 14px;
+          height: auto;
           position: relative;
           cursor: pointer;
         }
@@ -433,7 +431,6 @@
   height: 60px;
   padding-top: 62px;
   @include centerFormat();
-
   .OrderCancelBtn {
     @include heading2Font($black100Color);
     width: 210px;
