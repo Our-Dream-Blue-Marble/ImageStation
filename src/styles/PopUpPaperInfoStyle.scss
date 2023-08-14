@@ -13,8 +13,8 @@
 
   .PopUpPaperInfoWholeContainer {
     position: absolute;
-    width: 35vw;
-    height: 80vh;
+    width: 540px;
+    height: 706px;
     background: $white100Color;
     text-align: center;
     z-index: 9999;
@@ -25,27 +25,29 @@
     justify-content: center;
     display: fixed;
     overflow: hidden;
-    margin-top: 5vh;
-    margin-left: 33vw;
+    margin-top: 48px;
+    margin-left: 35vw;
 
     .PaperInfoPopUptitle {
       @include heading2Font($primaryColor);
-      margin-top: 5vh;
-      margin-bottom: 5vh;
+      margin-top: 51px;
+      margin-bottom: 41px;
     }
 
     .PaperInfoContainer {
-      height: 53vh;
-      width: 31.8vw;
-      margin-left: 2.5vw;
+      height: 470px;
+      width: 495px;
+      margin-left: 35px;
       overflow: scroll;
       overflow-x: hidden;
 
       .EachInfoContainer {
-        width: 35vh;
-        height: 8vw;
-        margin-left: 5.5vw;
+        width: 300px;
+        height: 125px;
+        margin-left: 85px;
         display: fixed;
+
+        margin-bottom: 20px;
       }
 
       .PaperInfo1 {
@@ -55,25 +57,28 @@
         float: left;
         text-align: left;
         width: 100%;
-        height: 3vh;
-
+        height: 20px;
         justify-content: left;
 
+        margin-bottom: 24px;
+
         p {
-          margin-top: 0px;
-          width: 6.5vw;
+          margin-top: 1px;
+          width: 100px;
           float: left;
         }
 
         .Thickness {
-          margin-top: 0px;
-          width: 10vw;
+          margin-bottom: 0px;
+          width: 5px;
+          @include body1Font($gray100Color);
         }
       }
 
       .PaperInfo2 {
         display: flex;
-        margin-top: 5vh;
+
+        margin-bottom: 30px;
       }
 
       .sizeInfo {
@@ -82,26 +87,24 @@
         display: flex;
         text-align: left;
         float: left;
-        width: 6vw;
-        height: 1.5vh;
+        width: 70px;
+        height: 15px;
         margin-right: 0px;
-        padding-top: 0.5vh;
       }
       .detailInfo {
         @include body1Font($black75Color);
 
-        margin-top: 1vh;
-        margin-left: 6.6vw;
+        margin-top: 45px;
+        margin-left: 100px;
         text-align: left;
-        width: 12.7vw;
-        height: 9.5vh;
+        width: 200px;
+        height: 79px;
         padding: 0;
 
         .detailInfoHeader {
-          line-height: 1; /* Adjust this value as needed */
+          line-height: 1;
           margin-top: 0px;
           margin-bottom: 0px;
-          height: 3vh;
           text-align: left;
           top: 0;
         }
@@ -126,7 +129,7 @@
 
   footer {
     width: 100%;
-    height: 70px;
+    height: 80px;
     position: absolute;
     bottom: 0;
     left: 0;
