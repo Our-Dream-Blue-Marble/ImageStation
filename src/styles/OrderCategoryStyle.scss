@@ -15,8 +15,8 @@
     margin-top: 19.68vh;
     display: grid;
     margin-top: 100px;
-    grid-template-columns: 15.675vw 15.675vw 15.675vw;
-    grid-template-rows: 26.81vh 26.81vh;
+    grid-template-columns: 237px 237px 237px;
+    grid-template-rows: 237px 237px;
     grid-column-gap: 1.85vw;
     grid-row-gap: 3.16vh;
     backface-visibility: hidden;
@@ -53,7 +53,7 @@
       .explain {
         width: 172px;
         height: 130px;
-        margin-top: 20px;
+        margin-top: 45px;
         text-align: center;
         @include body1Font($black75Color);
       }
