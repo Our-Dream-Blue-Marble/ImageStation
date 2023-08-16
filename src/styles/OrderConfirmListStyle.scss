@@ -43,12 +43,13 @@
       padding-right: 1vw;
 
       .header_text {
-        @include heading3Font($black100Color);
-        width: 111px;
+        width: 120px;
         text-align: center;
+        @include heading3Font($black100Color);
       }
-      .edit_icon {
-        margin-left: -4vw;
+
+      .header_text:last-child {
+        padding: 0;
       }
     }
 
@@ -85,7 +86,7 @@
       }
 
       #order_info {
-        width: 100px;
+        width: 120px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -121,10 +122,19 @@
       }
       #order_edit {
         display: flex;
-        margin-left: -5.5vw;
         flex-direction: column;
-        justify-content: center;
-        text-align: center;
+        @include centerFormat();
+        vertical-align: middle;
+        width: 25px;
+        margin-left: -5.5vw;
+      }
+      #order_cancel {
+        display: flex;
+        flex-direction: column;
+        width: 25px;
+        @include centerFormat();
+        @include captionFont($errorColor);
+        line-height: 14.5px;
       }
     }
 
@@ -145,10 +155,6 @@
       margin-top: 5.1vh;
       position: absolute;
       justify-content: flex-end;
-      #order_icon {
-        width: 25px;
-        height: 25px;
-      }
     }
     #order_state_select {
       display: flex;

@@ -40,7 +40,7 @@ export const createNewOrderDocument = async (
         moreInfo,
         attachment,
         attachmentName,
-        "1",
+        "2",
         "0",
         "0"
       )

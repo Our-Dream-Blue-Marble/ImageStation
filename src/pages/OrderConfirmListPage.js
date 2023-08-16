@@ -31,7 +31,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
     if (isAdmin) {
       getAdminOrderConfirmList(setOrderConfirmList);
     } else {
-      getNotAdminOrderConfirmList(userObject, setOrderConfirmList);
+      getNotAdminOrderConfirmList(setOrderConfirmList);
     }
   }, [isAdmin, userObject]);
 
@@ -46,7 +46,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
           <th className="header_text">수령가능 날짜</th>
           <th className="header_text">예상금액 (수량)</th>
           <th className="header_text">주문 상태</th>
-          {isAdmin ? <th className="edit_icon "> </th> : null}
+          <th className="header_text" style={{ width: "25px" }}></th>
         </div>
         <hr id="headers_line" />
         {orderConfirmList
@@ -132,9 +132,10 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                       style={
                         order.state === "0"
                           ? { color: "#5A91FF" }
+                          : order.state === "-1"
+                          ? { color: "#BBC0C6" }
                           : { color: "#727375" }
                       }>
-                      {" "}
                       <select
                         id="order_state_select"
                         value={order.state}
@@ -148,8 +149,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                           )
                         }>
                         <option value={"0"}>완료</option>
-                        <option value={"1"}>접수중</option>
-                        <option value={"2"}>준비중</option>
+                        <option value={"1"}>준비중</option>
+                        <option value={"2"}>접수중</option>
                       </select>
                     </td>
                   ) : (
@@ -164,32 +165,49 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                     </td>
                   )}
                   {isAdmin ? (
-                    <td
-                      key="orderEdit"
-                      id="order_edit"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        const newIsEditClicked = [...isEditClicked];
-                        newIsEditClicked[i] = !newIsEditClicked[i];
-                        setIsEditClicked(newIsEditClicked);
-                      }}>
-                      {isEditClicked[i] ? (
-                        <OrderInfoEditDoneIcon
+                    order.state !== "-1" ? (
+                      <td
+                        key="orderEdit"
+                        id="order_edit"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const newIsEditClicked = [...isEditClicked];
+                          newIsEditClicked[i] = !newIsEditClicked[i];
+                          setIsEditClicked(newIsEditClicked);
+                        }}>
+                        {isEditClicked[i] ? (
+                          <OrderInfoEditDoneIcon
+                            id="order_icon"
+                            onClick={() => {
+                              onEditOrderDataSaveClick(
+                                order.docId,
+                                newCompleteDate[i],
+                                newTotalMoney[i],
+                                setOrderConfirmList
+                              );
+                            }}
+                          />
+                        ) : (
+                          <OrderInfoEditIcon id="order_icon" />
+                        )}
+                      </td>
+                    ) : (
+                      <td key="orderEdit" id="order_edit">
+                        <OrderInfoEditIcon
                           id="order_icon"
-                          onClick={() => {
-                            onEditOrderDataSaveClick(
-                              order.docId,
-                              newCompleteDate[i],
-                              newTotalMoney[i],
-                              setOrderConfirmList
-                            );
-                          }}
+                          style={{ display: "none" }}
                         />
-                      ) : (
-                        <OrderInfoEditIcon id="order_icon" />
-                      )}
+                      </td>
+                    )
+                  ) : order.state === "2" ? (
+                    <td id="order_cancel">
+                      주문
+                      <br />
+                      취소
                     </td>
-                  ) : null}
+                  ) : (
+                    <td id="order_cancel"></td>
+                  )}
                 </>
               </tr>
 

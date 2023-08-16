@@ -1,4 +1,4 @@
-import { dbService } from "fbase";
+import { authService, dbService } from "fbase";
 import {
   readOrderListDocument,
   updateOrderDataDocument,
@@ -19,11 +19,12 @@ export const getAdminOrderConfirmList = async (setOrderList) => {
   setOrderList(orderConfirmArray);
 };
 
-export const getNotAdminOrderConfirmList = async (userObject, setOrderList) => {
+export const getNotAdminOrderConfirmList = async (setOrderList) => {
   const userMyOrderDocRef = await dbService
     .collection("users")
-    .doc(userObject.uid)
+    .doc(authService.currentUser.uid)
     .collection("myOrders")
+    .orderBy("docId", "desc")
     .get();
   const userMyOrderDocList = userMyOrderDocRef.docs.map((doc) => ({
     docId: doc.id,
@@ -75,9 +76,11 @@ export const getOrderStateWords = (orderState) => {
   if (orderState === "0") {
     return "완료";
   } else if (orderState === "1") {
-    return "접수중";
-  } else if (orderState === "2") {
     return "준비중";
+  } else if (orderState === "2") {
+    return "접수중";
+  } else if (orderState === "-1") {
+    return "취소";
   }
 };
 
