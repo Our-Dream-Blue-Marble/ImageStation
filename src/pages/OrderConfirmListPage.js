@@ -40,13 +40,15 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
       <span id="OrderConfirmList_title">주문했던 내역을 확인해보세요!</span>
       <table className="OrderConfirmListContainer">
         <div className="headers">
+          <th style={{ width: "50px", paddingRight: "3%" }}></th>
+          <div className="header_text">
+            <th>주문정보</th>
+            <th>주문일자</th>
+            <th>수령가능 날짜</th>
+            <th>예상금액 (수량)</th>
+            <th>주문 상태</th>
+          </div>
           <th style={{ width: "25px" }}></th>
-          <th className="header_text">주문정보</th>
-          <th className="header_text">주문일자</th>
-          <th className="header_text">수령가능 날짜</th>
-          <th className="header_text">예상금액 (수량)</th>
-          <th className="header_text">주문 상태</th>
-          <th className="header_text" style={{ width: "25px" }}></th>
         </div>
         <hr id="headers_line" />
         {orderConfirmList
@@ -61,109 +63,115 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                       state: { data: order },
                     });
                   }
-                }}>
+                }}
+              >
                 <>
                   <td id="order_attachemnt">
                     <embed src={order.attachment}></embed>
                   </td>
-                  <td id="order_info">
-                    <span id="info_category">
-                      {order.category}/{getOrderDataSizeWords(order.size)}
-                    </span>
-                    <span id="info_title">{order.title}</span>
-                    <span id="info_order_num">{order.docId}</span>
-                  </td>
-                  <td id="order_date">{getOrderSubmitDate(order)}</td>
-                  {isEditClicked[i] ? (
-                    <td id="order_collect_date">
-                      <input
-                        id="order_complete_date_input"
-                        type="date"
-                        value={newCompleteDate[i]}
-                        onChange={(event) => {
-                          const newDates = [...newCompleteDate];
-                          newDates[i] = event.target.value;
-                          setNewCompleteDate(newDates);
-                        }}
-                      />
+                  <div id="order_text">
+                    <td id="order_info">
+                      <span id="info_category">
+                        {order.category}/{getOrderDataSizeWords(order.size)}
+                      </span>
+                      <span id="info_title">{order.title}</span>
+                      <span id="info_order_num">{order.docId}</span>
                     </td>
-                  ) : (
-                    <>
-                      {order.completeTime === "0" ? (
-                        <>
-                          <td id="order_collect_date">미정</td>
-                        </>
-                      ) : (
-                        <>
-                          <td id="order_collect_date">
-                            {convertDateWithDots(order.completeTime)}
-                          </td>
-                        </>
-                      )}
-                    </>
-                  )}
-                  {isEditClicked[i] ? (
-                    <td id="order_money">
-                      <input
-                        id="order_total_money_input"
-                        type="text"
-                        placeholder="예상 금액(수량)"
-                        value={newTotalMoney[i]}
-                        onChange={(event) => {
-                          const newMoney = [...newTotalMoney];
-                          newMoney[i] = event.target.value;
-                          setNewTotalMoney(newMoney);
-                        }}
-                      />
-                    </td>
-                  ) : (
-                    <>
-                      {order.totalMoney === "0" ? (
-                        <td id="order_money">미정</td>
-                      ) : (
-                        <td id="order_money">{order.totalMoney}</td>
-                      )}
-                    </>
-                  )}
+                    <td id="order_date">{getOrderSubmitDate(order)}</td>
+                    {isEditClicked[i] ? (
+                      <td id="order_collect_date">
+                        <input
+                          id="order_complete_date_input"
+                          type="date"
+                          value={newCompleteDate[i]}
+                          onChange={(event) => {
+                            const newDates = [...newCompleteDate];
+                            newDates[i] = event.target.value;
+                            setNewCompleteDate(newDates);
+                          }}
+                        />
+                      </td>
+                    ) : (
+                      <>
+                        {order.completeTime === "0" ? (
+                          <>
+                            <td id="order_collect_date">미정</td>
+                          </>
+                        ) : (
+                          <>
+                            <td id="order_collect_date">
+                              {convertDateWithDots(order.completeTime)}
+                            </td>
+                          </>
+                        )}
+                      </>
+                    )}
+                    {isEditClicked[i] ? (
+                      <td id="order_money">
+                        <input
+                          id="order_total_money_input"
+                          type="text"
+                          placeholder="예상 금액(수량)"
+                          value={newTotalMoney[i]}
+                          onChange={(event) => {
+                            const newMoney = [...newTotalMoney];
+                            newMoney[i] = event.target.value;
+                            setNewTotalMoney(newMoney);
+                          }}
+                        />
+                      </td>
+                    ) : (
+                      <>
+                        {order.totalMoney === "0" ? (
+                          <td id="order_money">미정</td>
+                        ) : (
+                          <td id="order_money">{order.totalMoney}</td>
+                        )}
+                      </>
+                    )}
 
-                  {isEditClicked[i] ? (
-                    <td
-                      id="order_state"
-                      style={
-                        order.state === "0"
-                          ? { color: "#5A91FF" }
-                          : order.state === "-1"
-                          ? { color: "#BBC0C6" }
-                          : { color: "#727375" }
-                      }>
-                      <select
-                        id="order_state_select"
-                        value={order.state}
-                        onChange={(e) =>
-                          onOrderConfirmStateSelect(
-                            e,
-                            order,
-                            orderConfirmList,
-                            setOrderConfirmList,
-                            i
-                          )
-                        }>
-                        <option value={"0"}>완료</option>
-                        <option value={"1"}>준비중</option>
-                        <option value={"2"}>접수중</option>
-                      </select>
-                    </td>
-                  ) : (
-                    <td
-                      id="order_state"
-                      style={
-                        order.state === "0"
-                          ? { color: "#5A91FF" }
-                          : { color: "#727375" }
-                      }>
-                      {getOrderStateWords(order.state)}
-                    </td>
-                  )}
+                    {isEditClicked[i] ? (
+                      <td
+                        id="order_state"
+                        style={
+                          order.state === "0"
+                            ? { color: "#5A91FF" }
+                            : order.state === "-1"
+                            ? { color: "#BBC0C6" }
+                            : { color: "#727375" }
+                        }
+                      >
+                        <select
+                          id="order_state_select"
+                          value={order.state}
+                          onChange={(e) =>
+                            onOrderConfirmStateSelect(
+                              e,
+                              order,
+                              orderConfirmList,
+                              setOrderConfirmList,
+                              i
+                            )
+                          }
+                        >
+                          <option value={"0"}>완료</option>
+                          <option value={"1"}>준비중</option>
+                          <option value={"2"}>접수중</option>
+                        </select>
+                      </td>
+                    ) : (
+                      <td
+                        id="order_state"
+                        style={
+                          order.state === "0"
+                            ? { color: "#5A91FF" }
+                            : { color: "#727375" }
+                        }
+                      >
+                        {getOrderStateWords(order.state)}
+                      </td>
+                    )}
+                  </div>
                   {isAdmin ? (
                     order.state !== "-1" ? (
                       <td
@@ -174,7 +182,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                           const newIsEditClicked = [...isEditClicked];
                           newIsEditClicked[i] = !newIsEditClicked[i];
                           setIsEditClicked(newIsEditClicked);
-                        }}>
+                        }}
+                      >
                         {isEditClicked[i] ? (
                           <OrderInfoEditDoneIcon
                             id="order_icon"
@@ -224,13 +233,14 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
             setNewTotalMoney([]);
           }}
           disabled={paginationNowPage === 1}
-          id="arrowLeftButton">
+          id="arrowLeftButton"
+        >
           <ArrowLeftIconAsset />
         </button>
 
         <div className="paginationButton">
           {Math.ceil(orderConfirmList.length / paginationLimit) <= 3 &&
-            Array(3)
+            Array(Math.ceil(orderConfirmList.length / paginationLimit))
               .fill()
               .map((_, i) => (
                 <button
@@ -241,7 +251,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                     setNewCompleteDate([]);
                     setNewTotalMoney([]);
                   }}
-                  aria-current={paginationNowPage === i + 1 && "nowPage"}>
+                  aria-current={paginationNowPage === i + 1 && "nowPage"}
+                >
                   {i + 1}
                 </button>
               ))}
@@ -253,7 +264,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                 <button
                   key={i + 1}
                   onClick={(e) => setPaginationNowPage(i + 1)}
-                  aria-current={paginationNowPage === i + 1 && "nowPage"}>
+                  aria-current={paginationNowPage === i + 1 && "nowPage"}
+                >
                   {i + 1}
                 </button>
               ))}
@@ -273,7 +285,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                   }}
                   aria-current={
                     paginationNowPage === paginationNowPage - 2 + i && "nowPage"
-                  }>
+                  }
+                >
                   {paginationNowPage - 2 + i}
                 </button>
               ))}
@@ -290,13 +303,15 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                     setIsEditClicked([]);
                     setNewCompleteDate([]);
                     setNewTotalMoney([]);
-                  }}>
+                  }}
+                >
                   {paginationNowPage - 1}
                 </button>
                 <button
                   key={paginationNowPage}
                   onClick={(e) => setPaginationNowPage(paginationNowPage)}
-                  aria-current="nowPage">
+                  aria-current="nowPage"
+                >
                   {paginationNowPage}
                 </button>
                 <button
@@ -306,7 +321,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                     setIsEditClicked([]);
                     setNewCompleteDate([]);
                     setNewTotalMoney([]);
-                  }}>
+                  }}
+                >
                   {paginationNowPage + 1}
                 </button>
               </>
@@ -324,7 +340,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
             paginationNowPage ===
             Math.ceil(orderConfirmList.length / paginationLimit)
           }
-          id="arrowRightButton">
+          id="arrowRightButton"
+        >
           <ArrowRightIconAsset />
         </button>
       </div>
