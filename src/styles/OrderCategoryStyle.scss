@@ -63,6 +63,10 @@
       background-image: url(../assets/BackgroundAsset.svg);
     }
 
+    .categoryCard:hover .categoryTitle img {
+      display: none;
+    }
+
     .categoryCard:hover .afterHoverBox {
       display: flex;
     }
