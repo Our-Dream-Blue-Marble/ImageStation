@@ -2,6 +2,7 @@ import { authService, dbService } from "fbase";
 import {
   createUserWithEmailAndPassword,
   deleteUser,
+  sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
@@ -34,7 +35,8 @@ export const signIn = async (
         role,
         isReceiveMail,
         Date.now(),
-        Date.now()
+        Date.now(),
+        ""
       )
         .then(() => {
           result = true;
@@ -48,6 +50,18 @@ export const signIn = async (
       if (`${e.message}`.includes("email-already-in-use")) {
         setIsNewUser(false);
       }
+    });
+  return result;
+};
+
+export const userEmailAuthenticate = async () => {
+  var result = false;
+  await sendEmailVerification(authService.currentUser)
+    .then(() => {
+      result = true;
+    })
+    .catch((e) => {
+      console.log(e);
     });
   return result;
 };
