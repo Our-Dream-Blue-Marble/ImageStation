@@ -1,18 +1,16 @@
-import { scrollToSection } from "functions/AppFunction";
-import { ReactComponent as HomeDownIconAsset } from "assets/icons/HomeDownIconAsset.svg";
-import "styles/HomeStyle.scss";
-import NoticeListPage from "./NoticeListPage";
 import { useEffect, useState } from "react";
+import { ReactComponent as HomeDownIconAsset } from "assets/icons/HomeDownIconAsset.svg";
 import { ReactComponent as LogoAsset } from "assets/LogoAsset.svg";
-import { ReactComponent as FooterPolicyAsset } from "assets/FooterPolicyAsset.svg";
+import NoticeListPage from "./NoticeListPage";
 import PopUpAgreeInfoWidget from "widgets/PopUpAgreeInfoWidget";
+import "styles/HomeStyle.scss";
 
 const HomePage = ({ elementRef }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
   };
-  const [isTermClicked, setIsTermClicked] = useState(false);
+  const [isUsingInfoClicked, setIsUsingInfoClicked] = useState(false);
   const [isPersonalInfoClicked, setIsPersonalInfoClicked] = useState(false);
   const [isInquiryClicked, setIsInquiryClicked] = useState(false);
 
@@ -22,18 +20,16 @@ const HomePage = ({ elementRef }) => {
 
   return (
     <>
-      {isTermClicked && (
+      {(isUsingInfoClicked || isPersonalInfoClicked) && (
         <PopUpAgreeInfoWidget
           isAgreePopUp={false}
-          onClickButtonFuction={(e) => {
-            setIsTermClicked(false);
+          onClickBackgroundFuction={(e) => {
+            setIsUsingInfoClicked(false);
+            setIsPersonalInfoClicked(false);
           }}
-        />
-      )}
-      {isPersonalInfoClicked && (
-        <PopUpAgreeInfoWidget
-          isShowPersonalInfo={true}
+          isShowPersonalInfo={isPersonalInfoClicked}
           onClickButtonFuction={(e) => {
+            setIsUsingInfoClicked(false);
             setIsPersonalInfoClicked(false);
           }}
         />
@@ -66,7 +62,7 @@ const HomePage = ({ elementRef }) => {
           {scrollPosition > 200 ? <NoticeListPage /> : null}
         </div>
         <footer>
-          <div className="contentContainer">
+          <div className="footer-container">
             <LogoAsset id="footerAsset" width={200} height={30} />
             <div className="address">
               경북 포항시 북구 흥해읍 한동로 558 한동대학교 37554
@@ -77,16 +73,16 @@ const HomePage = ({ elementRef }) => {
               <div>Mobile: 010-7427-1173</div>
             </div>
             <div className="email">Email: imagesolution.hd@gmail.com</div>
-            <hr id="FooterLine" />
-            <div className="policiesContainer">
+            <hr id="footer-line" />
+            <div className="policies-container">
               <div>Created by CRA</div>
               <div className="policies">
-                <div onClick={() => setIsTermClicked(true)}>이용약관</div>
-                <FooterPolicyAsset className="footerAsset" />
+                <div onClick={() => setIsUsingInfoClicked(true)}>이용약관</div>
+                <hr />
                 <div onClick={() => setIsPersonalInfoClicked(true)}>
                   개인정보처리방침
                 </div>
-                <FooterPolicyAsset className="footerAsset" />
+                <hr />
                 <div onClick={() => setIsInquiryClicked(true)}>개발자문의</div>
               </div>
             </div>
