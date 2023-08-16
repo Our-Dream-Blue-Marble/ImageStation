@@ -48,9 +48,7 @@ const AppRouter = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoggedIn && isEmailVerified) {
-      navigate(HomeRouteName);
-    } else if (isLoggedIn && !isEmailVerified) {
+    if (isLoggedIn && !isEmailVerified) {
       navigate(EmailAuthenticationRouteName);
     }
   }, [isLoggedIn, isEmailVerified, navigate]);
