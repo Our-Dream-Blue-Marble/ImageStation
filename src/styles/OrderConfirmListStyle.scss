@@ -1,7 +1,7 @@
 @import "styles/ThemeStyles.scss";
 
 @mixin orderFormat {
-  width: 100px;
+  width: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,28 +27,28 @@
 
   .OrderConfirmListContainer {
     width: 75vw;
-    padding-top: 5.7vh;
-    padding-bottom: 5.7vh;
-    padding-left: 6.6vw;
-    padding-right: 6.6vw;
+    padding: 5.7vh 6.6vw 5.7vh;
     border-radius: 10px;
     box-shadow: $box-shadow;
     background-color: $white60Color;
 
     .headers {
       display: flex;
-      justify-content: space-between;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
       padding-bottom: 20px;
-      padding-left: 1vw;
-      padding-right: 1vw;
 
       .header_text {
-        @include heading3Font($black100Color);
-        width: 111px;
-        text-align: center;
-      }
-      .edit_icon {
-        margin-left: -4vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+
+        th {
+          width: 120px;
+          @include heading3Font($black100Color);
+        }
       }
     }
 
@@ -65,66 +65,78 @@
     .OrderConfirmView_Container {
       display: flex;
       justify-content: space-between;
-      margin-top: 2.5vh;
-      margin-bottom: 2.5vh;
-      margin-left: 1vw;
-      margin-right: 1vw;
+      width: 100%;
+      padding-top: 2.5vh;
+      padding-bottom: 2.5vh;
       @include body1Font($black100Color);
       cursor: pointer;
 
       #order_attachemnt {
         width: 50px;
         height: 72px;
-        margin-right: -2vw;
+        padding-right: 3%;
         embed {
-          width: 50px;
+          width: 40px;
           height: 72px;
           border: none;
-          overflow: hidden;
         }
       }
 
-      #order_info {
-        width: 100px;
+      #order_text {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        text-align: start;
-        gap: 2px;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
 
-        #info_category {
-          @include body2Font($black50Color);
+        #order_info {
+          @include orderFormat();
+          align-items: flex-start;
+          text-align: start;
+          gap: 2px;
+
+          #info_category {
+            @include body2Font($black50Color);
+          }
+          #info_title {
+            @include body1Font($black100Color);
+          }
+          #info_order_num {
+            @include body1Font($black50Color);
+          }
         }
-        #info_title {
-          @include body1Font($black100Color);
+
+        #order_date {
+          @include orderFormat();
         }
-        #info_order_num {
-          @include body1Font($black50Color);
+
+        #order_collect_date {
+          @include orderFormat();
+        }
+
+        #order_money {
+          @include orderFormat();
+        }
+
+        #order_state {
+          @include orderFormat();
         }
       }
 
-      #order_date {
-        @include orderFormat();
-      }
-
-      #order_collect_date {
-        @include orderFormat();
-      }
-
-      #order_money {
-        @include orderFormat();
-      }
-
-      #order_state {
-        @include orderFormat();
-      }
       #order_edit {
         display: flex;
-        margin-left: -5.5vw;
         flex-direction: column;
-        justify-content: center;
-        text-align: center;
+        @include centerFormat();
+        vertical-align: middle;
+        width: 25px;
+      }
+
+      #order_cancel {
+        display: flex;
+        flex-direction: column;
+        width: 25px;
+        @include centerFormat();
+        @include captionFont($errorColor);
+        line-height: 14.5px;
       }
     }
 
@@ -138,18 +150,6 @@
       background-color: $black50Color;
     }
 
-    #orderConfirmEditIcon {
-      min-width: 577px;
-      width: 60vw;
-      display: flex;
-      margin-top: 5.1vh;
-      position: absolute;
-      justify-content: flex-end;
-      #order_icon {
-        width: 25px;
-        height: 25px;
-      }
-    }
     #order_state_select {
       display: flex;
       @include body1Font($black50Color);
