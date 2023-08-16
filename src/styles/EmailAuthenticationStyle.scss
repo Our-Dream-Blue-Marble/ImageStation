@@ -52,11 +52,18 @@
 }
 
 #emailAuthentication-caption {
-  width: 168px;
+  display: inline-flex;
+  width: 248px;
   height: 22px;
   text-align: center;
   padding-bottom: 2.9vh;
   @include body1Font($black50Color);
+  cursor: pointer;
+
+  span {
+    padding-left: 6px;
+    color: $primaryColor;
+  }
 }
 
 #emailAuthentication-button {
@@ -68,4 +75,5 @@
   border-radius: 10px;
   background: $primaryColor;
   @include heading2Font($white100Color);
+  cursor: pointer;
 }

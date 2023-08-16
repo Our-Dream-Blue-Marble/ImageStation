@@ -6,18 +6,19 @@ import { updateUserEmailAuthenticationDateDocument } from "repositories/UserRepo
 import { EmailCompletedRouteName } from "routes/RouteName";
 import "styles/EmailAuthenticationStyle.scss";
 
-const EmailAuthenticationPage = () => {
+const EmailAuthenticationPage = ({ isEmailVerified, userObject }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (authService.currentUser.emailVerified) {
+    if (isEmailVerified) {
       updateUserEmailAuthenticationDateDocument(
         authService.currentUser.uid,
         Date.now()
-      );
-      navigate(EmailCompletedRouteName);
+      ).then(() => {
+        navigate(EmailCompletedRouteName);
+      });
     }
-  });
+  }, [isEmailVerified, navigate]);
 
   return (
     <div className="emailAuthentication-background">
@@ -32,14 +33,23 @@ const EmailAuthenticationPage = () => {
           <br />
           이메일 인증을 완료하시면 계정 생성이 완료됩니다.
         </div>
-        <div id="emailAuthentication-caption">이메일을 받지 못하셨나요?</div>
+        <div id="emailAuthentication-caption">
+          이메일을 받지 못하셨나요?
+          <span
+            onClick={(e) => {
+              userEmailAuthenticate();
+            }}
+          >
+            다시 보내기
+          </span>
+        </div>
         <button
           id="emailAuthentication-button"
           onClick={(e) => {
-            userEmailAuthenticate();
+            window.location.reload();
           }}
         >
-          다시 보내기
+          인증완료
         </button>
       </div>
     </div>

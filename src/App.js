@@ -15,19 +15,17 @@ function App() {
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
       if (user) {
+        if (user.emailVerified) {
+          setIsEmailVerified(true);
+        }
         setIsLoggedIn(true);
         readUserDocument(authService.currentUser.uid).then((result) => {
           setUserObject(result);
-          if (result.emailAuthenticationDate !== "") {
-            setIsEmailVerified(true);
-            console.log("a");
-          }
           setIsLoading(false);
         });
       } else {
         setIsLoggedIn(false);
         setIsEmailVerified(false);
-        console.log("b");
         setIsLoading(false);
       }
     });
