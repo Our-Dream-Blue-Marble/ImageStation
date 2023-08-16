@@ -22,12 +22,18 @@ const HomePage = ({ elementRef }) => {
 
   return (
     <>
-      {(isTermClicked || isPersonalInfoClicked) && (
+      {isTermClicked && (
         <PopUpAgreeInfoWidget
           isAgreePopUp={false}
-          isShowPersonalInfo={true}
           onClickButtonFuction={(e) => {
             setIsTermClicked(false);
+          }}
+        />
+      )}
+      {isPersonalInfoClicked && (
+        <PopUpAgreeInfoWidget
+          isShowPersonalInfo={true}
+          onClickButtonFuction={(e) => {
             setIsPersonalInfoClicked(false);
           }}
         />
