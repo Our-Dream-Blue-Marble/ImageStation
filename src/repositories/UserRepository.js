@@ -60,8 +60,14 @@ export const deleteUserMyOrdersDocument = async (uid) => {
 };
 
 export const deleteUserDocument = async (uid) => {
-  deleteUserMyOrdersDocument(uid);
   const userDataCollection = await dbService.collection("users").doc(uid);
+  const orderQuerySnapshot = await userDataCollection
+    .collection("myOrders")
+    .get();
+  if (!orderQuerySnapshot.empty) {
+    deleteUserMyOrdersDocument(uid);
+  }
+
   userDataCollection
     .delete()
     .then(() => {
