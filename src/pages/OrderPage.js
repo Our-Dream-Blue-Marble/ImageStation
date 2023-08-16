@@ -86,7 +86,8 @@ const OrderPage = () => {
                 className="popUpHome"
                 onClick={() => {
                   navigate(HomeRouteName);
-                }}>
+                }}
+              >
                 홈
               </button>
               <button
@@ -96,7 +97,8 @@ const OrderPage = () => {
                     state: true,
                     replace: true,
                   });
-                }}>
+                }}
+              >
                 주문내역
               </button>
             </div>
@@ -128,7 +130,8 @@ const OrderPage = () => {
               } else {
                 navigate(OrderCategoryPageRouteName);
               }
-            }}>
+            }}
+          >
             <div className="OrderWholeContainer">
               <div className="OrderContainer-left">
                 <CurrentPageLabel>
@@ -143,7 +146,8 @@ const OrderPage = () => {
                     style={{
                       width: "300px",
                       height: "500px",
-                    }}>
+                    }}
+                  >
                     <label htmlFor="fileLabel" />
                     <input
                       id="FileUpload"
@@ -181,7 +185,8 @@ const OrderPage = () => {
                       setImageUrl("");
                       setIsPdf(false);
                       setIsZip(false);
-                    }}>
+                    }}
+                  >
                     <OrderFileCancel />
                   </button>
                 )}
@@ -235,7 +240,8 @@ const OrderPage = () => {
                           name="page"
                           onChange={async (e) => {
                             onOrderFieldChange(e, setOrderPage);
-                          }}>
+                          }}
+                        >
                           <option value={"0"}>전체</option>
                           <option value={"1"}>짝수</option>
                           <option value={"2"}>홀수</option>
@@ -251,7 +257,8 @@ const OrderPage = () => {
                             name="layout"
                             onChange={async (e) => {
                               onOrderFieldChange(e, setOrderLayout);
-                            }}>
+                            }}
+                          >
                             <option value={false}>세로 방향</option>
                             <option value={true}>가로 방향</option>
                           </select>
@@ -265,7 +272,8 @@ const OrderPage = () => {
                             name="size"
                             onChange={async (e) => {
                               onOrderFieldChange(e, setOrderSize);
-                            }}>
+                            }}
+                          >
                             <option value={"0"}>A2</option>
                             <option value={"1"}>A3</option>
                             <option value={"2"}>A4</option>
@@ -283,7 +291,8 @@ const OrderPage = () => {
                                 name="binding"
                                 onChange={async (e) => {
                                   onOrderFieldChange(e, setOrderBinding);
-                                }}>
+                                }}
+                              >
                                 <option value={"0"}>B4</option>
                                 <option value={"1"}>B2</option>
                               </select>
@@ -298,7 +307,8 @@ const OrderPage = () => {
                                 name="coating"
                                 onChange={async (e) => {
                                   onOrderFieldChange(e, setOrderCoating);
-                                }}>
+                                }}
+                              >
                                 <option value={false}>코팅 없음</option>
                                 <option value={true}>코팅 있음</option>
                               </select>
@@ -317,12 +327,27 @@ const OrderPage = () => {
                           <span>
                             <label className="select_label">
                               종이
+                              <img
+                                src={QuestionMark}
+                                className="QuestionMarkImg"
+                              />
+                              <label
+                                htmlFor="QusetionMarkButton"
+                                className="QusetionMarkLabel"
+                              ></label>
+                              <button
+                                id="QusetionMarkButton"
+                                className="QusetionMarkButton"
+                                type="button"
+                                onClick={getPaperInfoPopUp}
+                              />
                               <select
                                 defaultValue={"0"}
                                 name="paper"
                                 onChange={async (e) => {
                                   onOrderFieldChange(e, setOrderPaper);
-                                }}>
+                                }}
+                              >
                                 <option value={"0"}>일반용지</option>
                                 <option value={"1"}>
                                   몽블랑 220g/m{"\xB2"}
@@ -347,20 +372,6 @@ const OrderPage = () => {
                                 </option>
                                 <option value={"8"}>색지 220g/m{"\xB2"}</option>
                               </select>
-                              <button
-                                id="QusetionMarkButton"
-                                className="QusetionMarkButton"
-                                type="button"
-                                onClick={getPaperInfoPopUp}
-                              />
-                            </label>
-                            <label
-                              htmlFor="QusetionMarkButton"
-                              className="QusetionMarkLabel">
-                              <img
-                                src={QuestionMark}
-                                className="QuestionMarkImg"
-                              />
                             </label>
                           </span>
                           <span>
@@ -370,7 +381,8 @@ const OrderPage = () => {
                               name="color"
                               onChange={async (e) => {
                                 onOrderFieldChange(e, setOrderColor);
-                              }}>
+                              }}
+                            >
                               <option value={true}>컬러</option>
                               <option value={false}>흑백</option>
                             </select>
@@ -388,7 +400,8 @@ const OrderPage = () => {
                             name="color"
                             onChange={async (e) => {
                               onOrderFieldChange(e, setOrderColor);
-                            }}>
+                            }}
+                          >
                             <option value={false}>흑백</option>
                             <option value={true}>컬러</option>
                           </select>
@@ -403,7 +416,8 @@ const OrderPage = () => {
                               onChange={async (e) => {
                                 onOrderFieldChange(e, setOrderMoreInfo);
                               }}
-                              placeholder="추가요청 사항을 적어주세요!"></textarea>
+                              placeholder="추가요청 사항을 적어주세요!"
+                            ></textarea>
                           </label>
                         </span>
                       )}
@@ -416,7 +430,8 @@ const OrderPage = () => {
                               onChange={async (e) => {
                                 onOrderFieldChange(e, setOrderMoreInfo);
                               }}
-                              placeholder="추가요청 사항을 적어주세요!"></textarea>
+                              placeholder="추가요청 사항을 적어주세요!"
+                            ></textarea>
                           </label>
                         </span>
                       )}
@@ -431,7 +446,8 @@ const OrderPage = () => {
                   name="cancel"
                   onClick={(e) => {
                     setIsSubmitButton(false);
-                  }}>
+                  }}
+                >
                   취소
                 </button>
                 <input
