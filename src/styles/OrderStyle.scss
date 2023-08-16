@@ -6,10 +6,15 @@
 
 .OrderPageBackground {
   width: 100%;
-  min-height: 884px;
+  min-height: 100vh;
+  padding-top: 2vh;
+  padding-bottom: 9vh;
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  @include centerFormat();
+
   .OrderLayout {
     width: 100%;
     min-height: 81.2vh;
@@ -444,8 +449,7 @@
   }
 
   .OrderCancelBtn:hover {
-    background-color: $black25Color;
-    border: 0px;
+    background-color: $hoverAndClickColorWhite;
     transition: 0.5s;
   }
 
