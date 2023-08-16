@@ -34,7 +34,6 @@ const SignInPage = () => {
   const [isShowUsingInfo, setIsShowUsingInfo] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [isNewUser, setIsNewUser] = useState(true);
-
   const emailRegEx1 = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@handong.ac.kr$/i;
   const emailRegEx2 = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@handong.edu$/i;
   const passwordRegEx = /^[A-Za-z0-9]{8,40}$/;
