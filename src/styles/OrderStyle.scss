@@ -279,6 +279,15 @@
         .select_label {
           @include body1Font($black100Color);
           align-items: center;
+          height: 20px;
+
+          .QuestionMarkImg {
+            margin-left: 5px;
+            margin-top: 5px;
+            height: 12px;
+            width: 16px;
+            cursor: pointer;
+          }
         }
 
         select {
@@ -313,11 +322,11 @@
           border-right: none;
           border-bottom: solid 1px;
           border-color: $black50Color;
-          width: 290px;
+          width: 289px;
         }
 
         summary {
-          margin-top: 14px;
+          margin-top: 15px;
           margin-bottom: 14px;
           height: auto;
           position: relative;
@@ -331,7 +340,7 @@
         summary::after {
           content: url("../assets/arrow-down.svg");
           height: 0;
-          padding-right: 0.9vw;
+          padding-right: 7px;
           position: absolute;
           top: calc(21% - 1px);
           right: 0;
@@ -340,9 +349,9 @@
 
         summary::after {
           transform: rotate(0deg);
-          padding-left: 0.9vw;
+          padding-left: 7px;
           transform-origin: 50% 50%;
-          height: 1.8vh;
+          height: 10px;
           transition: 300ms;
         }
 
@@ -414,11 +423,6 @@
       background: $black25Color;
       border-radius: 10px;
       height: 0.1vh;
-    }
-
-    .QuestionMarkImg {
-      margin-top: 0.1px;
-      margin-left: 0.2vw;
     }
   }
 
