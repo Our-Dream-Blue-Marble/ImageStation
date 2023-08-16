@@ -6,6 +6,10 @@ export const SignInRouteName = `${process.env.PUBLIC_URL}/signin`;
 
 export const logInRouteName = `${process.env.PUBLIC_URL}/login`;
 
+export const EmailAuthenticationRouteName = `${process.env.PUBLIC_URL}/emailAuthentication`;
+
+export const EmailCompletedRouteName = `${process.env.PUBLIC_URL}/emailCompleted`;
+
 export const NoticeViewRouteName = `${process.env.PUBLIC_URL}/notice/:id`;
 
 export const NoticeWriteRouteName = `${process.env.PUBLIC_URL}/notice/write`;

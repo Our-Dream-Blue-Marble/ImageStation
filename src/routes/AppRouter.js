@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import SignInPage from "pages/SignInPage";
 import NoticeListPage from "pages/NoticeListPage";
@@ -19,6 +19,8 @@ import {
   PaperInfoRouteName,
   NoticeAllRouteName,
   UserLeaveRouteName,
+  EmailAuthenticationRouteName,
+  EmailCompletedRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
@@ -32,8 +34,27 @@ import OrderConfirmViewPage from "pages/OrderConfirmViewPage";
 import PaperInfoPage from "pages/PaperInfoPage";
 import NoticeAllPage from "pages/NoticeAllPage";
 import UserLeavePage from "pages/UserLeavePage";
+import EmailAuthenticationPage from "pages/EmailAuthenticationPage";
+import EmailCompletedPage from "pages/EmailCompletedPage";
+import { useEffect } from "react";
 
-const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
+const AppRouter = ({
+  isLoggedIn,
+  isEmailVerified,
+  isKorean,
+  setIsKorean,
+  userObject,
+}) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn && isEmailVerified) {
+      navigate(HomeRouteName);
+    } else if (isLoggedIn && !isEmailVerified) {
+      navigate(EmailAuthenticationRouteName);
+    }
+  }, [isLoggedIn, isEmailVerified, navigate]);
+
   return (
     <>
       <HeaderPage
@@ -46,6 +67,19 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
         {isLoggedIn ? (
           <>
             <Route path={HomeRouteName} element={<HomePage />} />
+            <Route
+              path={EmailAuthenticationRouteName}
+              element={
+                <EmailAuthenticationPage
+                  isEmailVerified={isEmailVerified}
+                  userObject={userObject}
+                />
+              }
+            />
+            <Route
+              path={EmailCompletedRouteName}
+              element={<EmailCompletedPage />}
+            />
             <Route
               path={NoticeListRouteName}
               element={<NoticeListPage isAdmin={userObject?.role || false} />}

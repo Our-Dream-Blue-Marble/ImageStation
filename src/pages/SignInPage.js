@@ -4,7 +4,11 @@ import {
   onUserEmailOrPasswordChange,
 } from "functions/SignInFunction";
 import { useNavigate } from "react-router-dom";
-import { HomeRouteName, logInRouteName } from "routes/RouteName";
+import {
+  EmailAuthenticationRouteName,
+  HomeRouteName,
+  logInRouteName,
+} from "routes/RouteName";
 import { ReactComponent as PasswordLockIconAsset } from "assets/icons/PasswordLockIconAsset.svg";
 import { ReactComponent as ArrowRightSmallIconAsset } from "assets/icons/ArrowRightSmallIconAsset.svg";
 import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
@@ -12,6 +16,7 @@ import "styles/ThemeStyles.scss";
 import "styles/SignInStyle.scss";
 import "styles/PopUpAgreeInfoWidget.scss";
 import PopUpAgreeInfoWidget from "widgets/PopUpAgreeInfoWidget";
+import { userEmailAuthenticate } from "functions/UserFunction";
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -128,15 +133,18 @@ const SignInPage = () => {
                   isNewUser,
                   setIsNewUser
                 )
-                  .then((result) => {
-                    if (result) {
-                      navigate(HomeRouteName);
+                  .then(async (signInAndCreateResult) => {
+                    if (signInAndCreateResult) {
+                      await userEmailAuthenticate().then((sendEmailResult) => {
+                        if (sendEmailResult) {
+                          navigate(EmailAuthenticationRouteName);
+                        }
+                      });
                     }
                   })
                   .catch((e) => {
                     console.log(e);
                   });
-              } else {
               }
             }}
           >
