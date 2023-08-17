@@ -82,4 +82,8 @@
     @include button1Font($secondaryColor);
     cursor: pointer;
   }
+
+  #info-popUp-back-button:hover {
+    background: $hoverAndClickColorWhite;
+  }
 }

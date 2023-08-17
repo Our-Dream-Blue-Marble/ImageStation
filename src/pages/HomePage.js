@@ -53,7 +53,7 @@ const HomePage = ({ elementRef }) => {
               className="ButtonIcon"
               onClick={() => {
                 window.scrollTo({
-                  top: 650,
+                  top: 770,
                   behavior: "smooth",
                 });
               }}
