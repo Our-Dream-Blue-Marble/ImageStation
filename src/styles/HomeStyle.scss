@@ -26,6 +26,7 @@
       height: 7.35vh;
       padding-top: 30.5vh;
       @include displayFont($black100Color);
+      letter-spacing: 3.5px;
     }
     .SubTitle {
       height: 2.48vh;
@@ -36,7 +37,7 @@
     .ButtonText {
       height: 2.48vh;
       @include body2Font($black100Color);
-      padding-top: 30.2vh;
+      padding-top: 35vh;
     }
     .ButtonIcon {
       height: 5.43vh;
