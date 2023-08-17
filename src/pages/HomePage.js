@@ -18,8 +18,11 @@ const HomePage = ({ elementRef }) => {
     window.addEventListener("scroll", updateScroll);
   });
 
-  const handleOpenNewTab = (url) => {
-    window.open(url, "_blank", "noopener, noreferrer");
+  const scrollToNotice = () => {
+    window.scroll({
+      top: 814,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -49,15 +52,7 @@ const HomePage = ({ elementRef }) => {
             <div className="ButtonText">
               이미지스테이션의 소식을 듣고 싶나요?
             </div>
-            <button
-              className="ButtonIcon"
-              onClick={() => {
-                window.scrollTo({
-                  top: 770,
-                  behavior: "smooth",
-                });
-              }}
-            >
+            <button className="ButtonIcon" onClick={scrollToNotice}>
               <HomeDownIconAsset />
             </button>
           </div>
