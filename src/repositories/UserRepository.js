@@ -42,31 +42,26 @@ export const createNewUserDocument = async (
   return false;
 };
 
-export const deleteUserMyOrdersDocument = async (uid) => {
-  const userMyOrderDataCollection = await dbService
-    .collection("users")
-    .doc(uid)
-    .collection("myOrders");
-  const ordersDataCollection = await dbService.collection("orders");
-
-  const myOrdersSanpshot = await userMyOrderDataCollection.get();
-  if (!myOrdersSanpshot.empty) {
-    myOrdersSanpshot.docs.forEach((doc) => {
-      let docId = doc.data().docId;
-      userMyOrderDataCollection.doc(String(docId)).delete();
-      ordersDataCollection.doc(String(docId)).delete();
-    });
-  }
-};
-
 export const deleteUserDocument = async (uid) => {
   const userDataCollection = await dbService.collection("users").doc(uid);
-  const orderQuerySnapshot = await userDataCollection
+  await userDataCollection
     .collection("myOrders")
-    .get();
-  if (!orderQuerySnapshot.empty) {
-    deleteUserMyOrdersDocument(uid);
-  }
+    .get()
+    .then(async (myOrdersSanpshot) => {
+      if (!myOrdersSanpshot.empty) {
+        const userMyOrderDataCollection =
+          userDataCollection.collection("myOrders");
+        const ordersDataCollection = await dbService.collection("orders");
+        myOrdersSanpshot.docs.forEach((doc) => {
+          let docId = doc.data().docId;
+          userMyOrderDataCollection.doc(String(docId)).delete();
+          ordersDataCollection.doc(String(docId)).delete();
+        });
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 
   userDataCollection
     .delete()
