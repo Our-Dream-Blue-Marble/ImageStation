@@ -82,7 +82,9 @@ const HomePage = ({ elementRef }) => {
                   개인정보처리방침
                 </div>
                 <hr />
-                <div onClick={() => setIsInquiryClicked(true)}>개발자문의</div>
+                <a href="mailto:ssuni9986@handong.ac.kr?subject=ImageStation 서버관련 메일&body=답장을 받으실 메일주소와 관련 문의사항을 남겨주세요">
+                  개발자문의
+                </a>
               </div>
             </div>
           </div>
