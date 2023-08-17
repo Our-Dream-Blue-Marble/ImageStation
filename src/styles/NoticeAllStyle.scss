@@ -24,14 +24,15 @@
     .NoticeAllTitle {
       @include heading2Font($primaryColor);
       width: 365px;
+      margin-right: 165px;
     }
 
     .noticeWriteBtn {
+      @include displayFont($primaryColor);
+      @include centerFormat();
       display: flex;
       width: 32px;
-      margin-left: 135px;
-      font-size: 48px;
-      color: $primaryColor;
+      margin-bottom: 7px;
       background-color: inherit;
       border: none;
     }
