@@ -142,17 +142,15 @@
   align-items: flex-start;
   padding-right: 5vw;
   gap: 2.6vw;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .rightButton {
   display: inline-flex;
   @include centerFormat();
   padding: 0;
-  @include subHeading3Font($black75Color);
   border: none;
   background-color: transparent;
+  @include subHeading3Font($black75Color);
   cursor: pointer;
 }
 
