@@ -328,6 +328,7 @@ const OrderPage = () => {
                             <label className="select_label">
                               종이
                               <img
+                                title="종이정보 자세히 보기"
                                 src={QuestionMark}
                                 className="QuestionMarkImg"
                               />

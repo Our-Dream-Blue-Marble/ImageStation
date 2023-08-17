@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoticeListRouteName } from "routes/RouteName";
 import "styles/AdminNoticeUpdateStyle.scss";
+import Loading from "assets/Loading.gif";
 
 const AdminNoticeUpdatePage = () => {
   const location = useLocation();
@@ -29,7 +30,9 @@ const AdminNoticeUpdatePage = () => {
   return (
     <div className="noticeUpdateLayout">
       {currentNoticeObj === null ? (
-        <>Loading...</>
+        <div className="LoadingBackGround">
+          <img src={Loading} className="LoadingGif" />
+        </div>
       ) : (
         <div>
           <form
@@ -62,7 +65,8 @@ const AdminNoticeUpdatePage = () => {
                   replace: true,
                 });
               }
-            }}>
+            }}
+          >
             <div className="updateContainer">
               <input
                 className="noticeUpdateTitleTextBox"
@@ -104,7 +108,8 @@ const AdminNoticeUpdatePage = () => {
                 name="cancel"
                 onClick={(e) => {
                   setIsSubmitButton(false);
-                }}>
+                }}
+              >
                 취소하기
               </button>
               <input
