@@ -117,6 +117,12 @@
           border: none;
           background: $black50Color;
         }
+        a {
+          text-decoration-line: none;
+        }
+        a:link {
+          color: $black75Color;
+        }
       }
     }
   }
