@@ -18,6 +18,10 @@ const HomePage = ({ elementRef }) => {
     window.addEventListener("scroll", updateScroll);
   });
 
+  const handleOpenNewTab = (url) => {
+    window.open(url, "_blank", "noopener, noreferrer");
+  };
+
   return (
     <>
       {(isUsingInfoClicked || isPersonalInfoClicked) && (
@@ -50,7 +54,7 @@ const HomePage = ({ elementRef }) => {
               onClick={() => {
                 window.scrollTo({
                   top: 650,
-                  //behavior: "smooth",
+                  behavior: "smooth",
                 });
               }}
             >

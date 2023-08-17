@@ -13,8 +13,8 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      height: 82.46vh;
-      background-image: url("../assets/BackgroundAsset.svg");
+      height: 92.1vh;
+      background-image: url("../assets/HomeBackgroundAsset.svg");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: left top;
@@ -24,7 +24,7 @@
 
     .Title {
       height: 7.35vh;
-      padding-top: 30.76vh;
+      padding-top: 30.5vh;
       @include displayFont($black100Color);
     }
     .SubTitle {
@@ -36,7 +36,7 @@
     .ButtonText {
       height: 2.48vh;
       @include body2Font($black100Color);
-      padding-top: 23vh;
+      padding-top: 30.2vh;
     }
     .ButtonIcon {
       height: 5.43vh;
