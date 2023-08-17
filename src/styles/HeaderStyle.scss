@@ -207,14 +207,16 @@
       justify-content: space-between;
       align-items: center;
       vertical-align: middle;
+      height: 28px;
       @include heading3Font($black100Color);
       padding-bottom: 5px;
 
       button {
         width: 25px;
-        height: 25px;
+        height: 28px;
         padding: 0;
         margin: 0;
+        vertical-align: middle;
         border: none;
         background-color: transparent;
         cursor: pointer;
