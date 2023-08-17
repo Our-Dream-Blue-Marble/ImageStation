@@ -37,8 +37,10 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       {isLoading && isEmailVerified === null ? (
-        <div className="LoadingBackGround">
-          <img src={Loading} className="LoadingGif" />
+        <div>
+          <div className="LoadingBackGround">
+            <img src={Loading} className="LoadingGif" />
+          </div>
         </div>
       ) : (
         <div className="App">

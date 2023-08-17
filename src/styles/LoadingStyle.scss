@@ -1,17 +1,26 @@
 @import "ThemeStyles.scss";
 
-.LoadingBackGround {
+.LoadingBackGround{
+  height: 950px;
   width: 100%;
-  height: 100%;
-  padding-top: 350px;
-  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  backdrop-filter: blur(2px);
+  background-color: skyblue;
+  background-size: cover;
+  backdrop-filter: blur(4px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
-  .LoadingGif {
-    height: 200px;
-    width: 350px;
-  }
+.LoadingGif {
+  height: 200px;
+  width: 350px;
+  background: none;
+  top: 0;
+  left: 0;
+  z-index: 999;
 }
