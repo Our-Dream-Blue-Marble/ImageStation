@@ -57,10 +57,9 @@
       border-radius: 16px;
       display: flex;
       position: sticky;
-      margin-left: 430px;
-      margin-bottom: 58vh;
-      background: $black10Color;
-      top: 202px;
+      margin-top: 495px;
+      background: $black25Color;
+      z-index: 99;
     }
 
     .FileCancelButton {
@@ -164,7 +163,7 @@
 
   .pdfFileContainer {
     width: 400px;
-    height: 500px;
+    height: 580px;
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
@@ -185,10 +184,10 @@
   }
 
   .rpv-core__inner-page {
-    width: 300px;
-    height: 500px;
-    padding: none;
-    margin: none;
+    display: flex;
+    position: static;
+    margin-top: 67px;
+
     background-color: transparent;
     background: none;
 
@@ -214,10 +213,13 @@
 
   .rpv-core__inner-pages.rpv-core__inner-pages--vertical::-webkit-scrollbar-track {
     background-color: transparent;
+    position: static;
+    margin-top: 11px;
   }
 
   .rpv-core__inner-pages.rpv-core__inner-pages--vertical::-webkit-scrollbar-thumb {
     height: 129px;
+
     background: $black25Color;
     border-radius: 10px;
   }
@@ -242,7 +244,7 @@
       @include heading2Font($black100Color);
     }
     .categorySelectBodyContainer {
-      width: 355px;
+      width: 354px;
       height: 450px;
       overflow-x: hidden;
       .categorySelect {
