@@ -71,6 +71,27 @@
       @include body1Font($black100Color);
       cursor: pointer;
 
+      .delete-order-style {
+        display: inline-flex;
+        color: $black25Color !important;
+        text-decoration: line-through;
+      }
+
+      .delete-order-state-style {
+        display: inline-flex;
+        color: $errorColor;
+        text-decoration: none;
+      }
+
+      .finish-order-state-style {
+        display: inline-flex;
+        color: $primaryColor;
+      }
+      .progress-order-state-style {
+        display: inline-flex;
+        color: $black50Color;
+      }
+
       #order_attachemnt {
         width: 50px;
         height: 72px;
