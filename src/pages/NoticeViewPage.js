@@ -9,6 +9,7 @@ import { readNoticeDocument } from "repositories/NoticeRepository";
 import { ReactComponent as DeleteAsset } from "assets/icons/NoticeDeleteIconAsset.svg";
 import "styles/NoticeViewStyle.scss";
 import { onAttachmentDownloadClick } from "functions/CommonFunction";
+import Loading from "assets/Loading.gif";
 
 const NoticeViewPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -66,7 +67,9 @@ const NoticeViewPage = ({ isAdmin }) => {
       ) : null}
       <div className="noticeViewLayout">
         {noticeViewObj === null ? (
-          <>Loading...</>
+          <div className="LoadingBackGround">
+            <video src={Loading} className="LoadingGif" />
+          </div>
         ) : (
           <>
             <div className="noticeViewBoxContainer">

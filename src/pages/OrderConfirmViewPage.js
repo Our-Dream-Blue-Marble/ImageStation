@@ -10,6 +10,7 @@ import { getDecryptedData } from "functions/UserFunction";
 import { onAttachmentDownloadClick } from "functions/CommonFunction";
 import { readOrderDocument } from "repositories/OrderRepository";
 import { OrderConfirmListRouteName } from "routes/RouteName";
+import Loading from "assets/Loading.gif";
 
 import { pageNavigationPlugin } from "@react-pdf-viewer/page-navigation";
 import { RenderCurrentPageLabelProps } from "@react-pdf-viewer/page-navigation";
@@ -58,7 +59,9 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
           )}
         </CurrentPageLabel>
         {orderData === null ? (
-          <>Loading</>
+          <div className="LoadingBackGround">
+            <img src={Loading} className="LoadingGif" />
+          </div>
         ) : (
           <>
             <div className="AllLayout">

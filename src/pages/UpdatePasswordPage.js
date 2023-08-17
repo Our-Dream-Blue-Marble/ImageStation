@@ -104,12 +104,14 @@ const UpdatePasswordPage = () => {
             <div className="otherPage-routing-buttons">
               <div
                 className="otherPage-routing-button"
-                onClick={() => navigate(logInRouteName)}>
+                onClick={() => navigate(logInRouteName)}
+              >
                 로그인하고 싶으신가요? <span>로그인</span>
               </div>
               <div
                 className="otherPage-routing-button"
-                onClick={() => navigate(SignInRouteName)}>
+                onClick={() => navigate(SignInRouteName)}
+              >
                 회원가입 하셨나요? <span>회원가입</span>
               </div>
             </div>
