@@ -245,7 +245,7 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               회원가입 / 로그인
             </button>
           )}
-          {isKorean ? (
+          {/* {isKorean ? (
             <button className="rightButton" onClick={() => setIsKorean(false)}>
               <GlobalIconAsset width={23} height={23} id="globalIconAsset" />
             </button>
@@ -253,7 +253,7 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
             <button className="rightButton" onClick={() => setIsKorean(true)}>
               <GlobalIconAsset width={23} height={23} id="globalIconAsset" />
             </button>
-          )}
+          )} */}
 
           {isLoggedIn && (
             <button

@@ -31,8 +31,8 @@
     height: 69px;
   }
   @include tablet {
+    width: 100%;
     height: 80px;
-    width: 69px;
   }
   @include desktop {
     width: 100%;
@@ -46,7 +46,7 @@
   background-position: left top;
   background-size: cover;
   background-color: $white100Color;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 3px 0px $black10Color;
 }
 
 #logoAsset {
@@ -63,34 +63,53 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  width: 100%;
   margin-top: 28px;
 }
 
 #centerButtons_button {
-  @include centerFormat();
   display: flex;
-  width: 32.5vw;
-  align-items: flex-start;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
   gap: 5vw;
-  padding-left: 13.9vw;
-  padding-right: 12.4vw;
   overflow: hidden;
   white-space: nowrap;
 }
 
+.centerButton {
+  padding: 0;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  @include subHeading2Font($black100Color);
+  cursor: pointer;
+}
+
+.centerButton:nth-child(1) {
+  width: 56px;
+}
+
+.centerButton:nth-child(2) {
+  width: 56px;
+}
+
+.centerButton:nth-child(3) {
+  width: 56px;
+}
+
+.centerButton:nth-child(4) {
+  width: 83px;
+}
+
 #centerButtons_line {
-  @include centerFormat();
   display: flex;
-  width: 32.5vw;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
   height: 22px;
   gap: 5vw;
-  align-items: flex-end;
-  padding-left: 13.9vw;
-  padding-right: 12.4vw;
-  padding-bottom: 0;
-  margin: 0;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .centerLine {
@@ -115,49 +134,23 @@
   width: 83px;
 }
 
-.centerButton {
-  padding: 0;
-  @include subHeading2Font($black100Color);
-  text-align: center;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.centerButton:nth-child(1) {
-  width: 56px;
-}
-
-.centerButton:nth-child(2) {
-  width: 56px;
-}
-
-.centerButton:nth-child(3) {
-  width: 56px;
-}
-
-.centerButton:nth-child(4) {
-  width: 83px;
-}
-
 #rightButtons {
   display: flex;
-  width: 27vw;
+  width: 12vw;
   height: 33px;
   vertical-align: middle;
   align-items: flex-start;
+  padding-right: 5vw;
   gap: 2.6vw;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .rightButton {
   display: inline-flex;
   @include centerFormat();
   padding: 0;
-  @include subHeading3Font($black75Color);
-  background-color: transparent;
   border: none;
+  background-color: transparent;
+  @include subHeading3Font($black75Color);
   cursor: pointer;
 }
 
