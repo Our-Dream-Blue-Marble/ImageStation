@@ -5,22 +5,18 @@
 }
 
 .OrderPageBackground {
+  display: flex;
   width: 100%;
-  min-height: 100vh;
-  padding-top: 2vh;
-  padding-bottom: 9vh;
+  min-height: calc(100vh - 69px);
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  @include centerFormat();
 
   .OrderLayout {
+    display: grid;
     width: 100%;
-    min-height: 81.2vh;
-    display: flex;
-    align-items: center;
-    align-content: center;
+    min-height: 702px;
+    padding-top: 74px;
     justify-content: center;
   }
 }
@@ -31,9 +27,7 @@
   border-radius: 10px;
   background-color: $white60Color;
   display: block;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
+  @include centerFormat();
 
   .OrderContainer-left {
     float: left;
@@ -438,7 +432,7 @@
   display: flex;
   width: 100%;
   height: 60px;
-  padding-top: 62px;
+  padding-top: 40px;
   @include centerFormat();
   .OrderCancelBtn {
     @include heading2Font($black100Color);
