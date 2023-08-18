@@ -83,7 +83,7 @@ const PaperInfoPage = () => {
               <div className="paperWeight">150g/m2</div>
               <div className="paperExplain">
                 광택이 나며
-                <br /> 고급스러움을 나태낼 때 적합한 용지
+                <br /> 고급스러움을 나타낼 때 적합한 용지
               </div>
             </div>
           </div>
