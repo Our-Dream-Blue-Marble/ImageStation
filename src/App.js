@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { readUserDocument } from "repositories/UserRepository";
 import ScrollToTop from "ScrollToTop";
 import "styles/LoadingStyle.scss";
-import Loading from "assets/Loading.gif";
+import LoadingWidgets from "widgets/LoadingWidgets";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,11 +37,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       {isLoading && isEmailVerified === null ? (
-        <div className="LoadingBackGround">
-          <div className="GifContainer">
-            <img src={Loading} className="LoadingGif" />
-          </div>
-        </div>
+        <LoadingWidgets />
       ) : (
         <div className="App">
           <AppRouter

@@ -10,7 +10,6 @@ import { getDecryptedData } from "functions/UserFunction";
 import { onAttachmentDownloadClick } from "functions/CommonFunction";
 import { readOrderDocument } from "repositories/OrderRepository";
 import { OrderConfirmListRouteName } from "routes/RouteName";
-import Loading from "assets/Loading.gif";
 
 import { pageNavigationPlugin } from "@react-pdf-viewer/page-navigation";
 import { RenderCurrentPageLabelProps } from "@react-pdf-viewer/page-navigation";
@@ -24,6 +23,7 @@ import {
   getOrderDataSizeWords,
   getOrderStateWords,
 } from "functions/OrderConfirmFunction";
+import LoadingWidgets from "widgets/LoadingWidgets";
 
 const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
   const location = useLocation();
@@ -59,9 +59,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
           )}
         </CurrentPageLabel>
         {orderData === null ? (
-          <div className="LoadingBackGround">
-            <img src={Loading} className="LoadingGif" />
-          </div>
+          <LoadingWidgets />
         ) : (
           <>
             <div className="AllLayout">
@@ -108,8 +106,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
 
                     <div
                       className="categoryAttachment"
-                      onClick={() => onAttachmentDownloadClick(orderData)}
-                    >
+                      onClick={() => onAttachmentDownloadClick(orderData)}>
                       {orderData.attachmentName}
                     </div>
                     {isAdmin ? (
@@ -247,8 +244,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
             <div className="navigateButtonSection">
               <button
                 className="navigateButton"
-                onClick={() => navigate(OrderConfirmListRouteName)}
-              >
+                onClick={() => navigate(OrderConfirmListRouteName)}>
                 돌아가기
               </button>
             </div>

@@ -8,8 +8,7 @@ const NoticeListPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [notice, setNotice] = useState([]);
-  const page = 1;
-  const limit = 4;
+
   const [isNoticeDeleted, setIsNoticeDeleted] = useState(location.state);
   useEffect(() => {
     getNoticeList(setNotice);
@@ -34,8 +33,7 @@ const NoticeListPage = () => {
 
         <div
           className="AllBtnContainer"
-          onClick={() => navigate(NoticeAllRouteName, { state: false })}
-        >
+          onClick={() => navigate(NoticeAllRouteName, { state: false })}>
           <div className="noticeListAll">더보기</div>
           <div className="noticeAllArrow"></div>
         </div>
@@ -50,8 +48,7 @@ const NoticeListPage = () => {
                 navigate(NoticeListRouteName + "/" + value.id, {
                   state: { data: value },
                 })
-              }
-            >
+              }>
               <div className="contentCard">
                 <pre className=" noticeListTitle">{value.title}</pre>
                 <div className=" noticeListDate">

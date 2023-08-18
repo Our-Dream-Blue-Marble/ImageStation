@@ -14,6 +14,7 @@ import { ReactComponent as NoticeFilledPinAsset } from "assets/icons/NoticeFille
 import { ReactComponent as NoticePinAsset } from "assets/icons/NoticePinCheckIconAsset.svg";
 import { ReactComponent as SearchAsset } from "assets/SearchAsset.svg";
 import PopUpWithOneButtonsWidgets from "widgets/PopUpWithOneButtonWidgets";
+import LoadingWidgets from "widgets/LoadingWidgets";
 
 const NoticeAllPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -52,6 +53,7 @@ const NoticeAllPage = ({ isAdmin }) => {
       ) : (
         <></>
       )}
+      {notice === null ? <LoadingWidgets /> : null}
       <div className="NoticeAllLayout">
         <div className="NoticeAllHeadContainer">
           <div className="NoticeAllTitle">

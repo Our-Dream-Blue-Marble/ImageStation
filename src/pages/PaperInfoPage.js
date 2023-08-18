@@ -1,5 +1,4 @@
 import "styles/PaperInfoStyle.scss";
-import LoadingWidgets from "widgets/LoadingWidgets";
 
 const PaperInfoPage = () => {
   return (

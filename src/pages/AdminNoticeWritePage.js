@@ -5,7 +5,7 @@ import {
   onPostTitleOrBodyChange,
 } from "functions/NoticeFunction";
 import { useLocation, useNavigate } from "react-router-dom";
-import { NoticeListRouteName } from "routes/RouteName";
+import { NoticeAllRouteName, NoticeListRouteName } from "routes/RouteName";
 import "styles/AdminNoticeWriteStyle.scss";
 
 const AdminNoticeWritePage = () => {
@@ -57,7 +57,7 @@ const AdminNoticeWritePage = () => {
               }
             });
           } else {
-            navigate(NoticeListRouteName, { replace: true });
+            navigate(NoticeAllRouteName, { replace: true });
           }
         }}>
         <div className="writeContainer">
