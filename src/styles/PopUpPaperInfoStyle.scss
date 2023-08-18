@@ -72,7 +72,7 @@
         .Thickness {
           margin-bottom: 0px;
           width: 5px;
-          @include body1Font($gray100Color);
+          @include body1Font($black100Color);
         }
       }
 
@@ -83,7 +83,7 @@
       }
 
       .sizeInfo {
-        @include captionFont($gray75Color);
+        @include captionFont($black75Color);
 
         display: flex;
         text-align: left;

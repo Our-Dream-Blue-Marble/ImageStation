@@ -89,7 +89,7 @@
       cursor: pointer;
     }
     .noticeUpdateCancelBtn:hover {
-      background-color: $hoverAndClickColorWhite;
+      background-color: $hoverAndClickWhiteColor;
       transition: 0.5s;
     }
 
@@ -105,7 +105,7 @@
       cursor: pointer;
     }
     .noticeUpdateSaveBtn:hover {
-      background-color: $hoverAndClickColor;
+      background-color: $hoverAndClickPrimaryColor;
       transition: 0.5s;
     }
   }
