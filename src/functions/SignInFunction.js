@@ -1,4 +1,3 @@
-import PopUpWithOneButtonsWidgets from "widgets/PopUpWithOneButtonWidgets";
 import { logIn, signIn } from "./UserFunction";
 
 export const onUserEmailOrPasswordChange = (event, setValue) => {
@@ -30,7 +29,6 @@ export const checkHandongEmail = (userEmail) => {
   if (data[1] === "handong.ac.kr" || data[1] === "handong.edu") {
     return true;
   } else {
-    window.alert("handong.ac.kr 및 hadong.edu 형식의 이메일이 아닙니다.");
     return false;
   }
 };
@@ -40,13 +38,15 @@ export const onUserEmailAndPasswordSubmit = async (
   userEmail,
   userPassword,
   isNewUser,
+  setIsShowPopUpContent,
   setIsNewUser,
   setIsRouteConfirm
 ) => {
   event.preventDefault();
   if (checkHandongEmail(userEmail)) {
-    return logIn(userEmail, userPassword, setIsNewUser, setIsRouteConfirm);
+    return logIn(userEmail, userPassword, setIsShowPopUpContent, setIsNewUser);
   } else {
+    setIsShowPopUpContent("email");
     return false;
   }
 };

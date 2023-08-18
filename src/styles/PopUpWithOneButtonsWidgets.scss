@@ -40,7 +40,7 @@
       width: 190px;
     }
 
-    .button-primay {
+    .button-primary {
       width: 139.125px;
       height: 55px;
       border-radius: 8px;
@@ -50,11 +50,11 @@
       cursor: pointer;
     }
 
-    .button-primay:hover {
+    .button-primary:hover {
       background: $hoverAndClickPrimaryColor;
     }
 
-    .button-not-primay {
+    .button-not-primary {
       width: 139.125px;
       height: 55px;
       border-radius: 8px;
@@ -64,7 +64,7 @@
       cursor: pointer;
     }
 
-    .button-not-primay:hover {
+    .button-not-primary:hover {
       background: $hoverAndClickWhiteColor;
     }
   }

@@ -6,11 +6,15 @@ const PopUpWithTwoButtonsWidgets = ({
   leftButtonText,
   rightButtonText,
   isPrimaryColor,
+  onClickBackgroundFunction,
   onClickLeftFunction,
   onClickRightFunction,
 }) => {
   return (
-    <div className="PopUpWithTwoButtonsWidgets">
+    <div
+      className="PopUpWithTwoButtonsWidgets"
+      onClick={onClickBackgroundFunction}
+    >
       <div className="container">
         <div
           className={

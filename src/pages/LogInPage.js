@@ -17,6 +17,8 @@ import {
 } from "functions/UserFunction";
 
 import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
+import PopUpWithOneButtonsWidgets from "widgets/PopUpWithOneButtonWidgets";
+import PopUpWithTwoButtonsWidgets from "widgets/PopUpWithTwoButtonsWidgets";
 
 const LogInPage = () => {
   const navigate = useNavigate();
@@ -25,6 +27,7 @@ const LogInPage = () => {
   const [isSaveUserId, setIsSaveUserId] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
+  const [isShowPopUpContent, setIsShowPopUpContent] = useState("");
   const [isNewUser, setIsNewUser] = useState(false);
   const [isRouteConfirm, setIsRouteConfirm] = useState(false);
 
@@ -56,6 +59,45 @@ const LogInPage = () => {
 
   return (
     <>
+      {/* setIsRouteConfirm(); */}
+      {isShowPopUpContent === "email" && (
+        <PopUpWithOneButtonsWidgets
+          headerText={"이메일 형식에 맞지 않습니다!"}
+          bodyText={"handong.ac.kr 또는 hadong.edu 형식으로 작성해주세요"}
+          buttonText={"닫기"}
+          isPrimaryColor={true}
+          onClickBackgroundFunction={(e) => setIsShowPopUpContent("")}
+          onClickFunction={(e) => setIsShowPopUpContent("")}
+        />
+      )}
+      {isShowPopUpContent === "user-not-found" && (
+        <PopUpWithTwoButtonsWidgets
+          headerText={"회원가입이 필요합니다!"}
+          bodyText={"회원가입을 진행한 다음 로그인 해주세요"}
+          leftButtonText={"닫기"}
+          rightButtonText={"가입하기"}
+          isPrimaryColor={true}
+          onClickBackgroundFunction={(e) => setIsShowPopUpContent("")}
+          onClickLeftFunction={(e) => {
+            setIsShowPopUpContent("");
+            setIsRouteConfirm(false);
+          }}
+          onClickRightFunction={(e) => {
+            setIsShowPopUpContent("");
+            setIsRouteConfirm(true);
+          }}
+        />
+      )}
+      {isShowPopUpContent === "wrong-password" && (
+        <PopUpWithOneButtonsWidgets
+          headerText={"비밀번호가 맞지 않습니다!"}
+          bodyText={"다시 한 번 확인해주세요"}
+          buttonText={"닫기"}
+          isPrimaryColor={true}
+          onClickBackgroundFunction={(e) => setIsShowPopUpContent("")}
+          onClickFunction={(e) => setIsShowPopUpContent("")}
+        />
+      )}
       <div className="PageBackground"></div>
       <div className="login-body">
         <div className="LoginContainer">
@@ -64,16 +106,17 @@ const LogInPage = () => {
               onSubmit={async (e) => {
                 if (isSaveUserId) {
                   setUserIdInLocal(userEmail);
-                } else {
-                  deleteUserIdInLocal();
                 }
+                // else {
+                //   deleteUserIdInLocal();
+                // }
                 await onUserEmailAndPasswordSubmit(
                   e,
                   userEmail,
                   userPassword,
                   isNewUser,
-                  setIsNewUser,
-                  setIsRouteConfirm
+                  setIsShowPopUpContent,
+                  setIsNewUser
                 ).then((result) => {
                   if (result) {
                     navigate(HomeRouteName);

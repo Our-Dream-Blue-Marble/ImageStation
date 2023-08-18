@@ -31,6 +31,7 @@
   justify-content: flex-start;
   align-items: center;
   width: 26.7vw;
+  min-width: 360px;
   height: 78.7vh;
   border-radius: 10px;
   background: $white100Color;
@@ -47,6 +48,7 @@
 
   #info-popUp-context {
     width: 20.1vw;
+    min-width: 260px;
     height: 51.5vh;
     padding: 0;
     margin: 0;

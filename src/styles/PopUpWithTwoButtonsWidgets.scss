@@ -54,14 +54,14 @@
       padding-left: 64px;
 
       .button-left {
-        @include subHeading2Font($secondaryColor);
         display: flex;
+        @include centerFormat();
         width: 139.125px;
         height: 55px;
         border-radius: 8px;
         border: 1px solid $secondaryColor;
         background: $white100Color;
-        box-shadow: $box-shadow;
+        @include subHeading2Font($secondaryColor);
         cursor: pointer;
       }
 
@@ -71,11 +71,11 @@
 
       .button-right-primary {
         display: flex;
+        @include centerFormat();
         width: 139.125px;
         height: 55px;
         border: none;
         border-radius: 8px;
-        box-shadow: $box-shadow;
         background: $primaryColor;
         @include subHeading2Font($white100Color);
         cursor: pointer;
@@ -87,11 +87,11 @@
 
       .button-right-not-primary {
         display: flex;
+        @include centerFormat();
         width: 139.125px;
         height: 55px;
         border: none;
         border-radius: 8px;
-        box-shadow: $box-shadow;
         background: $errorColor;
         @include subHeading2Font($white100Color);
         cursor: pointer;
