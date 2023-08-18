@@ -6,6 +6,7 @@
   flex-shrink: 0;
   position: absolute;
   background: $white20Color;
+  background-size: cover;
   backdrop-filter: blur(2px);
   z-index: 99;
   justify-content: center;
@@ -15,7 +16,8 @@
   .PopUpPaperInfoWholeContainer {
     position: absolute;
     width: 540px;
-    height: 706px;
+
+    min-height: 706px;
     background: $white100Color;
     text-align: center;
     z-index: 999;
