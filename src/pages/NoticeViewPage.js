@@ -9,7 +9,7 @@ import { readNoticeDocument } from "repositories/NoticeRepository";
 import { ReactComponent as DeleteAsset } from "assets/icons/NoticeDeleteIconAsset.svg";
 import "styles/NoticeViewStyle.scss";
 import { onAttachmentDownloadClick } from "functions/CommonFunction";
-import Loading from "assets/Loading.gif";
+import LoadingWidgets from "widgets/LoadingWidgets";
 
 const NoticeViewPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -45,8 +45,7 @@ const NoticeViewPage = ({ isAdmin }) => {
             <div className="popUpButton">
               <button
                 className="popUpCancel"
-                onClick={() => setClickedDelete(false)}
-              >
+                onClick={() => setClickedDelete(false)}>
                 취소
               </button>
               <button
@@ -57,8 +56,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                     state: true,
                     replace: true,
                   });
-                }}
-              >
+                }}>
                 삭제하기
               </button>
             </div>
@@ -67,9 +65,7 @@ const NoticeViewPage = ({ isAdmin }) => {
       ) : null}
       <div className="noticeViewLayout">
         {noticeViewObj === null ? (
-          <div className="LoadingBackGround">
-            <video src={Loading} className="LoadingGif" />
-          </div>
+          <LoadingWidgets />
         ) : (
           <>
             <div className="noticeViewBoxContainer">
@@ -93,8 +89,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                             className="noticeViewAttachmentText"
                             onClick={() =>
                               onAttachmentDownloadClick(noticeViewObj)
-                            }
-                          >
+                            }>
                             {noticeViewObj.attachmentName}
                           </div>
                         ) : null}
@@ -116,8 +111,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                   <div className="adminNoticeViewButtonsContainer">
                     <button
                       className="noticeViewNavigateList"
-                      onClick={() => navigate(-1)}
-                    >
+                      onClick={() => navigate(-1)}>
                       목록으로
                     </button>
                     <button
@@ -127,8 +121,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                           state: { data: noticeViewObj },
                           replace: true,
                         })
-                      }
-                    >
+                      }>
                       수정하기
                     </button>
                   </div>
@@ -137,8 +130,7 @@ const NoticeViewPage = ({ isAdmin }) => {
                       className="adminNoticeDeleteButton"
                       onClick={() => {
                         setClickedDelete(true);
-                      }}
-                    >
+                      }}>
                       <DeleteAsset />
                     </button>
                   </div>

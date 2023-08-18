@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import PopUpWithGifWidgets from "widgets/PopUpWithGifWidgets";
 import PopUpWithTwoButtonsWidgets from "widgets/PopUpWithTwoButtonsWidgets";
 import { HomeRouteName, UserLeaveRouteName } from "routes/RouteName";
-import Loading from "assets/Loading.gif";
+import LoadingWidgets from "widgets/LoadingWidgets";
 
 const UserLeavePage = ({ userObject }) => {
   const [userLeaveText, setUserLeaveText] = useState();
@@ -69,9 +69,7 @@ const UserLeavePage = ({ userObject }) => {
       </>
 
       {userLeaveText === null ? (
-        <div className="LoadingBackGround">
-          <img src={Loading} className="LoadingGif" />
-        </div>
+        <LoadingWidgets />
       ) : (
         <div id="userLeavePage-background">
           <div id="userLeavePage-container">
@@ -86,8 +84,7 @@ const UserLeavePage = ({ userObject }) => {
                   } else {
                     setIsDeleteAccountClicked(true);
                   }
-                }}
-              >
+                }}>
                 회원탈퇴
               </button>
             </div>

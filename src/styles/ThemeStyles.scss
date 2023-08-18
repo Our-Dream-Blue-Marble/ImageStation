@@ -128,6 +128,16 @@ $orderBoxShadow: 0px 2px 2px 1px rgba(33, 36, 39, 0.05);
   letter-spacing: 0%;
 }
 
+@mixin loadingFont($color) {
+  color: $color;
+  text-align: center;
+  font-family: "Pretendard Variable";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+}
+
 @mixin mobile {
   @media (max-width: 767px) {
     @content;
