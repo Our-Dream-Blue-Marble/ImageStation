@@ -20,7 +20,7 @@ const HomePage = ({ elementRef }) => {
 
   const scrollToNotice = () => {
     window.scroll({
-      top: 814,
+      top: 700,
       behavior: "smooth",
     });
   };

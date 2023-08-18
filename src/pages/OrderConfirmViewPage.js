@@ -95,7 +95,14 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
                 <div className="categoryAllContent">
                   <div className="orderConfirmViewHeader">
                     <div id="categoryTitleLayout">
-                      <span id="category">{orderData.category}</span>
+                      <span id="category">
+                        {orderData.category === "normal" && "일반"}
+                        {orderData.category === "binding" && "제본"}
+                        {orderData.category === "labeling" && "라벨지"}
+                        {orderData.category === "actual" && "실사대형출력"}
+                        {orderData.category === "photo" && "사진인화"}
+                        {orderData.category === "etc" && "기타"}
+                      </span>
                       <span id="docId">{orderData.docId}</span>
                     </div>
 
