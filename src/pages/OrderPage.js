@@ -325,56 +325,44 @@ const OrderPage = () => {
                           <summary className="select_label">
                             설정 더보기
                           </summary>
-                          <span>
-                            <label className="select_label">
-                              종이
+                          <span className="paperSpan">
+                            <p className="paper">종이</p>
+                            <label>
                               <img
                                 title="종이정보 자세히 보기"
                                 src={QuestionMark}
                                 className="QuestionMarkImg"
                               />
-                              <label
-                                htmlFor="QusetionMarkButton"
-                                className="QusetionMarkLabel"
-                              ></label>
                               <button
                                 id="QusetionMarkButton"
                                 className="QusetionMarkButton"
                                 type="button"
                                 onClick={getPaperInfoPopUp}
                               />
-                              <select
-                                defaultValue={"0"}
-                                name="paper"
-                                onChange={async (e) => {
-                                  onOrderFieldChange(e, setOrderPaper);
-                                }}
-                              >
-                                <option value={"0"}>일반용지</option>
-                                <option value={"1"}>
-                                  몽블랑 220g/m{"\xB2"}
-                                </option>
-                                <option value={"2"}>
-                                  랑데부 210g/m{"\xB2"}
-                                </option>
-                                <option value={"3"}>
-                                  스노우지 120g/m{"\xB2"}
-                                </option>
-                                <option value={"4"}>
-                                  스노우지 200g/m{"\xB2"}
-                                </option>
-                                <option value={"5"}>
-                                  마시멜로우지 209g/m{"\xB2"}
-                                </option>
-                                <option value={"6"}>
-                                  아트지 220g/m{"\xB2"}
-                                </option>
-                                <option value={"7"}>
-                                  모조지 220g/m{"\xB2"}
-                                </option>
-                                <option value={"8"}>색지 220g/m{"\xB2"}</option>
-                              </select>
                             </label>
+                            <select
+                              defaultValue={"0"}
+                              name="paper"
+                              onChange={async (e) => {
+                                onOrderFieldChange(e, setOrderPaper);
+                              }}
+                            >
+                              <option value={"0"}>일반용지</option>
+                              <option value={"1"}>몽블랑 220g/m{"\xB2"}</option>
+                              <option value={"2"}>랑데부 210g/m{"\xB2"}</option>
+                              <option value={"3"}>
+                                스노우지 120g/m{"\xB2"}
+                              </option>
+                              <option value={"4"}>
+                                스노우지 200g/m{"\xB2"}
+                              </option>
+                              <option value={"5"}>
+                                마시멜로우지 209g/m{"\xB2"}
+                              </option>
+                              <option value={"6"}>아트지 220g/m{"\xB2"}</option>
+                              <option value={"7"}>모조지 220g/m{"\xB2"}</option>
+                              <option value={"8"}>색지 220g/m{"\xB2"}</option>
+                            </select>
                           </span>
                           <span>
                             <label className="select_label">컬러</label>
