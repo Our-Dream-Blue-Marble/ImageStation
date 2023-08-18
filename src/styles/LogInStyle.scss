@@ -10,8 +10,9 @@
 }
 
 .LoginContainer {
-  height: 526px;
   width: 35.7vw;
+  min-width: 340px;
+  height: 526px;
   background-color: $white60Color;
   border-radius: 10px;
   box-shadow: $box-shadow;
@@ -26,7 +27,7 @@
     span {
       @include heading2Font($primaryColor);
       text-align: center;
-      padding-bottom: 53px;
+      padding-bottom: 52px;
     }
     form {
       text-align: center;
@@ -36,6 +37,7 @@
     }
     .InputTextBox {
       width: 24.6vw;
+      min-width: 240px;
       height: 30px;
       border-top: none;
       border-left: none;
@@ -57,8 +59,10 @@
     }
 
     .saveId-checkbox {
-      width: 104px;
-      padding-bottom: 53px;
+      display: inline-flex;
+      width: 24.6vw;
+      min-width: 240px;
+      padding-bottom: 42px;
 
       #checkbox + label {
         display: inline-flex;
@@ -101,10 +105,15 @@
         height: 22px;
         @include body2Font($black100Color);
       }
+
+      span {
+        padding-bottom: 0;
+      }
     }
 
     #submit-button {
       width: 24.6vw;
+      min-width: 240px;
       height: 60px;
       border-radius: 8px;
       border: none;
@@ -116,15 +125,21 @@
     .UpdateAndSigninButtonsContainer {
       display: flex;
       flex-direction: column;
+      align-items: center;
       padding-top: 28px;
+      width: 100%;
       gap: 8px;
     }
 
     .UpdateAndSigninButtons {
+      width: 24.6vw;
+      min-width: 240px;
+      text-align: left;
       @include body1Font($black50Color);
       cursor: pointer;
 
       span {
+        padding-bottom: 0;
         @include body1Font($primaryColor);
       }
     }
