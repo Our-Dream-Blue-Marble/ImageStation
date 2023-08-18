@@ -4,21 +4,24 @@ const PopUpWithOneButtonsWidgets = ({
   headerText,
   bodyText,
   buttonText,
-  themeColor,
-  onClickFuncButton,
+  isPrimaryColor,
+  onClickFunction,
 }) => {
   return (
     <div className="popUpWithOneButtonsWidgets">
-      <div className="popUpWithOneButtonsContainerWidgets">
+      <div className="container">
         <div
-          className="popUpWithOneButtonsHeaderTextWidgets"
-          style={{ color: themeColor }}>
+          className={
+            isPrimaryColor ? "header-text-primary" : "header-text-not-primary"
+          }
+        >
           {headerText}
         </div>
-        <div className="popUpWithOneButtonsBodyTextWidgets">{bodyText}</div>
+        <div className="body-text">{bodyText}</div>
         <button
-          className="popUpWithOneButtonsBtnWidgets"
-          onClick={onClickFuncButton}>
+          className={isPrimaryColor ? "button-primary" : "button-not-primary"}
+          onClick={onClickFunction}
+        >
           {buttonText}
         </button>
       </div>

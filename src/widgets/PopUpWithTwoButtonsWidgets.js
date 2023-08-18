@@ -5,29 +5,33 @@ const PopUpWithTwoButtonsWidgets = ({
   bodyText,
   leftButtonText,
   rightButtonText,
-  themeColor,
-  leffButtonFunction,
-  rightButtonFunction,
+  isPrimaryColor,
+  onClickLeftFunction,
+  onClickRightFunction,
 }) => {
   return (
     <div className="PopUpWithTwoButtonsWidgets">
-      <div className="PopUpWithTwoButtonsContainerWidgets">
+      <div className="container">
         <div
-          className="popUpWithTwoButtonsHeaderTextWidgets"
-          style={{ color: themeColor }}>
+          className={
+            isPrimaryColor ? "header-text-primary" : "header-text-not-primary"
+          }
+        >
           {headerText}
         </div>
-        <div className="popUpWithTwoButtonsBodyTextWidgets">{bodyText}</div>
-        <div className="popUpWithTwoButtonsButtonWidgets">
-          <button
-            className="popUpWithTwoButtonsLeftButtonWidgets"
-            onClick={leffButtonFunction}>
+        <div className="body-text">{bodyText}</div>
+        <div className="buttons">
+          <button className="button-left" onClick={onClickLeftFunction}>
             {leftButtonText}
           </button>
           <button
-            className="popUpWithTwoButtonsRightButtonWidgets"
-            style={{ backgroundColor: themeColor }}
-            onClick={rightButtonFunction}>
+            className={
+              isPrimaryColor
+                ? "button-right-primary"
+                : "button-right-not-primary"
+            }
+            onClick={onClickRightFunction}
+          >
             {rightButtonText}
           </button>
         </div>
