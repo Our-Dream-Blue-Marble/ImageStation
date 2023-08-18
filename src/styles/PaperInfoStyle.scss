@@ -3,19 +3,18 @@
 .PaperInfoLayout {
   width: 100%;
   min-height: 91vh;
-  padding-top: 2vh;
   padding-bottom: 9vh;
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-
+  flex-wrap: wrap;
+  padding-top: 163px;
   .paperHead {
     .PaperTitle {
       @include heading1Font($primaryColor);
       width: 63px;
       height: 43px;
-      margin-top: 163px;
       margin-left: 14.08vw;
     }
     .PaperExplanation {
@@ -25,11 +24,11 @@
       margin-top: 55px;
       margin-left: 14.08vw;
       line-height: 25px;
+      margin-bottom: 70px;
     }
   }
 
   .PaperInfoContainer {
-    margin-top: 163px;
     margin-left: 12vw;
     background-color: transparent;
 
@@ -45,24 +44,24 @@
     }
 
     @include tablet {
-      width: 440px;
-      height: 860px;
+      width: 400px;
+      height: 1864px;
       display: grid;
-      grid-template-columns: 200px 200px;
-      grid-template-rows: 200px 200x 200px 200px;
-      grid-column-gap: 20px;
-      grid-row-gap: 20px;
+      grid-template-columns: 370px;
+      grid-template-rows: 232px 232px 232px 232px;
+      grid-column-gap: 40px;
+      grid-row-gap: 40px;
       backface-visibility: hidden;
     }
 
     @include mobile {
-      width: 120px;
-      height: 460px;
+      width: 400px;
+      height: 1864px;
       display: grid;
-      grid-template-columns: 50px;
-      grid-template-rows: 50px 50px 50px 50px 50px 50px 50px;
-      grid-column-gap: 20px;
-      grid-row-gap: 20px;
+      grid-template-columns: 370px;
+      grid-template-rows: 232px 232px 232px 232px;
+      grid-column-gap: 40px;
+      grid-row-gap: 40px;
       backface-visibility: hidden;
     }
 
