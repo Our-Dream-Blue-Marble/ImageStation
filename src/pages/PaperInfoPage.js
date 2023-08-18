@@ -1,5 +1,4 @@
 import "styles/PaperInfoStyle.scss";
-import LoadingWidgets from "widgets/LoadingWidgets";
 
 const PaperInfoPage = () => {
   return (
@@ -7,7 +6,9 @@ const PaperInfoPage = () => {
       <div className="paperHead">
         <div className="PaperTitle">종이</div>
         <div className="PaperExplanation">
-          더 특별한 인쇄 경험을 <br /> 다양한 종이를 통해 찾아보세요!
+          다양한 종이를 통해
+          <br />
+          특별한 인쇄 경험을 제공합니다.
         </div>
       </div>
       <div className="PaperInfoContainer">
@@ -20,7 +21,7 @@ const PaperInfoPage = () => {
             <div className="afterHoverContentBox">
               <div className="paperWeight">220g/m2</div>
               <div className="paperExplain">
-                높은 백색도로 화사함을 느낄 수 있으며 <br /> 인쇄 선명성이 매우
+                높은 백색도로 화사함을 느낄 수 있으며, <br /> 인쇄 선명성이 매우
                 <br />
                 뛰어나 생생한 비쥬얼 표현에 적합한 용지
               </div>
@@ -84,7 +85,7 @@ const PaperInfoPage = () => {
               <div className="paperWeight">150g/m2</div>
               <div className="paperExplain">
                 광택이 나며
-                <br /> 고급스러움을 나태낼 때 적합한 용지
+                <br /> 고급스러움을 나타낼 때 적합한 용지
               </div>
             </div>
           </div>

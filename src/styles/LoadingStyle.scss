@@ -1,23 +1,28 @@
 @import "ThemeStyles.scss";
 
 .LoadingBackGround {
+  display: flex;
   min-height: 91vh;
   width: 100%;
+  background-color: $white100Color;
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
   background-size: cover;
-  background: $white80Color;
   backdrop-filter: blur(2px);
-  display: flex;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  @include centerFormat();
+  flex-direction: column;
 
   .GifContainer {
     height: 250px;
-    width: 400px;
     background-color: transparent;
     z-index: 999;
+    @include centerFormat();
+
     .LoadingGif {
       height: 200px;
       width: 350px;
@@ -26,5 +31,11 @@
       left: 0;
       z-index: 999;
     }
+  }
+  .LoadingText {
+    width: 350px;
+    @include loadingFont($primaryColor);
+    margin-left: 50px;
+    text-align: center;
   }
 }

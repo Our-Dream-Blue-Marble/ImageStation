@@ -8,8 +8,7 @@ const NoticeListPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [notice, setNotice] = useState([]);
-  const page = 1;
-  const limit = 4;
+
   const [isNoticeDeleted, setIsNoticeDeleted] = useState(location.state);
   useEffect(() => {
     getNoticeList(setNotice);
@@ -29,7 +28,7 @@ const NoticeListPage = () => {
       <div className="noticeHead">
         <div className="noticeListHead">공지사항</div>
         <div className="noticeListExp">
-          이미지스테이션의 새로운 소식을 전해드려요
+          이미지스테이션의 새로운 소식을 전해드려요.
         </div>
 
         <div
