@@ -234,6 +234,8 @@
     border-bottom-right-radius: 10px;
     box-sizing: border-box;
     padding-right: 40px;
+    position: relative;
+
     .categoryHeader {
       width: 301px;
       height: 22px;
@@ -282,13 +284,20 @@
           @include body1Font($black100Color);
           align-items: center;
           height: 20px;
+        }
 
-          .QuestionMarkImg {
-            margin-left: 5px;
-            margin-top: 5px;
-            height: 12px;
-            width: 16px;
-            cursor: pointer;
+        .paperSpan {
+          @include body1Font($black100Color);
+          justify-content: flex-start;
+          display: inline-block;
+          margin-top: 30px;
+
+          .paper {
+            width: 30px;
+            height: 20px;
+            margin: 0px;
+            margin-bottom: 30px;
+            display: inline-flex;
           }
         }
 
@@ -325,6 +334,16 @@
           border-bottom: solid 1px;
           border-color: $black50Color;
           width: 289px;
+          position: relative;
+
+          .QuestionMarkImg {
+            margin-left: 11px;
+            display: inline-block;
+            position: absolute;
+            cursor: pointer;
+            width: 19px;
+            height: 19px;
+          }
         }
 
         summary {
