@@ -33,7 +33,14 @@
 }
 
 #emailCompleted-gif {
+  display: flex;
+  justify-content: center;
+  min-width: 200px;
   height: 33.7vh;
+  margin-top: 10px;
+  img {
+    object-fit: scale-down;
+  }
 }
 
 #emailCompleted-button {
