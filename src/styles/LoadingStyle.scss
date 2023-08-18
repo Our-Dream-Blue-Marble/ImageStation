@@ -3,12 +3,9 @@
 .LoadingBackGround {
   min-height: 91vh;
   width: 100%;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   background-size: cover;
-  background: $popupBackgroundColor;
-  backdrop-filter: blur(10px);
+  background: $white80Color;
+  backdrop-filter: blur(2px);
   display: flex;
   position: fixed;
   top: 0;
@@ -20,9 +17,7 @@
     height: 250px;
     width: 400px;
     background-color: transparent;
-    border: 1px solid;
     z-index: 999;
-    backdrop-filter: blur(4px);
     .LoadingGif {
       height: 200px;
       width: 350px;
