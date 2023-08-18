@@ -26,9 +26,7 @@ const OrderCategoryPage = () => {
             <img src={NormalOrderAsset} width={200} />
           </div>
           <div className="afterHoverBox">
-            <div className="explain">
-              간단한 사무용, 포스터, 카다로그 등 추천합니다!
-            </div>
+            <div className="explain">사무용, 포스터, 카탈로그</div>
           </div>
         </div>
 
@@ -45,7 +43,7 @@ const OrderCategoryPage = () => {
           </div>
           <div className="afterHoverBox">
             <div className="explain">
-              간단한 사무용, 포스터, 카다로그 등 추천합니다!
+              중철, 떡제본, <br /> 단행본/책자, <br /> 카탈로그/브로슈어
             </div>
           </div>
         </div>
@@ -62,9 +60,7 @@ const OrderCategoryPage = () => {
             라벨지 <img src={LabelOrderAsset} width={200} />
           </div>
           <div className="afterHoverBox">
-            <div className="explain">
-              간단한 사무용, 포스터, 카다로그 등 추천합니다!
-            </div>
+            <div className="explain">스티커, 이름표</div>
           </div>
         </div>
 
@@ -80,9 +76,7 @@ const OrderCategoryPage = () => {
             실사대형출력 <img src={ActualOrderAsset} width={200} />
           </div>
           <div className="afterHoverBox">
-            <div className="explain">
-              간단한 사무용, 포스터, 카다로그 등 추천합니다!
-            </div>
+            <div className="explain">현수막, 포스터</div>
           </div>
         </div>
 
@@ -98,9 +92,7 @@ const OrderCategoryPage = () => {
             사진인화 <img src={PhotoOrderAsset} width={200} />
           </div>
           <div className="afterHoverBox">
-            <div className="explain">
-              간단한 사무용, 포스터, 카다로그 등 추천합니다!
-            </div>
+            <div className="explain">일반 사진</div>
           </div>
         </div>
 
@@ -116,9 +108,7 @@ const OrderCategoryPage = () => {
             기타 <img src={EtcOrderAsset} width={200} />
           </div>
           <div className="afterHoverBox">
-            <div className="explain">
-              간단한 사무용, 포스터, 카다로그 등 추천합니다!
-            </div>
+            <div className="explain">커스텀</div>
           </div>
         </div>
       </div>
