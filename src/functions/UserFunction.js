@@ -69,8 +69,8 @@ export const userEmailAuthenticate = async () => {
 export const logIn = async (
   userEmail,
   userPassword,
-  setIsNewUser,
-  setIsRouteConfirm
+  setIsShowPopUpContent,
+  setIsNewUser
 ) => {
   var result = false;
   await signInWithEmailAndPassword(authService, userEmail, userPassword)
@@ -79,19 +79,14 @@ export const logIn = async (
         .then(() => {
           result = true;
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch((e) => {});
     })
     .catch((e) => {
-      console.log(e);
       if (`${e.message}`.includes("user-not-found")) {
         setIsNewUser(true);
-        setIsRouteConfirm(
-          window.confirm("회원가입 화면으로 이동하시겠습니까?")
-        );
+        setIsShowPopUpContent("user-not-found");
       } else if (`${e.message}`.includes("wrong-password")) {
-        setIsRouteConfirm(window.confirm("비밀번호를 다시 확인해주십시오"));
+        setIsShowPopUpContent("wrong-password");
       }
     });
   return result;

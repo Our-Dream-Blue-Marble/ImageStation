@@ -179,15 +179,15 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
             </button>
             <button
               className="centerButton"
-              onClick={() => navigate(PaperInfoRouteName)}
-            >
-              종이정보
-            </button>
-            <button
-              className="centerButton"
               onClick={() => navigate(NoticeAllRouteName)}
             >
               공지사항
+            </button>
+            <button
+              className="centerButton"
+              onClick={() => navigate(PaperInfoRouteName)}
+            >
+              종이정보
             </button>
             <button
               className="centerButton"
@@ -209,7 +209,7 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
             <hr
               className="centerLine"
               style={
-                location.pathname.includes("paper")
+                location.pathname.includes("notice")
                   ? {}
                   : { backgroundColor: "transparent" }
               }
@@ -217,7 +217,7 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
             <hr
               className="centerLine"
               style={
-                location.pathname.includes("notice")
+                location.pathname.includes("paper")
                   ? {}
                   : { backgroundColor: "transparent" }
               }
