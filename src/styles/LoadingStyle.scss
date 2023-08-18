@@ -4,22 +4,24 @@
   display: flex;
   min-height: 91vh;
   width: 100%;
-  background: $white80Color;
+  background-color: $white100Color;
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
   backdrop-filter: blur(2px);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  align-items: center;
+  @include centerFormat();
   flex-direction: column;
 
   .GifContainer {
     height: 250px;
-    width: 400px;
     background-color: transparent;
     z-index: 999;
-    margin-top: 316px;
+    @include centerFormat();
 
     .LoadingGif {
       height: 200px;
@@ -33,6 +35,7 @@
   .LoadingText {
     width: 350px;
     @include loadingFont($primaryColor);
-    @include centerFormat();
+    margin-left: 50px;
+    text-align: center;
   }
 }

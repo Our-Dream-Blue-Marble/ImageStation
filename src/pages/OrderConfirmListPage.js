@@ -54,7 +54,6 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
 
   return (
     <>
-      {orderConfirmList === null ? <LoadingWidgets /> : null}
       {isCancelClicked ? (
         <PopUpWithTwoButtonsWidgets
           headerText={"주문을 취소할까요?"}
