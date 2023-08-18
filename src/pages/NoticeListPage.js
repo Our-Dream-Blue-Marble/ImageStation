@@ -28,12 +28,13 @@ const NoticeListPage = () => {
       <div className="noticeHead">
         <div className="noticeListHead">공지사항</div>
         <div className="noticeListExp">
-          이미지스테이션의 새로운 소식을 전해드려요
+          이미지스테이션의 새로운 소식을 전해드려요.
         </div>
 
         <div
           className="AllBtnContainer"
-          onClick={() => navigate(NoticeAllRouteName, { state: false })}>
+          onClick={() => navigate(NoticeAllRouteName, { state: false })}
+        >
           <div className="noticeListAll">더보기</div>
           <div className="noticeAllArrow"></div>
         </div>
@@ -48,7 +49,8 @@ const NoticeListPage = () => {
                 navigate(NoticeListRouteName + "/" + value.id, {
                   state: { data: value },
                 })
-              }>
+              }
+            >
               <div className="contentCard">
                 <pre className=" noticeListTitle">{value.title}</pre>
                 <div className=" noticeListDate">
