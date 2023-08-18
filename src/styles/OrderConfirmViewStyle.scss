@@ -188,7 +188,7 @@
     }
     .categoryAll {
       height: 42.76vh;
-      width: 21.0vw;
+      width: 21vw;
       overflow-y: scroll;
 
       .categoryAllLayout {
@@ -245,7 +245,7 @@
     }
 
     .navigateButton:hover {
-      background: $hoverAndClickColor;
+      background: $hoverAndClickPrimaryColor;
     }
   }
 }

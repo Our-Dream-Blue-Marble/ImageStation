@@ -60,7 +60,7 @@
       }
     }
     .AllBtnContainer:hover {
-      background-color: $hoverAndClickColorWhite;
+      background-color: $hoverAndClickWhiteColor;
     }
   }
 
@@ -80,7 +80,7 @@
       height: 29.4vh;
       border-radius: 10px;
       box-shadow: $box-shadow;
-      background-color: $grayBlueColor;
+      background-color: $grayBlue100Color;
       cursor: pointer;
 
       .contentCard {

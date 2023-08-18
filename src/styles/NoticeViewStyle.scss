@@ -98,7 +98,7 @@
         cursor: pointer;
       }
       .noticeViewNavigateList:hover {
-        background-color: $hoverAndClickColorWhite;
+        background-color: $hoverAndClickWhiteColor;
         transition: 0.5s;
       }
 
@@ -118,7 +118,7 @@
         cursor: pointer;
       }
       .adminNoticeUpdateButton:hover {
-        background-color: $hoverAndClickColor;
+        background-color: $hoverAndClickPrimaryColor;
         transition: 0.5s;
       }
     }
@@ -210,7 +210,7 @@
         cursor: pointer;
       }
       .popUpDelete:hover {
-        background: $hoverErrorColor;
+        background: $hoverAndClickErrorColor;
       }
     }
   }

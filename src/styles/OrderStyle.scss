@@ -463,7 +463,7 @@
   }
 
   .OrderCancelBtn:hover {
-    background-color: $hoverAndClickColorWhite;
+    background-color: $hoverAndClickWhiteColor;
     transition: 0.5s;
   }
 
@@ -536,7 +536,7 @@
         cursor: pointer;
       }
       .popUpCancel:hover {
-        background: $hoverAndClickColorWhite;
+        background: $hoverAndClickWhiteColor;
       }
       .popUpOrderList {
         @include subHeading2Font($white100Color);
@@ -554,7 +554,7 @@
         cursor: pointer;
       }
       .popUpOrderList:hover {
-        background: $hoverAndClickColor;
+        background: $hoverAndClickPrimaryColor;
       }
     }
   }
