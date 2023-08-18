@@ -43,7 +43,7 @@ const OrderCategoryPage = () => {
           </div>
           <div className="afterHoverBox">
             <div className="explain">
-              중철, 떡제본, 단행본/책자, 카탈로그/브로슈어
+              중철, 떡제본, <br /> 단행본/책자, <br /> 카탈로그/브로슈어
             </div>
           </div>
         </div>
