@@ -3,14 +3,10 @@
 .login-body {
   display: flex;
   @include centerFormat();
-  height: 100%;
-  padding-top: 13vh;
-  padding-bottom: 13vh;
-  background-image: url("../assets/BackgroundAsset.svg");
-  background-repeat: no-repeat;
-  background-position: left top;
-  background-size: cover;
-  background-color: $white100Color;
+  width: 100%;
+  min-height: calc(100vh - 69px);
+  // padding-top: 13vh;
+  // padding-bottom: 13vh;
 }
 
 .LoginContainer {
@@ -44,8 +40,7 @@
       border-top: none;
       border-left: none;
       border-right: none;
-      border-bottom: 1.5px solid;
-      border-color: $black50Color;
+      border-bottom: 1px solid $black50Color;
       margin-bottom: 53px;
       @include subHeading3Font($black100Color);
     }

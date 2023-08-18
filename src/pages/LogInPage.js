@@ -55,89 +55,94 @@ const LogInPage = () => {
   };
 
   return (
-    <div className="login-body">
-      <div className="LoginContainer">
-        <div className="Contents">
-          <form
-            onSubmit={async (e) => {
-              if (isSaveUserId) {
-                setUserIdInLocal(userEmail);
-              } else {
-                deleteUserIdInLocal();
-              }
-              await onUserEmailAndPasswordSubmit(
-                e,
-                userEmail,
-                userPassword,
-                isNewUser,
-                setIsNewUser,
-                setIsRouteConfirm
-              ).then((result) => {
-                if (result) {
-                  navigate(HomeRouteName);
+    <>
+      <div className="PageBackground"></div>
+      <div className="login-body">
+        <div className="LoginContainer">
+          <div className="Contents">
+            <form
+              onSubmit={async (e) => {
+                if (isSaveUserId) {
+                  setUserIdInLocal(userEmail);
+                } else {
+                  deleteUserIdInLocal();
                 }
-              });
-            }}
-          >
-            <input
-              className="InputTextBox"
-              name="userEmail"
-              type="email"
-              placeholder="학교 이메일"
-              required
-              value={userEmail}
-              onChange={(e) => onUserEmailOrPasswordChange(e, setUserEmail)}
-            />
-            <input
-              className="InputTextBox"
-              name="userPassword"
-              type="password"
-              placeholder="비밀번호"
-              required
-              value={userPassword}
-              onChange={(e) => onUserEmailOrPasswordChange(e, setUserPassword)}
-            />
-            <div className="saveId-checkbox">
+                await onUserEmailAndPasswordSubmit(
+                  e,
+                  userEmail,
+                  userPassword,
+                  isNewUser,
+                  setIsNewUser,
+                  setIsRouteConfirm
+                ).then((result) => {
+                  if (result) {
+                    navigate(HomeRouteName);
+                  }
+                });
+              }}
+            >
               <input
-                id="checkbox"
-                name="checkbox"
-                type="checkbox"
-                value={isSaveUserId}
+                className="InputTextBox"
+                name="userEmail"
+                type="email"
+                placeholder="학교 이메일"
+                required
+                value={userEmail}
+                onChange={(e) => onUserEmailOrPasswordChange(e, setUserEmail)}
+              />
+              <input
+                className="InputTextBox"
+                name="userPassword"
+                type="password"
+                placeholder="비밀번호"
+                required
+                value={userPassword}
                 onChange={(e) =>
-                  onUserEmailOrPasswordChange(e, setIsSaveUserId)
+                  onUserEmailOrPasswordChange(e, setUserPassword)
                 }
               />
-              <label for="checkbox"></label>
-              <span id="label">아이디저장</span>
-            </div>
-            <input
-              id="submit-button"
-              type="submit"
-              style={{
-                background: buttonHoverStyle(isPossibleSubmit, isHover),
-              }}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              value={"로그인"}
-            />
-          </form>
-          <div className="UpdateAndSigninButtonsContainer">
-            <div
-              className="UpdateAndSigninButtons"
-              onClick={() => navigate(UpdatePasswordPageRouteName)}
-            >
-              비밀번호 잊으셨나요? <span>비밀번호 찾기</span>
-            </div>
-            <div
-              className="UpdateAndSigninButtons"
-              onClick={() => navigate(SignInRouteName)}
-            >
-              처음이신가요? <span>회원가입</span>
+              <div className="saveId-checkbox">
+                <input
+                  id="checkbox"
+                  name="checkbox"
+                  type="checkbox"
+                  value={isSaveUserId}
+                  onChange={(e) =>
+                    onUserEmailOrPasswordChange(e, setIsSaveUserId)
+                  }
+                />
+                <label for="checkbox"></label>
+                <span id="label">아이디저장</span>
+              </div>
+              <input
+                id="submit-button"
+                type="submit"
+                style={{
+                  background: buttonHoverStyle(isPossibleSubmit, isHover),
+                }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                value={"로그인"}
+              />
+            </form>
+            <div className="UpdateAndSigninButtonsContainer">
+              <div
+                className="UpdateAndSigninButtons"
+                onClick={() => navigate(UpdatePasswordPageRouteName)}
+              >
+                비밀번호 잊으셨나요? <span>비밀번호 찾기</span>
+              </div>
+              <div
+                className="UpdateAndSigninButtons"
+                onClick={() => navigate(SignInRouteName)}
+              >
+                처음이신가요? <span>회원가입</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

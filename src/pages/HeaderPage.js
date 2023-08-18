@@ -234,12 +234,17 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
         </div>
         <div id="rightButtons">
           {isLoggedIn ? (
-            <button className="rightButton" onClick={() => logOut()}>
+            <button
+              className="rightButton"
+              style={{ wordBreak: "keep-all" }}
+              onClick={() => logOut()}
+            >
               로그아웃
             </button>
           ) : (
             <button
               className="rightButton"
+              style={{ wordBreak: "keep-all" }}
               onClick={() => navigate(logInRouteName)}
             >
               회원가입 / 로그인
