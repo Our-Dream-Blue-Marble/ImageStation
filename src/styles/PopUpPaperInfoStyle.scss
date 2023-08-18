@@ -16,8 +16,8 @@
   .PopUpPaperInfoWholeContainer {
     position: absolute;
     width: 540px;
-
-    min-height: 706px;
+    height: 706px;
+    min-height: 400px;
     background: $white100Color;
     text-align: center;
     z-index: 999;
