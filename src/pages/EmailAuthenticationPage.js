@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { updateUserEmailAuthenticationDateDocument } from "repositories/UserRepository";
 import { EmailCompletedRouteName } from "routes/RouteName";
+import EmailAuthAsset from "assets/EmailAuthAsset.png";
 import "styles/EmailAuthenticationStyle.scss";
 
 const EmailAuthenticationPage = ({ isEmailVerified, userObject }) => {
@@ -26,7 +27,10 @@ const EmailAuthenticationPage = ({ isEmailVerified, userObject }) => {
         <div id="emailAuthentication-title">
           <span>이메일 주소</span>를 인증해 주세요.
         </div>
-        <div id="emailAuthentication-gif"></div>
+
+        <div id="emailAuthentication-img">
+          <img src={EmailAuthAsset} />
+        </div>
         <div id="emailAuthentication-content">
           인증 메일이 <span>{authService.currentUser.email}</span>로<br />
           발송 되었습니다.
