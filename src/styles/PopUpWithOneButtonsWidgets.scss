@@ -23,13 +23,13 @@
 
     .header-text-primary {
       @include heading4Font($primaryColor);
-      width: 240px;
+      width: 250px;
       text-align: center;
     }
 
     .header-text-not-primary {
       @include heading4Font($errorColor);
-      width: 240px;
+      width: 250px;
       text-align: center;
     }
 
