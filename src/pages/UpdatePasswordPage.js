@@ -21,6 +21,7 @@ const UpdatePasswordPage = () => {
   const [isHover, setIsHover] = useState(false);
   const [emailNotSaved, setEmailNotSaved] = useState(false);
   const [mailSent, setMailSent] = useState(false);
+  const [isShowPopUpContent, setIsShowPopUpContent] = useState(false);
 
   const emailRegEx1 = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@handong.ac.kr$/i;
   const emailRegEx2 = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@handong.edu$/i;
@@ -48,6 +49,7 @@ const UpdatePasswordPage = () => {
           headerText={"메일이 전송되었습니다!"}
           bodyText={"스팸메일함도 확인해주세요"}
           buttonText={"로그인"}
+          onClickBackgroundFunction={() => navigate(logInRouteName)}
           onClickFuncButton={() => navigate(logInRouteName)}
         />
       )}
@@ -57,10 +59,12 @@ const UpdatePasswordPage = () => {
           bodyText={"회원가입이 되지 않은\n메일입니다. "}
           leftButtonText={"홈"}
           rightButtonText={"회원가입"}
-          lefttButtonFunction={() => {
+          isPrimaryColor={true}
+          onClickBackgroundFunction={() => setEmailNotSaved(false)}
+          onClickLeftFunction={() => {
             navigate(HomeRouteName);
           }}
-          rightButtonFunction={() => {
+          onClickRightFunction={() => {
             navigate(SignInRouteName);
           }}
         />
