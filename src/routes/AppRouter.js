@@ -21,6 +21,7 @@ import {
   UserLeaveRouteName,
   EmailAuthenticationRouteName,
   EmailCompletedRouteName,
+  ErrorPageRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
@@ -36,6 +37,7 @@ import NoticeAllPage from "pages/NoticeAllPage";
 import UserLeavePage from "pages/UserLeavePage";
 import EmailAuthenticationPage from "pages/EmailAuthenticationPage";
 import EmailCompletedPage from "pages/EmailCompletedPage";
+import ErrorPage from "pages/ErrorPage";
 import { useEffect } from "react";
 
 const AppRouter = ({
@@ -172,6 +174,7 @@ const AppRouter = ({
               path={UserLeaveRouteName}
               element={<UserLeavePage userObject={userObject} />}
             />
+            <Route path={ErrorPageRouteName} element={<ErrorPage />} />
           </>
         )}
       </Routes>

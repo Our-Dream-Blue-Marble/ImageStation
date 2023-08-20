@@ -6,6 +6,7 @@ import {
   onUpdateUserDataSubmit,
 } from "functions/UserFunction";
 import {
+  ErrorPageRouteName,
   HomeRouteName,
   logInRouteName,
   NoticeAllRouteName,
@@ -173,7 +174,11 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
           <div id="centerButtons_button">
             <button
               className="centerButton"
-              onClick={() => navigate(OrderCategoryPageRouteName)}
+              onClick={() =>
+                isLoggedIn
+                  ? navigate(OrderCategoryPageRouteName)
+                  : navigate(ErrorPageRouteName)
+              }
             >
               주문예약
             </button>
@@ -191,7 +196,11 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
             </button>
             <button
               className="centerButton"
-              onClick={() => navigate(OrderConfirmListRouteName)}
+              onClick={() =>
+                isLoggedIn
+                  ? navigate(OrderConfirmListRouteName)
+                  : navigate(ErrorPageRouteName)
+              }
             >
               주문내역확인
             </button>
