@@ -72,15 +72,17 @@
         }
 
         .Thickness {
-          margin-bottom: 0px;
-          width: 5px;
+          position: relative;
+          bottom: 5px;
+          width: 150px;
+          height: 45px;
+          margin-left: 25px;
           @include body1Font($black100Color);
         }
       }
 
       .PaperInfo2 {
         display: flex;
-
         margin-bottom: 30px;
       }
 
@@ -98,9 +100,9 @@
         @include body1Font($black75Color);
 
         margin-top: 45px;
-        margin-left: 100px;
+        margin-left: 125px;
         text-align: left;
-        width: 200px;
+        width: 185px;
         height: 79px;
         padding: 0;
 

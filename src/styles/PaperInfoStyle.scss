@@ -100,14 +100,17 @@
         height: 92px;
 
         .paperWeight {
+          position: relative;
+          bottom: 4px;
           width: 140px;
-          margin-bottom: 24px;
+          height: 45px;
           @include body1Font($black100Color);
         }
 
         .paperExplain {
+          position: relative;
           width: 150px;
-          height: 50px;
+          height: 30px;
           @include body1Font($black75Color);
         }
       }
