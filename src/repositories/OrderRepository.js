@@ -95,15 +95,16 @@ export const updateOrderStateDocument = async (docId, newState) => {
   const orderDocumentRef = await dbService
     .collection("orders")
     .doc(String(docId));
+  let result = false;
   await orderDocumentRef
     .update({ state: newState })
     .then(() => {
-      return true;
+      result = true;
     })
     .catch((e) => {
       console.log(e);
     });
-  return false;
+  return result;
 };
 
 export const updateOrderDataDocument = async (

@@ -48,7 +48,9 @@ const NoticeAllPage = ({ isAdmin }) => {
           bodyText={"최대 4개까지\n게시물을 고정할 수 있습니다. "}
           buttonText={"돌아가기"}
           themeColor={"#DD5257"}
-          onClickFuncButton={() => setIsMaxPinClicked(false)}
+          onClickFunction={() => {
+            setIsMaxPinClicked(false);
+          }}
         />
       ) : (
         <></>

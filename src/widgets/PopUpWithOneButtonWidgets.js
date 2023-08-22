@@ -11,21 +11,18 @@ const PopUpWithOneButtonsWidgets = ({
   return (
     <div
       className="popUpWithOneButtonsWidgets"
-      onClick={onClickBackgroundFunction}
-    >
+      onClick={onClickBackgroundFunction}>
       <div className="container">
         <div
           className={
             isPrimaryColor ? "header-text-primary" : "header-text-not-primary"
-          }
-        >
+          }>
           {headerText}
         </div>
         <div className="body-text">{bodyText}</div>
         <button
           className={isPrimaryColor ? "button-primary" : "button-not-primary"}
-          onClick={onClickFunction}
-        >
+          onClick={onClickFunction}>
           {buttonText}
         </button>
       </div>

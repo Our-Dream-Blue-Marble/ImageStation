@@ -60,14 +60,17 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
           bodyText={"접수중에는 취소가 가능합니다!"}
           leftButtonText={"돌아가기"}
           rightButtonText={"주문취소"}
-          themeColor={"#DD5257"}
-          leffButtonFunction={() => {
+          isPrimaryColor={false}
+          onClickLeftFunction={() => {
             setIsCancelClicked(false);
           }}
-          rightButtonFunction={() => {
-            updateOrderStateDocument(calcelOrderId, "-1");
-            setIsCancelClicked(false);
-            window.location.replace(OrderConfirmListRouteName);
+          onClickRightFunction={() => {
+            updateOrderStateDocument(calcelOrderId, "-1").then((result) => {
+              if (result) {
+                setIsCancelClicked(false);
+                window.location.replace(OrderConfirmListRouteName);
+              }
+            });
           }}
         />
       ) : (
