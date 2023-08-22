@@ -153,11 +153,23 @@ export const getOrderDataPaperWords = (paper) => {
   } else if (paper === "5") {
     return <>마시멜로우지 209g/m{"\xB2"}</>;
   } else if (paper === "6") {
-    return <>아트지 220g/m{"\xB2"}</>;
+    return <>아트지 150g/m{"\xB2"}</>;
   } else if (paper === "7") {
-    return <>모조지 220g/m{"\xB2"}</>;
+    return <>모조지 80g/m{"\xB2"}</>;
   } else if (paper === "8") {
-    return <>색지 220g/m{"\xB2"}</>;
+    return <>모조지 100g/m{"\xB2"}</>;
+  } else if (paper === "9") {
+    return <>모조지 120g/m{"\xB2"}</>;
+  } else if (paper === "10") {
+    return <>모조지 150g/m{"\xB2"}</>;
+  } else if (paper === "11") {
+    return <>색지 80g/m{"\xB2"}</>;
+  } else if (paper === "12") {
+    return <>색지 100g/m{"\xB2"}</>;
+  } else if (paper === "13") {
+    return <>색지 120g/m{"\xB2"}</>;
+  } else if (paper === "14") {
+    return <>색지 150g/m{"\xB2"}</>;
   }
 };
 
