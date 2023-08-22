@@ -20,6 +20,7 @@ import { PopUpPaperInfo } from "widgets/PopUpPaperInfo";
 
 import { pageNavigationPlugin } from "@react-pdf-viewer/page-navigation";
 import "@react-pdf-viewer/page-navigation/lib/styles/index.css";
+import PopUpWithTwoButtonsWidgets from "widgets/PopUpWithTwoButtonsWidgets";
 
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -71,38 +72,23 @@ const OrderPage = () => {
   return (
     <>
       <div className="PageBackground" />
+
       {isPaperInfoPopUp && PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp)}
       {clickedOrder && isPossibleSubmit ? (
-        <div className="OrderConfirmPopUp">
-          <div className="OrderConfirmPopUpContainer">
-            <div className="popUpBlueText">주문이 접수 되었습니다!</div>
-            <br />
-            <div className="popUpBlackText">
-              주문내역확인 페이지로
-              <br />
-              이동할까요?
-            </div>
-            <div className="OrderConfirmPopUpButton">
-              <button
-                className="popUpHome"
-                onClick={() => {
-                  navigate(HomeRouteName);
-                }}>
-                홈
-              </button>
-              <button
-                className="popUpOrderList"
-                onClick={() => {
-                  navigate(`${OrderConfirmListRouteName}`, {
-                    state: true,
-                    replace: true,
-                  });
-                }}>
-                주문내역
-              </button>
-            </div>
-          </div>
-        </div>
+        <PopUpWithTwoButtonsWidgets
+          headerText={"주문이 접수 되었습니다!"}
+          bodyText={"주문내역확인 페이지로\n이동할까요?"}
+          isPrimaryColor={true}
+          leftButtonText={"홈"}
+          rightButtonText={"주문내역"}
+          onClickLeftFunction={() => navigate(HomeRouteName)}
+          onClickRightFunction={() => {
+            navigate(`${OrderConfirmListRouteName}`, {
+              state: true,
+              replace: true,
+            });
+          }}
+        />
       ) : null}
       <div className="OrderPageBackground">
         <div className="OrderLayout">

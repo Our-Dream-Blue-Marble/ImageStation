@@ -29,8 +29,8 @@ const UserLeavePage = ({ userObject }) => {
             headerText={"탈퇴되었습니다."}
             bodyText={"그동안 이미지스테이션을\n이용해주셔서 감사합니다."}
             buttonText={"홈"}
-            themeColor={"#DD5257"}
-            onClickFuncButton={() => {
+            isPrimaryColor={false}
+            onClickFunction={() => {
               navigate(HomeRouteName, { replace: true });
             }}
           />
@@ -55,11 +55,11 @@ const UserLeavePage = ({ userObject }) => {
             bodyText={"삭제를 하면\n복구가 불가능합니다!"}
             leftButtonText={"취소"}
             rightButtonText={"탈퇴"}
-            themeColor={"#DD5257"}
-            leffButtonFunction={() => {
+            isPrimaryColor={false}
+            onClickLeftFunction={() => {
               setDeleteAccountConfirmed(false);
             }}
-            rightButtonFunction={async () => {
+            onClickRightFunction={async () => {
               await deleteAccount().then((result) => {
                 window.location.replace(UserLeaveRouteName);
               });
