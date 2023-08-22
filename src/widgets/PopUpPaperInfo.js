@@ -36,7 +36,7 @@ export function PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp) {
                 <label className="PaperInfo1">
                   <p>스노우지</p>
                   <p className="Thickness">
-                    200g/m{"\xB2"}&nbsp;&nbsp;120g/m{"\xB2"}
+                    120g/m{"\xB2"}&nbsp;&nbsp;220g/m{"\xB2"}
                   </p>
                 </label>
                 <div className="sizeInfo">최대크기A3</div>
@@ -71,7 +71,7 @@ export function PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp) {
                 <label className="PaperInfo1">
                   <p>모조지</p>
                   <p className="Thickness">
-                    150g/m{"\xB2"} 120g/m{"\xB2"} 100g/m{"\xB2"} 80g/m{"\xB2"}
+                    80g/m{"\xB2"} 100g/m{"\xB2"} 120g/m{"\xB2"} 150g/m{"\xB2"}
                   </p>
                 </label>
                 <div className="sizeInfo">최대크기A3</div>
@@ -84,7 +84,7 @@ export function PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp) {
                 <label className="PaperInfo1">
                   <p>색지</p>
                   <p className="Thickness">
-                    150g/m{"\xB2"} 120g/m{"\xB2"} 100g/m{"\xB2"} 80g/m{"\xB2"}
+                    80g/m{"\xB2"} 100g/m{"\xB2"} 120g/m{"\xB2"} 150g/m{"\xB2"}
                   </p>
                 </label>
                 <div className="sizeInfo">최대크기A4</div>
