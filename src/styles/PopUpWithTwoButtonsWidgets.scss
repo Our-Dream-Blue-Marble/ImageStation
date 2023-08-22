@@ -8,6 +8,7 @@
   position: fixed;
   backdrop-filter: blur(2px);
   @include centerFormat();
+  z-index: 999;
 
   .container {
     width: 424px;
@@ -24,6 +25,8 @@
       width: 267px;
       height: 44px;
       margin-left: 89px;
+      white-space: pre-line;
+      word-break: break-all;
     }
 
     .header-text-not-primary {
@@ -33,6 +36,8 @@
       width: 267px;
       height: 44px;
       margin-left: 89px;
+      white-space: pre-line;
+      word-break: break-all;
     }
 
     .body-text {

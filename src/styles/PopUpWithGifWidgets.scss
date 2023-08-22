@@ -45,5 +45,8 @@
       border-radius: 10px;
       border: 1px solid $secondaryColor;
     }
+    .PopUpWithGifWidgetsButton:hover {
+      background: $hoverAndClickWhiteColor;
+    }
   }
 }
