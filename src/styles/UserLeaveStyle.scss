@@ -1,14 +1,7 @@
 @import "styles/ThemeStyles.scss";
 
 #userLeavePage-background {
-  height: 100%;
-  padding-top: 9.3vh;
-  padding-bottom: 4.2vh;
-  background-image: url("../assets/BackgroundAsset.svg");
-  background-repeat: no-repeat;
-  background-position: left top;
-  background-size: cover;
-  display: flex;
+  @include pageBackground();
   @include centerFormat();
 
   #userLeavePage-container {
