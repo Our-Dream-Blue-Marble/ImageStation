@@ -39,6 +39,12 @@ const SignInPage = () => {
   const [isShowUsingInfo, setIsShowUsingInfo] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [isNewUser, setIsNewUser] = useState(true);
+  const [isAgreePersonalInfoChecked, setIsAgreePersonalInfoChecked] =
+    useState(false);
+  const [isAgreeUsingInfoChecked, setIsAgreeUsingInfoChecked] = useState(false);
+  const [isAgreePersonalInfoRead, setIsAgreePersonalInfoRead] = useState(false);
+  const [isAgreeUsingInfoRead, setIsAgreeUsingInfoRead] = useState(false);
+
   const emailRegEx1 = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@handong.ac.kr$/i;
   const emailRegEx2 = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@handong.edu$/i;
   const passwordRegEx = /^[A-Za-z0-9]{8,40}$/;
@@ -100,6 +106,16 @@ const SignInPage = () => {
     setIsHover(false);
   };
 
+  const handleAgreePersonalInfoChecked = () => {
+    setIsAgreePersonalInfoChecked(true);
+    setIsAgreePersonalInfoRead(true);
+  };
+
+  const handleAgreeUsingInfoChecked = () => {
+    setIsAgreeUsingInfoChecked(true);
+    setIsAgreeUsingInfoRead(true);
+  };
+
   return (
     <>
       {(isShowPersonalInfo || isShowUsingInfo) && (
@@ -111,7 +127,16 @@ const SignInPage = () => {
           }}
           isShowPersonalInfo={isShowPersonalInfo}
           onClickButtonFuction={(e) => {
-            setIsAgreePersonalInfo(true);
+            if (isShowPersonalInfo) {
+              setIsAgreePersonalInfo(true);
+              handleAgreePersonalInfoChecked();
+            } else {
+              setIsAgreeUsingInfo(true);
+              handleAgreeUsingInfoChecked();
+            }
+
+            setIsShowPersonalInfo(false);
+            setIsShowUsingInfo(false);
           }}
         />
       )}
@@ -286,10 +311,19 @@ const SignInPage = () => {
                   id="isAgreePersonalInfo"
                   name="isAgreePersonalInfo"
                   value={isAgreePersonalInfo}
+                  checked={isAgreePersonalInfoChecked}
                   required
-                  onChange={(e) =>
-                    onUserEmailOrPasswordChange(e, setIsAgreePersonalInfo)
-                  }
+                  onClick={(e) => {
+                    !isAgreePersonalInfoRead && setIsShowPersonalInfo(true);
+                  }}
+                  onChange={(e) => {
+                    onUserEmailOrPasswordChange(e, setIsAgreePersonalInfo);
+                    if (isAgreePersonalInfoRead) {
+                      setIsAgreePersonalInfoChecked(
+                        !isAgreePersonalInfoChecked
+                      );
+                    }
+                  }}
                 />
                 <label
                   for="isAgreePersonalInfo"
@@ -310,10 +344,17 @@ const SignInPage = () => {
                   id="isAgreeUsingInfo"
                   name="isAgreeUsingInfo"
                   value={isAgreeUsingInfo}
+                  checked={isAgreeUsingInfoChecked}
                   required
-                  onChange={(e) =>
-                    onUserEmailOrPasswordChange(e, setIsAgreeUsingInfo)
-                  }
+                  onClick={(e) => {
+                    !isAgreeUsingInfoRead && setIsShowUsingInfo(true);
+                  }}
+                  onChange={(e) => {
+                    onUserEmailOrPasswordChange(e, setIsAgreeUsingInfo);
+                    if (isAgreeUsingInfoRead) {
+                      setIsAgreeUsingInfoChecked(!isAgreeUsingInfoChecked);
+                    }
+                  }}
                 />
                 <label for="isAgreeUsingInfo" name="isAgreeUsingInfo"></label>
                 이용약관에 동의합니다.
