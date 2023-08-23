@@ -1,5 +1,6 @@
 import { authService, dbService } from "fbase";
 import {
+  readOrderDocument,
   readOrderListDocument,
   updateOrderDataDocument,
   updateOrderStateDocument,
@@ -42,7 +43,9 @@ export const getNotAdminOrderConfirmList = async (setOrderList) => {
     })
   );
   userMyOrderDocArray.forEach((element) => {
-    element.userDocRef = null;
+    element.userDocRef.get().then((value) => {
+      element.userDocRef = value.data();
+    });
   });
   setOrderList(userMyOrderDocArray);
 };

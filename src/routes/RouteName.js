@@ -32,4 +32,4 @@ export const NoticeAllRouteName = `${process.env.PUBLIC_URL}/notice/all`;
 
 export const UserLeaveRouteName = `${process.env.PUBLIC_URL}/userLeave`;
 
-export const ErrorPageRouteName = `${process.env.PUBLIC_URL}/error`;
+// export const ErrorPageRouteName = `${process.env.PUBLIC_URL}/error`;

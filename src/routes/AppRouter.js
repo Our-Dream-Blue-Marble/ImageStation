@@ -160,10 +160,10 @@ const AppRouter = ({
               path={UpdatePasswordPageRouteName}
               element={<UpdatePasswordPage />}
             />
-            <Route
+            {/* <Route
               path={OrderCategoryPageRouteName}
               element={<OrderCategoryPage />}
-            />
+            /> */}
 
             <Route path={PaperInfoRouteName} element={<PaperInfoPage />} />
             <Route
@@ -174,7 +174,7 @@ const AppRouter = ({
               path={UserLeaveRouteName}
               element={<UserLeavePage userObject={userObject} />}
             />
-            <Route path={ErrorPageRouteName} element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage />} />
           </>
         )}
       </Routes>

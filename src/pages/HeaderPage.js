@@ -6,7 +6,6 @@ import {
   onUpdateUserDataSubmit,
 } from "functions/UserFunction";
 import {
-  ErrorPageRouteName,
   HomeRouteName,
   logInRouteName,
   NoticeAllRouteName,
@@ -73,8 +72,7 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                     window.location.replace(HomeRouteName);
                   });
                 }
-              }}
-            >
+              }}>
               <span id="user-name">
                 {updateIconClicked ? (
                   <>
@@ -104,8 +102,7 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                     } else {
                       setUpdateIconClicked(true);
                     }
-                  }}
-                >
+                  }}>
                   {updateIconClicked ? (
                     <MyProfileEditSaveIconAsset id="editIconAsset" />
                   ) : (
@@ -155,8 +152,7 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                 <hr />
                 <button
                   id="right-button"
-                  onClick={(e) => navigate(UserLeaveRouteName)}
-                >
+                  onClick={(e) => navigate(UserLeaveRouteName)}>
                   회원탈퇴
                 </button>
               </div>
@@ -165,8 +161,7 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
         </>
       )}
       <header
-        className={scrollPosition < 10 ? "original_header" : "change_header"}
-      >
+        className={scrollPosition < 10 ? "original_header" : "change_header"}>
         <Link to={`${HomeRouteName}`} replace={true}>
           <LogoAsset width={223} height={46.9} id="logoAsset" />
         </Link>
@@ -174,34 +169,22 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
           <div id="centerButtons_button">
             <button
               className="centerButton"
-              onClick={() =>
-                isLoggedIn
-                  ? navigate(OrderCategoryPageRouteName)
-                  : navigate(ErrorPageRouteName)
-              }
-            >
+              onClick={() => navigate(OrderCategoryPageRouteName)}>
               주문예약
             </button>
             <button
               className="centerButton"
-              onClick={() => navigate(NoticeAllRouteName)}
-            >
+              onClick={() => navigate(NoticeAllRouteName)}>
               공지사항
             </button>
             <button
               className="centerButton"
-              onClick={() => navigate(PaperInfoRouteName)}
-            >
+              onClick={() => navigate(PaperInfoRouteName)}>
               종이정보
             </button>
             <button
               className="centerButton"
-              onClick={() =>
-                isLoggedIn
-                  ? navigate(OrderConfirmListRouteName)
-                  : navigate(ErrorPageRouteName)
-              }
-            >
+              onClick={() => navigate(OrderConfirmListRouteName)}>
               주문내역확인
             </button>
           </div>
@@ -246,16 +229,14 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
             <button
               className="rightButton"
               style={{ wordBreak: "keep-all" }}
-              onClick={() => logOut()}
-            >
+              onClick={() => logOut()}>
               로그아웃
             </button>
           ) : (
             <button
               className="rightButton"
               style={{ wordBreak: "keep-all" }}
-              onClick={() => navigate(logInRouteName)}
-            >
+              onClick={() => navigate(logInRouteName)}>
               회원가입 / 로그인
             </button>
           )}
@@ -272,8 +253,7 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
           {isLoggedIn && (
             <button
               className="rightButton"
-              onClick={() => setIsMyProfile((prev) => !prev)}
-            >
+              onClick={() => setIsMyProfile((prev) => !prev)}>
               <MyProfileIconAsset id="myProfileIconAsset" />
             </button>
           )}

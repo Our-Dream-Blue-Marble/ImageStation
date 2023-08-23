@@ -10,6 +10,7 @@ import { ReactComponent as DeleteAsset } from "assets/icons/NoticeDeleteIconAsse
 import "styles/NoticeViewStyle.scss";
 import { onAttachmentDownloadClick } from "functions/CommonFunction";
 import LoadingWidgets from "widgets/LoadingWidgets";
+import ErrorPage from "./ErrorPage";
 
 const NoticeViewPage = ({ isAdmin }) => {
   const location = useLocation();
@@ -17,11 +18,17 @@ const NoticeViewPage = ({ isAdmin }) => {
   const [noticeViewObj, setNoticeViewObj] = useState(null);
   const { id } = useParams();
   const [clickedDelete, setClickedDelete] = useState(false);
+  const [isError, setIsError] = useState(false);
   useEffect(() => {
     if (location.state === null) {
       if (noticeViewObj === null && id !== null) {
         readNoticeDocument(id).then((result) => {
-          setNoticeViewObj(result);
+          if (result) {
+            setNoticeViewObj(result);
+          } else {
+            setIsError(true);
+            console.log(1);
+          }
         });
       }
     } else {
@@ -65,7 +72,11 @@ const NoticeViewPage = ({ isAdmin }) => {
       ) : null}
       <div className="noticeViewLayout">
         {noticeViewObj === null ? (
-          <LoadingWidgets />
+          isError ? (
+            <ErrorPage />
+          ) : (
+            <LoadingWidgets />
+          )
         ) : (
           <>
             <div className="noticeViewBoxContainer">

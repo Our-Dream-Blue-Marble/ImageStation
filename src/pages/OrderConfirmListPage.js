@@ -18,12 +18,11 @@ import { ReactComponent as OrderInfoEditDoneIcon } from "assets/icons/OrderConfi
 import "styles/OrderConfirmListStyle.scss";
 import PopUpWithTwoButtonsWidgets from "widgets/PopUpWithTwoButtonsWidgets";
 import { updateOrderStateDocument } from "repositories/OrderRepository";
-import LoadingWidgets from "widgets/LoadingWidgets";
 
 const OrderConfirmListPage = ({ isAdmin, userObject }) => {
   const navigate = useNavigate();
   const [orderConfirmList, setOrderConfirmList] = useState([]);
-  const paginationLimit = 4;
+  const paginationLimit = 5;
   const [paginationNowPage, setPaginationNowPage] = useState(1);
   const paginationOffset = (paginationNowPage - 1) * paginationLimit;
   const [isEditClicked, setIsEditClicked] = useState([]);
