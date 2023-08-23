@@ -332,6 +332,7 @@ const SignInPage = () => {
                 개인정보 처리방침에 동의합니다.
               </div>
               <ArrowRightSmallIconAsset
+                id="isAgreePersonalInfo"
                 className="asset"
                 onClick={(e) => setIsShowPersonalInfo(true)}
               />

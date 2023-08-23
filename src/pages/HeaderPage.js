@@ -19,6 +19,7 @@ import { ReactComponent as GlobalIconAsset } from "assets/icons/GlobalIconAsset.
 import { ReactComponent as MyProfileIconAsset } from "assets/icons/MyProfileIconAsset.svg";
 import { ReactComponent as MyProfileEditSaveIconAsset } from "assets/icons/MyProfileEditSaveIconAsset.svg";
 import { ReactComponent as EditIconAsset } from "assets/icons/EditIconAsset.svg";
+import PopUpAgreeInfoWidget from "widgets/PopUpAgreeInfoWidget";
 import "styles/HeaderStyle.scss";
 
 const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
@@ -30,6 +31,9 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [newUserName, setNewUserName] = useState();
   const [newUserPhoneNumber, setNewUserPhoneNumber] = useState();
+  const [isUsingInfoClicked, setIsUsingInfoClicked] = useState(false);
+  const [isPersonalInfoClicked, setIsPersonalInfoClicked] = useState(false);
+
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
   };
@@ -45,6 +49,20 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
 
   return (
     <>
+      {(isUsingInfoClicked || isPersonalInfoClicked) && (
+        <PopUpAgreeInfoWidget
+          isAgreePopUp={false}
+          onClickBackgroundFuction={(e) => {
+            setIsUsingInfoClicked(false);
+            setIsPersonalInfoClicked(false);
+          }}
+          isShowPersonalInfo={isPersonalInfoClicked}
+          onClickButtonFuction={(e) => {
+            setIsUsingInfoClicked(false);
+            setIsPersonalInfoClicked(false);
+          }}
+        />
+      )}
       {isMyProfile === true && (
         <>
           <div
@@ -72,7 +90,8 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                     window.location.replace(HomeRouteName);
                   });
                 }
-              }}>
+              }}
+            >
               <span id="user-name">
                 {updateIconClicked ? (
                   <>
@@ -102,7 +121,8 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
                     } else {
                       setUpdateIconClicked(true);
                     }
-                  }}>
+                  }}
+                >
                   {updateIconClicked ? (
                     <MyProfileEditSaveIconAsset id="editIconAsset" />
                   ) : (
@@ -146,13 +166,24 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               </span>
 
               <div id="myProfile-popUp-buttons">
-                <button id="left-button">이용약관</button>
+                <button
+                  id="left-button"
+                  onClick={() => setIsUsingInfoClicked(true)}
+                >
+                  이용약관
+                </button>
                 <hr />
-                <button id="left-button">개인정보</button>
+                <button
+                  id="left-button"
+                  onClick={() => setIsPersonalInfoClicked(true)}
+                >
+                  개인정보
+                </button>
                 <hr />
                 <button
                   id="right-button"
-                  onClick={(e) => navigate(UserLeaveRouteName)}>
+                  onClick={(e) => navigate(UserLeaveRouteName)}
+                >
                   회원탈퇴
                 </button>
               </div>
@@ -161,7 +192,8 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
         </>
       )}
       <header
-        className={scrollPosition < 10 ? "original_header" : "change_header"}>
+        className={scrollPosition < 10 ? "original_header" : "change_header"}
+      >
         <Link to={`${HomeRouteName}`} replace={true}>
           <LogoAsset width={223} height={46.9} id="logoAsset" />
         </Link>
@@ -169,22 +201,26 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
           <div id="centerButtons_button">
             <button
               className="centerButton"
-              onClick={() => navigate(OrderCategoryPageRouteName)}>
+              onClick={() => navigate(OrderCategoryPageRouteName)}
+            >
               주문예약
             </button>
             <button
               className="centerButton"
-              onClick={() => navigate(NoticeAllRouteName)}>
+              onClick={() => navigate(NoticeAllRouteName)}
+            >
               공지사항
             </button>
             <button
               className="centerButton"
-              onClick={() => navigate(PaperInfoRouteName)}>
+              onClick={() => navigate(PaperInfoRouteName)}
+            >
               종이정보
             </button>
             <button
               className="centerButton"
-              onClick={() => navigate(OrderConfirmListRouteName)}>
+              onClick={() => navigate(OrderConfirmListRouteName)}
+            >
               주문내역확인
             </button>
           </div>
@@ -229,14 +265,16 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
             <button
               className="rightButton"
               style={{ wordBreak: "keep-all" }}
-              onClick={() => logOut()}>
+              onClick={() => logOut()}
+            >
               로그아웃
             </button>
           ) : (
             <button
               className="rightButton"
               style={{ wordBreak: "keep-all" }}
-              onClick={() => navigate(logInRouteName)}>
+              onClick={() => navigate(logInRouteName)}
+            >
               회원가입 / 로그인
             </button>
           )}
@@ -253,7 +291,8 @@ const HeaderPage = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
           {isLoggedIn && (
             <button
               className="rightButton"
-              onClick={() => setIsMyProfile((prev) => !prev)}>
+              onClick={() => setIsMyProfile((prev) => !prev)}
+            >
               <MyProfileIconAsset id="myProfileIconAsset" />
             </button>
           )}

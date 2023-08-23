@@ -2,10 +2,11 @@
 
 #userLeavePage-background {
   @include pageBackground();
-  @include centerFormat();
-
+  justify-content: center;
   #userLeavePage-container {
-    width: 35.7vw;
+    width: 540px;
+    height: 680px;
+    margin-top: 7.4vh;
     border-radius: 10px;
     box-shadow: $box-shadow;
     background-color: $white60Color;
@@ -14,7 +15,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      padding: 7vh 5.6vw 5.7vh;
+      padding: 62px 84px 50px;
 
       #title {
         @include heading2Font($black100Color);
