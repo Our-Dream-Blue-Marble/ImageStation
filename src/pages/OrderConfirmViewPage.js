@@ -63,17 +63,16 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
       ) : (
         <div className="orderConfirmLayout">
           <div className="OrderConfirmViewBody">
-            <CurrentPageLabel>
-              {(props: RenderCurrentPageLabelProps) => (
-                <div className="pageNumberContainer">{`${
-                  props.currentPage + 1
-                } / ${props.numberOfPages}`}</div>
-              )}
-            </CurrentPageLabel>
-
             <>
               <div className="AllLayout">
                 <div className="FileLayout">
+                  <CurrentPageLabel>
+                    {(props: RenderCurrentPageLabelProps) => (
+                      <div className="pageNumberContainer">{`${
+                        props.currentPage + 1
+                      } / ${props.numberOfPages}`}</div>
+                    )}
+                  </CurrentPageLabel>
                   {orderData.attachmentName.match(/(.*?)\.(pdf)$/) && (
                     <div className="pdfFileContainer">
                       <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
