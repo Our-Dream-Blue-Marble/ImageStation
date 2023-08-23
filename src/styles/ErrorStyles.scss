@@ -9,6 +9,7 @@
   flex-direction: column;
   background-size: cover;
   background-position: 50%;
+  top: 69px;
 
   .ErrorPageHeaderText {
     @include heading3Font($secondaryColor);

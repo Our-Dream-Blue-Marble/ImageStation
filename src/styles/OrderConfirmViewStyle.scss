@@ -2,7 +2,7 @@
 
 .OrderConfirmViewBody {
   height: 100%;
-  padding-top: 8.37vh;
+
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-position: left top;
@@ -28,6 +28,7 @@
   .AllLayout {
     display: flex;
     flex-direction: row;
+    padding-top: 8.37vh;
     padding-bottom: 7.01vh;
     @include centerFormat();
     .FileLayout {
