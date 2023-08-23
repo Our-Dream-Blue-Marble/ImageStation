@@ -10,21 +10,6 @@
   flex-shrink: 0;
   flex-direction: column;
 
-  .pageNumberContainer {
-    width: 4vw;
-    height: 3vh;
-    text-align: center;
-    border: none;
-    border-radius: 16px;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    margin-left: 48vw;
-    margin-top: 11vh;
-    background: $black10Color;
-    color: $white100Color;
-  }
-
   .AllLayout {
     display: flex;
     flex-direction: row;
@@ -32,8 +17,8 @@
     padding-bottom: 7.01vh;
     @include centerFormat();
     .FileLayout {
-      width: 32.7%;
-      height: 65.6vh;
+      width: 524px;
+      height: 580px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -42,14 +27,26 @@
       margin: 0;
       padding: 0;
 
+      .pageNumberContainer {
+        display: flex;
+        @include subHeading3Font($white100Color);
+        width: 62px;
+        height: 25px;
+        @include centerFormat();
+        border: none;
+        border-radius: 16px;
+        position: sticky;
+        margin-top: 495px;
+        background: $black25Color;
+        z-index: 99;
+      }
       .pdfFileContainer {
         width: 400px;
-        height: 500px;
+        height: 580px;
         box-sizing: border-box;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
         position: absolute;
       }
 
@@ -65,15 +62,16 @@
       }
 
       .rpv-core__inner-page {
-        width: 360px;
-        height: 500px;
-        display: inline-flex;
-        justify-content: end;
+        display: flex;
+        position: static;
+        margin-top: 67px;
+
         background-color: transparent;
+        background: none;
       }
 
       .rpv-core__inner-page-container {
-        width: 350px;
+        width: 340px;
         height: 10px;
         position: relative;
         background-color: transparent;
@@ -92,7 +90,10 @@
       }
 
       .rpv-core__inner-pages.rpv-core__inner-pages--vertical {
-        padding-right: 80px;
+        overflow-x: hidden;
+        align-items: center;
+        width: 429px;
+        margin-left: 27px;
       }
 
       .rpv-core__inner-pages.rpv-core__inner-pages--vertical::-webkit-scrollbar {
@@ -130,8 +131,8 @@
     }
 
     .InfoLayout {
-      width: 24.3%;
-      height: 65.6vh;
+      width: 360px;
+      height: 580px;
       display: flex;
       flex-direction: column;
 
@@ -140,10 +141,9 @@
     }
 
     .categoryAllContent {
-      margin-left: 2.6vw;
-      padding-right: 2.5vw;
-      margin-top: 2.4vh;
-      margin-bottom: 2.4vh;
+      margin-left: 30px;
+      margin-top: 33px;
+      margin-right: 37px;
 
       display: flex;
       flex-direction: column;
@@ -177,6 +177,7 @@
         display: flex;
         flex-direction: row;
         margin-bottom: 2.15vh;
+
         .categoryKeyUserInfo {
           width: 70px;
           padding-right: 2.8vw;
@@ -188,8 +189,8 @@
       }
     }
     .categoryAll {
-      height: 42.76vh;
-      width: 21vw;
+      height: 378px;
+      width: 324px;
       overflow-y: scroll;
 
       .categoryAllLayout {
