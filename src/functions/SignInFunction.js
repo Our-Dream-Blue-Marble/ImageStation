@@ -33,6 +33,14 @@ export const checkHandongEmail = (userEmail) => {
   }
 };
 
+export const checkAdminEmail = (userEmail) => {
+  if (userEmail === "imagesolution.hd@gmail.com") {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export const onUserEmailAndPasswordSubmit = async (
   event,
   userEmail,
@@ -43,7 +51,7 @@ export const onUserEmailAndPasswordSubmit = async (
   setIsRouteConfirm
 ) => {
   event.preventDefault();
-  if (checkHandongEmail(userEmail)) {
+  if (checkHandongEmail(userEmail) || checkAdminEmail(userEmail)) {
     return logIn(userEmail, userPassword, setIsShowPopUpContent, setIsNewUser);
   } else {
     setIsShowPopUpContent("email");
@@ -63,7 +71,7 @@ export const onNewUserEmailAndPasswordSubmit = async (
 ) => {
   event.preventDefault();
   if (
-    checkHandongEmail(userEmail) &&
+    (checkHandongEmail(userEmail) || checkAdminEmail(userEmail)) &&
     isNewUser &&
     userPassword === userPasswordConfirm
   ) {
@@ -73,10 +81,13 @@ export const onNewUserEmailAndPasswordSubmit = async (
       userPassword,
       userName,
       userPhoneNumber,
-      userEmail === "22000404@handong.ac.kr",
+      checkAdminEmail(userEmail),
       true
     );
-  } else if (checkHandongEmail(userEmail) && !isNewUser) {
+  } else if (
+    (checkHandongEmail(userEmail) || checkAdminEmail(userEmail)) &&
+    !isNewUser
+  ) {
     return logIn(userEmail, userPassword);
   } else {
     return false;

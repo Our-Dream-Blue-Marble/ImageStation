@@ -10,11 +10,7 @@ import {
   UpdatePasswordPageRouteName,
 } from "routes/RouteName";
 import "styles/LogInStyle.scss";
-import {
-  deleteUserIdInLocal,
-  getUserIdInLocal,
-  setUserIdInLocal,
-} from "functions/UserFunction";
+import { getUserIdInLocal, setUserIdInLocal } from "functions/UserFunction";
 
 import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
 import PopUpWithOneButtonsWidgets from "widgets/PopUpWithOneButtonWidgets";
@@ -122,8 +118,7 @@ const LogInPage = () => {
                     navigate(HomeRouteName);
                   }
                 });
-              }}
-            >
+              }}>
               <input
                 className="InputTextBox"
                 name="userEmail"
@@ -171,14 +166,12 @@ const LogInPage = () => {
             <div className="UpdateAndSigninButtonsContainer">
               <div
                 className="UpdateAndSigninButtons"
-                onClick={() => navigate(UpdatePasswordPageRouteName)}
-              >
+                onClick={() => navigate(UpdatePasswordPageRouteName)}>
                 비밀번호 잊으셨나요? <span>비밀번호 찾기</span>
               </div>
               <div
                 className="UpdateAndSigninButtons"
-                onClick={() => navigate(SignInRouteName)}
-              >
+                onClick={() => navigate(SignInRouteName)}>
                 처음이신가요? <span>회원가입</span>
               </div>
             </div>

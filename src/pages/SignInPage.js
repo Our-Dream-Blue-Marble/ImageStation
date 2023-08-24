@@ -1,14 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import {
+  checkAdminEmail,
   onNewUserEmailAndPasswordSubmit,
   onUserEmailOrPasswordChange,
 } from "functions/SignInFunction";
 import { useNavigate } from "react-router-dom";
-import {
-  EmailAuthenticationRouteName,
-  HomeRouteName,
-  logInRouteName,
-} from "routes/RouteName";
+import { EmailAuthenticationRouteName, logInRouteName } from "routes/RouteName";
 import { ReactComponent as PasswordLockIconAsset } from "assets/icons/PasswordLockIconAsset.svg";
 import { ReactComponent as ArrowRightSmallIconAsset } from "assets/icons/ArrowRightSmallIconAsset.svg";
 import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
@@ -80,9 +77,12 @@ const SignInPage = () => {
 
   useEffect(() => {
     setErrorContent([
-      emailRegEx1.test(userEmail) || emailRegEx2.test(userEmail),
+      emailRegEx1.test(userEmail) ||
+        emailRegEx2.test(userEmail) ||
+        checkAdminEmail(userEmail),
       passwordRegEx.test(userPassword),
       userPassword === userPasswordConfirm,
+      checkAdminEmail(userEmail),
     ]);
   }, [userEmail, userPassword, userPasswordConfirm]);
 
@@ -170,8 +170,7 @@ const SignInPage = () => {
                     console.log(e);
                   });
               }
-            }}
-          >
+            }}>
             <div className="InputWithoutLabel">
               <input
                 name="userName"
@@ -201,8 +200,7 @@ const SignInPage = () => {
                   errorContent[0] === false && isPossibleSubmit
                     ? { color: "rgba(221, 82, 87, 1)" }
                     : {}
-                }
-              >
+                }>
                 * handong.ac.kr 아니면 handong.edu
               </label>
             </div>
@@ -247,8 +245,7 @@ const SignInPage = () => {
                   errorContent[1] === false && isPossibleSubmit
                     ? { color: "rgba(221, 82, 87, 1)" }
                     : {}
-                }
-              >
+                }>
                 * 영문자, 숫자 포함 8자 이상
               </label>
             </div>
@@ -327,8 +324,7 @@ const SignInPage = () => {
                 />
                 <label
                   for="isAgreePersonalInfo"
-                  name="isAgreePersonalInfo"
-                ></label>
+                  name="isAgreePersonalInfo"></label>
                 개인정보 처리방침에 동의합니다.
               </div>
               <ArrowRightSmallIconAsset
