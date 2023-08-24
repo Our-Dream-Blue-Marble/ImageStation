@@ -12,7 +12,6 @@ const HomePage = ({ elementRef }) => {
   };
   const [isUsingInfoClicked, setIsUsingInfoClicked] = useState(false);
   const [isPersonalInfoClicked, setIsPersonalInfoClicked] = useState(false);
-  const [isInquiryClicked, setIsInquiryClicked] = useState(false);
 
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);

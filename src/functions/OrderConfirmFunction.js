@@ -5,7 +5,10 @@ import {
   updateOrderStateDocument,
 } from "repositories/OrderRepository";
 
-export const getAdminOrderConfirmList = async (setOrderList) => {
+export const getAdminOrderConfirmList = async (
+  setOrderList,
+  setOrderConfirmSwitchList
+) => {
   const orderConfirmList = await readOrderListDocument();
   let orderConfirmArray = orderConfirmList.docs.map((doc) => ({
     docId: doc.docId,
@@ -16,6 +19,9 @@ export const getAdminOrderConfirmList = async (setOrderList) => {
       element.userDocRef = value.data();
     });
   });
+  const proceedingList = orderConfirmArray.filter((data) => data.state > 0);
+  setOrderConfirmSwitchList(proceedingList);
+
   setOrderList(orderConfirmArray);
 };
 

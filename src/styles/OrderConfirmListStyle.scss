@@ -20,8 +20,23 @@
 
   #OrderConfirmList_title {
     padding-top: 6vh;
-    padding-bottom: 6vh;
+    padding-bottom: 52px;
     @include heading2Font($primaryColor);
+  }
+  .OrderSwitch {
+    display: flex;
+    width: 170px;
+    height: 30px;
+    margin-top: -75px;
+    margin-left: 66vw;
+    margin-bottom: 52px;
+    @include centerFormat();
+  }
+  .inputSwitchButton {
+    @include body1Font($primaryColor);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
   }
 
   .OrderConfirmListContainer {

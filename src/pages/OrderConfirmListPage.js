@@ -21,6 +21,8 @@ import { updateOrderStateDocument } from "repositories/OrderRepository";
 const OrderConfirmListPage = ({ isAdmin, userObject }) => {
   const navigate = useNavigate();
   const [orderConfirmList, setOrderConfirmList] = useState([]);
+  const [orderConfirmSwitchList, setOrderConfirmSwitchList] = useState([]);
+  const [clickedSwitchButton, setClickedSwitchButton] = useState(false);
   const paginationLimit = 5;
   const [paginationNowPage, setPaginationNowPage] = useState(1);
   const paginationOffset = (paginationNowPage - 1) * paginationLimit;
@@ -32,7 +34,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
 
   useEffect(() => {
     if (isAdmin) {
-      getAdminOrderConfirmList(setOrderConfirmList);
+      getAdminOrderConfirmList(setOrderConfirmList, setOrderConfirmSwitchList);
     } else {
       getNotAdminOrderConfirmList(setOrderConfirmList);
     }
@@ -76,6 +78,29 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
       )}
       <div className="OrderConfirmListBody">
         <span id="OrderConfirmList_title">주문했던 내역을 확인해보세요!</span>
+        <div className="OrderSwitch">
+          <button
+            className="inputSwitchButton"
+            onClick={(e) => {
+              const switchList = !clickedSwitchButton;
+              setClickedSwitchButton(switchList);
+              if (switchList) {
+                const completeList = orderConfirmList.filter(
+                  (data) => data.state <= 0
+                );
+                setOrderConfirmSwitchList(completeList);
+              } else {
+                const proceedingList = orderConfirmList.filter(
+                  (data) => data.state > 0
+                );
+                setOrderConfirmSwitchList(proceedingList);
+              }
+            }}>
+            {clickedSwitchButton
+              ? "진행중인 주문내역 보기"
+              : "완료된 주문내역 보기"}
+          </button>
+        </div>
         <table className="OrderConfirmListContainer">
           <div className="headers">
             <th style={{ width: "50px", paddingRight: "3%" }}></th>
@@ -90,7 +115,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
             <th style={{ width: "25px" }}></th>
           </div>
           <hr id="headers_line" />
-          {orderConfirmList
+          {orderConfirmSwitchList
             .slice(paginationOffset, paginationOffset + paginationLimit)
             .map((order, i) => (
               <>
@@ -321,8 +346,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
           </button>
 
           <div className="paginationButton">
-            {Math.ceil(orderConfirmList.length / paginationLimit) <= 3 &&
-              Array(Math.ceil(orderConfirmList.length / paginationLimit))
+            {Math.ceil(orderConfirmSwitchList.length / paginationLimit) <= 3 &&
+              Array(Math.ceil(orderConfirmSwitchList.length / paginationLimit))
                 .fill()
                 .map((_, i) => (
                   <button
@@ -337,7 +362,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                     {i + 1}
                   </button>
                 ))}
-            {Math.ceil(orderConfirmList.length / paginationLimit) > 3 &&
+            {Math.ceil(orderConfirmSwitchList.length / paginationLimit) > 3 &&
               paginationNowPage === 1 &&
               Array(3)
                 .fill()
@@ -349,9 +374,9 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                     {i + 1}
                   </button>
                 ))}
-            {Math.ceil(orderConfirmList.length / paginationLimit) > 3 &&
+            {Math.ceil(orderConfirmSwitchList.length / paginationLimit) > 3 &&
               paginationNowPage ===
-                Math.ceil(orderConfirmList.length / paginationLimit) &&
+                Math.ceil(orderConfirmSwitchList.length / paginationLimit) &&
               Array(3)
                 .fill()
                 .map((_, i) => (
@@ -371,10 +396,10 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                   </button>
                 ))}
 
-            {Math.ceil(orderConfirmList.length / paginationLimit) > 3 &&
+            {Math.ceil(orderConfirmSwitchList.length / paginationLimit) > 3 &&
               paginationNowPage !== 1 &&
               paginationNowPage !==
-                Math.ceil(orderConfirmList.length / paginationLimit) && (
+                Math.ceil(orderConfirmSwitchList.length / paginationLimit) && (
                 <>
                   <button
                     key={paginationNowPage - 1}
@@ -415,7 +440,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
             }}
             disabled={
               paginationNowPage ===
-              Math.ceil(orderConfirmList.length / paginationLimit)
+              Math.ceil(orderConfirmSwitchList.length / paginationLimit)
             }
             id="arrowRightButton">
             <ArrowRightIconAsset />
