@@ -83,8 +83,9 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
         <span id="OrderConfirmList_title">주문했던 내역을 확인해보세요!</span>
         {isAdmin ? (
           <div className="OrderSwitch">
-            <button
-              className="inputSwitchButton"
+            <input
+              id="check"
+              type="checkbox"
               onClick={(e) => {
                 const switchList = !clickedSwitchButton;
                 setClickedSwitchButton(switchList);
@@ -99,11 +100,9 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                   );
                   setOrderConfirmSwitchList(proceedingList);
                 }
-              }}>
-              {clickedSwitchButton
-                ? "진행중인 주문내역 보기"
-                : "완료된 주문내역 보기"}
-            </button>
+              }}
+            ></input>
+            <label for="check" className="switchLabel"></label>
           </div>
         ) : null}
         <table className="OrderConfirmListContainer">
@@ -132,7 +131,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                         state: { data: order },
                       });
                     }
-                  }}>
+                  }}
+                >
                   <>
                     <td id="order_attachemnt">
                       <embed src={order.attachment}></embed>
@@ -144,7 +144,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                           className={getClassNameWithOrderState(
                             order.state,
                             true
-                          )}>
+                          )}
+                        >
                           {order.category === "normal" && "일반"}
                           {order.category === "binding" && "제본"}
                           {order.category === "labeling" && "라벨지"}
@@ -158,7 +159,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                           className={getClassNameWithOrderState(
                             order.state,
                             true
-                          )}>
+                          )}
+                        >
                           {order.title}
                         </span>
                         <span
@@ -166,7 +168,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                           className={getClassNameWithOrderState(
                             order.state,
                             true
-                          )}>
+                          )}
+                        >
                           {order.docId}
                         </span>
                       </td>
@@ -175,7 +178,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                         className={getClassNameWithOrderState(
                           order.state,
                           true
-                        )}>
+                        )}
+                      >
                         {getOrderSubmitDate(order.docId)}
                       </td>
                       <td
@@ -183,7 +187,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                         className={getClassNameWithOrderState(
                           order.state,
                           true
-                        )}>
+                        )}
+                      >
                         {getOrderSubmitDate(order.userRequestCompleteTime)}
                       </td>
                       {isEditClicked[i] ? (
@@ -205,7 +210,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                             order.state,
                             true
                           )}
-                          id="order_collect_date">
+                          id="order_collect_date"
+                        >
                           {order.adminCompleteTime === "0"
                             ? "미정"
                             : `${getOrderSubmitDate(order.adminCompleteTime)}`}
@@ -231,7 +237,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                             order.state,
                             true
                           )}
-                          id="order_money">
+                          id="order_money"
+                        >
                           {order.totalMoney === "0"
                             ? "미정"
                             : `${order.totalMoney}`}
@@ -263,7 +270,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                                 setOrderConfirmList,
                                 i
                               )
-                            }>
+                            }
+                          >
                             <option value={"0"}>완료</option>
                             <option value={"1"}>준비중</option>
                             <option value={"2"}>접수중</option>
@@ -275,7 +283,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                             order.state,
                             false
                           )}
-                          id="order_state">
+                          id="order_state"
+                        >
                           {getOrderStateWords(order.state)}
                         </td>
                       )}
@@ -290,7 +299,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                             const newIsEditClicked = [...isEditClicked];
                             newIsEditClicked[i] = !newIsEditClicked[i];
                             setIsEditClicked(newIsEditClicked);
-                          }}>
+                          }}
+                        >
                           {isEditClicked[i] ? (
                             <OrderInfoEditDoneIcon
                               id="order_icon"
@@ -322,7 +332,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                           e.stopPropagation();
                           setCalcelOrderId(order.docId);
                           setIsCancelClicked(true);
-                        }}>
+                        }}
+                      >
                         주문
                         <br />
                         취소
@@ -346,7 +357,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
               setNewTotalMoney([]);
             }}
             disabled={paginationNowPage === 1}
-            id="arrowLeftButton">
+            id="arrowLeftButton"
+          >
             <ArrowLeftIconAsset />
           </button>
 
@@ -363,7 +375,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                       setNewCompleteDate([]);
                       setNewTotalMoney([]);
                     }}
-                    aria-current={paginationNowPage === i + 1 && "nowPage"}>
+                    aria-current={paginationNowPage === i + 1 && "nowPage"}
+                  >
                     {i + 1}
                   </button>
                 ))}
@@ -375,7 +388,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                   <button
                     key={i + 1}
                     onClick={(e) => setPaginationNowPage(i + 1)}
-                    aria-current={paginationNowPage === i + 1 && "nowPage"}>
+                    aria-current={paginationNowPage === i + 1 && "nowPage"}
+                  >
                     {i + 1}
                   </button>
                 ))}
@@ -396,7 +410,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                     aria-current={
                       paginationNowPage === paginationNowPage - 2 + i &&
                       "nowPage"
-                    }>
+                    }
+                  >
                     {paginationNowPage - 2 + i}
                   </button>
                 ))}
@@ -413,13 +428,15 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                       setIsEditClicked([]);
                       setNewCompleteDate([]);
                       setNewTotalMoney([]);
-                    }}>
+                    }}
+                  >
                     {paginationNowPage - 1}
                   </button>
                   <button
                     key={paginationNowPage}
                     onClick={(e) => setPaginationNowPage(paginationNowPage)}
-                    aria-current="nowPage">
+                    aria-current="nowPage"
+                  >
                     {paginationNowPage}
                   </button>
                   <button
@@ -429,7 +446,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                       setIsEditClicked([]);
                       setNewCompleteDate([]);
                       setNewTotalMoney([]);
-                    }}>
+                    }}
+                  >
                     {paginationNowPage + 1}
                   </button>
                 </>
@@ -447,7 +465,8 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
               paginationNowPage ===
               Math.ceil(orderConfirmSwitchList.length / paginationLimit)
             }
-            id="arrowRightButton">
+            id="arrowRightButton"
+          >
             <ArrowRightIconAsset />
           </button>
         </div>

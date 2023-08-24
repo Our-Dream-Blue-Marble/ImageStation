@@ -28,10 +28,60 @@
     width: 170px;
     height: 30px;
     margin-top: -75px;
-    margin-left: 66vw;
+    margin-left: 80vw;
     margin-bottom: 52px;
     @include centerFormat();
   }
+
+  input[type="checkbox"] {
+    appearance: none;
+  }
+
+  .switchLabel {
+    display: block;
+    position: relative;
+    width: 80px;
+    height: 31px;
+    background: $primaryColor;
+    border-radius: 60px;
+    transition: 0.4s;
+  }
+
+  .switchLabel::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color: $white100Color;
+    transform: translateY(-50%);
+    box-shadow: $box-shadow;
+    transition: all 0.4s;
+  }
+  .switchLabel::before {
+    content: "진행 중";
+    @include captionFont($white100Color);
+    position: absolute;
+    left: 36px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.4s;
+  }
+  #check:checked + .switchLabel::after {
+    left: calc(100% - 29px);
+  }
+
+  #check:checked + .switchLabel {
+    background: $black50Color;
+  }
+
+  #check:checked + .switchLabel::before {
+    content: "완료";
+    left: 17px;
+  }
+
   .inputSwitchButton {
     @include body1Font($primaryColor);
     background: transparent;
