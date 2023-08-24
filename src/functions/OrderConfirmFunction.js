@@ -136,13 +136,53 @@ export const getOrderDataLayoutWords = (layout) => {
 
 export const getOrderDataSizeWords = (pageSize) => {
   if (pageSize === "0") {
-    return "A2";
+    return "파일원본크기";
   } else if (pageSize === "1") {
-    return "A3";
+    return "상담요청";
   } else if (pageSize === "2") {
-    return "A4";
+    return "A3";
   } else if (pageSize === "3") {
+    return "A4";
+  } else if (pageSize === "4") {
     return "A5";
+  } else if (pageSize === "5") {
+    return "A6";
+  } else if (pageSize === "6") {
+    return "B4";
+  } else if (pageSize === "7") {
+    return "B5";
+  } else if (pageSize === "8") {
+    return "A0";
+  } else if (pageSize === "9") {
+    return "A1";
+  } else if (pageSize === "10") {
+    return "A2";
+  } else if (pageSize === "11") {
+    return "B1";
+  } else if (pageSize === "12") {
+    return "B2";
+  } else if (pageSize === "13") {
+    return "B3";
+  } else if (pageSize === "14") {
+    return "전지";
+  } else if (pageSize === "15") {
+    return "2절";
+  } else if (pageSize === "16") {
+    return "4절";
+  } else if (pageSize === "17") {
+    return "8절";
+  } else if (pageSize === "18") {
+    return "사진인화(최대)";
+  } else if (pageSize === "19") {
+    return "사진인화(일반)";
+  } else if (pageSize === "20") {
+    return "증명사진";
+  } else if (pageSize === "21") {
+    return "반명함판";
+  } else if (pageSize === "22") {
+    return "명함판";
+  } else if (pageSize === "23") {
+    return "여권";
   }
 };
 

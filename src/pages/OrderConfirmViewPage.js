@@ -151,7 +151,12 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
                           {orderData.title}
                         </span>
                       </div>
-
+                      <div className="categoryAllLayout">
+                        <span className="categoryKeyText">완료요청일시</span>
+                        <span className="categoryValueText">
+                          {orderData.userRequestCompleteTime}
+                        </span>
+                      </div>
                       <div className="categoryAllLayout">
                         <span className="categoryKeyText">페이지</span>
                         <span className="categoryValueText">
@@ -208,7 +213,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
                       </div>
 
                       <div className="categoryAllLayout">
-                        <span className="categoryKeyText">문의사항</span>
+                        <span className="categoryKeyText">요청사항</span>
                         <span className="categoryValueText">
                           {orderData.moreInfo === "" ? (
                             "입력 사항 없음"

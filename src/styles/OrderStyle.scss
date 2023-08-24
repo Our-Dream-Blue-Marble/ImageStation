@@ -321,6 +321,8 @@
           background-image: url("../assets/arrow-down.svg");
           background-repeat: no-repeat;
           background-position: 95% center;
+          white-space: pre-wrap;
+          word-break: break-all;
         }
 
         select::-ms-expand {
