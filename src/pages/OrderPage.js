@@ -440,18 +440,38 @@ const OrderPage = () => {
                           </select>
                         </span>
                       )}
-                      <span className="userReauestTimeContainer">
-                        <label className="select_label">
-                          완료요청일시
-                          <input
-                            name="userRequestTime"
-                            type="datetime-local"
-                            onChange={async (e) => {
-                              onOrderFieldChange(e, setOrderUserRequestTime);
-                            }}
-                          />
-                        </label>
-                      </span>
+                      {(category === "normal" ||
+                        category === "binding" ||
+                        category === "actual") && (
+                        <span className="userReauestTimeContainer">
+                          <label className="select_label">
+                            완료요청일시
+                            <input
+                              name="userRequestTime"
+                              type="datetime-local"
+                              onChange={async (e) => {
+                                onOrderFieldChange(e, setOrderUserRequestTime);
+                              }}
+                            />
+                          </label>
+                        </span>
+                      )}
+                      {(category === "labeling" ||
+                        category === "photo" ||
+                        category === "etc") && (
+                        <span className="userRequestTimeContainerWithoutTop">
+                          <label className="select_label">
+                            완료요청일시
+                            <input
+                              name="userRequestTime"
+                              type="datetime-local"
+                              onChange={async (e) => {
+                                onOrderFieldChange(e, setOrderUserRequestTime);
+                              }}
+                            />
+                          </label>
+                        </span>
+                      )}
                       {category !== "etc" && (
                         <span className="moreInfoContainer">
                           <label className="select_label">

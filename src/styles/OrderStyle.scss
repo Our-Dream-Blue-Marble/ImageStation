@@ -342,7 +342,6 @@
           border-color: $black50Color;
           width: 289px;
           position: relative;
-
           .QuestionMarkImg {
             margin-left: 11px;
             display: inline-block;
@@ -402,7 +401,6 @@
           border-radius: 8px;
           box-shadow: $orderBoxShadow;
           float: right;
-          line-height: 22px;
           margin-bottom: 3px;
         }
 
@@ -446,13 +444,22 @@
           width: 290px;
           height: 42px;
           display: block;
-          margin-top: 28px;
+          padding-top: 14px;
           align-items: center;
+          margin-bottom: 7px;
+        }
+
+        .userRequestTimeContainerWithoutTop {
+          width: 290px;
+          height: 42px;
+          display: block;
+          align-items: center;
+          margin-bottom: 7px;
         }
         .moreInfoContainer {
           width: 290px;
           height: 99px;
-          margin-top: -14px;
+          margin-top: -7px;
           display: inline-block;
           padding-bottom: 10px;
         }
@@ -460,6 +467,7 @@
           width: 290px;
           height: 230px;
           display: inline-block;
+          margin-top: -7px;
           padding-bottom: 10px;
         }
       }
