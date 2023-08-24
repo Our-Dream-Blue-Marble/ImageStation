@@ -116,7 +116,8 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
 
                       <div
                         className="categoryAttachment"
-                        onClick={() => onAttachmentDownloadClick(orderData)}>
+                        onClick={() => onAttachmentDownloadClick(orderData)}
+                      >
                         {orderData.attachmentName}
                       </div>
                       {isAdmin ? (
@@ -263,7 +264,8 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
               <div className="navigateButtonSection">
                 <button
                   className="navigateButton"
-                  onClick={() => navigate(OrderConfirmListRouteName)}>
+                  onClick={() => navigate(OrderConfirmListRouteName)}
+                >
                   돌아가기
                 </button>
               </div>

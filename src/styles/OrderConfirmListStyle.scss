@@ -9,13 +9,13 @@
 }
 
 .OrderConfirmListBody {
+  @include centerFormat();
+  min-height: calc(100vh - 69px);
   display: flex;
   flex-direction: column;
-  @include centerFormat();
   text-align: center;
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
-  background-position: left top;
   background-size: cover;
 
   #OrderConfirmList_title {
