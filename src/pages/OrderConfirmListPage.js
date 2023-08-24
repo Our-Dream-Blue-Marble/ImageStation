@@ -36,7 +36,10 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
     if (isAdmin) {
       getAdminOrderConfirmList(setOrderConfirmList, setOrderConfirmSwitchList);
     } else {
-      getNotAdminOrderConfirmList(setOrderConfirmList);
+      getNotAdminOrderConfirmList(
+        setOrderConfirmList,
+        setOrderConfirmSwitchList
+      );
     }
   }, [isAdmin, userObject]);
 
@@ -78,29 +81,31 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
       )}
       <div className="OrderConfirmListBody">
         <span id="OrderConfirmList_title">주문했던 내역을 확인해보세요!</span>
-        <div className="OrderSwitch">
-          <button
-            className="inputSwitchButton"
-            onClick={(e) => {
-              const switchList = !clickedSwitchButton;
-              setClickedSwitchButton(switchList);
-              if (switchList) {
-                const completeList = orderConfirmList.filter(
-                  (data) => data.state <= 0
-                );
-                setOrderConfirmSwitchList(completeList);
-              } else {
-                const proceedingList = orderConfirmList.filter(
-                  (data) => data.state > 0
-                );
-                setOrderConfirmSwitchList(proceedingList);
-              }
-            }}>
-            {clickedSwitchButton
-              ? "진행중인 주문내역 보기"
-              : "완료된 주문내역 보기"}
-          </button>
-        </div>
+        {isAdmin ? (
+          <div className="OrderSwitch">
+            <button
+              className="inputSwitchButton"
+              onClick={(e) => {
+                const switchList = !clickedSwitchButton;
+                setClickedSwitchButton(switchList);
+                if (switchList) {
+                  const completeList = orderConfirmList.filter(
+                    (data) => data.state <= 0
+                  );
+                  setOrderConfirmSwitchList(completeList);
+                } else {
+                  const proceedingList = orderConfirmList.filter(
+                    (data) => data.state > 0
+                  );
+                  setOrderConfirmSwitchList(proceedingList);
+                }
+              }}>
+              {clickedSwitchButton
+                ? "진행중인 주문내역 보기"
+                : "완료된 주문내역 보기"}
+            </button>
+          </div>
+        ) : null}
         <table className="OrderConfirmListContainer">
           <div className="headers">
             <th style={{ width: "50px", paddingRight: "3%" }}></th>

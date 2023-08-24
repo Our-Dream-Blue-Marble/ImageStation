@@ -25,7 +25,10 @@ export const getAdminOrderConfirmList = async (
   setOrderList(orderConfirmArray);
 };
 
-export const getNotAdminOrderConfirmList = async (setOrderList) => {
+export const getNotAdminOrderConfirmList = async (
+  setOrderList,
+  setOrderConfirmSwitchList
+) => {
   const userMyOrderDocRef = await dbService
     .collection("users")
     .doc(authService.currentUser.uid)
@@ -52,6 +55,7 @@ export const getNotAdminOrderConfirmList = async (setOrderList) => {
       element.userDocRef = value.data();
     });
   });
+  setOrderConfirmSwitchList(userMyOrderDocArray);
   setOrderList(userMyOrderDocArray);
 };
 
