@@ -1,6 +1,5 @@
 import { authService, dbService } from "fbase";
 import {
-  readOrderDocument,
   readOrderListDocument,
   updateOrderDataDocument,
   updateOrderStateDocument,
@@ -50,9 +49,8 @@ export const getNotAdminOrderConfirmList = async (setOrderList) => {
   setOrderList(userMyOrderDocArray);
 };
 
-export const getOrderSubmitDate = (orderConfirm) => {
-  var orderSubmitDate = orderConfirm.docId;
-  var date = new Date(orderSubmitDate);
+export const getOrderSubmitDate = (orderData) => {
+  var date = new Date(orderData);
   let timeSection;
   let hour = parseInt(("0" + date.getHours()).slice(-2));
   if (hour > 12) {

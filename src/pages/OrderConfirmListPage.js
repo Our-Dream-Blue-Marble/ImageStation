@@ -1,5 +1,4 @@
 import {
-  convertDateWithDots,
   getAdminOrderConfirmList,
   getNotAdminOrderConfirmList,
   getOrderDataSizeWords,
@@ -83,6 +82,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
             <div className="header_text">
               <th>주문정보</th>
               <th>주문일자</th>
+              <th>완료요청 일시</th>
               <th>수령가능 날짜</th>
               <th>예상금액 (수량)</th>
               <th>주문 상태</th>
@@ -146,13 +146,21 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                           order.state,
                           true
                         )}>
-                        {getOrderSubmitDate(order)}
+                        {getOrderSubmitDate(order.docId)}
+                      </td>
+                      <td
+                        id="order_date"
+                        className={getClassNameWithOrderState(
+                          order.state,
+                          true
+                        )}>
+                        {getOrderSubmitDate(order.userRequestCompleteTime)}
                       </td>
                       {isEditClicked[i] ? (
                         <td id="order_collect_date">
                           <input
                             id="order_complete_date_input"
-                            type="date"
+                            type="datetime-local"
                             value={newCompleteDate[i]}
                             onChange={(event) => {
                               const newDates = [...newCompleteDate];
@@ -170,7 +178,7 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                           id="order_collect_date">
                           {order.adminCompleteTime === "0"
                             ? "미정"
-                            : `${convertDateWithDots(order.adminCompleteTime)}`}
+                            : `${getOrderSubmitDate(order.adminCompleteTime)}`}
                         </div>
                       )}
                       {isEditClicked[i] ? (

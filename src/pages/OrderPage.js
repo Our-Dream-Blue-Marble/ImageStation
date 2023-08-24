@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   HomeRouteName,
@@ -21,6 +21,7 @@ import { PopUpPaperInfo } from "widgets/PopUpPaperInfo";
 import { pageNavigationPlugin } from "@react-pdf-viewer/page-navigation";
 import "@react-pdf-viewer/page-navigation/lib/styles/index.css";
 import PopUpWithTwoButtonsWidgets from "widgets/PopUpWithTwoButtonsWidgets";
+import LoadingWidgets from "widgets/LoadingWidgets";
 
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const OrderPage = () => {
   const category = location.state.data;
   const pageNavigationPluginInstance = pageNavigationPlugin();
   const { CurrentPageLabel } = pageNavigationPluginInstance;
+  const [isOrderSubmitSuccess, setIsOrderSubmitSuccess] = useState(false);
 
   useEffect(() => {
     if (orderTitle !== "" && imageUrl !== "" && orderUserRequestTime !== "") {
@@ -75,7 +77,7 @@ const OrderPage = () => {
       <div className="PageBackground" />
 
       {isPaperInfoPopUp && PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp)}
-      {clickedOrder && isPossibleSubmit ? (
+      {clickedOrder && isPossibleSubmit && isOrderSubmitSuccess ? (
         <PopUpWithTwoButtonsWidgets
           headerText={"주문이 접수 되었습니다!"}
           bodyText={"주문내역확인 페이지로\n이동할까요?"}
@@ -90,7 +92,9 @@ const OrderPage = () => {
             });
           }}
         />
-      ) : null}
+      ) : (
+        clickedOrder && isPossibleSubmit && <LoadingWidgets />
+      )}
       <div className="OrderPageBackground">
         <div className="OrderLayout">
           <form
@@ -113,7 +117,11 @@ const OrderPage = () => {
                     orderAttachment,
                     orderAttachmentName,
                     orderUserRequestTime
-                  ).then(() => {});
+                  ).then((result) => {
+                    if (result) {
+                      setIsOrderSubmitSuccess(true);
+                    }
+                  });
               } else {
                 navigate(OrderCategoryPageRouteName);
               }

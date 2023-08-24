@@ -138,6 +138,8 @@
 
         #order_collect_date {
           @include orderFormat();
+          white-space: pre-wrap;
+          word-break: break-all;
         }
 
         #order_money {
