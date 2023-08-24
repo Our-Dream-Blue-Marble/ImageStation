@@ -51,6 +51,19 @@ const OrderPage = () => {
   const pageNavigationPluginInstance = pageNavigationPlugin();
   const { CurrentPageLabel } = pageNavigationPluginInstance;
   const [isOrderSubmitSuccess, setIsOrderSubmitSuccess] = useState(false);
+  const [dateTime, setDateTime] = useState("");
+
+  useEffect(() => {
+    const currentDateTime = new Date();
+    const year = currentDateTime.getFullYear();
+    const month = (currentDateTime.getMonth() + 1).toString().padStart(2, "0");
+    const day = currentDateTime.getDate().toString().padStart(2, "0");
+    const hours = currentDateTime.getHours().toString().padStart(2, "0");
+    const minutes = currentDateTime.getMinutes().toString().padStart(2, "0");
+
+    const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+    setDateTime(formattedDateTime);
+  }, []);
 
   useEffect(() => {
     if (orderTitle !== "" && imageUrl !== "" && orderUserRequestTime !== "") {
@@ -440,18 +453,40 @@ const OrderPage = () => {
                           </select>
                         </span>
                       )}
-                      <span className="userReauestTimeContainer">
-                        <label className="select_label">
-                          완료요청일시
-                          <input
-                            name="userRequestTime"
-                            type="datetime-local"
-                            onChange={async (e) => {
-                              onOrderFieldChange(e, setOrderUserRequestTime);
-                            }}
-                          />
-                        </label>
-                      </span>
+                      {(category === "normal" ||
+                        category === "binding" ||
+                        category === "actual") && (
+                        <span className="userReauestTimeContainer">
+                          <label className="select_label">
+                            완료요청일시
+                            <input
+                              name="userRequestTime"
+                              type="datetime-local"
+                              value={dateTime}
+                              onChange={async (e) => {
+                                onOrderFieldChange(e, setDateTime);
+                                onOrderFieldChange(e, setOrderUserRequestTime);
+                              }}
+                            />
+                          </label>
+                        </span>
+                      )}
+                      {(category === "labeling" ||
+                        category === "photo" ||
+                        category === "etc") && (
+                        <span className="userRequestTimeContainerWithoutTop">
+                          <label className="select_label">
+                            완료요청일시
+                            <input
+                              name="userRequestTime"
+                              type="datetime-local"
+                              onChange={async (e) => {
+                                onOrderFieldChange(e, setOrderUserRequestTime);
+                              }}
+                            />
+                          </label>
+                        </span>
+                      )}
                       {category !== "etc" && (
                         <span className="moreInfoContainer">
                           <label className="select_label">
@@ -505,7 +540,11 @@ const OrderPage = () => {
                   value={"주문"}
                   onClick={(e) => {
                     setIsSubmitButton(true);
-                    setClickedOrder(true);
+                    setClickedOrder(
+                      orderTitle !== "" &&
+                        imageUrl !== "" &&
+                        orderUserRequestTime !== ""
+                    );
                   }}
                 />
               </div>
