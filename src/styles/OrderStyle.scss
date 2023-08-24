@@ -141,13 +141,12 @@
   }
 
   .imgFileContainer {
-    width: 25vw;
-    height: 40vh;
+    width: 400px;
+    height: 400px;
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
     position: absolute;
-    background-color: $white100Color;
   }
 
   .pdfFileContainer {

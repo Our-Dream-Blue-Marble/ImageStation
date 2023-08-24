@@ -1,8 +1,7 @@
 @import "styles/ThemeStyles.scss";
 
 .OrderConfirmViewBody {
-  height: 100%;
-
+  height: 100vh;
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-position: left top;
@@ -51,9 +50,8 @@
       }
 
       .imageFileLayout {
-        width: 30vw;
-        height: 50vh;
-        border-radius: 0px;
+        width: 400px;
+        height: 400px;
       }
 
       .rpv-core__viewer {
