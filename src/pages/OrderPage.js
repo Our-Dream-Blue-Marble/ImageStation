@@ -490,7 +490,7 @@ const OrderPage = () => {
                       {category !== "etc" && (
                         <span className="moreInfoContainer">
                           <label className="select_label">
-                            주문사항
+                            요청사항
                             <textarea
                               name="moreInfo"
                               onChange={async (e) => {
