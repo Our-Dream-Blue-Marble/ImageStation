@@ -227,10 +227,10 @@
     .categoryHeader {
       width: 301px;
       height: 22px;
-      margin-left: 2vw;
-      margin-top: 3.4vh;
+      margin-left: 30px;
+      margin-top: 33px;
       margin-right: 1.85vw;
-      margin-bottom: 4.5vh;
+      margin-bottom: 40px;
       @include heading2Font($black100Color);
     }
     .categorySelectBodyContainer {
@@ -239,11 +239,12 @@
       overflow-x: hidden;
       .categorySelect {
         width: 18vw;
-        height: 56.56vh;
-        margin-left: 2vw;
-        margin-right: 1.85vw;
+        height: 400px;
+        margin-left: 30px;
+        margin-right: 28px;
 
         input[type="text"] {
+          @include body1Font($black100Color);
           width: 156px;
           height: 22px;
           display: flex;
@@ -256,7 +257,6 @@
           box-shadow: $orderBoxShadow;
           float: right;
           margin-top: -10px;
-          font-family: "Pretendard Variable";
         }
 
         input[type="text"]:focus {
@@ -266,6 +266,22 @@
         input::placeholder {
           padding-left: 0.16vw;
           @include captionFont($black50Color);
+        }
+
+        input[type="datetime-local"] {
+          @include body1Font($black100Color);
+          width: 156px;
+          height: 22px;
+          display: flex;
+          padding: 10px 18px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          border-radius: 8px;
+          border: none;
+          box-shadow: $orderBoxShadow;
+          float: right;
+          margin-top: -10px;
         }
 
         .select_label {
@@ -305,6 +321,8 @@
           background-image: url("../assets/arrow-down.svg");
           background-repeat: no-repeat;
           background-position: 95% center;
+          white-space: pre-wrap;
+          word-break: break-all;
         }
 
         select::-ms-expand {
@@ -370,9 +388,10 @@
         }
 
         textarea {
+          @include body1Font($black100Color);
           display: flex;
           width: 156px;
-          height: 99px;
+          height: 79px;
           overflow-y: hidden;
           padding: 10px 18px;
           justify-content: center;
@@ -383,8 +402,6 @@
           border-radius: 8px;
           box-shadow: $orderBoxShadow;
           float: right;
-          padding: 10px 15px;
-          font-family: "Pretendard Variable";
           line-height: 22px;
           margin-bottom: 3px;
         }
@@ -398,24 +415,52 @@
           outline: none;
         }
 
+        .textarea_etc {
+          @include body1Font($black100Color);
+          display: flex;
+          width: 156px;
+          height: 210px;
+          overflow-y: hidden;
+          padding: 10px 18px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          resize: none;
+          border: none;
+          border-radius: 8px;
+          box-shadow: $orderBoxShadow;
+          float: right;
+          margin-bottom: 3px;
+        }
+
         span {
           width: 290px;
           height: 42px;
           display: block;
-          margin-top: 1.56vh;
-          margin-bottom: 1.56vh;
+          margin-top: 14px;
+          margin-bottom: 14px;
           align-items: center;
         }
 
+        .userReauestTimeContainer {
+          width: 290px;
+          height: 42px;
+          display: block;
+          margin-top: 28px;
+          align-items: center;
+        }
         .moreInfoContainer {
           width: 290px;
+          height: 99px;
+          margin-top: -14px;
           display: inline-block;
           padding-bottom: 10px;
         }
         .moreInfoContainerForEtc {
           width: 290px;
-
+          height: 230px;
           display: inline-block;
+          padding-bottom: 10px;
         }
       }
     }

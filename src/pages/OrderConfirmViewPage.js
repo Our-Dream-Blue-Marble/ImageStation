@@ -22,6 +22,7 @@ import {
   getOrderDataPaperWords,
   getOrderDataSizeWords,
   getOrderStateWords,
+  getOrderSubmitDate,
 } from "functions/OrderConfirmFunction";
 import LoadingWidgets from "widgets/LoadingWidgets";
 import ErrorPage from "./ErrorPage";
@@ -115,8 +116,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
 
                       <div
                         className="categoryAttachment"
-                        onClick={() => onAttachmentDownloadClick(orderData)}
-                      >
+                        onClick={() => onAttachmentDownloadClick(orderData)}>
                         {orderData.attachmentName}
                       </div>
                       {isAdmin ? (
@@ -152,7 +152,14 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
                           {orderData.title}
                         </span>
                       </div>
-
+                      <div className="categoryAllLayout">
+                        <span className="categoryKeyText">완료요청일시</span>
+                        <span className="categoryValueText">
+                          {getOrderSubmitDate(
+                            orderData.userRequestCompleteTime
+                          )}
+                        </span>
+                      </div>
                       <div className="categoryAllLayout">
                         <span className="categoryKeyText">페이지</span>
                         <span className="categoryValueText">
@@ -209,7 +216,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
                       </div>
 
                       <div className="categoryAllLayout">
-                        <span className="categoryKeyText">문의사항</span>
+                        <span className="categoryKeyText">요청사항</span>
                         <span className="categoryValueText">
                           {orderData.moreInfo === "" ? (
                             "입력 사항 없음"
@@ -240,10 +247,12 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
                       <div className="categoryAllLayout">
                         <span className="categoryKeyText">예상수령일</span>
                         <span className="categoryValueText">
-                          {orderData.completeTime === "0" ? (
+                          {orderData.adminCompleteTime === "0" ? (
                             "미정"
                           ) : (
-                            <>{convertDateWithDots(orderData.completeTime)}</>
+                            <>
+                              {convertDateWithDots(orderData.adminCompleteTime)}
+                            </>
                           )}
                         </span>
                       </div>
@@ -254,8 +263,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
               <div className="navigateButtonSection">
                 <button
                   className="navigateButton"
-                  onClick={() => navigate(OrderConfirmListRouteName)}
-                >
+                  onClick={() => navigate(OrderConfirmListRouteName)}>
                   돌아가기
                 </button>
               </div>

@@ -120,6 +120,10 @@
           }
           #info_title {
             @include body1Font($black100Color);
+            width: 120px;
+            height: 22px;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
           #info_order_num {
             @include body1Font($black50Color);
@@ -128,10 +132,14 @@
 
         #order_date {
           @include orderFormat();
+          white-space: pre-wrap;
+          word-break: break-all;
         }
 
         #order_collect_date {
           @include orderFormat();
+          white-space: pre-wrap;
+          word-break: break-all;
         }
 
         #order_money {

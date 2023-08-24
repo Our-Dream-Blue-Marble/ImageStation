@@ -17,7 +17,8 @@ export const onOrderSubmit = async (
   Color,
   MoreInfo,
   Attachment,
-  AttachmentName
+  AttachmentName,
+  UserRequestTime
 ) => {
   event.preventDefault();
   let result = false;
@@ -41,7 +42,8 @@ export const onOrderSubmit = async (
     Color,
     MoreInfo,
     attachmentUrl,
-    AttachmentName
+    AttachmentName,
+    UserRequestTime
   )
     .then(() => {
       result = true;
@@ -73,6 +75,8 @@ export const onOrderFieldChange = (event, setValue) => {
   } else if (name === "color") {
     setValue(value);
   } else if (name === "moreInfo") {
+    setValue(value);
+  } else if (name === "userRequestTime") {
     setValue(value);
   }
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   HomeRouteName,
@@ -21,6 +21,7 @@ import { PopUpPaperInfo } from "widgets/PopUpPaperInfo";
 import { pageNavigationPlugin } from "@react-pdf-viewer/page-navigation";
 import "@react-pdf-viewer/page-navigation/lib/styles/index.css";
 import PopUpWithTwoButtonsWidgets from "widgets/PopUpWithTwoButtonsWidgets";
+import LoadingWidgets from "widgets/LoadingWidgets";
 
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ const OrderPage = () => {
   const [orderMoreInfo, setOrderMoreInfo] = useState("");
   const [orderAttachment, setOrderAttachment] = useState("");
   const [orderAttachmentName, setOrderAttachmentName] = useState("");
+  const [orderUserRequestTime, setOrderUserRequestTime] = useState("");
   const [isSubmitButton, setIsSubmitButton] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
@@ -48,14 +50,15 @@ const OrderPage = () => {
   const category = location.state.data;
   const pageNavigationPluginInstance = pageNavigationPlugin();
   const { CurrentPageLabel } = pageNavigationPluginInstance;
+  const [isOrderSubmitSuccess, setIsOrderSubmitSuccess] = useState(false);
 
   useEffect(() => {
-    if (orderTitle !== "" && imageUrl !== "") {
+    if (orderTitle !== "" && imageUrl !== "" && orderUserRequestTime !== "") {
       setIsPossibleSubmit(true);
     } else {
       setIsPossibleSubmit(false);
     }
-  }, [orderTitle, imageUrl]);
+  }, [orderTitle, imageUrl, orderUserRequestTime]);
 
   const handleMouseEnter = () => {
     setIsHover(true);
@@ -74,7 +77,7 @@ const OrderPage = () => {
       <div className="PageBackground" />
 
       {isPaperInfoPopUp && PopUpPaperInfo(isPaperInfoPopUp, getPaperInfoPopUp)}
-      {clickedOrder && isPossibleSubmit ? (
+      {clickedOrder && isPossibleSubmit && isOrderSubmitSuccess ? (
         <PopUpWithTwoButtonsWidgets
           headerText={"주문이 접수 되었습니다!"}
           bodyText={"주문내역확인 페이지로\n이동할까요?"}
@@ -89,7 +92,9 @@ const OrderPage = () => {
             });
           }}
         />
-      ) : null}
+      ) : (
+        clickedOrder && isPossibleSubmit && <LoadingWidgets />
+      )}
       <div className="OrderPageBackground">
         <div className="OrderLayout">
           <form
@@ -110,8 +115,13 @@ const OrderPage = () => {
                     orderColor,
                     orderMoreInfo,
                     orderAttachment,
-                    orderAttachmentName
-                  ).then(() => {});
+                    orderAttachmentName,
+                    orderUserRequestTime
+                  ).then((result) => {
+                    if (result) {
+                      setIsOrderSubmitSuccess(true);
+                    }
+                  });
               } else {
                 navigate(OrderCategoryPageRouteName);
               }
@@ -223,9 +233,8 @@ const OrderPage = () => {
                           onChange={async (e) => {
                             onOrderFieldChange(e, setOrderPage);
                           }}>
-                          <option value={"0"}>전체</option>
-                          <option value={"1"}>짝수</option>
-                          <option value={"2"}>홀수</option>
+                          <option value={"0"}>단면</option>
+                          <option value={"1"}>양면</option>
                         </select>
                       </span>
                       {(category === "normal" ||
@@ -244,7 +253,7 @@ const OrderPage = () => {
                           </select>
                         </span>
                       )}
-                      {(category !== "labeling" || category !== "etc") && (
+                      {(category === "normal" || category === "labeling") && (
                         <span>
                           <label className="select_label">사이즈</label>
                           <select
@@ -253,13 +262,66 @@ const OrderPage = () => {
                             onChange={async (e) => {
                               onOrderFieldChange(e, setOrderSize);
                             }}>
-                            <option value={"0"}>A2</option>
-                            <option value={"1"}>A3</option>
-                            <option value={"2"}>A4</option>
-                            <option value={"3"}>A5</option>
+                            <option value={"0"}>파일원본크기</option>
+                            <option value={"1"}>사이즈 상담요청</option>
+                            <option value={"2"}>A3 - 297*420mm</option>
+                            <option value={"3"}>A4 - 210*297mm</option>
+                            <option value={"4"}>A5 - 148*210mm</option>
+                            <option value={"5"}>A6 - 105*148mm</option>
+                            <option value={"6"}>B4 - 257*364mm</option>
+                            <option value={"7"}>B5 - 182*257mm</option>
                           </select>
                         </span>
                       )}
+                      {category === "actual" && (
+                        <span>
+                          <label className="select_label">사이즈</label>
+                          <select
+                            defaultValue={"0"}
+                            name="size"
+                            onChange={async (e) => {
+                              onOrderFieldChange(e, setOrderSize);
+                            }}>
+                            <option value={"0"}>파일원본크기</option>
+                            <option value={"1"}>사이즈 상담요청</option>
+                            <option value={"8"}>A0 - 841*1189mm</option>
+                            <option value={"9"}>A1 - 594*841mm</option>
+                            <option value={"10"}>A2 - 420*594mm</option>
+                            <option value={"11"}>B1 - 728*1030mm</option>
+                            <option value={"12"}>B2 - 515*728mm</option>
+                            <option value={"13"}>B3 - 364*515mm</option>
+                            <option value={"14"}>전지 - 788*1088mm</option>
+                            <option value={"15"}>2절 - 545*788mm</option>
+                            <option value={"16"}>4절 - 394*545mm</option>
+                            <option value={"17"}>8절 - 272*394mm</option>
+                          </select>
+                        </span>
+                      )}
+                      {category === "photo" && (
+                        <span>
+                          <label className="select_label">사이즈</label>
+                          <select
+                            defaultValue={"0"}
+                            name="size"
+                            onChange={async (e) => {
+                              onOrderFieldChange(e, setOrderSize);
+                            }}>
+                            <option value={"0"}>파일원본크기</option>
+                            <option value={"1"}>사이즈 상담요청</option>
+                            <option value={"18"}>
+                              사진인화(최대) 6x8 inch
+                            </option>
+                            <option value={"19"}>
+                              사진인화(읿반) 4x6 inch
+                            </option>
+                            <option value={"20"}>증명사진</option>
+                            <option value={"21"}>반명함판</option>
+                            <option value={"22"}>명함판</option>
+                            <option value={"23"}>여권</option>
+                          </select>
+                        </span>
+                      )}
+
                       {category === "binding" && (
                         <>
                           <span>
@@ -378,6 +440,18 @@ const OrderPage = () => {
                           </select>
                         </span>
                       )}
+                      <span className="userReauestTimeContainer">
+                        <label className="select_label">
+                          완료요청일시
+                          <input
+                            name="userRequestTime"
+                            type="datetime-local"
+                            onChange={async (e) => {
+                              onOrderFieldChange(e, setOrderUserRequestTime);
+                            }}
+                          />
+                        </label>
+                      </span>
                       {category !== "etc" && (
                         <span className="moreInfoContainer">
                           <label className="select_label">
@@ -394,13 +468,14 @@ const OrderPage = () => {
                       {category === "etc" && (
                         <span className="moreInfoContainerForEtc">
                           <label className="select_label">
-                            주문사항
+                            요청사항
                             <textarea
                               name="moreInfo"
+                              className="textarea_etc"
                               onChange={async (e) => {
                                 onOrderFieldChange(e, setOrderMoreInfo);
                               }}
-                              placeholder="추가요청 사항을 적어주세요!"></textarea>
+                              placeholder="옵션에 없는 요청 사항을 적어주세요!"></textarea>
                           </label>
                         </span>
                       )}

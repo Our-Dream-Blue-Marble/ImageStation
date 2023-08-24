@@ -1,7 +1,7 @@
 @import "styles/ThemeStyles.scss";
 
 .OrderConfirmViewBody {
-  height: 100vh;
+  min-height: calc(100vh - 69px);
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-position: left top;
@@ -151,7 +151,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding-bottom: 3.39vh;
+        padding-bottom: 30px;
 
         #category {
           @include heading2Font($black100Color);
@@ -166,7 +166,7 @@
       .categoryAttachment {
         display: flex;
         @include body1Font($primaryColor);
-        padding-bottom: 3.39vh;
+        padding-bottom: 30px;
         text-decoration-line: none;
         cursor: pointer;
       }
@@ -174,11 +174,11 @@
       .categoryUserInfoLayout {
         display: flex;
         flex-direction: row;
-        margin-bottom: 2.15vh;
+        margin-bottom: 19px;
 
         .categoryKeyUserInfo {
           width: 70px;
-          padding-right: 2.8vw;
+          padding-right: 42px;
           @include subHeading2Font($black100Color);
         }
         .categoryValueUserInfo {
@@ -194,11 +194,11 @@
       .categoryAllLayout {
         display: flex;
         flex-direction: row;
-        padding-top: 1.24vh;
-        padding-bottom: 2.15vh;
+        padding-top: 15px;
+        padding-bottom: 15px;
         .categoryKeyText {
-          width: 70px;
-          padding-right: 2.8vw;
+          width: 90px;
+          padding-right: 23px;
           @include body1Font($black75Color);
         }
 

@@ -16,6 +16,7 @@
   bottom: 0;
   @include centerFormat();
   flex-direction: column;
+  z-index: 999;
 
   .GifContainer {
     height: 250px;
