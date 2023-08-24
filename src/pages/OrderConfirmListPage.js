@@ -168,9 +168,9 @@ const OrderConfirmListPage = ({ isAdmin, userObject }) => {
                             true
                           )}
                           id="order_collect_date">
-                          {order.completeTime === "0"
+                          {order.adminCompleteTime === "0"
                             ? "미정"
-                            : `${convertDateWithDots(order.completeTime)}`}
+                            : `${convertDateWithDots(order.adminCompleteTime)}`}
                         </div>
                       )}
                       {isEditClicked[i] ? (

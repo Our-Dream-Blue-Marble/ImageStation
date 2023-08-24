@@ -53,12 +53,26 @@ export const getNotAdminOrderConfirmList = async (setOrderList) => {
 export const getOrderSubmitDate = (orderConfirm) => {
   var orderSubmitDate = orderConfirm.docId;
   var date = new Date(orderSubmitDate);
+  let timeSection;
+  let hour = parseInt(("0" + date.getHours()).slice(-2));
+  if (hour > 12) {
+    timeSection = "오후";
+    hour = hour - 12;
+  } else {
+    timeSection = "오전";
+  }
   const dateInString =
     date.getFullYear().toString() +
     "." +
     ("0" + (date.getMonth() + 1)).slice(-2) +
     "." +
-    ("0" + date.getDate()).slice(-2);
+    ("0" + date.getDate()).slice(-2) +
+    "\n" +
+    timeSection +
+    " " +
+    hour +
+    ":" +
+    ("0" + date.getMinutes()).slice(-2);
   return dateInString;
 };
 
@@ -106,11 +120,9 @@ export const onEditOrderDataSaveClick = async (
 
 export const getOrderDataPageWords = (pageValue) => {
   if (pageValue === "0") {
-    return "전체";
+    return "단면";
   } else if (pageValue === "1") {
-    return "짝수";
-  } else if (pageValue === "2") {
-    return "홀수";
+    return "양면";
   }
 };
 

@@ -35,6 +35,7 @@ const OrderPage = () => {
   const [orderMoreInfo, setOrderMoreInfo] = useState("");
   const [orderAttachment, setOrderAttachment] = useState("");
   const [orderAttachmentName, setOrderAttachmentName] = useState("");
+  const [orderUserRequestTime, setOrderUserRequestTime] = useState("");
   const [isSubmitButton, setIsSubmitButton] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
@@ -50,12 +51,12 @@ const OrderPage = () => {
   const { CurrentPageLabel } = pageNavigationPluginInstance;
 
   useEffect(() => {
-    if (orderTitle !== "" && imageUrl !== "") {
+    if (orderTitle !== "" && imageUrl !== "" && orderUserRequestTime !== "") {
       setIsPossibleSubmit(true);
     } else {
       setIsPossibleSubmit(false);
     }
-  }, [orderTitle, imageUrl]);
+  }, [orderTitle, imageUrl, orderUserRequestTime]);
 
   const handleMouseEnter = () => {
     setIsHover(true);
@@ -110,7 +111,8 @@ const OrderPage = () => {
                     orderColor,
                     orderMoreInfo,
                     orderAttachment,
-                    orderAttachmentName
+                    orderAttachmentName,
+                    orderUserRequestTime
                   ).then(() => {});
               } else {
                 navigate(OrderCategoryPageRouteName);
@@ -223,9 +225,8 @@ const OrderPage = () => {
                           onChange={async (e) => {
                             onOrderFieldChange(e, setOrderPage);
                           }}>
-                          <option value={"0"}>전체</option>
-                          <option value={"1"}>짝수</option>
-                          <option value={"2"}>홀수</option>
+                          <option value={"0"}>단면</option>
+                          <option value={"1"}>양면</option>
                         </select>
                       </span>
                       {(category === "normal" ||
@@ -378,6 +379,18 @@ const OrderPage = () => {
                           </select>
                         </span>
                       )}
+                      <span className="userReauestTimeContainer">
+                        <label className="select_label">
+                          완료요청일시
+                          <input
+                            name="userRequestTime"
+                            type="datetime-local"
+                            onChange={async (e) => {
+                              onOrderFieldChange(e, setOrderUserRequestTime);
+                            }}
+                          />
+                        </label>
+                      </span>
                       {category !== "etc" && (
                         <span className="moreInfoContainer">
                           <label className="select_label">
@@ -397,10 +410,11 @@ const OrderPage = () => {
                             주문사항
                             <textarea
                               name="moreInfo"
+                              className="textarea_etc"
                               onChange={async (e) => {
                                 onOrderFieldChange(e, setOrderMoreInfo);
                               }}
-                              placeholder="추가요청 사항을 적어주세요!"></textarea>
+                              placeholder="옵션에 없는 요청 사항을 적어주세요!"></textarea>
                           </label>
                         </span>
                       )}

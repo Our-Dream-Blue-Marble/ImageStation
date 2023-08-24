@@ -115,8 +115,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
 
                       <div
                         className="categoryAttachment"
-                        onClick={() => onAttachmentDownloadClick(orderData)}
-                      >
+                        onClick={() => onAttachmentDownloadClick(orderData)}>
                         {orderData.attachmentName}
                       </div>
                       {isAdmin ? (
@@ -240,10 +239,12 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
                       <div className="categoryAllLayout">
                         <span className="categoryKeyText">예상수령일</span>
                         <span className="categoryValueText">
-                          {orderData.completeTime === "0" ? (
+                          {orderData.adminCompleteTime === "0" ? (
                             "미정"
                           ) : (
-                            <>{convertDateWithDots(orderData.completeTime)}</>
+                            <>
+                              {convertDateWithDots(orderData.adminCompleteTime)}
+                            </>
                           )}
                         </span>
                       </div>
@@ -254,8 +255,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
               <div className="navigateButtonSection">
                 <button
                   className="navigateButton"
-                  onClick={() => navigate(OrderConfirmListRouteName)}
-                >
+                  onClick={() => navigate(OrderConfirmListRouteName)}>
                   돌아가기
                 </button>
               </div>

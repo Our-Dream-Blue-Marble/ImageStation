@@ -18,7 +18,8 @@ class OrderModel {
     attachmentName,
     state,
     totalMoney,
-    completeTime
+    adminCompleteTime,
+    userRequestCompleteTime
   ) {
     this.docId = docId;
     this.userDocRef = userDocRef;
@@ -36,7 +37,8 @@ class OrderModel {
     this.attachmentName = attachmentName;
     this.state = state;
     this.totalMoney = totalMoney;
-    this.completeTime = completeTime;
+    this.adminCompleteTime = adminCompleteTime;
+    this.userRequestCompleteTime = userRequestCompleteTime;
   }
   toData() {
     return {
@@ -56,7 +58,8 @@ class OrderModel {
       attachmentName: this.attachmentName,
       state: this.state,
       totalMoney: this.totalMoney,
-      completeTime: this.completeTime,
+      adminCompleteTime: this.adminCompleteTime,
+      userRequestCompleteTime: this.userRequestCompleteTime,
     };
   }
 }
@@ -80,7 +83,8 @@ export const OrderModelConverter = {
       attachmentName: data.attachmentName,
       state: data.state,
       totalMoney: data.totalMoney,
-      completeTime: data.completeTime,
+      adminCompleteTime: data.adminCompleteTime,
+      userRequestCompleteTime: data.userRequestCompleteTime,
     };
   },
   fromFirestore: function (snapshot, options) {
@@ -106,7 +110,8 @@ OrderModel.propTypes = {
   attachmentName: PropTypes.string.isRequired,
   state: PropTypes.string,
   totalMoney: PropTypes.string,
-  completeTime: PropTypes.string,
+  adminCompleteTime: PropTypes.string,
+  userRequestCompleteTime: PropTypes.string,
 };
 
 export default OrderModel;

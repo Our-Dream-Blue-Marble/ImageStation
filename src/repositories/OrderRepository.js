@@ -15,7 +15,8 @@ export const createNewOrderDocument = async (
   color,
   moreInfo,
   attachment,
-  attachmentName
+  attachmentName,
+  userRequestTime
 ) => {
   const userDocRef = dbService
     .collection("users")
@@ -42,7 +43,8 @@ export const createNewOrderDocument = async (
         attachmentName,
         "2",
         "0",
-        "0"
+        "0",
+        userRequestTime
       )
     )
     .then(async () => {
@@ -117,7 +119,7 @@ export const updateOrderDataDocument = async (
     .doc(String(docId));
   let retult = false;
   await orderDocumentRef
-    .update({ completeTime: newDate, totalMoney: newTotalMoney })
+    .update({ adminCompleteTime: newDate, totalMoney: newTotalMoney })
     .then(() => {
       retult = true;
     })
