@@ -1,14 +1,12 @@
 @import "ThemeStyles.scss";
 
 .noticeViewLayout {
-  display: flex;
   width: 100%;
-  min-height: 91vh;
-  padding-bottom: 7.9vh;
-  background-image: url(../assets/BackgroundAsset.svg);
+  min-height: calc(100vh - 69px);
+  background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
-  background-position: left top;
   background-size: cover;
+  display: flex;
   flex-direction: column;
 
   .noticeViewBoxContainer {
