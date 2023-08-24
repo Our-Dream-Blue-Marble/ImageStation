@@ -22,6 +22,7 @@ import {
   getOrderDataPaperWords,
   getOrderDataSizeWords,
   getOrderStateWords,
+  getOrderSubmitDate,
 } from "functions/OrderConfirmFunction";
 import LoadingWidgets from "widgets/LoadingWidgets";
 import ErrorPage from "./ErrorPage";
@@ -154,7 +155,9 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
                       <div className="categoryAllLayout">
                         <span className="categoryKeyText">완료요청일시</span>
                         <span className="categoryValueText">
-                          {orderData.userRequestCompleteTime}
+                          {getOrderSubmitDate(
+                            orderData.userRequestCompleteTime
+                          )}
                         </span>
                       </div>
                       <div className="categoryAllLayout">
