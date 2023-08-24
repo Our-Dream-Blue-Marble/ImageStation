@@ -84,7 +84,14 @@ const SignInPage = () => {
       userPassword === userPasswordConfirm,
       checkAdminEmail(userEmail),
     ]);
-  }, [userEmail, userPassword, userPasswordConfirm]);
+  }, [
+    emailRegEx1,
+    emailRegEx2,
+    passwordRegEx,
+    userEmail,
+    userPassword,
+    userPasswordConfirm,
+  ]);
 
   const handleShowPasswordChecked = async (ref, setValue, value) => {
     const password = await ref.current;
