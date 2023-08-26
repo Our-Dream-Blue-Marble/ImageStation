@@ -16,9 +16,9 @@
     height: 2.48vh;
     display: flex;
     flex-direction: row;
-    margin-top: 7.9vh;
+    margin-top: 77px;
     margin-left: 167px;
-    margin-bottom: 5.9vh;
+    margin-bottom: 52px;
     @include centerFormat();
 
     .NoticeAllTitle {
@@ -40,21 +40,20 @@
   }
 
   .NoticeAllContainer {
+    // width: 862px;
+    height: 887px;
+    // min-height: 600px;
     @include desktop {
       width: 862px;
     }
 
     @include tablet {
       width: 600px;
-      margin-left: 150px;
     }
 
     @include mobile {
       width: 400px;
-      margin-left: 100px;
     }
-
-    height: 100vh;
     border-radius: 10px;
     box-shadow: $box-shadow;
     background-color: $white60Color;
@@ -64,12 +63,23 @@
       flex-direction: row;
       width: 192px;
       height: 42px;
-      margin-left: 69.26%;
+
       margin-bottom: 2.7vh;
       margin-top: 2.9vh;
       border-radius: 8px;
       background: $white100Color;
       box-shadow: 0px 2px 2px 1px $black5Color;
+      @include desktop {
+        margin-left: 592px;
+      }
+
+      @include tablet {
+        margin-left: 357px;
+      }
+
+      @include mobile {
+        margin-left: 175px;
+      }
 
       .searchInput {
         width: 111px;
@@ -114,6 +124,7 @@
         }
 
         @include mobile {
+          margin-left: -70px;
           width: 200px;
         }
         display: flex;
@@ -140,19 +151,36 @@
             @include body1Font($black100Color);
             height: 2.8vh;
             margin-bottom: 12px;
-            overflow: hidden;
             word-break: break-all;
             text-overflow: ellipsis;
+            overflow: hidden;
+            @include tablet {
+              width: 150px;
+            }
+            @include mobile {
+              width: 100px;
+            }
           }
           .noticeListBody {
             @include captionFont($black75Color);
-            width: 411px;
+            // width: 411px;
             height: 2.6vh;
             word-break: break-all;
             text-overflow: ellipsis;
             overflow: hidden;
             margin: 0;
             padding: 0;
+            @include desktop {
+              width: 411px;
+            }
+
+            @include tablet {
+              width: 200px;
+            }
+
+            @include mobile {
+              width: 120px;
+            }
           }
         }
         .noticeDateContainer {

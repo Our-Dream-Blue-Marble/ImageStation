@@ -3,7 +3,7 @@
 .emailAuthentication-background {
   display: flex;
   justify-content: center;
-  height: 100%;
+  min-height: calc(83.1vh - 69px);
   padding-top: 6.9vh;
   padding-bottom: 10vh;
   background-image: url("../assets/BackgroundAsset.svg");
@@ -16,9 +16,8 @@
   display: flex;
   flex-direction: column;
   @include centerFormat();
-  width: 35.7vw;
-  min-width: 328px;
-  height: 73.8vh;
+  width: 540px;
+  height: 600px;
   background-color: $white60Color;
   border-radius: 10px;
   box-shadow: $box-shadow;
@@ -39,7 +38,7 @@
   display: flex;
   justify-content: center;
   min-width: 200px;
-  height: 33.7vh;
+  height: 205px;
   margin-top: 10px;
   img {
     object-fit: scale-down;
@@ -50,7 +49,7 @@
   width: 328px;
   height: 66px;
   text-align: center;
-  padding-bottom: 8.9vh;
+  padding-bottom: 72px;
   @include body2Font($black75Color);
 
   span {
@@ -63,7 +62,7 @@
   width: 248px;
   height: 22px;
   text-align: center;
-  padding-bottom: 2.9vh;
+  padding-bottom: 24px;
   @include body1Font($black50Color);
   cursor: pointer;
 

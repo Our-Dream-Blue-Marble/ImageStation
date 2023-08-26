@@ -3,7 +3,7 @@
 .emailCompleted-background {
   display: flex;
   justify-content: center;
-  height: 100%;
+  min-height: calc(66.4vh - 69px);
   padding-top: 12.6vh;
   padding-bottom: 21vh;
   background-image: url("../assets/BackgroundAsset.svg");
@@ -52,4 +52,5 @@
   border-radius: 10px;
   background: $primaryColor;
   @include heading2Font($white100Color);
+  cursor: pointer;
 }

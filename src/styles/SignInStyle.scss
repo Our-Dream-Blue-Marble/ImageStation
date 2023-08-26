@@ -3,9 +3,10 @@
 .SignIn {
   display: flex;
   justify-content: center;
-  height: 100%;
+  min-height: calc(88vh - 69px);
   padding-top: 6vh;
   padding-bottom: 6vh;
+
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-position: left top;
@@ -15,8 +16,8 @@
     display: flex;
     flex-direction: column;
     @include centerFormat();
-    width: 35.7vw;
-    height: 680px;
+    width: 540px;
+    height: 670px;
     background-color: $white60Color;
     border-radius: 10px;
     box-shadow: $box-shadow;
@@ -47,7 +48,7 @@
 
       input {
         display: block;
-        width: 24.6vw;
+        width: 372px;
         height: 32px;
         border-top: none;
         border-left: none;
@@ -79,7 +80,7 @@
       .password-input {
         display: inline-flex;
         input {
-          width: 22.6vw;
+          width: 342px;
           border: none;
         }
 
@@ -153,7 +154,7 @@
       }
 
       #SubmitButton {
-        width: 24.5vw;
+        width: 372px;
         height: 60px;
         margin-top: 31px;
         @include heading2Font($white100Color);

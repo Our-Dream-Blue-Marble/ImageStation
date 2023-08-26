@@ -50,7 +50,7 @@ const SignInPage = () => {
     if (!isNewUser) {
       navigate(logInRouteName);
     }
-  });
+  }, [isNewUser, navigate]);
 
   useEffect(() => {
     if (
@@ -82,16 +82,8 @@ const SignInPage = () => {
         checkAdminEmail(userEmail),
       passwordRegEx.test(userPassword),
       userPassword === userPasswordConfirm,
-      checkAdminEmail(userEmail),
     ]);
-  }, [
-    emailRegEx1,
-    emailRegEx2,
-    passwordRegEx,
-    userEmail,
-    userPassword,
-    userPasswordConfirm,
-  ]);
+  }, [userEmail, userPassword, userPasswordConfirm]);
 
   const handleShowPasswordChecked = async (ref, setValue, value) => {
     const password = await ref.current;
@@ -152,6 +144,7 @@ const SignInPage = () => {
           <form
             method="POST"
             onSubmit={async (e) => {
+              console.log(errorContent);
               e.preventDefault();
               if (!errorContent.toString().includes("false")) {
                 onNewUserEmailAndPasswordSubmit(
