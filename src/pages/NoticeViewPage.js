@@ -27,7 +27,6 @@ const NoticeViewPage = ({ isAdmin }) => {
             setNoticeViewObj(result);
           } else {
             setIsError(true);
-            console.log(1);
           }
         });
       }

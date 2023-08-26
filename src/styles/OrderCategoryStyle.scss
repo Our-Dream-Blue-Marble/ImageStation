@@ -1,20 +1,23 @@
 @import "ThemeStyles.scss";
 
 .OrderCategoryPageLayout {
+  display: flex;
   width: 100%;
-  min-height: calc(100vh - 69px);
+  min-height: calc(70vh - 69px);
+  padding-top: 20vh;
+  padding-bottom: 10vh;
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  @include centerFormat();
+
+  justify-content: center;
 
   .cardLayout {
     display: grid;
     grid-template-columns: 237px 237px 237px;
     grid-template-rows: 237px 237px;
-    grid-column-gap: 1.85vw;
-    grid-row-gap: 3.16vh;
+    grid-column-gap: 28px;
+    grid-row-gap: 28px;
     backface-visibility: hidden;
 
     @include mobile {
@@ -22,8 +25,8 @@
       height: 800px;
       grid-template-columns: 237px 237px;
       grid-template-rows: 237px 237px;
-      grid-column-gap: 1.85vw;
-      grid-row-gap: 3.16vh;
+      grid-column-gap: 28px;
+      grid-row-gap: 28px;
       margin-bottom: 100px;
     }
 

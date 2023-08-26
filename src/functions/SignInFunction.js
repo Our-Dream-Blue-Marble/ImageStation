@@ -70,6 +70,7 @@ export const onNewUserEmailAndPasswordSubmit = async (
   setIsNewUser
 ) => {
   event.preventDefault();
+
   if (
     (checkHandongEmail(userEmail) || checkAdminEmail(userEmail)) &&
     isNewUser &&
