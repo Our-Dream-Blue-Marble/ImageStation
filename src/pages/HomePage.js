@@ -57,7 +57,11 @@ const HomePage = ({ elementRef }) => {
           </div>
         </div>
         <div className="NoticeLayout">
-          {scrollPosition > 200 ? <NoticeListPage /> : null}
+          {scrollPosition > 200 ? (
+            <NoticeListPage />
+          ) : (
+            <div className="noticeEmptyLayout" />
+          )}
         </div>
         <footer>
           <div className="footer-container">

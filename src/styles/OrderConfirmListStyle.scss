@@ -296,4 +296,18 @@
     #arrowRightButton {
     }
   }
+  .emptyOrderConfirmListContainer {
+    display: flex;
+    width: 86.77%;
+    height: 600px;
+    border-radius: 10px;
+    box-shadow: $box-shadow;
+    background-color: $white60Color;
+    @include centerFormat();
+    .emptyOrderConfirmListBody {
+      white-space: pre-wrap;
+      word-break: break-all;
+      @include subHeading2Font($black50Color);
+    }
+  }
 }

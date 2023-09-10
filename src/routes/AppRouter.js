@@ -21,7 +21,6 @@ import {
   UserLeaveRouteName,
   EmailAuthenticationRouteName,
   EmailCompletedRouteName,
-  ErrorPageRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
@@ -98,7 +97,7 @@ const AppRouter = ({
             />
             <Route
               path={OrderCategoryPageRouteName}
-              element={<OrderCategoryPage />}
+              element={<OrderCategoryPage isLoggedIn={isLoggedIn} />}
             />
             <Route path={OrderPageRouteName} element={<OrderPage />} />
 
@@ -107,7 +106,7 @@ const AppRouter = ({
               element={
                 <OrderConfirmListPage
                   isAdmin={userObject?.role || false}
-                  userObject={userObject}
+                  isLoggedIn={isLoggedIn}
                 />
               }
             />
@@ -155,15 +154,24 @@ const AppRouter = ({
               to={HomeRouteName}
               element={<LogInPage />}
             />
-
             <Route
               path={UpdatePasswordPageRouteName}
               element={<UpdatePasswordPage />}
             />
-            {/* <Route
+            <Route
               path={OrderCategoryPageRouteName}
-              element={<OrderCategoryPage />}
-            /> */}
+              element={<OrderCategoryPage isLoggedIn={isLoggedIn} />}
+            />
+
+            <Route
+              path={OrderConfirmListRouteName}
+              element={
+                <OrderConfirmListPage
+                  isAdmin={userObject?.role || false}
+                  isLoggedIn={isLoggedIn}
+                />
+              }
+            />
 
             <Route path={PaperInfoRouteName} element={<PaperInfoPage />} />
             <Route
