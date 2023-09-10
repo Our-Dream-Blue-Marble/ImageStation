@@ -2,6 +2,7 @@
 
 .noticeListLayout {
   width: 100%;
+  height: calc(100vh - 69px);
   background: $white100Color;
   display: flex;
   flex-direction: row;
@@ -133,4 +134,22 @@
   position: relative;
   animation: fadeIn 1s ease-in-out;
   z-index: 1;
+}
+
+.noticeEmptyLayout {
+  height: calc(100vh - 69px);
+  width: 100%;
+  background: $white100Color;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex-wrap: wrap;
+  @include centerFormat();
+  .noticeEmptyHeading {
+    @include heading2Font($primaryColor);
+  }
+  .noticeEmptyBody {
+    margin-top: 29px;
+    @include subHeading2Font($black75Color);
+  }
 }
