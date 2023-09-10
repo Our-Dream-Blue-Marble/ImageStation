@@ -9,6 +9,7 @@
   background: $white20Color;
   backdrop-filter: blur(2px);
   @include centerFormat();
+  z-index: 999;
 
   .container {
     display: flex;
@@ -37,7 +38,7 @@
       @include body2Font($black75Color);
       text-align: center;
       white-space: pre-wrap;
-      width: 190px;
+      width: 223px;
     }
 
     .button-primary {
