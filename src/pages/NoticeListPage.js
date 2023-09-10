@@ -8,13 +8,15 @@ const NoticeListPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [notice, setNotice] = useState([]);
-  const [noticeLoaded, setNoticeLoaded] = useState(false);
+  const [isNoticeLoading, setIsNoticeLoading] = useState(true);
 
   const [isNoticeDeleted, setIsNoticeDeleted] = useState(location.state);
   useEffect(() => {
-    getNoticeList(setNotice);
-    setNoticeLoaded(true);
+    getNoticeList(setNotice).then(() => {
+      setIsNoticeLoading(false);
+    });
   }, []);
+
   useEffect(() => {
     if (isNoticeDeleted) {
       getNoticeList(setNotice).then((result) => {
@@ -27,21 +29,14 @@ const NoticeListPage = () => {
 
   return (
     <>
-      {notice.length === 0 ? (
-        <div className="noticeEmptyLayout">
-          <div className="noticeEmptyHeading">
-            죄송합니다! 아직 올라온 공지가 없습니다.
-          </div>
-          <div className="noticeEmptyBody">공지로 곧바로 찾아뵙겠습니다!</div>
-        </div>
-      ) : (
+      {isNoticeLoading && <div className="noticeListLayout" />}
+      {notice.length !== 0 ? (
         <div className="noticeListLayout">
           <div className="noticeHead">
             <div className="noticeListHead">공지사항</div>
             <div className="noticeListExp">
               이미지스테이션의 새로운 소식을 전해드려요.
             </div>
-
             <div
               className="AllBtnContainer"
               onClick={() => navigate(NoticeAllRouteName, { state: false })}>
@@ -70,6 +65,13 @@ const NoticeListPage = () => {
               </div>
             ))}
           </div>
+        </div>
+      ) : (
+        <div className="noticeEmptyLayout">
+          <div className="noticeEmptyHeading">
+            죄송합니다! 아직 올라온 공지가 없습니다.
+          </div>
+          <div className="noticeEmptyBody">공지로 곧바로 찾아뵙겠습니다!</div>
         </div>
       )}
     </>
