@@ -71,7 +71,7 @@ const NoticeListPage = () => {
           <div className="noticeEmptyHeading">
             죄송합니다! 아직 올라온 공지가 없습니다.
           </div>
-          <div className="noticeEmptyBody">공지로 곧바로 찾아뵙겠습니다!</div>
+          <div className="noticeEmptyBody">새로운 공지로 찾아뵙겠습니다!</div>
         </div>
       )}
     </>
