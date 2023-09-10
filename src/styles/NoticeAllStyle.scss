@@ -40,9 +40,7 @@
   }
 
   .NoticeAllContainer {
-    // width: 862px;
     height: 887px;
-    // min-height: 600px;
     @include desktop {
       width: 862px;
     }
@@ -211,6 +209,29 @@
         border: none;
         background-color: $black50Color;
       }
+    }
+  }
+  .emptyNoticeContainer {
+    display: flex;
+    height: 887px;
+    justify-content: center;
+    @include desktop {
+      width: 862px;
+    }
+
+    @include tablet {
+      width: 600px;
+    }
+
+    @include mobile {
+      width: 400px;
+    }
+    border-radius: 10px;
+    box-shadow: $box-shadow;
+    background-color: $white60Color;
+    .emptyNoticeBody {
+      @include subHeading2Font($black50Color);
+      margin-top: 314px;
     }
   }
 }

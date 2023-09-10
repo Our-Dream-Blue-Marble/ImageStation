@@ -26,9 +26,12 @@ const NoticeAllPage = ({ isAdmin }) => {
   const offset = (page - 1) * limit;
   const [isNoticeDeleted, setIsNoticeDeleted] = useState(location.state);
   const [isMaxPinClicked, setIsMaxPinClicked] = useState(false);
+  const [isNoticeLoading, setIsNoticeLoading] = useState(true);
 
   useEffect(() => {
-    getNoticeList(setNotice);
+    getNoticeList(setNotice).then(() => {
+      setIsNoticeLoading(false);
+    });
     getNoticeList(setNoticeSearched);
   }, []);
   useEffect(() => {
@@ -55,7 +58,7 @@ const NoticeAllPage = ({ isAdmin }) => {
       ) : (
         <></>
       )}
-      {notice === null ? <LoadingWidgets /> : null}
+
       <div className="NoticeAllLayout">
         <div className="NoticeAllHeadContainer">
           <div className="NoticeAllTitle">
@@ -75,108 +78,116 @@ const NoticeAllPage = ({ isAdmin }) => {
             ) : null}
           </div>
         </div>
-
-        <div className="NoticeAllContainer">
-          <div className="searchContainer">
-            <div className="searchIcon">
-              <SearchAsset />
+        {isNoticeLoading && <div className="NoticeAllContainer" />}
+        {notice.length !== 0 ? (
+          <div className="NoticeAllContainer">
+            <div className="searchContainer">
+              <div className="searchIcon">
+                <SearchAsset />
+              </div>
+              <input
+                className="searchInput"
+                name="noticeSearch"
+                type="text"
+                placeholder="검색"
+                onChange={(e) => {
+                  const filteredData = notice.filter(
+                    (data) =>
+                      data.title.includes(e.target.value) ||
+                      data.body.includes(e.target.value)
+                  );
+                  setNoticeSearched(filteredData);
+                }}
+              />
             </div>
-            <input
-              className="searchInput"
-              name="noticeSearch"
-              type="text"
-              placeholder="검색"
-              onChange={(e) => {
-                const filteredData = notice.filter(
-                  (data) =>
-                    data.title.includes(e.target.value) ||
-                    data.body.includes(e.target.value)
-                );
-                setNoticeSearched(filteredData);
-              }}
-            />
-          </div>
 
-          <div className="noticesContainer">
-            <hr id="NoticeDevice_line" />
-            {noticeSearched.slice(offset, offset + limit).map((value, i) => (
-              <>
-                <div className="eachNoticeContent" key={value.id}>
-                  <div>
-                    {isAdmin ? (
-                      <>
-                        {value.noticePin ? (
-                          <div
-                            className="noticePinCheckbox"
-                            onClick={async () => {
-                              await onPinnedNoticeDataClick(
-                                value.id,
-                                false,
-                                notice,
-                                setNotice,
-                                setNoticeSearched
-                              );
-                            }}>
-                            <NoticeFilledPinAsset width={24} height={24} />
-                          </div>
-                        ) : (
-                          <div
-                            className="noticePinCheckbox"
-                            onClick={async () => {
-                              if (getNumOfPinnedNotices(notice) === 4) {
-                                setIsMaxPinClicked(true);
-                              } else {
+            <div className="noticesContainer">
+              <hr id="NoticeDevice_line" />
+              {noticeSearched.slice(offset, offset + limit).map((value, i) => (
+                <>
+                  <div className="eachNoticeContent" key={value.id}>
+                    <div>
+                      {isAdmin ? (
+                        <>
+                          {value.noticePin ? (
+                            <div
+                              className="noticePinCheckbox"
+                              onClick={async () => {
                                 await onPinnedNoticeDataClick(
                                   value.id,
-                                  true,
+                                  false,
                                   notice,
                                   setNotice,
                                   setNoticeSearched
                                 );
-                              }
-                            }}>
-                            <NoticeEmptyPinAsset
-                              width={24}
-                              height={24}
-                              color="blue"
-                            />
-                          </div>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        {value.noticePin ? (
-                          <div className="noticePinCheckbox">
-                            <NoticePinAsset width={12} height={12} />
-                          </div>
-                        ) : null}
-                      </>
-                    )}
-                  </div>
-                  <div
-                    onClick={() =>
-                      navigate(NoticeListRouteName + "/" + value.id, {
-                        state: { data: value },
-                      })
-                    }>
-                    <div className="noticeTitleAndBodyContainer">
-                      <div className=" noticeListTitle">{value.title}</div>
-                      <pre className="noticeListBody">{value.body}</pre>
+                              }}>
+                              <NoticeFilledPinAsset width={24} height={24} />
+                            </div>
+                          ) : (
+                            <div
+                              className="noticePinCheckbox"
+                              onClick={async () => {
+                                if (getNumOfPinnedNotices(notice) === 4) {
+                                  setIsMaxPinClicked(true);
+                                } else {
+                                  await onPinnedNoticeDataClick(
+                                    value.id,
+                                    true,
+                                    notice,
+                                    setNotice,
+                                    setNoticeSearched
+                                  );
+                                }
+                              }}>
+                              <NoticeEmptyPinAsset
+                                width={24}
+                                height={24}
+                                color="blue"
+                              />
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {value.noticePin ? (
+                            <div className="noticePinCheckbox">
+                              <NoticePinAsset width={12} height={12} />
+                            </div>
+                          ) : null}
+                        </>
+                      )}
                     </div>
+                    <div
+                      onClick={() =>
+                        navigate(NoticeListRouteName + "/" + value.id, {
+                          state: { data: value },
+                        })
+                      }>
+                      <div className="noticeTitleAndBodyContainer">
+                        <div className=" noticeListTitle">{value.title}</div>
+                        <pre className="noticeListBody">{value.body}</pre>
+                      </div>
 
-                    <div className="noticeDateContainer">
-                      <div className="noticeListDate">게시일시:</div>
-                      <div className="noticeListDateTime">
-                        {getNoticeWrittenFullDate(value)}
+                      <div className="noticeDateContainer">
+                        <div className="noticeListDate">게시일시:</div>
+                        <div className="noticeListDateTime">
+                          {getNoticeWrittenFullDate(value)}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <hr id="NoticeDevice_line" />
-              </>
-            ))}
+                  <hr id="NoticeDevice_line" />
+                </>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="emptyNoticeContainer">
+            <div className="emptyNoticeBody">
+              공지가 아직 올라오지 않았습니다!
+            </div>
+          </div>
+        )}
         <footer>
           <NoticePagination
             total={notice.length}
