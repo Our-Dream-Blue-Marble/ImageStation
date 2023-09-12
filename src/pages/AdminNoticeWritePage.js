@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   onAdminWriteNewNoticeSubmit,
   onNoticeAttachmentChange,
   onPostTitleOrBodyChange,
 } from "functions/NoticeFunction";
-
-import "styles/AdminNoticeWriteStyle.scss";
-
 import { useLocation, useNavigate } from "react-router-dom";
-import { NoticeListRouteName } from "routes/RouteName";
+import { NoticeAllRouteName, NoticeListRouteName } from "routes/RouteName";
+import "styles/AdminNoticeWriteStyle.scss";
 
 const AdminNoticeWritePage = () => {
   const location = useLocation();
@@ -19,31 +17,49 @@ const AdminNoticeWritePage = () => {
   var newNoticeId;
   const [noticeAttachment, setNoticeAttachment] = useState("");
   const [noticeAttachmentName, setNoticeAttachmentName] = useState("");
+  const [isSubmitButton, setIsSubmitButton] = useState(false);
+  const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
+
   if (dataOfNotice) {
     newNoticeId = (parseInt(dataOfNotice.id) + 1).toString();
   } else {
     newNoticeId = "1";
   }
 
+  useEffect(() => {
+    if (postTitle !== "" && postBody !== "") {
+      setIsPossibleSubmit(true);
+    } else {
+      setIsPossibleSubmit(false);
+    }
+  }, [postTitle, postBody]);
+
   return (
     <div className="noticeWriteLayout">
       <form
+        method="POST"
         onSubmit={async (e) => {
-          onAdminWriteNewNoticeSubmit(
-            e,
-            newNoticeId,
-            postTitle,
-            postBody,
-            "사장님",
-            noticeAttachment,
-            noticeAttachmentName
-          ).then((result) => {
-            if (result) {
-              navigate(`${NoticeListRouteName}/${newNoticeId}`);
-            }
-          });
-        }}
-      >
+          e.preventDefault();
+          if (isSubmitButton === true) {
+            onAdminWriteNewNoticeSubmit(
+              e,
+              newNoticeId,
+              postTitle,
+              postBody,
+              "사장님",
+              noticeAttachment,
+              noticeAttachmentName
+            ).then((result) => {
+              if (result) {
+                navigate(`${NoticeListRouteName}/${newNoticeId}`, {
+                  replace: true,
+                });
+              }
+            });
+          } else {
+            navigate(NoticeAllRouteName, { replace: true });
+          }
+        }}>
         <div className="writeContainer">
           <input
             className="noticeTitleTextBox"
@@ -86,10 +102,27 @@ const AdminNoticeWritePage = () => {
           />
         </div>
         <div className="noticeWriteBtns">
-          <button id="noticeWriteCancelBtn" onClick={() => navigate(-1)}>
+          <button
+            className="noticeWriteCancelBtn"
+            name="cancel"
+            onClick={(e) => {
+              setIsSubmitButton(false);
+            }}>
             취소하기
           </button>
-          <input id="noticeWriteSaveBtn" type="submit" value="올리기" />
+          <input
+            className="noticeWriteSaveBtn"
+            type={isPossibleSubmit ? "submit" : "button"}
+            style={
+              isPossibleSubmit
+                ? { background: `rgba(90, 145, 255, 1)` }
+                : { background: `rgba(33, 36, 39, 0.5)` }
+            }
+            value={"올리기"}
+            onClick={(e) => {
+              setIsSubmitButton(true);
+            }}
+          />
         </div>
       </form>
     </div>

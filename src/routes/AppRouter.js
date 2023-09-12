@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import SignInPage from "pages/SignInPage";
 import NoticeListPage from "pages/NoticeListPage";
@@ -13,16 +12,47 @@ import {
   UpdatePasswordPageRouteName,
   NoticeUpdatePageRouteName,
   logInRouteName,
+  OrderCategoryPageRouteName,
+  OrderPageRouteName,
+  OrderConfirmListRouteName,
+  OrderConfirmViewRouteName,
+  PaperInfoRouteName,
+  NoticeAllRouteName,
+  UserLeaveRouteName,
+  EmailAuthenticationRouteName,
+  EmailCompletedRouteName,
 } from "./RouteName";
 import AdminNoticeWritePage from "pages/AdminNoticeWritePage";
 import UpdatePasswordPage from "pages/UpdatePasswordPage";
 import AdminNoticeUpdatePage from "pages/AdminNoticeUpdatePage";
 import LogInPage from "pages/LogInPage";
 import HeaderPage from "pages/HeaderPage";
+import OrderPage from "pages/OrderPage";
+import OrderCategoryPage from "pages/OrderCategoryPage";
+import OrderConfirmListPage from "pages/OrderConfirmListPage";
+import OrderConfirmViewPage from "pages/OrderConfirmViewPage";
+import PaperInfoPage from "pages/PaperInfoPage";
+import NoticeAllPage from "pages/NoticeAllPage";
+import UserLeavePage from "pages/UserLeavePage";
+import EmailAuthenticationPage from "pages/EmailAuthenticationPage";
+import EmailCompletedPage from "pages/EmailCompletedPage";
+import ErrorPage from "pages/ErrorPage";
+import { useEffect } from "react";
 
-const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
-  const homePagePosition = useRef(null);
-  const noticeListPagePosition = useRef(null);
+const AppRouter = ({
+  isLoggedIn,
+  isEmailVerified,
+  isKorean,
+  setIsKorean,
+  userObject,
+}) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn && !isEmailVerified) {
+      navigate(EmailAuthenticationRouteName);
+    }
+  }, [isLoggedIn, isEmailVerified, navigate]);
 
   return (
     <>
@@ -35,27 +65,27 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
       <Routes>
         {isLoggedIn ? (
           <>
+            <Route path={HomeRouteName} element={<HomePage />} />
             <Route
-              path={HomeRouteName}
+              path={EmailAuthenticationRouteName}
               element={
-                <div ref={homePagePosition} className="homePagePosition">
-                  <HomePage elementRef={noticeListPagePosition} />
-                  <div
-                    ref={noticeListPagePosition}
-                    className="noticeListPagePosition"
-                  >
-                    <NoticeListPage isAdmin={userObject["role"]} />
-                  </div>
-                </div>
+                <EmailAuthenticationPage
+                  isEmailVerified={isEmailVerified}
+                  userObject={userObject}
+                />
               }
             />
             <Route
+              path={EmailCompletedRouteName}
+              element={<EmailCompletedPage />}
+            />
+            <Route
               path={NoticeListRouteName}
-              element={<NoticeListPage isAdmin={userObject["role"]} />}
+              element={<NoticeListPage isAdmin={userObject?.role || false} />}
             />
             <Route
               path={NoticeViewRouteName}
-              element={<NoticeViewPage isAdmin={userObject["role"]} />}
+              element={<NoticeViewPage isAdmin={userObject?.role || false} />}
             />
             <Route
               path={NoticeWriteRouteName}
@@ -65,27 +95,50 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               path={NoticeUpdatePageRouteName}
               element={<AdminNoticeUpdatePage />}
             />
-          </>
-        ) : (
-          <>
             <Route
-              path={HomeRouteName}
+              path={OrderCategoryPageRouteName}
+              element={<OrderCategoryPage isLoggedIn={isLoggedIn} />}
+            />
+            <Route path={OrderPageRouteName} element={<OrderPage />} />
+
+            <Route
+              path={OrderConfirmListRouteName}
               element={
-                <div ref={homePagePosition} className="homePagePosition">
-                  <HomePage elementRef={noticeListPagePosition} />
-                  <div
-                    ref={noticeListPagePosition}
-                    className="noticeListPagePosition"
-                  >
-                    <NoticeListPage isAdmin={false} />
-                  </div>
-                </div>
+                <OrderConfirmListPage
+                  isAdmin={userObject?.role || false}
+                  isLoggedIn={isLoggedIn}
+                />
+              }
+            />
+
+            <Route
+              path={OrderConfirmViewRouteName}
+              element={
+                <OrderConfirmViewPage
+                  isAdmin={userObject?.role || false}
+                  userObject={userObject}
+                />
               }
             />
             <Route
-              path={NoticeListRouteName}
-              element={<NoticeListPage isAdmin={false} />}
+              path={OrderCategoryPageRouteName}
+              element={<OrderCategoryPage />}
             />
+            <Route path={PaperInfoRouteName} element={<PaperInfoPage />} />
+            <Route
+              path={NoticeAllRouteName}
+              element={<NoticeAllPage isAdmin={userObject?.role || false} />}
+            />
+            <Route
+              path={UserLeaveRouteName}
+              element={<UserLeavePage userObject={userObject} />}
+            />
+            <Route path="*" element={<ErrorPage />} />
+          </>
+        ) : (
+          <>
+            <Route path={HomeRouteName} element={<HomePage />} />
+            <Route path={NoticeListRouteName} element={<NoticeListPage />} />
             <Route
               path={NoticeViewRouteName}
               element={<NoticeViewPage isAdmin={false} />}
@@ -102,11 +155,35 @@ const AppRouter = ({ isLoggedIn, isKorean, setIsKorean, userObject }) => {
               to={HomeRouteName}
               element={<LogInPage />}
             />
-
             <Route
               path={UpdatePasswordPageRouteName}
               element={<UpdatePasswordPage />}
             />
+            <Route
+              path={OrderCategoryPageRouteName}
+              element={<OrderCategoryPage isLoggedIn={isLoggedIn} />}
+            />
+
+            <Route
+              path={OrderConfirmListRouteName}
+              element={
+                <OrderConfirmListPage
+                  isAdmin={userObject?.role || false}
+                  isLoggedIn={isLoggedIn}
+                />
+              }
+            />
+
+            <Route path={PaperInfoRouteName} element={<PaperInfoPage />} />
+            <Route
+              path={NoticeAllRouteName}
+              element={<NoticeAllPage isAdmin={false} />}
+            />
+            <Route
+              path={UserLeaveRouteName}
+              element={<UserLeavePage userObject={userObject} />}
+            />
+            <Route path="*" element={<ErrorPage />} />
           </>
         )}
       </Routes>

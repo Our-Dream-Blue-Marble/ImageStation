@@ -1,38 +1,63 @@
+import { useEffect, useRef, useState } from "react";
 import {
+  checkAdminEmail,
   onNewUserEmailAndPasswordSubmit,
   onUserEmailOrPasswordChange,
 } from "functions/SignInFunction";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { HomeRouteName, logInRouteName } from "routes/RouteName";
+import { EmailAuthenticationRouteName, logInRouteName } from "routes/RouteName";
+import { ReactComponent as PasswordLockIconAsset } from "assets/icons/PasswordLockIconAsset.svg";
+import { ReactComponent as ArrowRightSmallIconAsset } from "assets/icons/ArrowRightSmallIconAsset.svg";
+import { buttonHoverStyle } from "widgets/ButtonHoverStyle";
 import "styles/ThemeStyles.scss";
 import "styles/SignInStyle.scss";
+import "styles/PopUpAgreeInfoWidget.scss";
+import PopUpAgreeInfoWidget from "widgets/PopUpAgreeInfoWidget";
+import { userEmailAuthenticate } from "functions/UserFunction";
 
 const SignInPage = () => {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userPasswordConfirm, setUserPasswordConfirm] = useState("");
+  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowPasswordConfirm, setIsShowPasswordConfirm] = useState(false);
+  const [isFocusPassword, setIsFocusPassword] = useState(false);
+  const [isFocusPasswordConfirm, setIsFocusPasswordConfirm] = useState(false);
+  const passwordRef = useRef(null);
+  const passwordConfirmRef = useRef(null);
   const [userName, setUserName] = useState("");
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
   const [isAgreePersonalInfo, setIsAgreePersonalInfo] = useState(false);
   const [isAgreeUsingInfo, setIsAgreeUsingInfo] = useState(false);
+  const [isHover, setIsHover] = useState(false);
+  const [errorContent, setErrorContent] = useState([false, false, false]);
+  const [isShowPersonalInfo, setIsShowPersonalInfo] = useState(false);
+  const [isShowUsingInfo, setIsShowUsingInfo] = useState(false);
   const [isPossibleSubmit, setIsPossibleSubmit] = useState(false);
   const [isNewUser, setIsNewUser] = useState(true);
+  const [isAgreePersonalInfoChecked, setIsAgreePersonalInfoChecked] =
+    useState(false);
+  const [isAgreeUsingInfoChecked, setIsAgreeUsingInfoChecked] = useState(false);
+  const [isAgreePersonalInfoRead, setIsAgreePersonalInfoRead] = useState(false);
+  const [isAgreeUsingInfoRead, setIsAgreeUsingInfoRead] = useState(false);
+
+  const emailRegEx1 = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@handong.ac.kr$/i;
+  const emailRegEx2 = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@handong.edu$/i;
+  const passwordRegEx = /^[A-Za-z0-9]{8,40}$/;
 
   useEffect(() => {
     if (!isNewUser) {
       navigate(logInRouteName);
     }
-  });
+  }, [isNewUser, navigate]);
 
   useEffect(() => {
     if (
+      userName !== "" &&
       userEmail !== "" &&
       userPassword !== "" &&
-      userPassword === userPasswordConfirm &&
-      userName !== "" &&
-      userPhoneNumber !== "" &&
+      userPassword !== "" &&
       isAgreePersonalInfo === true &&
       isAgreeUsingInfo === true
     ) {
@@ -50,128 +75,307 @@ const SignInPage = () => {
     isAgreeUsingInfo,
   ]);
 
+  useEffect(() => {
+    setErrorContent([
+      emailRegEx1.test(userEmail) ||
+        emailRegEx2.test(userEmail) ||
+        checkAdminEmail(userEmail),
+      passwordRegEx.test(userPassword),
+      userPassword === userPasswordConfirm,
+    ]);
+  }, [userEmail, userPassword, userPasswordConfirm]);
+
+  const handleShowPasswordChecked = async (ref, setValue, value) => {
+    const password = await ref.current;
+    if (password === null) return;
+
+    setValue((prev) => !prev);
+    if (!value) {
+      password.type = "text";
+    } else {
+      password.type = "password";
+    }
+  };
+
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
+
+  const handleAgreePersonalInfoChecked = () => {
+    setIsAgreePersonalInfoChecked(true);
+    setIsAgreePersonalInfoRead(true);
+  };
+
+  const handleAgreeUsingInfoChecked = () => {
+    setIsAgreeUsingInfoChecked(true);
+    setIsAgreeUsingInfoRead(true);
+  };
+
   return (
-    <div className="SignIn">
-      <div className="SignInContainer">
-        <form
-          method="POST"
-          onSubmit={async (e) => {
-            onNewUserEmailAndPasswordSubmit(
-              e,
-              userEmail,
-              userPassword,
-              userPasswordConfirm,
-              userName,
-              userPhoneNumber,
-              isNewUser,
-              setIsNewUser
-            ).then((result) => {
-              if (result) {
-                navigate(HomeRouteName);
-              }
-            });
+    <>
+      {(isShowPersonalInfo || isShowUsingInfo) && (
+        <PopUpAgreeInfoWidget
+          isAgreePopUp={true}
+          onClickBackgroundFuction={(e) => {
+            setIsShowPersonalInfo(false);
+            setIsShowUsingInfo(false);
           }}
-        >
-          <div className="InputWithLabel">
-            <input
-              name="userEmail"
-              type="email"
-              placeholder="학교 이메일"
-              required
-              value={userEmail}
-              onChange={(e) => onUserEmailOrPasswordChange(e, setUserEmail)}
-            />
-            <label>* handong.ac.kr 아니면 handong.edu</label>
-          </div>
-          <div className="InputWithLabel">
-            <input
-              name="userPassword"
-              type="password"
-              placeholder="비밀번호"
-              required
-              value={userPassword}
-              onChange={(e) => onUserEmailOrPasswordChange(e, setUserPassword)}
-            />
-            <label>* 영문자, 숫자 포함 8자 이상</label>
-          </div>
-          <div className="InputWithoutLabel">
-            <input
-              name="userPasswordConfirm"
-              type="password"
-              placeholder="비밀번호 재입력"
-              required
-              value={userPasswordConfirm}
-              onChange={(e) =>
-                onUserEmailOrPasswordChange(e, setUserPasswordConfirm)
-              }
-            />
-          </div>
-          <div className="InputWithoutLabel">
-            <input
-              name="userName"
-              type="text"
-              placeholder="이름"
-              required
-              value={userName}
-              onChange={(e) => onUserEmailOrPasswordChange(e, setUserName)}
-            />
-          </div>
-          <div className="InputWithoutLabel">
-            <input
-              name="userPhoneNumber"
-              type="tel"
-              placeholder="전화번호"
-              required
-              value={userPhoneNumber}
-              onChange={(e) =>
-                onUserEmailOrPasswordChange(e, setUserPhoneNumber)
-              }
-            />
-            <label>* "-" 제외 11자리 입력</label>
-          </div>
-
-          <label
-            class="CheckBoxLabel"
-            id="PersonalInfoCheckBox"
-            for="isAgreePersonalInfo"
-          >
-            <input
-              type="checkbox"
-              id="isAgreePersonalInfo"
-              name="isAgreePersonalInfo"
-              value={isAgreePersonalInfo}
-              onClick={(e) =>
-                onUserEmailOrPasswordChange(e, setIsAgreePersonalInfo)
-              }
-            />
-            개인정보 처리방침에 동의합니다.
-          </label>
-
-          <label class="CheckBoxLabel" for="isAgreeUsingInfo">
-            <input
-              type="checkbox"
-              id="isAgreeUsingInfo"
-              name="isAgreeUsingInfo"
-              value={isAgreeUsingInfo}
-              onClick={(e) =>
-                onUserEmailOrPasswordChange(e, setIsAgreeUsingInfo)
-              }
-            />
-            이용약관에 동의합니다.
-          </label>
-          <input
-            id="SubmitButton"
-            type={isPossibleSubmit ? "submit" : "button"}
-            style={
-              isPossibleSubmit
-                ? { background: `rgba(90, 145, 255, 1)` }
-                : { background: `rgba(33, 36, 39, 0.5)` }
+          isShowPersonalInfo={isShowPersonalInfo}
+          onClickButtonFuction={(e) => {
+            if (isShowPersonalInfo) {
+              setIsAgreePersonalInfo(true);
+              handleAgreePersonalInfoChecked();
+            } else {
+              setIsAgreeUsingInfo(true);
+              handleAgreeUsingInfoChecked();
             }
-            value={"가입하기"}
-          />
-        </form>
+
+            setIsShowPersonalInfo(false);
+            setIsShowUsingInfo(false);
+          }}
+        />
+      )}
+      <div className="SignIn">
+        <div className="SignInContainer">
+          <form
+            method="POST"
+            onSubmit={async (e) => {
+              console.log(errorContent);
+              e.preventDefault();
+              if (!errorContent.toString().includes("false")) {
+                onNewUserEmailAndPasswordSubmit(
+                  e,
+                  userEmail,
+                  userPassword,
+                  userPasswordConfirm,
+                  userName,
+                  userPhoneNumber,
+                  isNewUser,
+                  setIsNewUser
+                )
+                  .then(async (signInAndCreateResult) => {
+                    if (signInAndCreateResult) {
+                      await userEmailAuthenticate().then((sendEmailResult) => {
+                        if (sendEmailResult) {
+                          navigate(EmailAuthenticationRouteName);
+                        }
+                      });
+                    }
+                  })
+                  .catch((e) => {
+                    console.log(e);
+                  });
+              }
+            }}>
+            <div className="InputWithoutLabel">
+              <input
+                name="userName"
+                type="text"
+                placeholder="이름"
+                required
+                value={userName}
+                onChange={(e) => onUserEmailOrPasswordChange(e, setUserName)}
+              />
+            </div>
+            <div className="InputWithLabel">
+              <input
+                name="userEmail"
+                type="email"
+                placeholder="학교 이메일"
+                required
+                value={userEmail}
+                style={
+                  errorContent[0] === false && isPossibleSubmit
+                    ? { borderBottom: "1px solid rgba(221, 82, 87, 1)" }
+                    : {}
+                }
+                onChange={(e) => onUserEmailOrPasswordChange(e, setUserEmail)}
+              />
+              <label
+                style={
+                  errorContent[0] === false && isPossibleSubmit
+                    ? { color: "rgba(221, 82, 87, 1)" }
+                    : {}
+                }>
+                * handong.ac.kr 아니면 handong.edu
+              </label>
+            </div>
+            <div className="InputWithLabel">
+              <div className="password-input">
+                <input
+                  name="userPassword"
+                  type="password"
+                  placeholder="비밀번호"
+                  required
+                  value={userPassword}
+                  onChange={(e) =>
+                    onUserEmailOrPasswordChange(e, setUserPassword)
+                  }
+                  onFocus={() => setIsFocusPassword(true)}
+                  onBlur={() => setIsFocusPassword(false)}
+                  ref={passwordRef}
+                />
+                <PasswordLockIconAsset
+                  className="password-asset"
+                  onClick={() =>
+                    handleShowPasswordChecked(
+                      passwordRef,
+                      setIsShowPassword,
+                      isShowPassword
+                    )
+                  }
+                />
+              </div>
+              <hr
+                className="password-hr"
+                style={
+                  errorContent[1] === false && isPossibleSubmit
+                    ? { background: "rgba(221, 82, 87, 1)" }
+                    : isFocusPassword
+                    ? { background: "rgba(33, 36, 39, 1)" }
+                    : {}
+                }
+              />
+              <label
+                style={
+                  errorContent[1] === false && isPossibleSubmit
+                    ? { color: "rgba(221, 82, 87, 1)" }
+                    : {}
+                }>
+                * 영문자, 숫자 포함 8자 이상
+              </label>
+            </div>
+            <div className="InputWithoutLabel">
+              <div className="password-input">
+                <input
+                  name="userPasswordConfirm"
+                  type="password"
+                  placeholder="비밀번호 재입력"
+                  required
+                  value={userPasswordConfirm}
+                  onChange={(e) =>
+                    onUserEmailOrPasswordChange(e, setUserPasswordConfirm)
+                  }
+                  onFocus={() => setIsFocusPasswordConfirm(true)}
+                  onBlur={() => setIsFocusPasswordConfirm(false)}
+                  ref={passwordConfirmRef}
+                />
+                <PasswordLockIconAsset
+                  className="password-asset"
+                  onClick={() =>
+                    handleShowPasswordChecked(
+                      passwordConfirmRef,
+                      setIsShowPasswordConfirm,
+                      isShowPasswordConfirm
+                    )
+                  }
+                />
+              </div>
+              <hr
+                className="password-hr"
+                style={
+                  (errorContent[1] === false || errorContent[2] === false) &&
+                  isPossibleSubmit
+                    ? { background: "rgba(221, 82, 87, 1)" }
+                    : isFocusPasswordConfirm
+                    ? { background: "rgba(33, 36, 39, 1)" }
+                    : {}
+                }
+              />
+            </div>
+
+            <div className="InputWithoutLabel">
+              <input
+                name="userPhoneNumber"
+                type="text"
+                placeholder="전화번호"
+                value={userPhoneNumber}
+                onChange={(e) =>
+                  onUserEmailOrPasswordChange(e, setUserPhoneNumber)
+                }
+              />
+              <label>* 필수 아님</label>
+            </div>
+
+            <div className="checkbox-asset">
+              <div className="checkbox-label" style={{ paddingBottom: "16px" }}>
+                <input
+                  type="checkbox"
+                  id="isAgreePersonalInfo"
+                  name="isAgreePersonalInfo"
+                  value={isAgreePersonalInfo}
+                  checked={isAgreePersonalInfoChecked}
+                  required
+                  onClick={(e) => {
+                    !isAgreePersonalInfoRead && setIsShowPersonalInfo(true);
+                  }}
+                  onChange={(e) => {
+                    onUserEmailOrPasswordChange(e, setIsAgreePersonalInfo);
+                    if (isAgreePersonalInfoRead) {
+                      setIsAgreePersonalInfoChecked(
+                        !isAgreePersonalInfoChecked
+                      );
+                    }
+                  }}
+                />
+                <label
+                  for="isAgreePersonalInfo"
+                  name="isAgreePersonalInfo"></label>
+                개인정보 처리방침에 동의합니다.
+              </div>
+              <ArrowRightSmallIconAsset
+                id="isAgreePersonalInfo"
+                className="asset"
+                onClick={(e) => setIsShowPersonalInfo(true)}
+              />
+            </div>
+
+            <div className="checkbox-asset">
+              <div className="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="isAgreeUsingInfo"
+                  name="isAgreeUsingInfo"
+                  value={isAgreeUsingInfo}
+                  checked={isAgreeUsingInfoChecked}
+                  required
+                  onClick={(e) => {
+                    !isAgreeUsingInfoRead && setIsShowUsingInfo(true);
+                  }}
+                  onChange={(e) => {
+                    onUserEmailOrPasswordChange(e, setIsAgreeUsingInfo);
+                    if (isAgreeUsingInfoRead) {
+                      setIsAgreeUsingInfoChecked(!isAgreeUsingInfoChecked);
+                    }
+                  }}
+                />
+                <label for="isAgreeUsingInfo" name="isAgreeUsingInfo"></label>
+                이용약관에 동의합니다.
+              </div>
+              <ArrowRightSmallIconAsset
+                className="asset"
+                onClick={(e) => setIsShowUsingInfo(true)}
+              />
+            </div>
+
+            <input
+              id="SubmitButton"
+              type={isPossibleSubmit ? "submit" : "button"}
+              style={{
+                background: buttonHoverStyle(isPossibleSubmit, isHover),
+              }}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              value={"회원가입"}
+            />
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

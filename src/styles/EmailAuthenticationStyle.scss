@@ -1,0 +1,85 @@
+@import "styles/ThemeStyles.scss";
+
+.emailAuthentication-background {
+  display: flex;
+  justify-content: center;
+  min-height: calc(83.1vh - 69px);
+  padding-top: 6.9vh;
+  padding-bottom: 10vh;
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+}
+
+.emailAuthentication-container {
+  display: flex;
+  flex-direction: column;
+  @include centerFormat();
+  width: 540px;
+  height: 600px;
+  background-color: $white60Color;
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+}
+
+#emailAuthentication-title {
+  width: 273px;
+  height: 30px;
+  text-align: center;
+  @include heading4Font($black75Color);
+
+  span {
+    color: $primaryColor;
+  }
+}
+
+#emailAuthentication-img {
+  display: flex;
+  justify-content: center;
+  min-width: 200px;
+  height: 205px;
+  margin-top: 10px;
+  img {
+    object-fit: scale-down;
+  }
+}
+
+#emailAuthentication-content {
+  width: 328px;
+  height: 66px;
+  text-align: center;
+  padding-bottom: 72px;
+  @include body2Font($black75Color);
+
+  span {
+    color: $black100Color;
+  }
+}
+
+#emailAuthentication-caption {
+  display: inline-flex;
+  width: 248px;
+  height: 22px;
+  text-align: center;
+  padding-bottom: 24px;
+  @include body1Font($black50Color);
+  cursor: pointer;
+
+  span {
+    padding-left: 6px;
+    color: $primaryColor;
+  }
+}
+
+#emailAuthentication-button {
+  width: 24.6vw;
+  min-width: 273px;
+  height: 7.38vh;
+  min-height: 50px;
+  border: none;
+  border-radius: 10px;
+  background: $primaryColor;
+  @include heading2Font($white100Color);
+  cursor: pointer;
+}

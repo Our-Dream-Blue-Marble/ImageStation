@@ -1,0 +1,72 @@
+@import "ThemeStyles.scss";
+
+.popUpWithOneButtonsWidgets {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 69px);
+  flex-shrink: 0;
+  position: fixed;
+  background: $white20Color;
+  backdrop-filter: blur(2px);
+  @include centerFormat();
+  z-index: 999;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 424px;
+    height: 360px;
+    border-radius: 10px;
+    background: $white100Color;
+    box-shadow: $box-shadow;
+
+    .header-text-primary {
+      @include heading4Font($primaryColor);
+      width: 250px;
+      text-align: center;
+    }
+
+    .header-text-not-primary {
+      @include heading4Font($errorColor);
+      width: 250px;
+      text-align: center;
+    }
+
+    .body-text {
+      @include body2Font($black75Color);
+      text-align: center;
+      white-space: pre-wrap;
+      width: 223px;
+    }
+
+    .button-primary {
+      width: 139.125px;
+      height: 55px;
+      border-radius: 8px;
+      border: none;
+      @include button1Font($white100Color);
+      background: $primaryColor;
+      cursor: pointer;
+    }
+
+    .button-primary:hover {
+      background: $hoverAndClickPrimaryColor;
+    }
+
+    .button-not-primary {
+      width: 139.125px;
+      height: 55px;
+      border-radius: 8px;
+      border: 1px solid $secondaryColor;
+      @include button1Font($secondaryColor);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .button-not-primary:hover {
+      background: $hoverAndClickWhiteColor;
+    }
+  }
+}

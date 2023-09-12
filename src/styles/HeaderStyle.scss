@@ -1,32 +1,52 @@
 @import "styles/ThemeStyles.scss";
 
-@mixin centerFormat() {
-  justify-content: center;
-  align-items: center;
-}
-
-header {
+.original_header {
   @include mobile {
     width: 100%;
-    height: 80px;
+    height: 69px;
   }
   @include tablet {
-    height: 80px;
     width: 100%;
+    height: 69px;
   }
   @include desktop {
     width: 100%;
-    height: 80px;
+    height: 69px;
   }
   position: sticky;
   top: 0;
   display: flex;
   @include centerFormat();
-  background-image: url("../assets/BackgroundAsset.svg");
+  background-image: url("../assets/HeaderAsset.svg");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: cover;
   background-color: $white100Color;
+}
+
+.change_header {
+  z-index: 5;
+  @include mobile {
+    width: 100%;
+    height: 69px;
+  }
+  @include tablet {
+    width: 100%;
+    height: 80px;
+  }
+  @include desktop {
+    width: 100%;
+    height: 69px;
+  }
+  position: sticky;
+  top: 0;
+  display: flex;
+  @include centerFormat();
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+  background-color: $white100Color;
+  box-shadow: 0px 1px 3px 0px $black10Color;
 }
 
 #logoAsset {
@@ -40,63 +60,230 @@ header {
 }
 
 #centerButtons {
-  @include centerFormat();
   display: flex;
-  width: 27vw;
-  align-items: flex-start;
-  gap: 6vw;
-  padding-left: 17.7vw;
-  padding-right: 14vw;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  margin-top: 28px;
+}
+
+#centerButtons_button {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  gap: 5vw;
   overflow: hidden;
   white-space: nowrap;
 }
+
 .centerButton {
-  @include subHeading2Font($black100Color);
-  background-color: transparent;
+  padding: 0;
+  text-align: center;
   border: none;
+  background-color: transparent;
+  @include subHeading2Font($black100Color);
+  cursor: pointer;
 }
 
 .centerButton:nth-child(1) {
-  width: 3.6wh;
+  width: 56px;
 }
 
 .centerButton:nth-child(2) {
-  width: 3.6wh;
+  width: 56px;
 }
 
 .centerButton:nth-child(3) {
-  width: 5.3wh;
+  width: 56px;
+}
+
+.centerButton:nth-child(4) {
+  width: 83px;
+}
+
+#centerButtons_line {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  height: 22px;
+  gap: 5vw;
+}
+
+.centerLine {
+  height: 2px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  border: none;
+  background-color: $black100Color;
+}
+
+.centerLine:nth-child(1) {
+  width: 56px;
+}
+.centerLine:nth-child(2) {
+  width: 56px;
+}
+.centerLine:nth-child(3) {
+  width: 56px;
+}
+.centerLine:nth-child(4) {
+  width: 83px;
 }
 
 #rightButtons {
   display: flex;
-  width: 27vw;
+  width: 12vw;
+  height: 33px;
+  vertical-align: middle;
   align-items: flex-start;
-  gap: 3.2vw;
-  overflow: hidden;
-  white-space: nowrap;
+  padding-right: 5vw;
+  gap: 2.6vw;
 }
 
 .rightButton {
-  @include subHeading3Font($black75Color);
-  background-color: transparent;
+  display: inline-flex;
+  @include centerFormat();
+  padding: 0;
   border: none;
-  justify-content: center;
-  justify-items: center;
+  background-color: transparent;
+  @include subHeading3Font($black75Color);
+  cursor: pointer;
 }
 
 .rightButton:first-child {
-  width: 124px;
-  height: 23px;
+  width: 111px;
+  height: 33px;
+  justify-content: end;
 }
 
-.rightButton:last-child {
-  width: 70px;
-  height: 23px;
+.rightButton:nth-child(2) {
+  width: 33px;
+  height: 33px;
+}
+
+.rightButton:nth-child(3) {
+  width: 33px;
+  height: 33px;
 }
 
 #globalIconAsset {
   padding: none;
   margin: none;
-  vertical-align: text-bottom;
+}
+
+#myProfileIconAsset {
+  padding: none;
+  margin: none;
+}
+
+#myProfile-popUp-background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+}
+#myProfile-popUp-container {
+  width: 224px;
+  height: 230px;
+  margin-top: 70px;
+  margin-left: 81vw;
+  position: fixed;
+  border-radius: 10px;
+  background-color: $white60Color;
+  box-shadow: 0px 4px 10px 0px $black25Color;
+
+  #myProfile-popUp-contents {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+
+    #user-name {
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      vertical-align: middle;
+      height: 28px;
+      @include heading3Font($black100Color);
+      padding-bottom: 5px;
+
+      button {
+        width: 25px;
+        height: 28px;
+        padding: 0;
+        margin: 0;
+        vertical-align: middle;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+      }
+    }
+
+    #user-email {
+      @include captionFont($black100Color);
+      padding-bottom: 25px;
+    }
+
+    #user-phoneNumber {
+      @include captionFont($black100Color);
+      padding-bottom: 60px;
+    }
+
+    #myProfile-popUp-buttons {
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 22px;
+      gap: 2px;
+
+      hr {
+        width: 1px;
+        height: 8px;
+        padding: 0;
+        margin: 0;
+        overflow: visible;
+        border: none;
+        background-color: $black50Color;
+      }
+
+      #left-button {
+        border: none;
+        background-color: transparent;
+        @include captionFont($primaryColor);
+        cursor: pointer;
+      }
+
+      #right-button {
+        border: none;
+        background-color: transparent;
+        @include captionFont($errorColor);
+        cursor: pointer;
+      }
+    }
+    .user-name-input {
+      @include heading3Font($black100Color);
+      width: 137px;
+      background: none;
+      border-width: 0 0 1px;
+      border-color: $black25Color;
+    }
+    .user-name-input:focus {
+      outline: none;
+    }
+    .user-phoneNumber-input {
+      @include captionFont($black100Color);
+      width: 137px;
+      background: none;
+      border-width: 0 0 1px;
+      border-color: $black25Color;
+    }
+    .user-phoneNumber-input:focus {
+      outline: none;
+    }
+  }
 }

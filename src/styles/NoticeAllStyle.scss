@@ -1,0 +1,291 @@
+@import "ThemeStyles.scss";
+
+.NoticeAllLayout {
+  width: 100%;
+  min-height: 91vh;
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  @include centerFormat();
+  overflow-x: hidden;
+
+  .NoticeAllHeadContainer {
+    width: 862px;
+    height: 2.48vh;
+    display: flex;
+    flex-direction: row;
+    margin-top: 77px;
+    margin-left: 167px;
+    margin-bottom: 52px;
+    @include centerFormat();
+
+    .NoticeAllTitle {
+      @include heading2Font($primaryColor);
+      width: 365px;
+      margin-right: 165px;
+    }
+
+    .noticeWriteBtn {
+      @include displayFont($primaryColor);
+      @include centerFormat();
+      display: flex;
+      width: 32px;
+      margin-bottom: 7px;
+      background-color: inherit;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  .NoticeAllContainer {
+    height: 887px;
+    @include desktop {
+      width: 862px;
+    }
+
+    @include tablet {
+      width: 600px;
+    }
+
+    @include mobile {
+      width: 400px;
+    }
+    border-radius: 10px;
+    box-shadow: $box-shadow;
+    background-color: $white60Color;
+
+    .searchContainer {
+      display: flex;
+      flex-direction: row;
+      width: 192px;
+      height: 42px;
+
+      margin-bottom: 2.7vh;
+      margin-top: 2.9vh;
+      border-radius: 8px;
+      background: $white100Color;
+      box-shadow: 0px 2px 2px 1px $black5Color;
+      @include desktop {
+        margin-left: 592px;
+      }
+
+      @include tablet {
+        margin-left: 357px;
+      }
+
+      @include mobile {
+        margin-left: 175px;
+      }
+
+      .searchInput {
+        width: 111px;
+        height: 22px;
+        margin-left: 10px;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: inherit;
+        @include body1Font($black100Color);
+      }
+      input::placeholder {
+        color: $black50Color;
+      }
+      .searchIcon {
+        width: 17px;
+        height: 17px;
+        margin-top: 13px;
+        margin-left: 18px;
+        background-color: transparent;
+      }
+    }
+
+    .noticesContainer {
+      width: 100%;
+      justify-content: start;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 3.17vh;
+      cursor: pointer;
+
+      .eachNoticeContent {
+        @include desktop {
+          width: 636px;
+        }
+
+        @include tablet {
+          width: 400px;
+        }
+
+        @include mobile {
+          margin-left: -70px;
+          width: 200px;
+        }
+        display: flex;
+        flex-direction: row;
+        height: 6.78vh;
+        margin-top: 3.16vh;
+        margin-bottom: 3.16vh;
+        border: none;
+
+        .noticePinCheckbox {
+          display: flex;
+          height: 60px;
+          flex-shrink: 0;
+          margin-left: -30px;
+          align-items: center;
+          margin-right: 10px;
+        }
+
+        .noticeTitleAndBodyContainer {
+          float: left;
+          margin-right: 12.7%;
+
+          .noticeListTitle {
+            @include body1Font($black100Color);
+            height: 2.8vh;
+            margin-bottom: 12px;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            @include tablet {
+              width: 150px;
+            }
+            @include mobile {
+              width: 100px;
+            }
+          }
+          .noticeListBody {
+            @include captionFont($black75Color);
+            // width: 411px;
+            height: 2.6vh;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            @include desktop {
+              width: 411px;
+            }
+
+            @include tablet {
+              width: 200px;
+            }
+
+            @include mobile {
+              width: 120px;
+            }
+          }
+        }
+        .noticeDateContainer {
+          display: flex;
+          flex-direction: column;
+          text-align: right;
+
+          .noticeListDate {
+            @include captionFont($black75Color);
+            height: 2.5vh;
+            margin-bottom: 1.13vh;
+            width: 150px;
+          }
+          .noticeListDateTime {
+            @include captionFont($black75Color);
+            height: 2.5vh;
+            width: 150px;
+          }
+        }
+      }
+
+      #NoticeDevice_line {
+        width: 83.1%;
+        height: 0.05vh;
+        margin-left: 6.6vw;
+        padding: 0;
+        margin: 0;
+        border: none;
+        background-color: $black50Color;
+      }
+    }
+  }
+  .emptyNoticeContainer {
+    display: flex;
+    height: 887px;
+    justify-content: center;
+    @include desktop {
+      width: 862px;
+    }
+
+    @include tablet {
+      width: 600px;
+    }
+
+    @include mobile {
+      width: 400px;
+    }
+    border-radius: 10px;
+    box-shadow: $box-shadow;
+    background-color: $white60Color;
+    .emptyNoticeBody {
+      @include subHeading2Font($black50Color);
+      margin-top: 314px;
+    }
+  }
+}
+
+.paginationBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 3.4vh;
+  margin-top: 6.78vh;
+  margin-bottom: 9.6vh;
+
+  .paginationLtBtn {
+    margin-left: 6.6vw;
+    width: 2.3%;
+    height: 3.9vh;
+    border: none;
+    background-color: inherit;
+    transform: scaleX(-1);
+    cursor: pointer;
+  }
+  .paginationBtn {
+    @include body1Font($black75Color);
+    padding-top: 0.56vh;
+    display: flex;
+    width: 2.05%;
+    height: 2.15vh;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+
+    &[aria-current] {
+      font-weight: bold;
+      cursor: pointer;
+      transform: revert;
+    }
+  }
+
+  .paginationRtBtn {
+    margin-right: 7vw;
+    width: 2.3%;
+    height: 3.9vh;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+  }
+}
+
+#centerPaginationNumBtns {
+  @include centerFormat();
+  display: flex;
+  width: 82.8vw;
+  align-items: flex-start;
+  gap: 1.06vw;
+  margin-top: 9vh;
+  margin-bottom: 10.2vh;
+}

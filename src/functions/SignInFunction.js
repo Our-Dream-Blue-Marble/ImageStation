@@ -1,7 +1,7 @@
 import { logIn, signIn } from "./UserFunction";
 
 export const onUserEmailOrPasswordChange = (event, setValue) => {
-  const {
+  let {
     target: { name, value },
   } = event;
   if (name === "userEmail") {
@@ -13,10 +13,13 @@ export const onUserEmailOrPasswordChange = (event, setValue) => {
   } else if (name === "userName") {
     setValue(value);
   } else if (name === "userPhoneNumber") {
+    value = value.replace(/[^0-9]/g, "");
     setValue(value);
   } else if (name === "isAgreePersonalInfo") {
     setValue((prev) => !prev);
   } else if (name === "isAgreeUsingInfo") {
+    setValue((prev) => !prev);
+  } else if (name === "checkbox") {
     setValue((prev) => !prev);
   }
 };
@@ -30,17 +33,28 @@ export const checkHandongEmail = (userEmail) => {
   }
 };
 
+export const checkAdminEmail = (userEmail) => {
+  if (userEmail === "imagesolution.hd@gmail.com") {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export const onUserEmailAndPasswordSubmit = async (
   event,
   userEmail,
   userPassword,
   isNewUser,
-  setIsNewUser
+  setIsShowPopUpContent,
+  setIsNewUser,
+  setIsRouteConfirm
 ) => {
   event.preventDefault();
-  if (checkHandongEmail(userEmail) && !isNewUser) {
-    return logIn(userEmail, userPassword, setIsNewUser);
+  if (checkHandongEmail(userEmail) || checkAdminEmail(userEmail)) {
+    return logIn(userEmail, userPassword, setIsShowPopUpContent, setIsNewUser);
   } else {
+    setIsShowPopUpContent("email");
     return false;
   }
 };
@@ -56,8 +70,9 @@ export const onNewUserEmailAndPasswordSubmit = async (
   setIsNewUser
 ) => {
   event.preventDefault();
+
   if (
-    checkHandongEmail(userEmail) &&
+    (checkHandongEmail(userEmail) || checkAdminEmail(userEmail)) &&
     isNewUser &&
     userPassword === userPasswordConfirm
   ) {
@@ -67,10 +82,13 @@ export const onNewUserEmailAndPasswordSubmit = async (
       userPassword,
       userName,
       userPhoneNumber,
-      userEmail === "22000404@handong.ac.kr",
+      checkAdminEmail(userEmail),
       true
     );
-  } else if (checkHandongEmail(userEmail) && !isNewUser) {
+  } else if (
+    (checkHandongEmail(userEmail) || checkAdminEmail(userEmail)) &&
+    !isNewUser
+  ) {
     return logIn(userEmail, userPassword);
   } else {
     return false;

@@ -1,24 +1,19 @@
 @import "styles/ThemeStyles.scss";
 
-.LoginBody {
+.login-body {
   display: flex;
-  justify-content: center;
-  height: 100%;
-  padding-top: 13vh;
-  padding-bottom: 13vh;
-  background-image: url("../assets/BackgroundAsset.svg");
-  background-repeat: no-repeat;
-  background-position: left top;
-  background-size: cover;
-  background-color: $white100Color;
+  @include centerFormat();
+  width: 100%;
+  min-height: calc(100vh - 69px);
 }
 
 .LoginContainer {
-  height: 615px;
   width: 35.7vw;
-  background-color: $white100Color;
+  min-width: 340px;
+  height: 526px;
+  background-color: $white60Color;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px 0px $black25Color;
+  box-shadow: $box-shadow;
   flex-direction: column;
   .Contents {
     display: flex;
@@ -30,58 +25,121 @@
     span {
       @include heading2Font($primaryColor);
       text-align: center;
-      padding-bottom: 53px;
+      padding-bottom: 52px;
     }
     form {
       text-align: center;
+      input {
+        background: transparent;
+      }
     }
     .InputTextBox {
       width: 24.6vw;
+      min-width: 240px;
       height: 30px;
       border-top: none;
       border-left: none;
       border-right: none;
-      border-bottom: 1.5px solid;
-      border-color: $black50Color;
+      border-bottom: 1px solid $black50Color;
       margin-bottom: 53px;
       @include subHeading3Font($black100Color);
     }
-    .SaveIdContainer {
-      width: 6.9vw;
-      padding-bottom: 53px;
-      input[type="checkbox"] {
-        border-color: $black50Color;
+
+    .InputTextBox::placeholder {
+      @include body1Font($black50Color);
+    }
+
+    .InputTextBox:focus {
+      outline: none;
+    }
+    .InputTextBox:focus::placeholder {
+      color: transparent;
+    }
+
+    .saveId-checkbox {
+      display: inline-flex;
+      width: 24.6vw;
+      min-width: 240px;
+      padding-bottom: 42px;
+
+      #checkbox + label {
+        display: inline-flex;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        margin-right: 12px;
+        border-radius: 2px;
+        border: 1px solid $black50Color;
+        background-image: url("../assets/icons/CheckboxIconAsset.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
       }
-      label {
+
+      #checkbox:checked + label {
+        display: inline-flex;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        margin-right: 12px;
+        border-radius: 2px;
+        border: 1px solid $primaryColor;
+        background-color: $primaryColor;
+        background-image: url("../assets/icons/CheckFillboxIconAsset.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+      }
+
+      #checkbox {
+        display: none;
+      }
+
+      #label {
+        vertical-align: middle;
+        width: 70px;
+        height: 22px;
         @include body2Font($black100Color);
       }
+
+      span {
+        padding-bottom: 0;
+      }
     }
-    .SubmitButton {
-      width: 23.3vw;
+
+    #submit-button {
+      width: 24.6vw;
+      min-width: 240px;
       height: 60px;
       border-radius: 8px;
       border: none;
-      background: $primaryColor;
+      background-color: $primaryColor;
       @include heading2Font($white100Color);
+      cursor: pointer;
     }
 
     .UpdateAndSigninButtonsContainer {
-      display: inline-flex;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 19px;
-      padding-top: 49.22px;
-      gap: 1.9vw;
+      padding-top: 28px;
+      width: 100%;
+      gap: 8px;
     }
 
     .UpdateAndSigninButtons {
-      border-top: none;
-      border-left: none;
-      border-right: none;
-      border-bottom: 1.5px solid;
-      background-color: transparent;
-      border-color: $primaryColor;
-      @include subHeading3Font($primaryColor);
+      width: 24.6vw;
+      min-width: 240px;
+      text-align: left;
+      @include body1Font($black50Color);
+      cursor: pointer;
+
+      span {
+        padding-bottom: 0;
+        @include body1Font($primaryColor);
+      }
     }
   }
 }

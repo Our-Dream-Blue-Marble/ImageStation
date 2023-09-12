@@ -1,0 +1,128 @@
+@import "ThemeStyles.scss";
+
+.PaperInfoLayout {
+  width: 100%;
+  min-height: 91vh;
+  padding-bottom: 9vh;
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 163px;
+  .paperHead {
+    .PaperTitle {
+      @include heading1Font($primaryColor);
+      width: 63px;
+      height: 43px;
+      margin-left: 14.08vw;
+    }
+    .PaperExplanation {
+      @include heading3Font($black100Color);
+      width: 227px;
+      height: 44px;
+      margin-top: 55px;
+      margin-left: 14.08vw;
+      line-height: 25px;
+      margin-bottom: 70px;
+    }
+  }
+
+  .PaperInfoContainer {
+    margin-left: 12vw;
+    background-color: transparent;
+
+    @include desktop {
+      width: 780px;
+      height: 1048px;
+      display: grid;
+      grid-template-columns: 370px 370px;
+      grid-template-rows: 232px 232px 232px 232px;
+      grid-column-gap: 40px;
+      grid-row-gap: 40px;
+      backface-visibility: hidden;
+    }
+
+    @include tablet {
+      width: 400px;
+      height: 1864px;
+      display: grid;
+      grid-template-columns: 370px;
+      grid-template-rows: 232px 232px 232px 232px;
+      grid-column-gap: 40px;
+      grid-row-gap: 40px;
+      backface-visibility: hidden;
+    }
+
+    @include mobile {
+      width: 400px;
+      height: 1864px;
+      display: grid;
+      grid-template-columns: 370px;
+      grid-template-rows: 232px 232px 232px 232px;
+      grid-column-gap: 40px;
+      grid-row-gap: 40px;
+      backface-visibility: hidden;
+    }
+
+    .paperCard {
+      background-image: url("../assets/PaperAsset.svg");
+      box-shadow: $box-shadow;
+      border-radius: 10px;
+      padding: 50px 40px 50px 50px;
+      align-items: flex-start;
+      cursor: pointer;
+
+      .contentBox {
+        width: 95px;
+        height: 68px;
+        display: flex;
+        flex-direction: row;
+
+        .beforeHoverContentBox {
+          margin-right: 18px;
+          .title {
+            width: 104px;
+            @include heading2Font($black100Color);
+            margin-bottom: 24px;
+          }
+
+          .maxSize {
+            width: 60px;
+            @include captionFont($black75Color);
+          }
+        }
+      }
+
+      .afterHoverContentBox {
+        display: none;
+        width: 172px;
+        height: 92px;
+
+        .paperWeight {
+          position: relative;
+          bottom: 4px;
+          width: 140px;
+          height: 45px;
+          @include body1Font($black100Color);
+        }
+
+        .paperExplain {
+          position: relative;
+          width: 150px;
+          height: 30px;
+          @include body1Font($black75Color);
+        }
+      }
+    }
+
+    .paperCard:hover {
+      background: $white60Color;
+    }
+
+    .paperCard:hover .afterHoverContentBox {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@import "styles/ThemeStyles.scss";
+
+#userLeavePage-background {
+  @include pageBackground();
+  justify-content: center;
+  #userLeavePage-container {
+    width: 540px;
+    height: 680px;
+    margin-top: 7.4vh;
+    border-radius: 10px;
+    box-shadow: $box-shadow;
+    background-color: $white60Color;
+
+    #userLeavePage-contents {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 62px 84px 50px;
+
+      #title {
+        @include heading2Font($black100Color);
+        padding-bottom: 44px;
+        text-align: center;
+      }
+
+      #content {
+        @include captionFont($black100Color);
+        width: 100%;
+        padding-bottom: 24px;
+        white-space: pre-line;
+        word-break: break-all;
+      }
+
+      #button {
+        width: 100%;
+        height: 60px;
+        border: none;
+        border-radius: 10px;
+        background-color: $errorColor;
+        @include heading2Font($white100Color);
+        cursor: pointer;
+      }
+    }
+  }
+}

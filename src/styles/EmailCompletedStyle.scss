@@ -1,0 +1,56 @@
+@import "styles/ThemeStyles.scss";
+
+.emailCompleted-background {
+  display: flex;
+  justify-content: center;
+  min-height: calc(66.4vh - 69px);
+  padding-top: 12.6vh;
+  padding-bottom: 21vh;
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+}
+
+.emailCompleted-container {
+  display: flex;
+  flex-direction: column;
+  @include centerFormat();
+  width: 35.7vw;
+  min-width: 328px;
+  height: 59vh;
+  min-height: 300px;
+  background-color: $white60Color;
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+}
+
+#emailCompleted-title {
+  width: 273px;
+  height: 30px;
+  text-align: center;
+  @include heading4Font($primaryColor);
+}
+
+#emailCompleted-gif {
+  display: flex;
+  justify-content: center;
+  min-width: 200px;
+  height: 33.7vh;
+  margin-top: 10px;
+  img {
+    object-fit: scale-down;
+  }
+}
+
+#emailCompleted-button {
+  width: 24.6vw;
+  min-width: 273px;
+  height: 7.38vh;
+  min-height: 50px;
+  border: none;
+  border-radius: 10px;
+  background: $primaryColor;
+  @include heading2Font($white100Color);
+  cursor: pointer;
+}

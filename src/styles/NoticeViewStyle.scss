@@ -1,123 +1,215 @@
 @import "ThemeStyles.scss";
 
 .noticeViewLayout {
+  width: 100%;
+  min-height: calc(100vh - 69px);
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+
+  .noticeViewBoxContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 7.9vh;
+    margin-left: 21%;
+    margin-right: 21%;
+    background-color: $white100Color;
+    flex-shrink: 0;
+    width: 57vw;
+    min-height: 63.3vh;
+    gap: 10px;
+    border-radius: 10px;
+    box-shadow: $box-shadow;
+
+    .noticeViewContent {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding-top: 11.4vh;
+      padding-bottom: 11.4vh;
+      .noticeViewTopSection {
+        margin-left: 7.5vw;
+        display: flex;
+        align-items: justify;
+        justify-content: space-between;
+        .noticeViewTitle {
+          width: 34.4vw;
+          height: 22px;
+          padding-bottom: 3.4vh;
+          border: none;
+          word-break: break-all;
+          @include heading2Font($black100Color);
+        }
+        .noticeViewRightSection {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 8px;
+          width: 7.7vw;
+          .noticeViewRightText {
+            @include body1Font($black75Color);
+          }
+          .noticeViewAttachmentText {
+            @include body1Font($primaryColor);
+            display: flex;
+            flex-direction: column;
+            text-decoration-line: none;
+          }
+        }
+      }
+      .noticeViewBodyText {
+        margin-left: 7.5vw;
+        @include body1Font($black75Color);
+        display: flex;
+        height: auto;
+        flex-direction: column;
+        width: 42.3vw;
+        white-space: pre-line;
+        word-break: break-all;
+      }
+    }
+  }
+  .adminNoticeViewButtonsSection {
+    display: flex;
+    flex-direction: row;
+    padding-top: 40px;
+    .adminNoticeViewButtonsContainer {
+      display: flex;
+      gap: 20px;
+      margin-left: 35.2%;
+      .noticeViewNavigateList {
+        @include heading2Font($black100Color);
+        display: flex;
+        width: 13.8vw;
+        height: 60px;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        border: 1px solid $secondaryColor;
+        background-color: $transparentColor;
+        cursor: pointer;
+      }
+      .noticeViewNavigateList:hover {
+        background-color: $hoverAndClickWhiteColor;
+        transition: 0.5s;
+      }
+
+      .adminNoticeUpdateButton {
+        @include heading2Font($white100Color);
+        display: flex;
+        width: 13.8vw;
+        height: 60px;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        border: none;
+        border-radius: 8px;
+        background-color: ($primaryColor);
+        cursor: pointer;
+      }
+      .adminNoticeUpdateButton:hover {
+        background-color: $hoverAndClickPrimaryColor;
+        transition: 0.5s;
+      }
+    }
+  }
+  .adminNoticeDeleteButton {
+    flex-shrink: 0;
+    background-color: $transparentColor;
+    border: none;
+    margin-left: 11.11vw;
+    margin-top: 14px;
+    cursor: pointer;
+  }
+}
+.popUp {
   display: flex;
   width: 100%;
-  justify-content: center;
-  align-items: center;
+  min-height: 91vh;
   flex-shrink: 0;
-  flex-direction: column;
-  background-image: url(../assets/BackgroundAsset.svg);
-  background-size: cover;
-  padding-bottom: 19.5vh;
-}
-.noticeViewTitle {
-  @include heading2Font($black100Color);
-  align-items: flex-start;
-  float: left;
-  width: 21vw;
-  margin-right: 13.4vw;
-}
+  position: fixed;
+  background-color: $white60Color;
+  backdrop-filter: blur(2px);
+  padding-top: 19.23vh;
+  padding-left: 35.98%;
 
-.noticeViewRightText {
-  @include body1Font($black75Color);
-}
-.noticeViewTopSection {
-  display: flex;
-  align-items: justify;
-  justify-content: space-between;
-}
+  .popUpContainer {
+    width: 424px;
+    height: 360px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: $white100Color;
+    box-shadow: $box-shadow;
 
-.noticeViewRightSection {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-  width: 7.4vw;
-}
+    .popUpRedText {
+      @include heading2Font($errorColor);
+      margin-top: 89px;
+      text-align: center;
+      width: 185px;
+      margin-left: 120px;
+    }
+    .popUpBlackText {
+      @include subHeading2Font($black75Color);
+      margin-top: 21px;
+      text-align: center;
+    }
+    .popUpButton {
+      display: flex;
+      width: 296.8px;
+      height: 55px;
+      justify-content: center;
+      align-items: center;
+      gap: 18.55px;
+      flex-shrink: 0;
+      margin-top: 72px;
+      margin-left: 64px;
+      .popUpCancel {
+        @include subHeading2Font($secondaryColor);
+        display: flex;
+        width: 139.125px;
+        height: 55px;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        border: 1px solid $secondaryColor;
+        background: $white100Color;
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+      }
+      .popUpCancel:hover {
+        background: $black10Color;
+      }
+      .popUpDelete {
+        @include subHeading2Font($white100Color);
+        display: flex;
+        width: 139.125px;
+        height: 55px;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        background: $errorColor;
+        border: 1px solid $errorColor;
+        border-radius: 8px;
+        box-shadow: $box-shadow;
 
-.noticeViewAttachmentText {
-  @include body1Font($primaryColor);
-  display: flex;
-  flex-direction: column;
-}
-.noticeViewBodyText {
-  @include body1Font($black75Color);
-  display: flex;
-  height: auto;
-  flex-direction: column;
-  width: 42.3vw;
-  white-space: pre-line;
-}
-.noticeViewBoxContainer {
-  width: 57.1%;
-  min-height: 61.2vh;
-  height: auto;
-  background-color: $white100Color;
-  flex-direction: column;
-  align-items: flex-start;
-  border-radius: 10px;
-  gap: 10px;
-
-  margin-top: 10.5vh;
-  margin-left: 21.43vw;
-  margin-right: 21.43vw;
-
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
-}
-
-.noticeViewContent {
-  display: inline-flex;
-  padding: 11.3vh 13.2%;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.adminNoticeViewButtonsSection {
-  display: flex;
-  flex-direction: row;
-  padding-top: 40px;
-}
-.adminNoticeViewButtonsContainer {
-  display: flex;
-  gap: 20px;
-  margin-left: 13.76%;
-}
-.noticeViewNavigateList {
-  @include heading2Font($black100Color);
-  display: flex;
-  width: 210px;
-  height: 61.686px;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  border-radius: 8px;
-  border: 1px solid $secondaryColor;
-  background-color: rgba(0, 0, 0, 0);
-}
-
-.adminNoticeUpdateButton {
-  @include heading2Font($white100Color);
-  display: flex;
-  width: 210px;
-  height: 61.686px;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  border: none;
-  border-radius: 8px;
-  background-color: ($primaryColor);
-}
-
-.adminNoticeDeleteButton {
-  flex-shrink: 0;
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  margin-left: 11.11vw;
-  margin-top: 14px;
+        cursor: pointer;
+      }
+      .popUpDelete:hover {
+        background: $hoverAndClickErrorColor;
+      }
+    }
+  }
 }

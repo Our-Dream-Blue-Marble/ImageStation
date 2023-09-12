@@ -1,0 +1,28 @@
+@import "styles/ThemeStyles.scss";
+
+.ErrorPageLayout {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 69px);
+  background-image: url("../assets/ErrorPageBackgroundAsset.svg");
+  background-repeat: no-repeat;
+  flex-direction: column;
+  background-size: cover;
+  background-position: 50%;
+  top: 69px;
+
+  .ErrorPageHeaderText {
+    @include heading3Font($secondaryColor);
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 65.27vh;
+  }
+  .ErrorPageBodyText {
+    @include captionFont($black50Color);
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 19px;
+  }
+}

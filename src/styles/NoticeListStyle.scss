@@ -1,168 +1,155 @@
 @import "ThemeStyles.scss";
 
-@mixin centerItem() {
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin leftItem() {
-  align-items: left;
-  justify-content: left;
-}
-
-@mixin noticeBox() {
-  display: flex;
-  width: 30.8%;
-  height: 45.2vh;
-  margin: 0.7%;
-  gap: 0.7%;
-  flex-shrink: 0;
-  border-radius: 0.7%;
-  /*background: url(<path-to-image>), lightgray 50% / cover no-repeat;*/
-  /* Filter */
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
-}
 .noticeListLayout {
   width: 100%;
-  height: 91vh;
-  background: #ffffff;
-  overflow-y: scroll;
-}
-.centered {
-  @include centerItem();
-}
-
-.noticeHead {
-  width: 100%;
+  height: calc(100vh - 69px);
+  background: $white100Color;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  padding-top: 4.2%;
-  margin-bottom: 9.3vh;
+  position: relative;
+  flex-wrap: wrap;
+  margin-top: 18vh;
+  .noticeHead {
+    width: 20.77vw;
+    height: 260px;
+    margin-left: 14.08vw;
+    z-index: 1;
+
+    .noticeListHead {
+      margin-bottom: 3.62vh;
+      width: 125px;
+      height: 43px;
+      border: none;
+      @include heading1Font($primaryColor);
+      @include centerFormat();
+    }
+    .noticeListExp {
+      margin-bottom: 4.75vh;
+      width: 314px;
+      height: 22px;
+      border: none;
+      @include heading3Font($black100Color);
+      @include centerFormat();
+    }
+    .AllBtnContainer {
+      display: flex;
+      flex-direction: row;
+      width: 126px;
+      height: 47px;
+      background: $white100Color;
+      border: 1px solid var(--number, #353c49);
+      border-radius: 8px;
+      cursor: pointer;
+
+      .noticeListAll {
+        display: flex;
+        width: 61px;
+        height: 27px;
+        margin-top: 10px;
+        margin-left: 1.58vh;
+        @include body2Font($black100Color);
+        @include centerFormat();
+      }
+
+      .noticeAllArrow {
+        width: 27px;
+        height: 27px;
+        margin-top: 10px;
+        margin-left: 1.13vh;
+        background-image: url(../assets/NoticeArrowAsset.svg);
+        @include centerFormat();
+      }
+    }
+    .AllBtnContainer:hover {
+      background-color: $hoverAndClickWhiteColor;
+    }
+  }
+
+  .noticeBoxContainer {
+    width: 560px;
+    height: 560px;
+    margin-bottom: 22.62vh;
+    display: grid;
+    grid-template-columns: 260px 260px;
+    grid-template-rows: 260px 260px;
+    grid-column-gap: 40px;
+    grid-row-gap: 36px;
+    margin-left: 14.08vw;
+
+    .cardNotice {
+      display: flex;
+      width: 260px;
+      height: 260px;
+      border-radius: 10px;
+      box-shadow: $box-shadow;
+      background-color: $grayBlue100Color;
+      cursor: pointer;
+
+      .contentCard {
+        padding: 50px;
+        .noticeListTitle {
+          @include heading2Font($black100Color);
+          width: 160px;
+          height: 3.17vh;
+          margin-bottom: 24px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .noticeListDate {
+          @include body1Font($black75Color);
+          height: 2.49vh;
+          margin-bottom: 2.71vh;
+        }
+        .noticeListBody {
+          @include body1Font($black75Color);
+          display: block;
+          height: 23vh;
+          white-space: pre-wrap;
+          word-break: break-all;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+.cardNotice:hover {
+  //background-image: url(../assets/BackgroundAsset.svg);
+  transform: translateY(-25px);
+  transition: all 0.6s ease-out;
 }
 
-.noticeWriteBtn {
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+.fadeInAnimation {
+  position: relative;
+  animation: fadeIn 1s ease-in-out;
+  z-index: 1;
+}
+
+.noticeEmptyLayout {
+  height: calc(100vh - 69px);
+  width: 100%;
+  background: $white100Color;
   display: flex;
-  position: absolute;
-  margin-left: 32.5vw;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  font-size: 48px;
-  color: $primaryColor;
-  background-color: inherit;
-  border: none;
-  @include centerItem();
-}
-
-.noticeListHead {
-  display: flex;
-  margin-left: 45.9%;
-  width: 200px;
-  height: 43px;
-  border: none;
-  @include heading1Font($primaryColor);
-  @include centerItem();
-}
-
-.noticeBoxContainer {
-  justify-content: start;
-  width: 86.7%;
-  height: 47.5vh;
-  margin-left: 6.6%;
-  margin-right: 6.6%;
-  display: flex;
-  overflow: hidden;
-}
-
-.cardNotice {
-  @include noticeBox();
   flex-direction: column;
-  background-color: #e8edfb80;
-  margin-right: 2.6%;
-}
-
-.contentCard {
-  padding-top: 5.2vh;
-  padding-bottom: 5.2vh;
-  padding-right: 15%;
-  margin-left: 13%;
-
-  width: 77%;
-  height: 33.7vh;
-  overflow: hidden;
-}
-
-.noticeListTitle {
-  @include heading2Font($black100Color);
-  padding-bottom: 2.7vh;
-}
-
-.noticeListDate {
-  @include body1Font($black75Color);
-  padding-bottom: 2.7vh;
-}
-
-.noticeListBody {
-  @include body1Font($black75Color);
-  width: 100%;
-  height: 23.3vh;
-  overflow: hidden;
-  white-space: pre-line;
-}
-.paginationBar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 3.4vh;
-  margin-top: 6.78vh;
-  margin-bottom: 9.6vh;
-}
-
-.paginationLtBtn {
-  margin-left: 6.6vw;
-  width: 2.3%;
-  height: 3.9vh;
-  border: none;
-  background-color: inherit;
-  transform: scaleX(-1);
-}
-
-#centerPaginationNumBtns {
-  @include centerItem();
-  display: flex;
-  width: 82.8vw;
-  align-items: flex-start;
-  gap: 1.06vw;
-  margin-top: 9vh;
-  margin-bottom: 10.2vh;
-}
-
-.paginationBtn {
-  @include body1Font($black75Color);
-  padding-top: 0.56vh;
-  display: flex;
-  width: 2.05%;
-  height: 2.15vh;
-  border: none;
-  background-color: inherit;
-
-  &[disabled] {
-    cursor: revert;
-    transform: revert;
+  position: relative;
+  flex-wrap: wrap;
+  @include centerFormat();
+  .noticeEmptyHeading {
+    @include heading2Font($primaryColor);
   }
-
-  &[aria-current] {
-    font-weight: bold;
-    cursor: revert;
-    transform: revert;
+  .noticeEmptyBody {
+    margin-top: 29px;
+    @include subHeading2Font($black75Color);
   }
-}
-
-.paginationRtBtn {
-  margin-right: 6.54vw;
-  width: 2.3%;
-  height: 3.9vh;
-  border: none;
-  background-color: inherit;
 }

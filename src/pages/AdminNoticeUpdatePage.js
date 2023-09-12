@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoticeListRouteName } from "routes/RouteName";
 import "styles/AdminNoticeUpdateStyle.scss";
+import LoadingWidgets from "widgets/LoadingWidgets";
 
 const AdminNoticeUpdatePage = () => {
   const location = useLocation();
@@ -17,38 +18,52 @@ const AdminNoticeUpdatePage = () => {
   const [noticeUpdatedBody, setNoticeUpdatedBody] = useState(
     location.state.data.body
   );
-  const [noticeUpdatedAttachment, setNoticeupdatedAttachment] = useState(
+  const [noticeUpdatedAttachment, setNoticeUpdatedAttachment] = useState(
     location.state.data.attachment
   );
-  const [noticeUpdatedAttachmentName, setNoticeupdatedAttachmentName] =
+  const [noticeUpdatedAttachmentName, setNoticeUpdatedAttachmentName] =
     useState(location.state.data.attachmentName);
+  const [isNewAttachmentUploaded, setIsNewAttachmentUploaded] = useState(false);
+  const [isSubmitButton, setIsSubmitButton] = useState(false);
   const navigate = useNavigate();
 
   return (
     <div className="noticeUpdateLayout">
       {currentNoticeObj === null ? (
-        <>Loading...</>
+        <LoadingWidgets />
       ) : (
         <div>
           <form
+            method="POST"
             onSubmit={(e) => {
-              onUpdatedNoticeSubmit(
-                e,
-                currentNoticeObj.id,
-                noticeUpdatedTitle,
-                noticeUpdatedBody,
-                currentNoticeObj.writer,
-                currentNoticeObj.date,
-                currentNoticeObj.view,
-                noticeUpdatedAttachment,
-                noticeUpdatedAttachmentName
-              ).then((result) => {
-                if (result) {
-                  navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`);
-                }
-              });
-            }}
-          >
+              e.preventDefault();
+              if (isSubmitButton === true) {
+                onUpdatedNoticeSubmit(
+                  e,
+                  currentNoticeObj.id,
+                  noticeUpdatedTitle,
+                  noticeUpdatedBody,
+                  currentNoticeObj.writer,
+                  currentNoticeObj.date,
+                  currentNoticeObj.view,
+                  noticeUpdatedAttachment,
+                  noticeUpdatedAttachmentName,
+                  isNewAttachmentUploaded,
+                  currentNoticeObj.noticePin
+                ).then((result) => {
+                  if (result) {
+                    navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`, {
+                      replace: true,
+                    });
+                  }
+                });
+              } else {
+                navigate(`${NoticeListRouteName}/${currentNoticeObj.id}`, {
+                  state: { data: currentNoticeObj },
+                  replace: true,
+                });
+              }
+            }}>
             <div className="updateContainer">
               <input
                 className="noticeUpdateTitleTextBox"
@@ -66,9 +81,10 @@ const AdminNoticeUpdatePage = () => {
                 onChange={(e) => {
                   onNoticeAttachmentChange(
                     e,
-                    setNoticeupdatedAttachment,
-                    setNoticeupdatedAttachmentName
+                    setNoticeUpdatedAttachment,
+                    setNoticeUpdatedAttachmentName
                   );
+                  setIsNewAttachmentUploaded(true);
                 }}
               />
 
@@ -84,10 +100,22 @@ const AdminNoticeUpdatePage = () => {
               />
             </div>
             <div id="noticeUpdateBtns">
-              <button id="noticeUpdateCancelBtn" onClick={() => navigate(-1)}>
+              <button
+                className="noticeUpdateCancelBtn"
+                name="cancel"
+                onClick={(e) => {
+                  setIsSubmitButton(false);
+                }}>
                 취소하기
               </button>
-              <input id="noticeUpdateSaveBtn" type="submit" value="올리기" />
+              <input
+                className="noticeUpdateSaveBtn"
+                type="submit"
+                value="올리기"
+                onClick={(e) => {
+                  setIsSubmitButton(true);
+                }}
+              />
             </div>
           </form>
         </div>

@@ -1,0 +1,110 @@
+@import "ThemeStyles.scss";
+
+.PopUpWithTwoButtonsWidgets {
+  display: flex;
+  width: 100%;
+  min-height: 91vh;
+  flex-shrink: 0;
+  position: fixed;
+  backdrop-filter: blur(2px);
+  @include centerFormat();
+  z-index: 999;
+
+  .container {
+    width: 424px;
+    height: 360px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: $white100Color;
+    box-shadow: $box-shadow;
+
+    .header-text-primary {
+      @include heading2Font($primaryColor);
+      margin-top: 72px;
+      text-align: center;
+      width: 267px;
+      height: 44px;
+      margin-left: 89px;
+      white-space: pre-line;
+      word-break: break-all;
+    }
+
+    .header-text-not-primary {
+      @include heading2Font($errorColor);
+      margin-top: 72px;
+      text-align: center;
+      width: 267px;
+      height: 44px;
+      margin-left: 89px;
+      white-space: pre-line;
+      word-break: break-all;
+    }
+
+    .body-text {
+      @include body2Font($black75Color);
+      margin-top: 21px;
+      text-align: center;
+      white-space: pre-wrap;
+      height: 38px;
+    }
+
+    .buttons {
+      display: flex;
+      width: 296.8px;
+      height: 55px;
+      justify-content: center;
+      align-items: center;
+      gap: 18.55px;
+      padding-top: 77px;
+      padding-left: 64px;
+
+      .button-left {
+        display: flex;
+        @include centerFormat();
+        width: 139.125px;
+        height: 55px;
+        border-radius: 8px;
+        border: 1px solid $secondaryColor;
+        background: $white100Color;
+        @include subHeading2Font($secondaryColor);
+        cursor: pointer;
+      }
+
+      .button-left:hover {
+        background: $hoverAndClickWhiteColor;
+      }
+
+      .button-right-primary {
+        display: flex;
+        @include centerFormat();
+        width: 139.125px;
+        height: 55px;
+        border: none;
+        border-radius: 8px;
+        background: $primaryColor;
+        @include subHeading2Font($white100Color);
+        cursor: pointer;
+      }
+
+      .button-right-primary:hover {
+        background: $hoverAndClickPrimaryColor;
+      }
+
+      .button-right-not-primary {
+        display: flex;
+        @include centerFormat();
+        width: 139.125px;
+        height: 55px;
+        border: none;
+        border-radius: 8px;
+        background: $errorColor;
+        @include subHeading2Font($white100Color);
+        cursor: pointer;
+      }
+
+      .button-right-not-primary:hover {
+        background: $hoverAndClickErrorColor;
+      }
+    }
+  }
+}

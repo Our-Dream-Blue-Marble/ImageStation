@@ -1,0 +1,251 @@
+@import "styles/ThemeStyles.scss";
+
+.OrderConfirmViewBody {
+  min-height: calc(100vh - 69px);
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+  flex-shrink: 0;
+  flex-direction: column;
+
+  .AllLayout {
+    display: flex;
+    flex-direction: row;
+    padding-top: 8.37vh;
+    padding-bottom: 7.01vh;
+    @include centerFormat();
+    .FileLayout {
+      width: 524px;
+      height: 580px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px 0px 0px 10px;
+      background: $black25Color;
+      margin: 0;
+      padding: 0;
+
+      .pageNumberContainer {
+        display: flex;
+        @include subHeading3Font($white100Color);
+        width: 62px;
+        height: 25px;
+        @include centerFormat();
+        border: none;
+        border-radius: 16px;
+        position: sticky;
+        margin-top: 495px;
+        background: $black25Color;
+        z-index: 99;
+      }
+      .pdfFileContainer {
+        width: 400px;
+        height: 580px;
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+      }
+
+      .imageFileLayout {
+        width: 400px;
+        height: 400px;
+      }
+
+      .rpv-core__viewer {
+        width: 350px;
+        height: 446px;
+      }
+
+      .rpv-core__inner-page {
+        display: flex;
+        position: static;
+        margin-top: 67px;
+
+        background-color: transparent;
+        background: none;
+      }
+
+      .rpv-core__inner-page-container {
+        width: 340px;
+        height: 10px;
+        position: relative;
+        background-color: transparent;
+      }
+
+      .rpv-core__inner-container {
+        margin: 0;
+        padding: 0;
+      }
+
+      .rpv-core__inner-page-container {
+        width: 350px;
+        height: 10px;
+        position: relative;
+        background-color: transparent;
+      }
+
+      .rpv-core__inner-pages.rpv-core__inner-pages--vertical {
+        overflow-x: hidden;
+        align-items: center;
+        width: 429px;
+        margin-left: 27px;
+      }
+
+      .rpv-core__inner-pages.rpv-core__inner-pages--vertical::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .rpv-core__inner-pages.rpv-core__inner-pages--vertical::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      .rpv-core__inner-pages.rpv-core__inner-pages--vertical::-webkit-scrollbar-thumb {
+        height: 129px;
+        background: $black25Color;
+        border-radius: 10px;
+      }
+
+      .rpv-core__inner-pages.rpv-core__inner-pages--vertical {
+        overflow-x: hidden;
+        align-items: center;
+      }
+
+      div {
+        justify-content: center;
+        width: 95%;
+        height: 95%;
+        margin: 0;
+        padding: 0;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+      }
+    }
+
+    .InfoLayout {
+      width: 360px;
+      height: 580px;
+      display: flex;
+      flex-direction: column;
+
+      border-radius: 0px 10px 10px 0px;
+      background: $white60Color;
+    }
+
+    .categoryAllContent {
+      margin-left: 30px;
+      margin-top: 33px;
+      margin-right: 37px;
+
+      display: flex;
+      flex-direction: column;
+    }
+    .orderConfirmViewHeader {
+      #categoryTitleLayout {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 30px;
+
+        #category {
+          @include heading2Font($black100Color);
+          text-align: left;
+        }
+
+        #docId {
+          @include body1Font($black100Color);
+          text-align: right;
+        }
+      }
+      .categoryAttachment {
+        display: flex;
+        @include body1Font($primaryColor);
+        padding-bottom: 30px;
+        text-decoration-line: none;
+        cursor: pointer;
+      }
+
+      .categoryUserInfoLayout {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 19px;
+
+        .categoryKeyUserInfo {
+          width: 70px;
+          padding-right: 42px;
+          @include subHeading2Font($black100Color);
+        }
+        .categoryValueUserInfo {
+          @include subHeading2Font($black100Color);
+        }
+      }
+    }
+    .categoryAll {
+      height: 378px;
+      width: 324px;
+      overflow-y: scroll;
+
+      .categoryAllLayout {
+        display: flex;
+        flex-direction: row;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        .categoryKeyText {
+          width: 90px;
+          padding-right: 23px;
+          @include body1Font($black75Color);
+        }
+
+        .categoryValueText {
+          width: 171px;
+          @include subHeading3Font($black100Color);
+        }
+      }
+    }
+    .categoryAll::-webkit-scrollbar {
+      width: 8px;
+      background-color: transparent;
+    }
+
+    .categoryAll::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    .categoryAll::-webkit-scrollbar-thumb {
+      background-color: $black25Color;
+      border-radius: 10px;
+    }
+  }
+  .navigateButtonSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 4.52vh;
+    .navigateButton {
+      @include heading2Font($white100Color);
+      background: $primaryColor;
+      display: flex;
+      width: 210px;
+      height: 60px;
+      padding: 10px;
+      justify-content: center;
+
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .navigateButton:hover {
+      background: $hoverAndClickPrimaryColor;
+    }
+  }
+}

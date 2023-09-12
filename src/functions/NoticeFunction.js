@@ -1,13 +1,12 @@
-import { storageService } from "fbase";
-import { redirect } from "react-router-dom";
+import { dbService, storageService } from "fbase";
+
 import {
   createNewNoticeDocument,
   deleteNoticeDocument,
   readNoticeListDocument,
   updateNoticeDocument,
+  updateNoticePinDocument,
 } from "repositories/NoticeRepository";
-import { NoticeListRouteName } from "routes/RouteName";
-import { v4 as uuidv4 } from "uuid";
 
 export const onAdminWriteNewNoticeSubmit = async (
   event,
@@ -22,7 +21,11 @@ export const onAdminWriteNewNoticeSubmit = async (
   let attachmentUrl = "";
   let result = false;
   if (attachment !== "") {
-    attachmentUrl = await uploadAttachmentOnStorage(id, attachment);
+    attachmentUrl = await uploadAttachmentOnStorage(
+      id,
+      attachment,
+      attachmentName
+    );
   }
   await createNewNoticeDocument(
     id,
@@ -45,10 +48,15 @@ export const onAdminWriteNewNoticeSubmit = async (
   return result;
 };
 
-const uploadAttachmentOnStorage = async (id, attachment) => {
-  const attachmentRef = storageService.ref().child(`notices/${id}/${uuidv4()}`);
+const uploadAttachmentOnStorage = async (id, attachment, attachmentName) => {
+  const attachmentRef = storageService
+    .ref()
+    .child(`notices/${id}/${attachmentName}`);
   const response = await attachmentRef.putString(attachment, "data_url");
-  return await response.ref.getDownloadURL();
+  const bucketName = response.ref.bucket;
+  const encodedAttachmentName = encodeURIComponent(attachmentName);
+  const httpsUrl = `https://firebasestorage.googleapis.com/v0/b/${bucketName}/o/notices%2F${id}%2F${encodedAttachmentName}?alt=media`;
+  return httpsUrl;
 };
 
 export const onPostTitleOrBodyChange = (event, setValue) => {
@@ -68,6 +76,7 @@ export const getNoticeList = async (setNotice) => {
     id: doc.id,
     ...doc.data(),
   }));
+  noticeArray.sort((a, b) => b.noticePin - a.noticePin);
   setNotice(noticeArray);
 };
 
@@ -80,9 +89,20 @@ export const onUpdatedNoticeSubmit = async (
   date,
   view,
   attachment,
-  attachmentName
+  attachmentName,
+  isNewAttachmentUploaded,
+  noticePin
 ) => {
   event.preventDefault();
+  let attachmentUrl = attachment;
+  if (isNewAttachmentUploaded) {
+    attachmentUrl = await uploadAttachmentOnStorage(
+      id,
+      attachment,
+      attachmentName
+    );
+  }
+  let result = false;
   await updateNoticeDocument(
     id,
     title,
@@ -90,9 +110,17 @@ export const onUpdatedNoticeSubmit = async (
     writer,
     date,
     view,
-    attachment,
-    attachmentName
-  );
+    attachmentUrl,
+    attachmentName,
+    noticePin
+  )
+    .then(() => {
+      result = true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return result;
 };
 
 export const onUpdateTitleOrBodyChange = (event, setValue) => {
@@ -107,18 +135,14 @@ export const onUpdateTitleOrBodyChange = (event, setValue) => {
 };
 
 export const onDeleteNoticeClick = async (id) => {
-  const confirmDeleteNotice = window.confirm("해당 공지를 삭제하시겠습니까?");
-  if (!confirmDeleteNotice) return;
-  else {
-    await deleteNoticeDocument(id)
-      .then(() => {
-        window.confirm("삭제를 완료하였습니다.");
-        return redirect(NoticeListRouteName);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }
+  await deleteNoticeDocument(id)
+    .then(() => {
+      return true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return false;
 };
 
 export const onNoticeAttachmentChange = (
@@ -151,4 +175,64 @@ export const getNoticeWrittenDate = (noticeViewObj) => {
     "." +
     ("0" + date.getDate()).slice(-2);
   return dateInString;
+};
+export const getNoticeWrittenFullDate = (noticeViewObj) => {
+  var noticeWrittenDate = noticeViewObj.date;
+  var date = new Date(noticeWrittenDate);
+  let timeSection;
+  let hour = parseInt(("0" + date.getHours()).slice(-2));
+  if (hour > 12) {
+    timeSection = "오후";
+    hour = hour - 12;
+  } else {
+    timeSection = "오전";
+  }
+  const dateInString =
+    date.getFullYear().toString() +
+    "년 " +
+    ("0" + (date.getMonth() + 1)).slice(-2) +
+    "월 " +
+    ("0" + date.getDate()).slice(-2) +
+    "일 " +
+    timeSection +
+    " " +
+    hour +
+    ":" +
+    ("0" + date.getMinutes()).slice(-2);
+  return dateInString;
+};
+
+export const onPinnedNoticeDataClick = async (
+  noticeId,
+  pinStatus,
+  noticeDataArray,
+  setNotice,
+  setNoticeSearched
+) => {
+  let pinCount = 0;
+  await updateNoticePinDocument(noticeId, pinStatus);
+  const updatedNoticeArray = noticeDataArray.map((notice) => {
+    if (notice.id === noticeId) {
+      return { ...notice, noticePin: pinStatus };
+    }
+    if (notice.noticePin) {
+      pinCount++;
+    }
+    return notice;
+  });
+  let noticeArray = [...updatedNoticeArray];
+  if (pinStatus || pinCount > 0) {
+    noticeArray.sort((a, b) => b.id - a.id);
+    noticeArray.sort((a, b) => b.noticePin - a.noticePin);
+  } else {
+    noticeArray.sort((a, b) => b.id - a.id);
+  }
+
+  setNotice(noticeArray);
+  setNoticeSearched(noticeArray);
+};
+
+export const getNumOfPinnedNotices = (notice) => {
+  const countNotice = notice.filter((data) => data.noticePin);
+  return countNotice.length;
 };
