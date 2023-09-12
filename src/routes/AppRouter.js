@@ -133,6 +133,7 @@ const AppRouter = ({
               path={UserLeaveRouteName}
               element={<UserLeavePage userObject={userObject} />}
             />
+            <Route path="*" element={<ErrorPage />} />
           </>
         ) : (
           <>
