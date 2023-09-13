@@ -26,3 +26,11 @@
     margin-top: 19px;
   }
 }
+.NonErrorLayout {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 69px);
+  background-image: url("../assets/BackgroundAsset.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
