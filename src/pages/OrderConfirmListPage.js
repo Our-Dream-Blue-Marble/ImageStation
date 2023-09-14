@@ -130,7 +130,7 @@ const OrderConfirmListPage = ({ isAdmin, isLoggedIn }) => {
         ) : (
           <>
             <table className="OrderConfirmListContainer">
-              {!isOrderLoading && (
+              {orderConfirmSwitchList.length !== 0 && (
                 <>
                   <div className="headers">
                     <th style={{ width: "50px", paddingRight: "3%" }}></th>
