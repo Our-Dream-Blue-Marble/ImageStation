@@ -26,19 +26,24 @@
       @include heading4Font($primaryColor);
       width: 250px;
       text-align: center;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
 
     .header-text-not-primary {
       @include heading4Font($errorColor);
       width: 250px;
       text-align: center;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
 
     .body-text {
       @include body2Font($black75Color);
       text-align: center;
-      white-space: pre-wrap;
       width: 223px;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
 
     .button-primary {

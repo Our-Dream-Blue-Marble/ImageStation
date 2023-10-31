@@ -133,7 +133,7 @@ const AppRouter = ({
               path={UserLeaveRouteName}
               element={<UserLeavePage userObject={userObject} />}
             />
-            <Route path="*" element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage isLoggedIn={isLoggedIn} />} />
           </>
         ) : (
           <>
@@ -183,7 +183,7 @@ const AppRouter = ({
               path={UserLeaveRouteName}
               element={<UserLeavePage userObject={userObject} />}
             />
-            <Route path="*" element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage isLoggedIn={isLoggedIn} />} />
           </>
         )}
       </Routes>

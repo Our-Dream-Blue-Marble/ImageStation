@@ -52,8 +52,10 @@
     height: 51.5vh;
     padding: 0;
     margin: 0;
-    overflow-y: scroll;
     scrollbar-width: none;
+    white-space: pre-line;
+    word-break: break-all;
+    overflow-y: scroll;
     @include captionFont($black100Color);
   }
 

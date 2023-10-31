@@ -58,7 +58,7 @@ const LogInPage = () => {
       {/* setIsRouteConfirm(); */}
       {isShowPopUpContent === "email" && (
         <PopUpWithOneButtonsWidgets
-          headerText={"이메일 형식에 맞지 않습니다!"}
+          headerText={"이메일 형식에 \n맞지 않습니다!"}
           bodyText={"handong.ac.kr 또는 hadong.edu 형식으로 작성해주세요"}
           buttonText={"닫기"}
           isPrimaryColor={true}
