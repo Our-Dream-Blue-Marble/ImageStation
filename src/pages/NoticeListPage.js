@@ -35,7 +35,7 @@ const NoticeListPage = () => {
           <div className="noticeHead">
             <div className="noticeListHead">공지사항</div>
             <div className="noticeListExp">
-              이미지 솔루션의 새로운 소식을 전해드려요.
+              이미지스테이션의 새로운 소식을 전해드려요.
             </div>
             <div
               className="AllBtnContainer"

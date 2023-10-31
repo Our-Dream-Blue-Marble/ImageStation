@@ -28,7 +28,8 @@ const PopUpAgreeInfoWidget = ({
         id={
           isAgreePopUp ? "info-popUp-background" : "info-back-popUp-background"
         }
-        onClick={onClickBackgroundFuction}></div>
+        onClick={onClickBackgroundFuction}
+      ></div>
       <div id="info-popUp-container">
         <div id="info-popUp-title">
           {isShowPersonalInfo && "개인정보처리방침"}

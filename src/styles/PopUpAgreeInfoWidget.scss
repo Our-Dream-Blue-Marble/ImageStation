@@ -55,8 +55,6 @@
     overflow-y: scroll;
     scrollbar-width: none;
     @include captionFont($black100Color);
-    white-space: pre-line;
-    word-break: break-all;
   }
 
   #info-popUp-context::-webkit-scrollbar {

@@ -27,7 +27,7 @@ const UserLeavePage = ({ userObject }) => {
         {!userObject && (
           <PopUpWithOneButtonsWidgets
             headerText={"탈퇴되었습니다."}
-            bodyText={"그동안 이미지 솔루션을\n이용해주셔서 감사합니다."}
+            bodyText={"그동안 이미지스테이션을\n이용해주셔서 감사합니다."}
             buttonText={"홈"}
             isPrimaryColor={false}
             onClickFunction={() => {
