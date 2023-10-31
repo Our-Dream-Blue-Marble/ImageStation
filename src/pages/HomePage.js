@@ -44,12 +44,12 @@ const HomePage = ({ elementRef }) => {
       <div className="HomeLayout">
         <div className="HomeStyle">
           <div className="HomeBackground">
-            <div className="Title">이미지스테이션을 온라인 예약으로</div>
+            <div className="Title">이미지 솔루션을 온라인 예약으로</div>
             <div className="SubTitle">
               몇번의 클릭으로 어느 곳에서 쉽고 빠른 프린팅 경험을 제공합니다.
             </div>
             <div className="ButtonText">
-              이미지스테이션의 소식을 듣고 싶나요?
+              이미지 솔루션의 소식을 듣고 싶나요?
             </div>
             <button className="ButtonIcon" onClick={scrollToNotice}>
               <HomeDownIconAsset />
@@ -85,7 +85,7 @@ const HomePage = ({ elementRef }) => {
                   개인정보처리방침
                 </div>
                 <hr />
-                <a href="mailto:imagestation.cra@gmail.com?subject=ImageStation 서버관련 메일&body=답장을 받으실 메일주소와 관련 문의사항을 남겨주세요">
+                <a href="mailto:imagesolution.cra@gmail.com?subject=Image Solution 서버관련 메일&body=답장을 받으실 메일주소와 관련 문의사항을 남겨주세요">
                   개발자문의
                 </a>
               </div>
