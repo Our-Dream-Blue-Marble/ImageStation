@@ -61,7 +61,7 @@ const NoticeAllPage = ({ isAdmin }) => {
       <div className="NoticeAllLayout">
         <div className="NoticeAllHeadContainer">
           <div className="NoticeAllTitle">
-            이미지스테이션의 공지를 확인해보세요
+            이미지 솔루션의 공지를 확인해보세요
           </div>
           <div>
             {isAdmin ? (
