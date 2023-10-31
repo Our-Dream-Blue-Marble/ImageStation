@@ -21,6 +21,9 @@ const PopUpAgreeInfoWidget = ({
       .then((result) => result.text())
       .then((text) => setUsingInfoText(text));
   });
+  const renderTextWithLineBreaks = (text) => {
+    return <pre>{text}</pre>;
+  };
 
   return (
     <>
@@ -28,17 +31,16 @@ const PopUpAgreeInfoWidget = ({
         id={
           isAgreePopUp ? "info-popUp-background" : "info-back-popUp-background"
         }
-        onClick={onClickBackgroundFuction}
-      ></div>
+        onClick={onClickBackgroundFuction}></div>
       <div id="info-popUp-container">
         <div id="info-popUp-title">
           {isShowPersonalInfo && "개인정보처리방침"}
           {!isShowPersonalInfo && "이용약관"}
         </div>
-        <div id="info-popUp-context">
+        <pre id="info-popUp-context">
           {isShowPersonalInfo && personalInfoText}
           {!isShowPersonalInfo && usingInfoText}
-        </div>
+        </pre>
         {isAgreePopUp ? (
           <button id="info-popUp-agree-button" onClick={onClickButtonFuction}>
             동의
