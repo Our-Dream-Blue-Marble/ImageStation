@@ -105,7 +105,7 @@ const AppRouter = ({
               path={OrderConfirmListRouteName}
               element={
                 <OrderConfirmListPage
-                  isAdmin={userObject?.role || false}
+                  isAdmin={userObject?.role}
                   isLoggedIn={isLoggedIn}
                 />
               }

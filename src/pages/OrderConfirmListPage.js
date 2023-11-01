@@ -35,15 +35,21 @@ const OrderConfirmListPage = ({ isAdmin, isLoggedIn }) => {
   const [isOrderLoading, setIsOrderLoading] = useState(true);
 
   useEffect(() => {
-    if (isAdmin) {
-      getAdminOrderConfirmList(setOrderConfirmList, setOrderConfirmSwitchList);
-    } else if (isLoggedIn) {
-      getNotAdminOrderConfirmList(
-        setOrderConfirmList,
-        setOrderConfirmSwitchList
-      ).then(() => {
-        setIsOrderLoading(false);
-      });
+    if (isAdmin != null) {
+      if (isAdmin) {
+        console.log(1);
+        getAdminOrderConfirmList(
+          setOrderConfirmList,
+          setOrderConfirmSwitchList
+        );
+      } else if (isLoggedIn) {
+        getNotAdminOrderConfirmList(
+          setOrderConfirmList,
+          setOrderConfirmSwitchList
+        ).then(() => {
+          setIsOrderLoading(false);
+        });
+      }
     }
   }, [isAdmin, isLoggedIn]);
 
