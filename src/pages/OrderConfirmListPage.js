@@ -336,7 +336,8 @@ const OrderConfirmListPage = ({ isAdmin, isLoggedIn }) => {
                                       order.docId,
                                       newCompleteDate[i],
                                       newTotalMoney[i],
-                                      setOrderConfirmList
+                                      setOrderConfirmList,
+                                      setOrderConfirmSwitchList
                                     );
                                   }}
                                 />
