@@ -144,7 +144,6 @@ const SignInPage = () => {
           <form
             method="POST"
             onSubmit={async (e) => {
-              console.log(errorContent);
               e.preventDefault();
               if (!errorContent.toString().includes("false")) {
                 onNewUserEmailAndPasswordSubmit(
