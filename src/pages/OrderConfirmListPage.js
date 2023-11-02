@@ -37,7 +37,6 @@ const OrderConfirmListPage = ({ isAdmin, isLoggedIn }) => {
   useEffect(() => {
     if (isAdmin != null) {
       if (isAdmin) {
-        console.log(1);
         getAdminOrderConfirmList(
           setOrderConfirmList,
           setOrderConfirmSwitchList
