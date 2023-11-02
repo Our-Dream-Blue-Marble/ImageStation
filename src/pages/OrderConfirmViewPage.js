@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 import "styles/OrderConfirmViewStyle.scss";
-
 import { Worker, Viewer } from "@react-pdf-viewer/core";
 
 import "@react-pdf-viewer/core/lib/styles/index.css";
@@ -116,8 +115,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
 
                       <div
                         className="categoryAttachment"
-                        onClick={() => onAttachmentDownloadClick(orderData)}
-                      >
+                        onClick={() => onAttachmentDownloadClick(orderData)}>
                         {orderData.attachmentName}
                       </div>
                       {isAdmin ? (
@@ -264,8 +262,7 @@ const OrderConfirmViewPage = ({ isAdmin, userObject }) => {
               <div className="navigateButtonSection">
                 <button
                   className="navigateButton"
-                  onClick={() => navigate(OrderConfirmListRouteName)}
-                >
+                  onClick={() => navigate(OrderConfirmListRouteName)}>
                   돌아가기
                 </button>
               </div>
