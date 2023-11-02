@@ -113,7 +113,8 @@ export const onEditOrderDataSaveClick = async (
   docId,
   newDate,
   newTotalMoney,
-  setOrderConfirmList
+  setOrderConfirmList,
+  setOrderConfirmSwitchList
 ) => {
   if (newDate && newTotalMoney) {
     await updateOrderDataDocument(docId, newDate, newTotalMoney);
@@ -123,7 +124,7 @@ export const onEditOrderDataSaveClick = async (
     await updateOrderDataDocument(docId, "0", newTotalMoney);
   }
 
-  getAdminOrderConfirmList(setOrderConfirmList);
+  getAdminOrderConfirmList(setOrderConfirmList, setOrderConfirmSwitchList);
 };
 
 export const getOrderDataPageWords = (pageValue) => {
