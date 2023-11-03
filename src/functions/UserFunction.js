@@ -73,6 +73,7 @@ export const logIn = async (
   setIsNewUser
 ) => {
   var result = false;
+  console.log(authService);
   await signInWithEmailAndPassword(authService, userEmail, userPassword)
     .then(async () => {
       await updateUserLogInDateDocument(authService.currentUser.uid, Date.now())
@@ -82,10 +83,7 @@ export const logIn = async (
         .catch((e) => {});
     })
     .catch((e) => {
-      if (
-        `${e.message}`.includes("user-not-found") ||
-        `${e.message}`.includes("auth/invalid-login-credentials")
-      ) {
+      if (`${e.message}`.includes("user-not-found")) {
         setIsNewUser(true);
         setIsShowPopUpContent("user-not-found");
       } else if (`${e.message}`.includes("wrong-password")) {
