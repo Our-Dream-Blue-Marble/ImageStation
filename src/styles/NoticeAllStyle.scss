@@ -2,7 +2,7 @@
 
 .NoticeAllLayout {
   width: 100%;
-  min-height: 91vh;
+  min-height: calc(100vh - 69px);
   background-image: url("../assets/BackgroundAsset.svg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -40,7 +40,9 @@
   }
 
   .NoticeAllContainer {
-    height: 887px;
+    height: 100%;
+    padding-bottom: 100px;
+
     @include desktop {
       width: 862px;
     }
